@@ -8,6 +8,7 @@ import SetPreorder from './components/set-preorder';
 import CreatePreorder from './components/create-preorder';
 import { TARGET } from './target';
 
+export const isDevelopment = process.env.NODE_ENV === "development";
 export default reactExtension(TARGET, () => <App />);
 
 function App() {

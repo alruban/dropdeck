@@ -12,6 +12,7 @@ import { CREATE_PREORDER_METAOBJECT_ENTRY_QUERY } from '../mutations/create-preo
 import { PREORDER_METAOBJECT_DEFINITION_CREATE_MUTATION, PREORDER_METAOBJECT_DEFINITION_CREATE_VARIABLES } from '../mutations/create-preorder-metaobject-definition';
 import { PREORDER_METAOBJECT_ENTRY_BY_HANDLE_QUERY } from '../queries/get-preorder-metaobject-entry-by-handle';
 import { PREORDER_METAOBJECT_DEFINITION_BY_TYPE_QUERY } from '../queries/get-preorder-metaobject-definition-by-type';
+import { isDevelopment } from '../pdp-utility';
 
 export default function CreatePreorder() {
   const { data } = useApi(TARGET);
@@ -19,7 +20,7 @@ export default function CreatePreorder() {
   const [isLoading, setIsLoading] = useState(false);
 
   const createPreorderMetaobject = async () => {
-    setIsLoading(true);
+    // setIsLoading(true);
 
     // Check if the metaobject definition already exists
     gqlFetch({
@@ -28,10 +29,10 @@ export default function CreatePreorder() {
         type: "dropdeck_preorder"
       }
     }, (data) => {
-      const metaobjectDefinitionExists = data.metaobjectDefinitionByType.type == "dropdeck_preorder";
-      isDevelopment && console.log("Metaobject definition already exists:", metaobjectDefinitionExists);
+      const metaobjectDefinitionExists = data.metaobjectDefinitionByType;
+      isDevelopment && console.log("Metaobject definition already exists:", data);
       
-      if (metaobjectDefinitionExists) {
+      if (data) {
         console.log("Metaobject definition already exists:", data);
       } else {
         console.log("Metaobject definition does not exist:", data);
