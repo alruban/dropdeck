@@ -5,91 +5,54 @@ import {
   useApi
 } from '@shopify/ui-extensions-react/admin';
 import { TARGET } from '../target';
-import { gqlFetch } from '../tools/gql-fetch';
 import { useState } from 'react';
 
-import { CREATE_PREORDER_METAOBJECT_ENTRY_QUERY } from '../mutations/create-preorder-metaobject-entry';
-import { PREORDER_METAOBJECT_DEFINITION_CREATE_MUTATION, PREORDER_METAOBJECT_DEFINITION_CREATE_VARIABLES } from '../mutations/create-preorder-metaobject-definition';
-import { PREORDER_METAOBJECT_ENTRY_BY_HANDLE_QUERY } from '../queries/get-preorder-metaobject-entry-by-handle';
-import { PREORDER_METAOBJECT_DEFINITION_BY_TYPE_QUERY } from '../queries/get-preorder-metaobject-definition-by-type';
-import { isDevelopment } from '../pdp-utility';
+import checkPreorderMetaobjectDefinitionExists from '../queries/get-preorder-metaobject-definition-by-type';
+import checkPreorderMetaobjectEntryExists from '../queries/get-preorder-metaobject-entry-by-handle';
+import createPreorderMetaobjectDefinition from '../mutations/create-preorder-metaobject-definition';
+import createPreorderMetaobjectEntry from '../mutations/create-preorder-metaobject-entry';
 
-export default function CreatePreorder() {
+interface CreatePreorderProps {
+  preorderData: (data: PreorderData) => void;
+}
+
+export default function CreatePreorder(props: CreatePreorderProps) {
   const { data } = useApi(TARGET);
   const productId = data.selected?.[0]?.id.replace("gid://shopify/Product/", "");
+
   const [isLoading, setIsLoading] = useState(false);
 
-  const createPreorderMetaobject = async () => {
+  const createPreorderMetaobject = () => {
     // setIsLoading(true);
 
     // Check if the metaobject definition already exists
-    gqlFetch({
-      query: PREORDER_METAOBJECT_DEFINITION_BY_TYPE_QUERY,
-      variables: {
-        type: "dropdeck_preorder"
+    checkPreorderMetaobjectDefinitionExists(
+      () => {
+        // If the metaobject definition already exists, we can look for or create the metaobject entry
+        checkPreorderMetaobjectEntryExists(productId,
+          (metaobjectEntry) => {
+            // If the metaobject entry already exists, we populate the fields with the existing values
+            const { fields } = metaobjectEntry.data.metaobjectByHandle;
+            const releaseDate = fields.find(field => field.key === "release_date")?.value;
+            const unitsAvailable = fields.find(field => field.key === "units_available")?.value;
+            props.preorderData({ release_date: releaseDate, units_available: unitsAvailable });
+          },
+          () => {
+            // If the metaobject entry does not exist, we can create it
+            createPreorderMetaobjectEntry(productId);
+          }
+        );
+      },
+      () => {
+        // If the metaobject definition does not exist, we can create it
+        createPreorderMetaobjectDefinition(
+          () => {
+            // Now the metaobject definition is created, we can create the metaobject entry
+            createPreorderMetaobjectEntry(productId);
+          }
+        );
       }
-    }, (data) => {
-      const metaobjectDefinitionExists = data.metaobjectDefinitionByType;
-      isDevelopment && console.log("Metaobject definition already exists:", data);
-      
-      if (data) {
-        console.log("Metaobject definition already exists:", data);
-      } else {
-        console.log("Metaobject definition does not exist:", data);
-      }
-    });
-
-    // gqlFetch({
-    //   query: PREORDER_METAOBJECT_ENTRY_BY_HANDLE_QUERY,
-    //   variables: {
-    //     handle: {
-    //       type: "dropdeck_preorder",
-    //       handle: productId
-    //     }
-    //   }
-    // }, (data) => {
-    //   console.log("Searching for metaobject entry:", data, productId);
-    // });
-    
-    // First check if the metaobject definition exists
-    // gqlFetch({
-    //   query: PREORDER_METAOBJECT_DEFINITION_CREATE_MUTATION,
-    //   variables: PREORDER_METAOBJECT_DEFINITION_CREATE_VARIABLES
-    // }, (createData) => {
-    //   const metaobjectDefinitionAlreadyExists = createData.data.metaobjectDefinitionCreate.userErrors.find((error) => {
-    //     return error.code === "TAKEN"
-    //   });
-
-    //   if (metaobjectDefinitionAlreadyExists) {
-    //     console.log("Metaobject definition already exists:", createData);
-    //   } else {
-    //     console.log("Created metaobject definition:", createData);
-    //   }
-      
-    //   // Now that we have the definition, we can create the metaobject
-    //   gqlFetch({
-    //     query: CREATE_PREORDER_METAOBJECT_ENTRY_QUERY,
-    //     variables: {
-    //       metaobject: {
-    //         type: "dropdeck_preorder",
-    //         handle: productId,
-    //         fields: [
-    //           {
-    //             key: "release_date",
-    //             value: "2024-06-01"
-    //           },
-    //           {
-    //             key: "units_available",
-    //             value: "100"
-    //           }
-    //         ]
-    //       }
-    //     }
-    //   }, (metaobjectData) => {
-    //     console.log("Created metaobject:", metaobjectData);
-    //     setIsLoading(false);
-    //   });
-    // });
+    );
   };
 
   return (

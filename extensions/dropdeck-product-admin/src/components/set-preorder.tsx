@@ -27,20 +27,21 @@ function formatDate(dateString: string): string {
   return `${day}${ordinal(day)} ${month} ${year}`;
 }
 
-export default function SetPreorder() {
+interface SetPreorderProps {
+  preorderData: PreorderData;
+}
+
+export default function SetPreorder(props: SetPreorderProps) {
   // States
-  const [selected, setSelected] = useState(() => {
-    const today = new Date();
-    return today.toISOString().split('T')[0]; // This gives YYYY-MM-DD format
-  });
-  const [unitsAvailable, setUnitsAvailable] = useState(100);
+  const [releaseDate, setReleaseDate] = useState(props.preorderData.release_date);
+  const [unitsAvailable, setUnitsAvailable] = useState(Number(props.preorderData.units_available));
 
   return (
     <BlockStack>
       <DateField
         label="Release Date"
-        value={selected}
-        onChange={setSelected}
+        value={releaseDate}
+        onChange={setReleaseDate}
       />
 
       <NumberField
@@ -49,7 +50,7 @@ export default function SetPreorder() {
         onChange={setUnitsAvailable}
       />
 
-      <Text>Release date: {formatDate(selected)}</Text>
+      <Text>Release date: {formatDate(releaseDate)}</Text>
       <Text>Units available to preorder: {unitsAvailable}</Text>
     </BlockStack>
   );
