@@ -1,0 +1,5 @@
+name = "Dropdeck Script"
+type = "theme"
+
+[[targets]]
+  type = "online_store"

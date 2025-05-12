@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://actively-workshop-animal-kings.trycloudflare.com"
+application_url = "https://bull-additional-flush-moderate.trycloudflare.com"
 embedded = true
 
 [build]
@@ -27,9 +27,9 @@ scopes = "write_products, read_products, write_metaobjects, read_metaobjects, re
 
 [auth]
 redirect_urls = [
-  "https://actively-workshop-animal-kings.trycloudflare.com/auth/callback",
-  "https://actively-workshop-animal-kings.trycloudflare.com/auth/shopify/callback",
-  "https://actively-workshop-animal-kings.trycloudflare.com/api/auth/callback"
+  "https://bull-additional-flush-moderate.trycloudflare.com/auth/callback",
+  "https://bull-additional-flush-moderate.trycloudflare.com/auth/shopify/callback",
+  "https://bull-additional-flush-moderate.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]
