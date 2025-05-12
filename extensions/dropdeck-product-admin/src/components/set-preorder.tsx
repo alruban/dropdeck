@@ -1,31 +1,10 @@
 import {
   BlockStack,
-  Text,
   DateField,
   NumberField
 } from '@shopify/ui-extensions-react/admin';
-import { useState } from 'react';
-
-
-function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  const day = date.getDate();
-  const month = date.toLocaleString('default', { month: 'long' });
-  const year = date.getFullYear();
-
-  // Add ordinal suffix to day
-  const ordinal = (day: number) => {
-    if (day > 3 && day < 21) return 'th';
-    switch (day % 10) {
-      case 1: return 'st';
-      case 2: return 'nd';
-      case 3: return 'rd';
-      default: return 'th';
-    }
-  };
-
-  return `${day}${ordinal(day)} ${month} ${year}`;
-}
+import { useEffect, useState } from 'react';
+import updatePreorderMetaobjectEntry from '../mutations/update-preorder-metaobject-entry';
 
 interface SetPreorderProps {
   preorderData: PreorderData;
@@ -34,24 +13,38 @@ interface SetPreorderProps {
 export default function SetPreorder(props: SetPreorderProps) {
   // States
   const [releaseDate, setReleaseDate] = useState(props.preorderData.release_date);
-  const [unitsAvailable, setUnitsAvailable] = useState(Number(props.preorderData.units_available));
+  const [unitsAvailable, setUnitsAvailable] = useState(props.preorderData.units_available);
+
+  useEffect(() => {
+    console.log("Updating preorder metaobject entry", releaseDate, unitsAvailable);
+    updatePreorderMetaobjectEntry(
+      props.preorderData.metaobject_entry_id,
+      [
+        {
+          key: "release_date",
+          value: releaseDate
+        },
+        {
+          key: "units_available",
+          value: unitsAvailable
+        }
+      ]
+    );
+  }, [releaseDate, unitsAvailable]);
 
   return (
-    <BlockStack>
+    <BlockStack gap="base">
       <DateField
         label="Release Date"
         value={releaseDate}
-        onChange={setReleaseDate}
+        onChange={(newDate) => setReleaseDate(String(newDate))}
       />
 
       <NumberField
-        label="Units available"
-        value={unitsAvailable}
-        onChange={setUnitsAvailable}
+        label="Units available (0 sets no limit)"
+        value={Number(unitsAvailable)}
+        onChange={(newUnitsAvailable) => setUnitsAvailable(String(newUnitsAvailable))}
       />
-
-      <Text>Release date: {formatDate(releaseDate)}</Text>
-      <Text>Units available to preorder: {unitsAvailable}</Text>
     </BlockStack>
   );
 }

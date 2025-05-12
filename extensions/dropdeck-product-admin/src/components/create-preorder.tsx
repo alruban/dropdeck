@@ -17,14 +17,12 @@ interface CreatePreorderProps {
 }
 
 export default function CreatePreorder(props: CreatePreorderProps) {
-  const { data } = useApi(TARGET);
+  const { data, i18n } = useApi(TARGET);
   const productId = data.selected?.[0]?.id.replace("gid://shopify/Product/", "");
 
   const [isLoading, setIsLoading] = useState(false);
 
   const createPreorderMetaobject = () => {
-    // setIsLoading(true);
-
     // Check if the metaobject definition already exists
     checkPreorderMetaobjectDefinitionExists(
       () => {
@@ -39,7 +37,11 @@ export default function CreatePreorder(props: CreatePreorderProps) {
           },
           () => {
             // If the metaobject entry does not exist, we can create it
-            createPreorderMetaobjectEntry(productId);
+            createPreorderMetaobjectEntry(productId, (metaobjectDefinition, defaultFields) => {
+              const releaseDate = defaultFields.find(field => field.key === "release_date")?.value;
+              const unitsAvailable = defaultFields.find(field => field.key === "units_available")?.value;
+              props.preorderData({ release_date: releaseDate, units_available: unitsAvailable });
+            });
           }
         );
       },
@@ -48,7 +50,11 @@ export default function CreatePreorder(props: CreatePreorderProps) {
         createPreorderMetaobjectDefinition(
           () => {
             // Now the metaobject definition is created, we can create the metaobject entry
-            createPreorderMetaobjectEntry(productId);
+            createPreorderMetaobjectEntry(productId, (metaobjectDefinition, defaultFields) => {
+              const releaseDate = defaultFields.find(field => field.key === "release_date")?.value;
+              const unitsAvailable = defaultFields.find(field => field.key === "units_available")?.value;
+              props.preorderData({ release_date: releaseDate, units_available: unitsAvailable });
+            });
           }
         );
       }
@@ -56,8 +62,8 @@ export default function CreatePreorder(props: CreatePreorderProps) {
   };
 
   return (
-    <BlockStack>
-      <Text>Create a preorder to start selling your product</Text>
+    <BlockStack gap="base">
+      <Text>{i18n.translate("create_preorder")}</Text>
 
       <Button
         variant="primary"

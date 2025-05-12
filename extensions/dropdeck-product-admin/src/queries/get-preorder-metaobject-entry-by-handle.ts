@@ -14,6 +14,7 @@ const checkPreorderMetaobjectEntryExists = (
         metaobjectByHandle(handle: $handle) {
           handle
           type
+          id
           fields {
             key
             value
