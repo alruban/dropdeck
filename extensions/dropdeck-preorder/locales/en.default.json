@@ -4,6 +4,8 @@
   "creating_preorder": "Creating preorder selling plan...",
   "create_preorder": "Create preorder selling plan",
   "cancel": "Cancel",
-  "release_date": "Release Date (YYYY-MM-DD)",
-  "release_hour": "Release Hour (HH:MM)"
+  "release_date_description": "Enter a release date and a release time to schedule a preorder.",
+  "date": "Date",
+  "hours": "Hour",
+  "minutes": "Minute"
 }

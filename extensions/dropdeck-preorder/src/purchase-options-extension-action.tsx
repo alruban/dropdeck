@@ -8,7 +8,7 @@ import {
   Divider,
   InlineStack,
   NumberField,
-  TextField
+  Heading
 } from '@shopify/ui-extensions-react/admin';
 import { useState } from 'react';
 
@@ -25,13 +25,23 @@ export default function PurchaseOptionsActionExtension(extension) {
   // States
   const [isLoading, setIsLoading] = useState(false);
   const [releaseDate, setReleaseDate] = useState(getOneMonthAhead());
-  const [releaseHour, setReleaseHour] = useState("00:00");
+  const [releaseHour, setReleaseHour] = useState(0);
+  const [releaseMinute, setReleaseMinute] = useState(0);
+
+  // Errors
+  const [timeError, setTimeError] = useState("");
 
   console.log("releaseDate", createDateFromNumbers(releaseDate), new Date().toISOString());
 
+  const formatTime = (hours: number, minutes: number): string => {
+    const formattedHours = hours.toString().padStart(2, '0');
+    const formattedMinutes = minutes.toString().padStart(2, '0');
+    return `${formattedHours}:${formattedMinutes}`;
+  };
+
   const createPreorder = () => {
     setIsLoading(true);
-    
+    const timeString = formatTime(releaseHour, releaseMinute);
     createPreorderSellingPlan(productId, new Date().toISOString(), () => {
       setIsLoading(false);
       close();
@@ -44,7 +54,7 @@ export default function PurchaseOptionsActionExtension(extension) {
         <Button
           variant="primary"
           onClick={createPreorder}
-          disabled={isLoading}
+          disabled={isLoading || !!timeError}
         >
           {isLoading ? i18n.translate("creating_preorder") : i18n.translate("create_preorder")}
         </Button>
@@ -60,17 +70,31 @@ export default function PurchaseOptionsActionExtension(extension) {
 
         <Divider />
 
+        <Text>{i18n.translate("release_date_description")}</Text>
+
         <InlineStack gap="base">
           <DateField
-            label={i18n.translate("release_date")}
+            label={i18n.translate("date")}
             value={releaseDate}
             onChange={(newDate) => setReleaseDate(String(newDate))}
           />
 
-          <TextField
-            label={i18n.translate("release_hour")}
+          <NumberField
+            label={i18n.translate("hours")}
             value={releaseHour}
-            onInput={(newReleaseHour) => setReleaseHour(newReleaseHour)}
+            onChange={setReleaseHour}
+            min={0}
+            max={23}
+            step={1}
+          />
+
+          <NumberField
+            label={i18n.translate("minutes")}
+            value={releaseMinute}
+            onChange={setReleaseMinute}
+            min={0}
+            max={59}
+            step={1}
           />
         </InlineStack>
       </BlockStack>
