@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://bull-additional-flush-moderate.trycloudflare.com"
+application_url = "https://surveillance-albany-deliver-burner.trycloudflare.com"
 embedded = true
 
 [build]
@@ -23,13 +23,13 @@ api_version = "2025-04"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "write_products, read_products, write_metaobjects, read_metaobjects, read_metaobject_definitions, write_metaobject_definitions"
+scopes = "write_products, read_products, write_metaobjects, read_metaobjects, read_metaobject_definitions, write_metaobject_definitions, read_own_subscription_contracts, write_own_subscription_contracts, read_purchase_options, write_purchase_options"
 
 [auth]
 redirect_urls = [
-  "https://bull-additional-flush-moderate.trycloudflare.com/auth/callback",
-  "https://bull-additional-flush-moderate.trycloudflare.com/auth/shopify/callback",
-  "https://bull-additional-flush-moderate.trycloudflare.com/api/auth/callback"
+  "https://surveillance-albany-deliver-burner.trycloudflare.com/auth/callback",
+  "https://surveillance-albany-deliver-burner.trycloudflare.com/auth/shopify/callback",
+  "https://surveillance-albany-deliver-burner.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

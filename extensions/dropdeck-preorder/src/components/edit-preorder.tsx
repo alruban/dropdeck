@@ -12,11 +12,11 @@ import checkPreorderMetaobjectEntryExists from '../queries/get-preorder-metaobje
 import createPreorderMetaobjectDefinition from '../mutations/create-preorder-metaobject-definition';
 import createPreorderMetaobjectEntry from '../mutations/create-preorder-metaobject-entry';
 
-interface CreatePreorderProps {
+interface EditPreorderProps {
   preorderData: (data: PreorderData) => void;
 }
 
-export default function CreatePreorder(props: CreatePreorderProps) {
+export default function EditPreorder(props: EditPreorderProps) {
   const { data, i18n } = useApi(TARGET);
   const productId = data.selected?.[0]?.id.replace("gid://shopify/Product/", "");
 
@@ -63,15 +63,7 @@ export default function CreatePreorder(props: CreatePreorderProps) {
 
   return (
     <BlockStack gap="base">
-      <Text>{i18n.translate("create_preorder")}</Text>
-
-      <Button
-        variant="primary"
-        onClick={createPreorderMetaobject}
-        disabled={isLoading}
-      >
-        {isLoading ? "Checking..." : "Create preorder"}
-      </Button>
+      
     </BlockStack>
   );
 }

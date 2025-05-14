@@ -97,6 +97,25 @@ importers:
         specifier: ^6.2.2
         version: 6.3.5(@types/node@22.15.17)
 
+  extensions/dropdeck-preorder:
+    dependencies:
+      '@shopify/ui-extensions':
+        specifier: 2025.4.x
+        version: 2025.4.0
+      '@shopify/ui-extensions-react':
+        specifier: 2025.4.x
+        version: 2025.4.0(@shopify/ui-extensions@2025.4.0)(react-reconciler@0.29.0)(react@18.3.1)
+      react:
+        specifier: ^18.0.0
+        version: 18.3.1
+      react-reconciler:
+        specifier: 0.29.0
+        version: 0.29.0(react@18.3.1)
+    devDependencies:
+      '@types/react':
+        specifier: ^18.0.0
+        version: 18.3.21
+
   extensions/dropdeck-product-admin:
     dependencies:
       '@shopify/ui-extensions':

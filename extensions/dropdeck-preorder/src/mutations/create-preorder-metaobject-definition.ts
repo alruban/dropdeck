@@ -1,4 +1,4 @@
-import { isDevelopment } from "../pdp-utility";
+import { isDevelopment } from "../purchase-options-extension-action";
 import { gqlFetch } from "../tools/gql-fetch";
 
 const createPreorderMetaobjectDefinition = (

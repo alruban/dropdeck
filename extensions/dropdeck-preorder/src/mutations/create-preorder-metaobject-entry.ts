@@ -1,3 +1,4 @@
+import { isDevelopment } from "../purchase-options-extension-action";
 import { gqlFetch } from "../tools/gql-fetch";
 
 const createPreorderMetaobjectEntry = (
@@ -55,7 +56,7 @@ const createPreorderMetaobjectEntry = (
       }
     }
   }, (metaobjectData) => {
-    console.log("Created metaobject:", metaobjectData);
+    isDevelopment && console.log("Created metaobject:", metaobjectData);
     if (createdCallback) createdCallback(metaobjectData, defaultFields);
   });
 }
