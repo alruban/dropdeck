@@ -17,6 +17,17 @@ import { createDateFromNumbers, getOneMonthAhead } from './tools/convert-date';
 
 export const isDevelopment = process.env.NODE_ENV === "development";
 
+const createISOString = (date: string, hours: number, minutes: number): string => {
+  // Create a date object from the date string
+  const dateObj = new Date(date);
+  
+  // Set the hours and minutes
+  dateObj.setHours(hours, minutes, 0, 0);
+  
+  // Return ISO string
+  return dateObj.toISOString();
+};
+
 export default function PurchaseOptionsActionExtension(extension) {
   // The useApi hook provides access to several useful APIs like i18n, close, and data.
   const { i18n, close, data } = useApi(extension);
@@ -41,8 +52,8 @@ export default function PurchaseOptionsActionExtension(extension) {
 
   const createPreorder = () => {
     setIsLoading(true);
-    const timeString = formatTime(releaseHour, releaseMinute);
-    createPreorderSellingPlan(productId, new Date().toISOString(), () => {
+    const isoString = createISOString(releaseDate, releaseHour, releaseMinute);
+    createPreorderSellingPlan(productId, isoString, () => {
       setIsLoading(false);
       close();
     });
