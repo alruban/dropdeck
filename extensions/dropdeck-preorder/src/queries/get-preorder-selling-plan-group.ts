@@ -8,7 +8,7 @@ const getPreorderSellingPlanGroup = (
 ) => {
   gqlFetch({
     query: `
-      query sellingPlanGroups {
+      query sellingPlanGroups($id: ID!) {
         sellingPlanGroup(id: $id) {
           id,
           name,
@@ -22,21 +22,11 @@ const getPreorderSellingPlanGroup = (
             edges {
               node {
                 id
-              }
-            }
-          }
-          productVariants(first: 1) {
-            edges {
-              node {
-                id
-              }
-            }
-          }
-          summary,
-          products(first: 1) {
-            edges {
-              node {
-                id
+                deliveryPolicy {
+                  ... on SellingPlanFixedDeliveryPolicy {
+                    fulfillmentExactTime
+                  }
+                }
               }
             }
           }
