@@ -10,10 +10,11 @@ import {
   NumberField,
   Heading
 } from '@shopify/ui-extensions-react/admin';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import createPreorderSellingPlan from './mutations/create-preorder-selling-plan';
-import { createDateFromNumbers, getOneMonthAhead } from './tools/convert-date'; 
+import { getOneMonthAhead } from './tools/convert-date'; 
+import getPreorderSellingPlanGroup from './queries/get-preorder-selling-plan-group';
 
 export const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -31,13 +32,26 @@ const createISOString = (date: string, hours: number, minutes: number): string =
 export default function PurchaseOptionsActionExtension(extension) {
   // The useApi hook provides access to several useful APIs like i18n, close, and data.
   const { i18n, close, data } = useApi(extension);
-   const productId = data.selected?.[0]?.id;
+
+  const ids = data.selected?.[0];
+  if (!ids) return; 
+
+  const productId = ids.productId;
+  const sellingPlanGroupId = ids.sellingPlanId;
+
+   console.log("DATA", data, sellingPlanGroupId);
 
   // States
   const [isLoading, setIsLoading] = useState(false);
   const [releaseDate, setReleaseDate] = useState(getOneMonthAhead());
   const [releaseHour, setReleaseHour] = useState(0);
   const [releaseMinute, setReleaseMinute] = useState(0);
+
+  if (sellingPlanGroupId.length === 0) return;
+  getPreorderSellingPlanGroup(sellingPlanGroupId, (sellingPlanGroup) => {
+    console.log("SELLING PLAN GROUP", sellingPlanGroup);
+  });
+
 
   const createPreorder = () => {
     setIsLoading(true);
