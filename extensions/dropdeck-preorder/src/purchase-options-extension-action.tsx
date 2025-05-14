@@ -50,13 +50,8 @@ export default function PurchaseOptionsActionExtension(extension) {
         </Button>
       }
       secondaryAction={
-        <Button
-          onPress={() => {
-            console.log('closing');
-            close();
-          }}
-        >
-          Cancel
+        <Button onPress={() => close()}>
+          {i18n.translate("cancel")}
         </Button>
       }
     >

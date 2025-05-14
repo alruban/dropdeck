@@ -3,6 +3,7 @@
   "description": "This selling plan is used to create a preorder for a product or a product variant. Enter a release date and a release time to schedule a preorder, and then click save to create the preorder selling plan.",
   "creating_preorder": "Creating preorder selling plan...",
   "create_preorder": "Create preorder selling plan",
+  "cancel": "Cancel",
   "release_date": "Release Date (YYYY-MM-DD)",
   "release_hour": "Release Hour (HH:MM)"
 }
