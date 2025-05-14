@@ -39,17 +39,6 @@ export default function PurchaseOptionsActionExtension(extension) {
   const [releaseHour, setReleaseHour] = useState(0);
   const [releaseMinute, setReleaseMinute] = useState(0);
 
-  // Errors
-  const [timeError, setTimeError] = useState("");
-
-  console.log("releaseDate", createDateFromNumbers(releaseDate), new Date().toISOString());
-
-  const formatTime = (hours: number, minutes: number): string => {
-    const formattedHours = hours.toString().padStart(2, '0');
-    const formattedMinutes = minutes.toString().padStart(2, '0');
-    return `${formattedHours}:${formattedMinutes}`;
-  };
-
   const createPreorder = () => {
     setIsLoading(true);
     const isoString = createISOString(releaseDate, releaseHour, releaseMinute);
@@ -65,7 +54,7 @@ export default function PurchaseOptionsActionExtension(extension) {
         <Button
           variant="primary"
           onClick={createPreorder}
-          disabled={isLoading || !!timeError}
+          disabled={isLoading}
         >
           {isLoading ? i18n.translate("creating_preorder") : i18n.translate("create_preorder")}
         </Button>
