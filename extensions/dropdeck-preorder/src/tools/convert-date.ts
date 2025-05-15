@@ -44,13 +44,6 @@ export const parseISOStringIntoFormalDate = (isoString: string): string => {
   const month = dateObj.toLocaleString('default', { month: 'long' });
   const year = dateObj.getFullYear();
 
-  // Format time in 12-hour format
-  const hours = dateObj.getHours();
-  const minutes = dateObj.getMinutes();
-  const ampm = hours >= 12 ? 'pm' : 'am';
-  const formattedHours = hours % 12 || 12; // Convert 0 to 12
-  const formattedMinutes = minutes.toString().padStart(2, '0');
-
   // Add ordinal suffix to day
   const ordinal = (day: number) => {
     if (day > 3 && day < 21) return 'th';
@@ -62,5 +55,5 @@ export const parseISOStringIntoFormalDate = (isoString: string): string => {
     }
   };
 
-  return `${day}${ordinal(day)} ${month} ${year} at ${formattedHours}:${formattedMinutes}${ampm}`;
+  return `${day}${ordinal(day)} ${month} ${year}`;
 };

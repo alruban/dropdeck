@@ -19,6 +19,14 @@ const getPreorderSellingPlanGroup = (
                     fulfillmentExactTime
                   }
                 }
+                metafields(first: 2, namespace: "dropdeck_preorder") {
+                  edges {
+                    node {
+                      key
+                      value
+                    }
+                  }
+                }
               }
             }
           }
@@ -36,10 +44,10 @@ const getPreorderSellingPlanGroup = (
     const sellingPlanExists = sellingPlanGroup.data.sellingPlanGroup;
     
     if (sellingPlanExists) {
-      isDevelopment && console.log("Metaobject definition exists:", sellingPlanExists);
+      isDevelopment && console.log("Selling plan group exists:", sellingPlanExists);
       if (foundCallback) foundCallback(sellingPlanExists);
     } else {
-      isDevelopment && console.log("Metaobject definition does not exist:", sellingPlanGroup);
+      isDevelopment && console.log("Selling plan group does not exist:", sellingPlanGroup);
       if (notFoundCallback) notFoundCallback(sellingPlanGroup);
     }
   });

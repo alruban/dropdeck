@@ -32,7 +32,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
   if (!ids) return; 
 
   // States
-  const productId = ids.productId;
+  const productId = ids.id;
   const [sellingPlanGroupId, setSellingPlanGroupId] = useState(ids.sellingPlanId);
   const [sellingPlanId, setSellingPlanId] = useState<string | undefined>(undefined);
 
@@ -49,20 +49,22 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
     setIntent("updating");
     setIsLoading(true);
     getPreorderSellingPlanGroup(sellingPlanGroupId, (sellingPlanGroup) => {
-      console.log("SELLING PLAN GROUP", sellingPlanGroup);
       const sellingPlanId = sellingPlanGroup.sellingPlans.edges[0].node.id;
       const { fulfillmentExactTime } = sellingPlanGroup.sellingPlans.edges[0].node.deliveryPolicy;
-      console.log("SELLING PLAN ID", sellingPlanId);
+      const { metafields } = sellingPlanGroup.sellingPlans.edges[0].node;
 
-      if (sellingPlanId) {
-        setSellingPlanId(sellingPlanId);
-      }
+      const unitsPerCustomer = metafields.edges.find((metafield) => metafield.node.key === "units_per_customer")?.node.value;
+      const totalUnitsAvailable = metafields.edges.find((metafield) => metafield.node.key === "total_units_available")?.node.value;
 
+      if (sellingPlanId) setSellingPlanId(sellingPlanId);
+      if (unitsPerCustomer) setUnitsPerCustomer(unitsPerCustomer);
+      if (totalUnitsAvailable) setTotalUnitsAvailable(totalUnitsAvailable);
       if (fulfillmentExactTime) {
         const { date } = parseISOString(fulfillmentExactTime);
         setReleaseDate(date);
-        setIsLoading(false);
       }
+
+      setIsLoading(false);
     });
   }, [sellingPlanGroupId]);
 
@@ -81,11 +83,12 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
   };
 
   const create = () => {
+    console.log(ids.id)
     if (productId.length === 0) return;
     if (!validateDate(releaseDate)) return;
     setIsLoading(true);
     const isoString = createISOString(releaseDate);
-    createPreorderSellingPlanGroup(productId, isoString, () => {
+    createPreorderSellingPlanGroup(productId, isoString, unitsPerCustomer, totalUnitsAvailable, () => {
       setIsLoading(false);
       close();
     });
@@ -96,7 +99,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
     if (!validateDate(releaseDate)) return;
     setIsLoading(true);
     const isoString = createISOString(releaseDate);
-    updatePreorderSellingPlanGroup(sellingPlanGroupId, sellingPlanId, isoString, () => {
+    updatePreorderSellingPlanGroup(sellingPlanGroupId, sellingPlanId, isoString, unitsPerCustomer, totalUnitsAvailable, () => {
       setIsLoading(false);
       close();
     });
