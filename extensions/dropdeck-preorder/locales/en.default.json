@@ -8,5 +8,6 @@
   "submit_create_preorder": "Create preorder",
   "submit_creating_preorder": "Creating preorder selling plan...",
   "submit_update_preorder": "Update preorder",
-  "submit_updating_preorder": "Updating preorder selling plan..."
+  "submit_updating_preorder": "Updating preorder selling plan...",
+  "error_date_must_be_future": "The date must be in the future."
 }

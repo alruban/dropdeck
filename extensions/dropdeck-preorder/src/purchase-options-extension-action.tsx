@@ -39,6 +39,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
   const [intent, setIntent] = useState<"creating" | "updating">("creating");
   const [isLoading, setIsLoading] = useState(false);
   const [releaseDate, setReleaseDate] = useState(getOneMonthAhead());
+  const [dateError, setDateError] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (sellingPlanGroupId.length === 0) return;
@@ -62,9 +63,23 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
     });
   }, [sellingPlanGroupId]);
 
+  const validateDate = (date: string) => {
+    const selectedDate = new Date(date);
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+
+    if (selectedDate < tomorrow) {
+      setDateError(i18n.translate("error_date_must_be_future"));
+      return false;
+    }
+    setDateError(undefined);
+    return true;
+  };
 
   const create = () => {
     if (productId.length === 0) return;
+    if (!validateDate(releaseDate)) return;
     setIsLoading(true);
     const isoString = createISOString(releaseDate);
     createPreorderSellingPlanGroup(productId, isoString, () => {
@@ -75,6 +90,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
 
   const update = () => {
     if (sellingPlanGroupId.length === 0) return;
+    if (!validateDate(releaseDate)) return;
     setIsLoading(true);
     const isoString = createISOString(releaseDate);
     updatePreorderSellingPlanGroup(sellingPlanGroupId, sellingPlanId, isoString, () => {
@@ -92,7 +108,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
           onClick={() => {
             return intent === "creating" ? create() : update();
           }}
-          disabled={isLoading}
+          disabled={isLoading || !!dateError}
         >
           {intent === "creating" && (isLoading ? i18n.translate("submit_creating_preorder") : i18n.translate("submit_create_preorder"))}
           {intent === "updating" && (isLoading ? i18n.translate("submit_updating_preorder") : i18n.translate("submit_update_preorder"))}
@@ -113,7 +129,12 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
           <DateField
             label={i18n.translate("shipping_date")}
             value={releaseDate}
-            onChange={(newDate) => setReleaseDate(String(newDate))}
+            onChange={(newDate) => {
+              const date = String(newDate);
+              setReleaseDate(date);
+              validateDate(date);
+            }}
+            error={dateError}
           />
         </InlineStack>
       </BlockStack>
