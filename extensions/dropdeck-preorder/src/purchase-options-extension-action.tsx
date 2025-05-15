@@ -144,12 +144,14 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
             label={i18n.translate("units_per_customer")}
             value={unitsPerCustomer}
             onChange={(newUnitsPerCustomer) => setUnitsPerCustomer(newUnitsPerCustomer)}
+            min={0}
           />
 
           <NumberField
             label={i18n.translate("total_units_available")}
             value={totalUnitsAvailable}
             onChange={(newTotalUnitsAvailable) => setTotalUnitsAvailable(newTotalUnitsAvailable)}
+            min={0}
           />
         </BlockStack>
       </BlockStack>
