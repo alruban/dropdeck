@@ -4,7 +4,7 @@ import {
   NumberField
 } from '@shopify/ui-extensions-react/admin';
 import { useEffect, useState } from 'react';
-import updatePreorderMetaobjectEntry from '../mutations/update-preorder-metaobject-entry';
+import updatePreorderMetaobjectEntry from '../mutations/update-mo-entry';
 
 interface SetPreorderProps {
   preorderData: PreorderData;

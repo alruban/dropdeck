@@ -1,21 +1,29 @@
 import { isDevelopment } from "../purchase-options-extension-action";
 import { gqlFetch } from "../tools/gql-fetch";
+import { parseISOStringIntoFormalDate } from '../tools/convert-date'; 
 
-const createPreorderSellingPlan = (
-  productId: string,
+const updatePreorderSellingPlanGroup = (
+  sellingPlanGroupId: string,
+  sellingPlanId: string,
   expectedFulfillmentDate: string, // Format: "2025-06-01T00:00:00Z"
   createdCallback?: (metaobjectDefinition: any) => void
 ) => {
   gqlFetch({
     query: `
-      mutation createSellingPlanGroup($input: SellingPlanGroupInput!, $resources: SellingPlanGroupResourceInput) {
-        sellingPlanGroupCreate(input: $input, resources: $resources) {
+      mutation sellingPlanGroupUpdate($id: ID!, $input: SellingPlanGroupInput!) {
+        sellingPlanGroupUpdate(id: $id, input: $input) {
           sellingPlanGroup {
             id
+            description
             sellingPlans(first: 1) {
               edges {
                 node {
                   id
+                  deliveryPolicy {
+                    ... on SellingPlanFixedDeliveryPolicy {
+                      fulfillmentExactTime
+                    }
+                  }
                 }
               }
             }
@@ -28,15 +36,19 @@ const createPreorderSellingPlan = (
       }
     `,
     variables: {
+      id: sellingPlanGroupId,
       input: {
         name: "Preorder",
+        description: `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}`,
         merchantCode: "Dropdeck Preorder",
         options: ["Preorder"],
-        sellingPlansToCreate: [
+        sellingPlansToUpdate: [
           {
+            id: sellingPlanId,
             name: "Preorder",
             options: ["Preorder"],
             category: "PRE_ORDER",
+            description: `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}`,
             billingPolicy: {
               fixed: {
                 checkoutCharge: {
@@ -56,15 +68,12 @@ const createPreorderSellingPlan = (
             }
           }
         ]
-      },
-      resources: {
-        productIds: [productId],
       }
     }
-  }, (createPreorderSellingPlan) => {
-    isDevelopment && console.log("Selling plan created:", createPreorderSellingPlan);
-    if (createdCallback) createdCallback(createPreorderSellingPlan);
+  }, (updatePreorderSellingPlanGroup) => {
+    isDevelopment && console.log("Selling plan updated:", updatePreorderSellingPlanGroup);
+    if (createdCallback) createdCallback(updatePreorderSellingPlanGroup);
   });
 }
 
-export default createPreorderSellingPlan;
+export default updatePreorderSellingPlanGroup;

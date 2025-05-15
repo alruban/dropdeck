@@ -7,56 +7,77 @@ import {
   DateField,
   Divider,
   InlineStack,
-  NumberField,
-  Heading
+  NumberField
 } from '@shopify/ui-extensions-react/admin';
 import { useEffect, useState } from 'react';
 
-import createPreorderSellingPlan from './mutations/create-preorder-selling-plan';
-import { getOneMonthAhead } from './tools/convert-date'; 
-import getPreorderSellingPlanGroup from './queries/get-preorder-selling-plan-group';
+import createPreorderSellingPlanGroup from './mutations/create-sp-group';
+import { getOneMonthAhead, parseISOString, createISOString } from './tools/convert-date'; 
+import getPreorderSellingPlanGroup from './queries/get-sp-group.js';
+import { RenderExtensionTarget } from '@shopify/ui-extensions/admin';
+import updatePreorderSellingPlanGroup from './mutations/update-sp-group';
 
 export const isDevelopment = process.env.NODE_ENV === "development";
 
-const createISOString = (date: string, hours: number, minutes: number): string => {
-  // Create a date object from the date string
-  const dateObj = new Date(date);
-  
-  // Set the hours and minutes
-  dateObj.setHours(hours, minutes, 0, 0);
-  
-  // Return ISO string
-  return dateObj.toISOString();
-};
+type Props = {
+  extension: RenderExtensionTarget;
+  context: "product" | "product-variant";
+}
 
-export default function PurchaseOptionsActionExtension(extension) {
+export default function PurchaseOptionsActionExtension({ extension, context }: Props) {
   // The useApi hook provides access to several useful APIs like i18n, close, and data.
   const { i18n, close, data } = useApi(extension);
 
   const ids = data.selected?.[0];
   if (!ids) return; 
 
-  const productId = ids.productId;
-  const sellingPlanGroupId = ids.sellingPlanId;
-
-   console.log("DATA", data, sellingPlanGroupId);
-
   // States
+  const productId = ids.productId;
+  const [sellingPlanGroupId, setSellingPlanGroupId] = useState(ids.sellingPlanId);
+  const [sellingPlanId, setSellingPlanId] = useState<string | undefined>(undefined);
+
+  const [intent, setIntent] = useState<"creating" | "updating">("creating");
   const [isLoading, setIsLoading] = useState(false);
   const [releaseDate, setReleaseDate] = useState(getOneMonthAhead());
-  const [releaseHour, setReleaseHour] = useState(0);
-  const [releaseMinute, setReleaseMinute] = useState(0);
 
-  if (sellingPlanGroupId.length === 0) return;
-  getPreorderSellingPlanGroup(sellingPlanGroupId, (sellingPlanGroup) => {
-    console.log("SELLING PLAN GROUP", sellingPlanGroup);
-  });
-
-
-  const createPreorder = () => {
+  useEffect(() => {
+    if (sellingPlanGroupId.length === 0) return;
+    setIntent("updating");
     setIsLoading(true);
-    const isoString = createISOString(releaseDate, releaseHour, releaseMinute);
-    createPreorderSellingPlan(productId, isoString, () => {
+    getPreorderSellingPlanGroup(sellingPlanGroupId, (sellingPlanGroup) => {
+      console.log("SELLING PLAN GROUP", sellingPlanGroup);
+      const sellingPlanId = sellingPlanGroup.sellingPlans.edges[0].node.id;
+      const { fulfillmentExactTime } = sellingPlanGroup.sellingPlans.edges[0].node.deliveryPolicy;
+      console.log("SELLING PLAN ID", sellingPlanId);
+
+      if (sellingPlanId) {
+        setSellingPlanId(sellingPlanId);
+      }
+
+      if (fulfillmentExactTime) {
+        const { date } = parseISOString(fulfillmentExactTime);
+        setReleaseDate(date);
+        setIsLoading(false);
+      }
+    });
+  }, [sellingPlanGroupId]);
+
+
+  const create = () => {
+    if (productId.length === 0) return;
+    setIsLoading(true);
+    const isoString = createISOString(releaseDate);
+    createPreorderSellingPlanGroup(productId, isoString, () => {
+      setIsLoading(false);
+      close();
+    });
+  }
+
+  const update = () => {
+    if (sellingPlanGroupId.length === 0) return;
+    setIsLoading(true);
+    const isoString = createISOString(releaseDate);
+    updatePreorderSellingPlanGroup(sellingPlanGroupId, sellingPlanId, isoString, () => {
       setIsLoading(false);
       close();
     });
@@ -64,13 +85,17 @@ export default function PurchaseOptionsActionExtension(extension) {
 
   return (
     <AdminAction
+      title={intent === "creating" ? i18n.translate("heading_create_preorder") : i18n.translate("heading_update_preorder")}
       primaryAction={
         <Button
           variant="primary"
-          onClick={createPreorder}
+          onClick={() => {
+            return intent === "creating" ? create() : update();
+          }}
           disabled={isLoading}
         >
-          {isLoading ? i18n.translate("creating_preorder") : i18n.translate("create_preorder")}
+          {intent === "creating" && (isLoading ? i18n.translate("submit_creating_preorder") : i18n.translate("submit_create_preorder"))}
+          {intent === "updating" && (isLoading ? i18n.translate("submit_updating_preorder") : i18n.translate("submit_update_preorder"))}
         </Button>
       }
       secondaryAction={
@@ -84,31 +109,11 @@ export default function PurchaseOptionsActionExtension(extension) {
 
         <Divider />
 
-        <Text>{i18n.translate("release_date_description")}</Text>
-
         <InlineStack gap="base">
           <DateField
-            label={i18n.translate("date")}
+            label={i18n.translate("shipping_date")}
             value={releaseDate}
             onChange={(newDate) => setReleaseDate(String(newDate))}
-          />
-
-          <NumberField
-            label={i18n.translate("hours")}
-            value={releaseHour}
-            onChange={setReleaseHour}
-            min={0}
-            max={23}
-            step={1}
-          />
-
-          <NumberField
-            label={i18n.translate("minutes")}
-            value={releaseMinute}
-            onChange={setReleaseMinute}
-            min={0}
-            max={59}
-            step={1}
           />
         </InlineStack>
       </BlockStack>

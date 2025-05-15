@@ -1,11 +1,12 @@
 {
   "name": "Dropdeck Preorder",
+  "heading_create_preorder": "Create preorder selling plan",
+  "heading_update_preorder": "Update preorder selling plan",
   "description": "This selling plan is used to create a preorder for a product or a product variant. Enter a release date and a release time to schedule a preorder, and then click save to create the preorder selling plan.",
-  "creating_preorder": "Creating preorder selling plan...",
-  "create_preorder": "Create preorder selling plan",
   "cancel": "Cancel",
-  "release_date_description": "Enter a release date and a release time to schedule a preorder.",
-  "date": "Date",
-  "hours": "Hour",
-  "minutes": "Minute"
+  "shipping_date": "Enter a future shipping date to schedule a preorder.",
+  "submit_create_preorder": "Create preorder",
+  "submit_creating_preorder": "Creating preorder selling plan...",
+  "submit_update_preorder": "Update preorder",
+  "submit_updating_preorder": "Updating preorder selling plan..."
 }

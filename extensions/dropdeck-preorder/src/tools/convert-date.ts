@@ -1,40 +1,28 @@
-// Converts a date string to a human-readable date string (YYYY-MM-DD)
-export const convertDateISOtoYYYYMMD = (dateString: string): string => {
-  const date = new Date(dateString);
-  const day = date.getDate();
-  const month = date.toLocaleString('default', { month: 'long' });
-  const year = date.getFullYear();
+export const createISOString = (date: string, hours?: number, minutes?: number): string => {
+  // Create a date object from the date string
+  const dateObj = new Date(date);
+  
+  // Set the hours and minutes
+  if (hours && minutes) {
+    dateObj.setHours(hours, minutes, 0, 0);
+  }
+  
+  // Return ISO string
+  return dateObj.toISOString();
+};
 
-  // Add ordinal suffix to day
-  const ordinal = (day: number) => {
-    if (day > 3 && day < 21) return 'th';
-    switch (day % 10) {
-      case 1: return 'st';
-      case 2: return 'nd';
-      case 3: return 'rd';
-      default: return 'th';
-    }
-  };
-
-  return `${day}${ordinal(day)} ${month} ${year}`;
-}
-
-export const convertYYYYMMDtoISO = (formattedDate: string): string => {
-  // Split the formatted date into parts
-  const [dayWithOrdinal, month, year] = formattedDate.split(' ');
+export const parseISOString = (isoString: string): { date: string, hours: number, minutes: number } => {
+  const dateObj = new Date(isoString);
   
-  // Remove ordinal suffix from day
-  const day = dayWithOrdinal.replace(/(\d+)(st|nd|rd|th)/, '$1');
+  // Get the date in YYYY-MM-DD format
+  const date = dateObj.toISOString().split('T')[0];
   
-  // Convert month name to month number (1-12)
-  const monthNumber = new Date(`${month} 1, 2000`).getMonth() + 1;
+  // Get hours and minutes
+  const hours = dateObj.getHours();
+  const minutes = dateObj.getMinutes();
   
-  // Format as ISO 8601 (YYYY-MM-DD)
-  const paddedMonth = monthNumber < 10 ? `0${monthNumber}` : monthNumber;
-  const paddedDay = parseInt(day) < 10 ? `0${day}` : day;
-  
-  return `${year}-${paddedMonth}-${paddedDay}`;
-}
+  return { date, hours, minutes };
+};
 
 export const getOneMonthAhead = (): string => {
   const today = new Date();
@@ -49,3 +37,30 @@ export const createDateFromNumbers = (yyyymmdd: string): string => {
   const date = new Date(Number(year), Number(month) - 1, Number(day));
   return date.toISOString();
 }
+
+export const parseISOStringIntoFormalDate = (isoString: string): string => {
+  const dateObj = new Date(isoString);
+  const day = dateObj.getDate();
+  const month = dateObj.toLocaleString('default', { month: 'long' });
+  const year = dateObj.getFullYear();
+
+  // Format time in 12-hour format
+  const hours = dateObj.getHours();
+  const minutes = dateObj.getMinutes();
+  const ampm = hours >= 12 ? 'pm' : 'am';
+  const formattedHours = hours % 12 || 12; // Convert 0 to 12
+  const formattedMinutes = minutes.toString().padStart(2, '0');
+
+  // Add ordinal suffix to day
+  const ordinal = (day: number) => {
+    if (day > 3 && day < 21) return 'th';
+    switch (day % 10) {
+      case 1: return 'st';
+      case 2: return 'nd';
+      case 3: return 'rd';
+      default: return 'th';
+    }
+  };
+
+  return `${day}${ordinal(day)} ${month} ${year} at ${formattedHours}:${formattedMinutes}${ampm}`;
+};

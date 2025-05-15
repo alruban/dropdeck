@@ -7,10 +7,10 @@ import {
 import { TARGET } from '../target';
 import { useState } from 'react';
 
-import checkPreorderMetaobjectDefinitionExists from '../queries/get-preorder-metaobject-definition-by-type';
-import checkPreorderMetaobjectEntryExists from '../queries/get-preorder-metaobject-entry-by-handle';
-import createPreorderMetaobjectDefinition from '../mutations/create-preorder-metaobject-definition';
-import createPreorderMetaobjectEntry from '../mutations/create-preorder-metaobject-entry';
+import checkPreorderMetaobjectDefinitionExists from '../queries/get-mo-definition-by-type';
+import checkPreorderMetaobjectEntryExists from '../queries/get-mo-entry-by-handle';
+import createPreorderMetaobjectDefinition from '../mutations/create-mo-definition';
+import createPreorderMetaobjectEntry from '../mutations/create-mo-entry';
 
 interface EditPreorderProps {
   preorderData: (data: PreorderData) => void;
