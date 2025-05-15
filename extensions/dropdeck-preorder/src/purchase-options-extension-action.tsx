@@ -38,8 +38,11 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
 
   const [intent, setIntent] = useState<"creating" | "updating">("creating");
   const [isLoading, setIsLoading] = useState(false);
-  const [releaseDate, setReleaseDate] = useState(getOneMonthAhead());
   const [dateError, setDateError] = useState<string | undefined>(undefined);
+  const [releaseDate, setReleaseDate] = useState(getOneMonthAhead());
+  const [unitsPerCustomer, setUnitsPerCustomer] = useState(0); // 0 means unlimited
+  const [totalUnitsAvailable, setTotalUnitsAvailable] = useState(0); // 0 means unlimited
+
 
   useEffect(() => {
     if (sellingPlanGroupId.length === 0) return;
@@ -125,7 +128,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
 
         <Divider />
 
-        <InlineStack gap="base">
+        <BlockStack gap="base">
           <DateField
             label={i18n.translate("shipping_date")}
             value={releaseDate}
@@ -136,7 +139,19 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
             }}
             error={dateError}
           />
-        </InlineStack>
+
+          <NumberField
+            label={i18n.translate("units_per_customer")}
+            value={unitsPerCustomer}
+            onChange={(newUnitsPerCustomer) => setUnitsPerCustomer(newUnitsPerCustomer)}
+          />
+
+          <NumberField
+            label={i18n.translate("total_units_available")}
+            value={totalUnitsAvailable}
+            onChange={(newTotalUnitsAvailable) => setTotalUnitsAvailable(newTotalUnitsAvailable)}
+          />
+        </BlockStack>
       </BlockStack>
     </AdminAction>
   );
