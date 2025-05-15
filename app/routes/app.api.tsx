@@ -1,27 +1,31 @@
-import { ActionFunctionArgs, json } from "@remix-run/node";
-import { Layout, Page, Text } from "@shopify/polaris";
-import { authenticate } from "app/shopify.server";
+import { ActionFunctionArgs, json, LoaderFunctionArgs } from "@remix-run/node";
+import { authenticate } from "../shopify.server";
 
-export const action = async ({ request }: ActionFunctionArgs) => {
-  const { session } = await authenticate.public.appProxy(request);
+export async function loader({ request }: LoaderFunctionArgs) {
+  console.log('------------CALL-------------', request);
+  const { storefront } = await authenticate.public.appProxy(request);
+  console.log('------------_STOREFRONT-------------', storefront);
 
-  if (session) {
-    console.log('session', session);
-  } else {
-    return null;
+  if (!storefront) {
+    console.log('------------_NOOOOO STOREFRONT-------------', storefront);
+
+    return new Response();
   }
-};
 
-const Proxy = () => {
-  return (
-    <Page>
-      <Layout>
-        <Layout.Section>
-          <Text as="h1">Proxy</Text>
-        </Layout.Section>
-      </Layout>
-    </Page>
+  console.log('------------_ISSSSSS STOREFRONT-------------', storefront);
+
+  const response = await storefront.graphql(
+    `#graphql
+    query productTitle {
+      products(first: 1) {
+        nodes {
+          title
+        }
+      }
+    }`
   );
-};
 
-export default Proxy;
+  console.log('------------RESSSSPPPONNSEEE-------------', response);
+
+  return json(await response.json());
+}

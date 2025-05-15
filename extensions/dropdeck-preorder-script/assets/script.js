@@ -3,21 +3,25 @@
     console.log('Preorder Limit Script loaded');
 
     function getPreorderInfo() {
+      console.log('getPreorderInfo');
       const fetchOptions = {
-        method: 'POST',
+        method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({})
+          'Content-Type': 'application/json'
+        }
       }
   
-      return fetch('/apps/px/preorder', fetchOptions)
-        .then(res => res.json())
+      return fetch('/apps/px', fetchOptions)
+        .then(res => {
+          console.log('res', res);
+          return res.json();
+        })
         .then(data => {
           console.log(data);
         });
     }
+
+    getPreorderInfo()
     
 
   // const productId = window.meta?.product?.id; // use Shopify's meta object
