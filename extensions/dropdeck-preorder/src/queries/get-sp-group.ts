@@ -10,6 +10,7 @@ const getPreorderSellingPlanGroup = (
     query: `
       query sellingPlanGroups($id: ID!) {
         sellingPlanGroup(id: $id) {
+          id
           sellingPlans(first: 1) {
             edges {
               node {

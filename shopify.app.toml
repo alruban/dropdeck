@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://participated-dot-dog-authors.trycloudflare.com"
+application_url = "https://photographer-checkout-afternoon-emission.trycloudflare.com"
 embedded = true
 
 [build]
@@ -27,13 +27,13 @@ scopes = "read_metaobject_definitions,read_metaobjects,read_own_subscription_con
 
 [auth]
 redirect_urls = [
-  "https://participated-dot-dog-authors.trycloudflare.com/auth/callback",
-  "https://participated-dot-dog-authors.trycloudflare.com/auth/shopify/callback",
-  "https://participated-dot-dog-authors.trycloudflare.com/api/auth/callback"
+  "https://photographer-checkout-afternoon-emission.trycloudflare.com/auth/callback",
+  "https://photographer-checkout-afternoon-emission.trycloudflare.com/auth/shopify/callback",
+  "https://photographer-checkout-afternoon-emission.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://participated-dot-dog-authors.trycloudflare.com/app/api"
+url = "https://photographer-checkout-afternoon-emission.trycloudflare.com/app/api"
 subpath = "px"
 prefix = "apps"
 

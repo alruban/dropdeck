@@ -1,28 +1,58 @@
-import { ActionFunctionArgs, json, LoaderFunctionArgs } from "@remix-run/node";
+import { ActionFunctionArgs, json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function action({ request }: ActionFunctionArgs) {
   console.log('------------CALL-------------', request);
-  const { storefront } = await authenticate.public.appProxy(request);
-  console.log('------------_STOREFRONT-------------', storefront);
+  const { admin } = await authenticate.public.appProxy(request);
+  if (!admin) return new Response();
 
-  if (!storefront) {
-    console.log('------------_NOOOOO STOREFRONT-------------', storefront);
+  const productId = request.body
 
-    return new Response();
-  }
+  console.log('------------PRODUCT ID-------------', productId);
 
-  console.log('------------_ISSSSSS STOREFRONT-------------', storefront);
-
-  const response = await storefront.graphql(
+  const response = await admin.graphql(
     `#graphql
-    query productTitle {
-      products(first: 1) {
-        nodes {
-          title
+    query sellingPlanGroups($id: ID!) {
+      product(id: $id) {
+        id
+        sellingPlanGroupsCount {
+          count
+        }
+        sellingPlanGroups(first: 100) {
+          edges {
+            node {
+              id
+              merchantCode
+              sellingPlans(first:1) {
+                edges{
+                  node {
+                    id
+                    deliveryPolicy {
+                      ... on SellingPlanFixedDeliveryPolicy {
+                        fulfillmentExactTime
+                      }
+                    }
+                    metafields(first: 2, namespace: "dropdeck_preorder") {
+                      edges {
+                        node {
+                          key
+                          value
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
-    }`
+    }`,
+    {
+      variables: {
+        id: `gid://shopify/Product/${productId}`
+      }
+    }
   );
 
   console.log('------------RESSSSPPPONNSEEE-------------', response);
