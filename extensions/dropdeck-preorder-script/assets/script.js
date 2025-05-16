@@ -8,7 +8,7 @@
     }
     class DropdeckPreorder {
         constructor(form) {
-            this.addLoaderElement = (form) => {
+            this.addLoaderElement = () => {
                 const hasPreorderStyles = get("#dropdeck-preorder-styles");
                 // Inject CSS only one.
                 if (!hasPreorderStyles) {
@@ -92,9 +92,9 @@
           </svg>
         </div>
       `;
-                form.style.position = "relative";
-                form.style.overflow = "hidden";
-                form.prepend(elLoader);
+                this.elForm.style.position = "relative";
+                this.elForm.style.overflow = "hidden";
+                this.elForm.prepend(elLoader);
                 return {
                     show: () => {
                         elLoader.style.pointerEvents = "all";
@@ -108,23 +108,36 @@
             };
             this.createPreorderSubmitButton = () => {
                 const button = this.elSubmitButton;
+                const buttonContainer = button.parentElement;
+                if (!buttonContainer)
+                    return;
+                // Remove original button
+                button.style.display = "none";
+                // Create preorder button
                 const preorderButton = document.createElement("button");
                 preorderButton.type = "submit";
                 preorderButton.className = button.className;
                 preorderButton.textContent = "Preorder";
-                button.parentElement?.prepend(preorderButton);
+                buttonContainer.prepend(preorderButton);
+                preorderButton.addEventListener("click", () => {
+                    this.elForm.submit();
+                });
             };
+            this.elForm = form;
             this.productId = get('input[name="product-id"]', form)?.value;
             this.elSubmitButton = get("button[type='submit']", form);
             if (!this.productId || !this.elSubmitButton)
                 return;
-            form.addEventListener("submit", (e) => {
+            // Prevent form submission immediately
+            this.elForm.addEventListener("submit", (e) => {
                 e.preventDefault();
-            });
-            this.injectSellingPlan(form, this.productId);
+                e.stopPropagation();
+                return false;
+            }, { capture: true });
+            this.injectSellingPlan();
         }
-        injectSellingPlan(elForm, productId) {
-            const loader = this.addLoaderElement(elForm);
+        injectSellingPlan() {
+            const loader = this.addLoaderElement();
             loader.show();
             const fetchOptions = {
                 method: "POST",
@@ -132,7 +145,7 @@
                     "Content-Type": "application/json",
                     Accept: "application/json",
                 },
-                body: JSON.stringify({ productId }),
+                body: JSON.stringify({ productId: this.productId }),
             };
             fetch("/apps/px", fetchOptions)
                 .then((res) => {
@@ -151,14 +164,14 @@
                 const sellingPlan = sellingPlanGroup.node.sellingPlans.edges[0];
                 if (!sellingPlan)
                     return;
-                const elSellingPlanInput = get('input[name="selling_plan"]', elForm);
+                const elSellingPlanInput = get('input[name="selling_plan"]', this.elForm);
                 if (!elSellingPlanInput) {
                     const sellingPlanId = sellingPlan.node.id.replace("gid://shopify/SellingPlan/", "");
                     const sellingPlanInput = document.createElement("input");
                     sellingPlanInput.setAttribute("name", "selling_plan");
                     sellingPlanInput.setAttribute("type", "hidden");
                     sellingPlanInput.setAttribute("value", sellingPlanId);
-                    elForm.prepend(sellingPlanInput);
+                    this.elForm.prepend(sellingPlanInput);
                 }
             })
                 .catch((error) => {
