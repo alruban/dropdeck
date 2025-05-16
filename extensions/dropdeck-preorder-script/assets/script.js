@@ -8,6 +8,28 @@
     }
     class DropdeckPreorder {
         constructor(form) {
+            this.buttonPreorderText = "Preorder";
+            this.load = () => {
+                if (!this.elBtn)
+                    return;
+                if (!this.vId) {
+                    this.createFatalErrorElement();
+                    return;
+                }
+                // Prevent form submission immediately
+                this.elForm.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }, { capture: true });
+                this.injectSellingPlan();
+            };
+            this.createFatalErrorElement = () => {
+                const elError = document.createElement("span");
+                elError.textContent =
+                    "Fatal error: please contact samclarkeweb@protonmail.com with your store address and details.";
+                this.elForm.prepend(elError);
+            };
             this.addLoaderElement = () => {
                 const hasPreorderStyles = get("#dropdeck-preorder-styles");
                 // Inject CSS only one.
@@ -107,34 +129,47 @@
                 };
             };
             this.createPreorderSubmitButton = () => {
-                const button = this.elSubmitButton;
+                const button = this.elBtn;
                 const buttonContainer = button.parentElement;
                 if (!buttonContainer)
                     return;
-                // Remove original button
-                button.style.display = "none";
                 // Create preorder button
                 const preorderButton = document.createElement("button");
                 preorderButton.type = "submit";
                 preorderButton.className = button.className;
-                preorderButton.textContent = "Preorder";
+                preorderButton.textContent = this.buttonPreorderText;
                 buttonContainer.prepend(preorderButton);
+                // Hide original button but keep it in DOM for observation
+                button.style.display = "none";
+                // Create observer to watch for text changes
+                const observer = new MutationObserver((mutations) => {
+                    for (const mutation of mutations) {
+                        if (mutation.type === "characterData" ||
+                            mutation.type === "childList") {
+                            const newText = button.textContent?.trim();
+                            if (!newText)
+                                return;
+                            console.log(newText);
+                            preorderButton.textContent = newText;
+                        }
+                    }
+                });
+                // Start observing the original button for text changes
+                observer.observe(button, {
+                    characterData: true,
+                    childList: true,
+                    subtree: true,
+                });
                 preorderButton.addEventListener("click", () => {
                     this.elForm.submit();
                 });
             };
             this.elForm = form;
-            this.productId = get('input[name="product-id"]', form)?.value;
-            this.elSubmitButton = get("button[type='submit']", form);
-            if (!this.productId || !this.elSubmitButton)
-                return;
-            // Prevent form submission immediately
-            this.elForm.addEventListener("submit", (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                return false;
-            }, { capture: true });
-            this.injectSellingPlan();
+            this.vId =
+                get('input[name="id"]', form)?.value ??
+                    new FormData(form).get("id");
+            this.elBtn = get("button[type='submit']", form);
+            this.load();
         }
         injectSellingPlan() {
             const loader = this.addLoaderElement();
@@ -145,7 +180,7 @@
                     "Content-Type": "application/json",
                     Accept: "application/json",
                 },
-                body: JSON.stringify({ productId: this.productId }),
+                body: JSON.stringify({ variantId: this.vId }),
             };
             fetch("/apps/px", fetchOptions)
                 .then((res) => {
@@ -153,26 +188,34 @@
                 return res.json();
             })
                 .then((res) => {
-                const { product } = res.data;
-                const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
-                if (sellingPlanGroupsCount === 0)
-                    return;
-                const sellingPlanGroups = product.sellingPlanGroups.edges;
-                const sellingPlanGroup = sellingPlanGroups.find((sellingPlanGroup) => sellingPlanGroup.node.merchantCode === "Dropdeck Preorder");
-                if (!sellingPlanGroup)
-                    return;
-                const sellingPlan = sellingPlanGroup.node.sellingPlans.edges[0];
-                if (!sellingPlan)
-                    return;
-                const elSellingPlanInput = get('input[name="selling_plan"]', this.elForm);
-                if (!elSellingPlanInput) {
-                    const sellingPlanId = sellingPlan.node.id.replace("gid://shopify/SellingPlan/", "");
-                    const sellingPlanInput = document.createElement("input");
-                    sellingPlanInput.setAttribute("name", "selling_plan");
-                    sellingPlanInput.setAttribute("type", "hidden");
-                    sellingPlanInput.setAttribute("value", sellingPlanId);
-                    this.elForm.prepend(sellingPlanInput);
-                }
+                this.vData = res.data;
+                console.log("vData", this.vData);
+                // const sellingPlanGroupsCount =
+                //   this.vData.productVariant.product.sellingPlanGroupsCount.count;
+                // if (sellingPlanGroupsCount === 0) return;
+                // const sellingPlanGroups = product.sellingPlanGroups.edges;
+                // const sellingPlanGroup = sellingPlanGroups.find(
+                //   (sellingPlanGroup) =>
+                //     sellingPlanGroup.node.merchantCode === "Dropdeck Preorder",
+                // );
+                // if (!sellingPlanGroup) return;
+                // const sellingPlan = sellingPlanGroup.node.sellingPlans.edges[0];
+                // if (!sellingPlan) return;
+                // const elSellingPlanInput = get<HTMLInputElement>(
+                //   'input[name="selling_plan"]',
+                //   this.elForm,
+                // );
+                // if (!elSellingPlanInput) {
+                //   const sellingPlanId = sellingPlan.node.id.replace(
+                //     "gid://shopify/SellingPlan/",
+                //     "",
+                //   );
+                //   const sellingPlanInput = document.createElement("input");
+                //   sellingPlanInput.setAttribute("name", "selling_plan");
+                //   sellingPlanInput.setAttribute("type", "hidden");
+                //   sellingPlanInput.setAttribute("value", sellingPlanId);
+                //   this.elForm.prepend(sellingPlanInput);
+                // }
             })
                 .catch((error) => {
                 console.error(error);

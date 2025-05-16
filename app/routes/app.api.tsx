@@ -1,4 +1,4 @@
-import { ActionFunctionArgs, json } from "@remix-run/node";
+import { type ActionFunctionArgs, json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -7,37 +7,48 @@ export async function action({ request }: ActionFunctionArgs) {
   if (!admin) return new Response();
 
   const body = await request.json();
-  const productId = body.productId;
+  const variantId = body.variantId;
 
-  console.log('------------PRODUCT ID-------------', productId);
+  console.log('------------PRODUCT ID-------------', variantId);
 
   const response = await admin.graphql(
     `#graphql
-    query sellingPlanGroups($id: ID!) {
-      product(id: $id) {
-        id
-        sellingPlanGroupsCount {
-          count
-        }
-        sellingPlanGroups(first: 100) {
-          edges {
-            node {
-              id
-              merchantCode
-              sellingPlans(first:1) {
-                edges{
-                  node {
-                    id
-                    deliveryPolicy {
-                      ... on SellingPlanFixedDeliveryPolicy {
-                        fulfillmentExactTime
+    query getProductVariant($id: ID!) {
+      productVariant(id: $id) {
+        product {
+          id
+          variants(first: 250) {
+            edges {
+              node {
+                id
+                inventoryPolicy
+                inventoryQuantity
+              }
+            }
+          }
+          sellingPlanGroupsCount {
+            count
+          }
+          sellingPlanGroups(first: 100) {
+            edges {
+              node {
+                id
+                merchantCode
+                sellingPlans(first: 1) {
+                  edges {
+                    node {
+                      id
+                      deliveryPolicy {
+                        ... on SellingPlanFixedDeliveryPolicy {
+                          fulfillmentExactTime
+                        }
                       }
-                    }
-                    metafields(first: 2, namespace: "dropdeck_preorder") {
-                      edges {
-                        node {
-                          key
-                          value
+                      metafields(first: 2, namespace: "dropdeck_preorder") {
+                        edges {
+                          node {
+                            key
+                            value
+                          }
                         }
                       }
                     }
@@ -51,7 +62,7 @@ export async function action({ request }: ActionFunctionArgs) {
     }`,
     {
       variables: {
-        id: `gid://shopify/Product/${productId}`
+        id: `gid://shopify/ProductVariant/${variantId}`
       }
     }
   );
