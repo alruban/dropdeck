@@ -1,59 +1,181 @@
+"use strict";
 (function () {
-  class Dropdeck {
-    // Elements
-    elForms = document.querySelectorAll('form[action="/cart/add"]');
-
-    constructor() {
-      for (const elForm of this.elForms) {
-        const elProductIdInput = elForm.querySelector('input[name="product-id"]');
-        if (!elProductIdInput) continue;
-
-        const productId = elProductIdInput.value;
-        this.injectSellingPlan(elForm, productId);
-      }
+    function get(selector, node = document) {
+        return node.querySelector(selector) ?? undefined;
     }
-
-    injectSellingPlan(elForm, productId) {
-      const fetchOptions = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({ productId })
-      }
-  
-      return fetch('/apps/px', fetchOptions)
-        .then(res => {
-          console.log('res', res); 
-          return res.json();
-        })
-        .then(res => {
-          const { product } = res.data;
-          const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
-          if (sellingPlanGroupsCount === 0) return;
-
-          const sellingPlanGroups = product.sellingPlanGroups.edges;
-          const sellingPlanGroup = sellingPlanGroups.find((sellingPlanGroup) => sellingPlanGroup.node.merchantCode === "Dropdeck Preorder").node;
-          if (!sellingPlanGroup) return;
-
-          const sellingPlan = sellingPlanGroup.sellingPlans.edges[0].node;
-          if (!sellingPlan) return;
-
-          const elSellingPlanInput = elForm.querySelector('input[name="selling_plan"]');
-          if (!elSellingPlanInput) {
-            const sellingPlanId = sellingPlan.id.replace('gid://shopify/SellingPlan/', '');
-            const sellingPlanInput = document.createElement('input');
-            sellingPlanInput.setAttribute('name', 'selling_plan');
-            sellingPlanInput.setAttribute('type', 'hidden');
-            sellingPlanInput.setAttribute('value', sellingPlanId);
-            elForm.prepend(sellingPlanInput);
+    function getAll(selector, node = document) {
+        return [...node.querySelectorAll(selector)];
+    }
+    class DropdeckPreorder {
+        constructor(form) {
+            this.addLoaderElement = (form) => {
+                const hasPreorderStyles = get("#dropdeck-preorder-styles");
+                // Inject CSS only one.
+                if (!hasPreorderStyles) {
+                    const styleEl = document.createElement("style");
+                    styleEl.id = "dropdeck-preorder-styles";
+                    styleEl.textContent = `
+          .dropdeck-preorder-loader {
+            position: absolute;
+            z-index: 3;
+            display: flex;
+            aspect-ratio: 1;
+            width: 1.8rem;
+            height: 1.8rem;
+            opacity: 0;
+            will-change: opacity;
+            transition: opacity 300ms ease;
+            pointer-events: none;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff70;
+            width: 100%;
+            height: 100%;
           }
 
-          console.log(dropdeckSellingPlan);
-        });
-    }
-  }
+          .dropdeck-preorder-loader.visible {
+            opacity: 1;
+          }
 
-  new Dropdeck();
+          .dropdeck-preorder-loader__spinner {
+            display: inline-flex;
+            height: 3.6rem;
+            width: 3.6rem;
+          }
+
+          .dropdeck-preorder-loader__spinner .spinner {
+            animation: rotator 1.4s linear infinite;
+          }
+
+          .dropdeck-preorder-loader__spinner .path {
+            transform-origin: center;
+            stroke-dasharray: 280;
+            stroke-dashoffset: 0;
+            animation: dash 1.4s ease-in-out infinite;
+          }
+
+          @media screen and (forced-colors: active) {
+            .dropdeck-preorder-loader__spinner .path {
+              stroke: canvastext;
+            }
+          }
+
+          @keyframes rotator {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(270deg); }
+          }
+
+          @keyframes dash {
+            0% { stroke-dashoffset: 280; }
+            50% { transform: rotate(135deg); stroke-dashoffset: 75; }
+            100% { transform: rotate(450deg); stroke-dashoffset: 280; }
+          }
+        `;
+                    document.head.append(styleEl);
+                }
+                const elLoader = document.createElement("div");
+                elLoader.classList.add("dropdeck-preorder-loader");
+                elLoader.ariaHidden = "true";
+                // Create spinner SVG
+                elLoader.innerHTML = `
+        <div class="dropdeck-preorder-loader__spinner">
+          <svg
+            class="spinner"
+            focusable="false"
+            viewBox="0 0 66 66"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="inherit"
+            width="66"
+            height="66"
+          >
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>
+      `;
+                form.style.position = "relative";
+                form.style.overflow = "hidden";
+                form.prepend(elLoader);
+                return {
+                    show: () => {
+                        elLoader.style.pointerEvents = "all";
+                        elLoader.style.opacity = "1";
+                    },
+                    hide: () => {
+                        elLoader.style.pointerEvents = "none";
+                        elLoader.style.opacity = "0";
+                    },
+                };
+            };
+            this.createPreorderSubmitButton = () => {
+                const button = this.elSubmitButton;
+                const preorderButton = document.createElement("button");
+                preorderButton.type = "submit";
+                preorderButton.className = button.className;
+                preorderButton.textContent = "Preorder";
+                button.parentElement?.prepend(preorderButton);
+            };
+            this.productId = get('input[name="product-id"]', form)?.value;
+            this.elSubmitButton = get("button[type='submit']", form);
+            if (!this.productId || !this.elSubmitButton)
+                return;
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+            });
+            this.injectSellingPlan(form, this.productId);
+        }
+        injectSellingPlan(elForm, productId) {
+            const loader = this.addLoaderElement(elForm);
+            loader.show();
+            const fetchOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify({ productId }),
+            };
+            fetch("/apps/px", fetchOptions)
+                .then((res) => {
+                console.log("res", res);
+                return res.json();
+            })
+                .then((res) => {
+                const { product } = res.data;
+                const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
+                if (sellingPlanGroupsCount === 0)
+                    return;
+                const sellingPlanGroups = product.sellingPlanGroups.edges;
+                const sellingPlanGroup = sellingPlanGroups.find((sellingPlanGroup) => sellingPlanGroup.node.merchantCode === "Dropdeck Preorder");
+                if (!sellingPlanGroup)
+                    return;
+                const sellingPlan = sellingPlanGroup.node.sellingPlans.edges[0];
+                if (!sellingPlan)
+                    return;
+                const elSellingPlanInput = get('input[name="selling_plan"]', elForm);
+                if (!elSellingPlanInput) {
+                    const sellingPlanId = sellingPlan.node.id.replace("gid://shopify/SellingPlan/", "");
+                    const sellingPlanInput = document.createElement("input");
+                    sellingPlanInput.setAttribute("name", "selling_plan");
+                    sellingPlanInput.setAttribute("type", "hidden");
+                    sellingPlanInput.setAttribute("value", sellingPlanId);
+                    elForm.prepend(sellingPlanInput);
+                }
+            })
+                .catch((error) => {
+                console.error(error);
+            })
+                .finally(() => {
+                this.createPreorderSubmitButton();
+                loader.hide();
+            });
+        }
+    }
+    const loadScript = () => {
+        const elCartAddForms = getAll('form[action="/cart/add"]');
+        for (const elCartAddForm of elCartAddForms)
+            new DropdeckPreorder(elCartAddForm);
+    };
+    document.addEventListener("DOMContentLoaded", loadScript);
+    document.addEventListener("shopify:section:load", loadScript);
 })();
+
