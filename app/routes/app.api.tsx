@@ -21,6 +21,7 @@ export async function action({ request }: ActionFunctionArgs) {
             edges {
               node {
                 id
+                availableForSale
                 inventoryPolicy
                 inventoryQuantity
               }

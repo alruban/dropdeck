@@ -128,17 +128,52 @@
                     },
                 };
             };
+            this.handleVariantIdChanges = () => {
+                // Watch for changes to the variant ID input
+                const observer = new MutationObserver((mutations) => {
+                    for (const mutation of mutations) {
+                        if (mutation.type === "attributes" &&
+                            mutation.attributeName === "value") {
+                            const newVariantId = mutation.target.value;
+                            if (newVariantId && newVariantId !== this.vId) {
+                                this.vId = newVariantId;
+                            }
+                        }
+                    }
+                });
+                // Watch for changes to the variant ID input
+                const variantInput = get('input[name="id"]', this.elForm);
+                if (variantInput) {
+                    observer.observe(variantInput, {
+                        attributes: true,
+                        attributeFilter: ["value"],
+                    });
+                }
+            };
+            this.getVariant = () => {
+                return this.vData?.productVariant.product.variants.edges.find((variant) => {
+                    const vId = variant.node.id.replace("gid://shopify/ProductVariant/", "");
+                    return vId === this.vId;
+                });
+            };
             this.createPreorderSubmitButton = () => {
                 const button = this.elBtn;
                 const buttonContainer = button.parentElement;
                 if (!buttonContainer)
                     return;
+                const variant = this.getVariant();
+                if (!variant)
+                    return;
+                const { availableForSale, inventoryPolicy, inventoryQuantity } = variant.node;
                 // Create preorder button
                 const preorderButton = document.createElement("button");
                 preorderButton.type = "submit";
                 preorderButton.className = button.className;
-                preorderButton.textContent = this.buttonPreorderText;
                 buttonContainer.prepend(preorderButton);
+                const originalButtonText = button.textContent?.trim();
+                if (!originalButtonText)
+                    return;
+                this.updatePreorderButton(availableForSale, inventoryPolicy, inventoryQuantity, preorderButton, originalButtonText);
                 // Hide original button but keep it in DOM for observation
                 button.style.display = "none";
                 // Create observer to watch for text changes
@@ -146,11 +181,14 @@
                     for (const mutation of mutations) {
                         if (mutation.type === "characterData" ||
                             mutation.type === "childList") {
-                            const newText = button.textContent?.trim();
-                            if (!newText)
+                            const originalButtonText = button.textContent?.trim();
+                            if (!originalButtonText)
                                 return;
-                            console.log(newText);
-                            preorderButton.textContent = newText;
+                            const newVariant = this.getVariant();
+                            if (!newVariant)
+                                return;
+                            const { availableForSale, inventoryPolicy, inventoryQuantity } = newVariant.node;
+                            this.updatePreorderButton(availableForSale, inventoryPolicy, inventoryQuantity, preorderButton, originalButtonText);
                         }
                     }
                 });
@@ -163,6 +201,17 @@
                 preorderButton.addEventListener("click", () => {
                     this.elForm.submit();
                 });
+            };
+            this.updatePreorderButton = (availableForSale, inventoryPolicy, inventoryQuantity, targetButton, originalButtonText) => {
+                if (!availableForSale ||
+                    (inventoryPolicy === "deny" && inventoryQuantity <= 0)) {
+                    targetButton.setAttribute("disabled", "");
+                    targetButton.textContent = originalButtonText;
+                }
+                else {
+                    targetButton.removeAttribute("disabled");
+                    targetButton.textContent = this.buttonPreorderText;
+                }
             };
             this.elForm = form;
             this.vId =
@@ -189,38 +238,31 @@
             })
                 .then((res) => {
                 this.vData = res.data;
-                console.log("vData", this.vData);
-                // const sellingPlanGroupsCount =
-                //   this.vData.productVariant.product.sellingPlanGroupsCount.count;
-                // if (sellingPlanGroupsCount === 0) return;
-                // const sellingPlanGroups = product.sellingPlanGroups.edges;
-                // const sellingPlanGroup = sellingPlanGroups.find(
-                //   (sellingPlanGroup) =>
-                //     sellingPlanGroup.node.merchantCode === "Dropdeck Preorder",
-                // );
-                // if (!sellingPlanGroup) return;
-                // const sellingPlan = sellingPlanGroup.node.sellingPlans.edges[0];
-                // if (!sellingPlan) return;
-                // const elSellingPlanInput = get<HTMLInputElement>(
-                //   'input[name="selling_plan"]',
-                //   this.elForm,
-                // );
-                // if (!elSellingPlanInput) {
-                //   const sellingPlanId = sellingPlan.node.id.replace(
-                //     "gid://shopify/SellingPlan/",
-                //     "",
-                //   );
-                //   const sellingPlanInput = document.createElement("input");
-                //   sellingPlanInput.setAttribute("name", "selling_plan");
-                //   sellingPlanInput.setAttribute("type", "hidden");
-                //   sellingPlanInput.setAttribute("value", sellingPlanId);
-                //   this.elForm.prepend(sellingPlanInput);
-                // }
+                const { product } = this.vData.productVariant;
+                const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
+                if (sellingPlanGroupsCount === 0)
+                    return;
+                const sellingPlanGroup = product.sellingPlanGroups.edges.find((sellingPlanGroup) => sellingPlanGroup.node.merchantCode === "Dropdeck Preorder");
+                if (!sellingPlanGroup)
+                    return;
+                const sellingPlan = sellingPlanGroup.node.sellingPlans.edges[0];
+                if (!sellingPlan)
+                    return;
+                const elSellingPlanInput = get('input[name="selling_plan"]', this.elForm);
+                if (!elSellingPlanInput) {
+                    const sellingPlanId = sellingPlan.node.id.replace("gid://shopify/SellingPlan/", "");
+                    const sellingPlanInput = document.createElement("input");
+                    sellingPlanInput.setAttribute("name", "selling_plan");
+                    sellingPlanInput.setAttribute("type", "hidden");
+                    sellingPlanInput.setAttribute("value", sellingPlanId);
+                    this.elForm.prepend(sellingPlanInput);
+                }
             })
                 .catch((error) => {
                 console.error(error);
             })
                 .finally(() => {
+                this.handleVariantIdChanges();
                 this.createPreorderSubmitButton();
                 loader.hide();
             });
