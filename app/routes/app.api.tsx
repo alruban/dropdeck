@@ -1,15 +1,34 @@
 import { type ActionFunctionArgs, json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
+import { type AdminApiContextWithoutRest } from "node_modules/@shopify/shopify-app-remix/dist/ts/server/clients/admin/types";
+
+type RequestBody = {
+  target: 'customer' | 'product-interaction';
+  customerId?: string;
+  variantId?: string;
+}
 
 export async function action({ request }: ActionFunctionArgs) {
-  console.log('------------CALL-------------', request);
   const { admin } = await authenticate.public.appProxy(request);
   if (!admin) return new Response();
 
   const body = await request.json();
-  const variantId = body.variantId;
+  const { target } = body;
 
-  console.log('------------PRODUCT ID-------------', variantId);
+  // Handle different paths
+  switch (target) {
+    case 'customer':
+      return handleCustomer(body, admin);
+    case 'product-interaction':
+      return handleProductInteraction(body, admin);
+    default:
+      return false;
+  }
+}
+
+async function handleProductInteraction(body: RequestBody, admin: AdminApiContextWithoutRest
+) {
+  const { variantId } = body;
 
   const response = await admin.graphql(
     `#graphql
@@ -68,7 +87,39 @@ export async function action({ request }: ActionFunctionArgs) {
     }
   );
 
-  console.log('------------RESSSSPPPONNSEEE-------------', response);
+  return json(await response.json());
+}
+
+async function handleCustomer(body: RequestBody, admin: AdminApiContextWithoutRest) {
+  const { customerId } = body;
+
+  const response = await admin.graphql(
+    `#graphql
+    query getCustomerData($customerId: ID!) {
+      customer(id: $customerId) {
+        orders(first: 40) {
+          edges {
+            node {
+              lineItems (first: 100) {
+                edges {
+                  node {
+                    product {
+                      id
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }`,
+    {
+      variables: {
+        id: `gid://shopify/Customer/${customerId}`
+      }
+    }
+  );
 
   return json(await response.json());
 }

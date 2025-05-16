@@ -238,7 +238,10 @@
                     "Content-Type": "application/json",
                     Accept: "application/json",
                 },
-                body: JSON.stringify({ variantId: this.vId }),
+                body: JSON.stringify({
+                    variantId: this.vId,
+                    target: "product-interaction",
+                }),
             };
             fetch("/apps/px", fetchOptions)
                 .then((res) => {
