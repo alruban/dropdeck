@@ -6,7 +6,8 @@ export async function action({ request }: ActionFunctionArgs) {
   const { admin } = await authenticate.public.appProxy(request);
   if (!admin) return new Response();
 
-  const productId = request.body
+  const body = await request.json();
+  const productId = body.productId;
 
   console.log('------------PRODUCT ID-------------', productId);
 
