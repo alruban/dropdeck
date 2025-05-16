@@ -17,12 +17,15 @@
                     return;
                 }
                 // Prevent form submission immediately
-                this.elForm.addEventListener("submit", (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    return false;
-                }, { capture: true });
+                this.elForm.addEventListener("submit", this.rejectFormSubmission, {
+                    capture: true,
+                });
                 this.injectSellingPlan();
+            };
+            this.rejectFormSubmission = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
             };
             this.createFatalErrorElement = () => {
                 const elError = document.createElement("span");
@@ -199,7 +202,13 @@
                     subtree: true,
                 });
                 preorderButton.addEventListener("click", () => {
-                    this.elForm.submit();
+                    this.elForm.removeEventListener("submit", this.rejectFormSubmission, {
+                        capture: true,
+                    });
+                    this.elBtn?.click();
+                    this.elForm.addEventListener("submit", this.rejectFormSubmission, {
+                        capture: true,
+                    });
                 });
             };
             this.updatePreorderButton = (availableForSale, inventoryPolicy, inventoryQuantity, targetButton, originalButtonText) => {
