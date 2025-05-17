@@ -1,10 +1,14 @@
 {
-  "create_plan": {
-    "title": "Create Preorder Plan",
-    "description": "Create a new preorder plan for your products",
-    "shipping_date": "Expected Shipping Date",
-    "units_per_customer": "Units per Customer",
-    "total_units_available": "Total Units Available",
+  "create_selling_plan_group_modal": {
+    "title": "Create Preorder Selling Plan",
+    "description": "You can use this form to create a new selling plan for a specific product or even a selection of products.",
+    "shipping_date": "Expected shipping date",
+    "units_per_customer": "Units per customer",
+    "total_units_available": "Total units available",
+    "select_products": "Your preorder will apply to the following products:",
+    "no_selected_products": "No products selected, click the button to add products.",
+    "add_products": "Add products",
+    "add_or_remove_products": "Add or remove products",
     "create": "Create",
     "cancel": "Cancel"
   }
