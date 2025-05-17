@@ -16,6 +16,9 @@
     "moduleResolution": "Bundler",
     "target": "ES2022",
     "baseUrl": ".",
-    "types": ["node", "./app/types/global.d.ts"]
+    "types": ["node", "./app/types/global.d.ts"],
+    "paths": {
+      "@shared/*": ["shared/*"]
+    }
   }
 }

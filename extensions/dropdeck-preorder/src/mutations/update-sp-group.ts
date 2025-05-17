@@ -1,6 +1,6 @@
 import { isDevelopment } from "../purchase-options-extension-action";
 import { gqlFetch } from "../tools/gql-fetch";
-import { parseISOStringIntoFormalDate } from '../tools/convert-date';
+import { parseISOStringIntoFormalDate } from '../../../../shared/tools/date-tools';
 
 const updatePreorderSellingPlanGroup = (
   sellingPlanGroupId: string,

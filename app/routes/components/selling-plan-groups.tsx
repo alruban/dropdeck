@@ -11,7 +11,7 @@ import {
   Text,
 } from "@shopify/polaris";
 import { useState } from "react";
-import { parseISOStringIntoFormalDate } from "../tools/date-tools";
+import { parseISOStringIntoFormalDate } from "shared";
 
 type SellingPlanGroupsProps = {
   sellingPlanGroupResponse: SellingPlanGroupResponse;
@@ -40,7 +40,7 @@ export default function SellingPlanGroups({
   const confirmDelete = () => {
     if (selectedPlanGroup) {
       const formData = new FormData();
-      formData.append("sellingPlanId", selectedPlanGroup.id);
+      formData.append("sellingPlanGroupId", selectedPlanGroup.id);
       submit(formData, { method: "DELETE" });
       setDeleteModalOpen(false);
       setSelectedPlanGroup(null);

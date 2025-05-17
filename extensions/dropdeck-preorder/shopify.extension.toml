@@ -11,11 +11,11 @@ url = "/create-preorder"
 
 # Both targets need to be specified for the extensions to work
 [[extensions.targeting]]
-module = "./src/ProductExtension.tsx"
+module = "./src/product-extension.tsx"
 target = "admin.product-purchase-option.action.render"
 
 [[extensions.targeting]]
-module = "./src/ProductVariantExtension.tsx"
+module = "./src/product-variant-extension.tsx"
 target = "admin.product-variant-purchase-option.action.render"
 
 # Valid extension targets:
