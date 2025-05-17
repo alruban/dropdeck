@@ -12,6 +12,9 @@ type SellingPlanGroup = {
   id: string;
   name: string;
   merchantCode: string;
+  productsCount: {
+    count: number;
+  }
   products: {
     edges: ProductEdge[];
   };

@@ -13,7 +13,7 @@ import {
 import { TitleBar } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
 import { json } from "@remix-run/node";
-import { useLoaderData, useNavigation } from "@remix-run/react";
+import { useFetcher, useLoaderData, useNavigation, useSubmit } from "@remix-run/react";
 import SellingPlanGroups from "./components/selling-plan-groups";
 import { useState } from "react";
 import { parseISOStringIntoFormalDate } from "shared";
@@ -85,6 +85,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
 export default function Index() {
   const { data } = useLoaderData<typeof loader>();
+  const submit = useSubmit();
   const sellingPlanGroupResponse = data as SellingPlanGroupResponse;
   const navigation = useNavigation();
 

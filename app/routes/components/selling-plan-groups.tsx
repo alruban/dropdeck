@@ -54,10 +54,11 @@ export default function SellingPlanGroups({
       preorderSellingPlanGroup.sellingPlans.edges[0].node;
     if (!preorderSellingPlanGroup || !preorderSellingPlan) return null;
 
+    const firstAssignedProductTitle = preorderSellingPlanGroup.products.edges[0].node.title;
+    const assignedProductsTitle = preorderSellingPlanGroup.productsCount.count > 1 ? "Multiple Products" : firstAssignedProductTitle;
+
     const rows = [
-      preorderSellingPlanGroup.products.edges
-        .map((product) => product.node.title)
-        .join(", "),
+      assignedProductsTitle,
       parseISOStringIntoFormalDate(
         preorderSellingPlan.deliveryPolicy.fulfillmentExactTime,
       ),
@@ -81,7 +82,7 @@ export default function SellingPlanGroups({
       <DataTable
         columnContentTypes={["text", "text", "text", "text"]}
         headings={[
-          "Assigned Products",
+          "Assigned Product(s)",
           "Release Date",
           <Text as="span" key="actions" alignment="end">
             Actions
@@ -112,9 +113,17 @@ export default function SellingPlanGroups({
       <Card>
         <BlockStack gap="500">
           <BlockStack gap="200">
-            <Text as="h2" variant="headingMd">
-              Preorder Selling Plans
-            </Text>
+            <InlineStack align="space-between">
+              <Text as="h2" variant="headingMd">
+                Preorder Selling Plans
+              </Text>
+              <Button
+                onClick={() => submit(null, { method: "get" })}
+                loading={navigation.state === "loading"}
+              >
+                Refresh
+              </Button>
+            </InlineStack>
             <Text variant="bodyMd" as="p">
               Manage your preorder selling plans and their configurations.
             </Text>

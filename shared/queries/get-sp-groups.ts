@@ -7,6 +7,9 @@ const GET_SP_GROUPS_QUERY = `
           id
           name
           merchantCode
+          productsCount {
+            count
+          }
           products(first: 1) {
             edges {
               node {
