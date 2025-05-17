@@ -1,34 +1,97 @@
-import { useEffect } from "react";
-import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import { useFetcher } from "@remix-run/react";
+import type { LoaderFunctionArgs } from "@remix-run/node";
 import {
   Page,
   Layout,
   Text,
   Card,
-  Button,
   BlockStack,
-  Box,
-  List,
-  Link,
   InlineStack,
+  DataTable,
+  Badge,
+  Button,
 } from "@shopify/polaris";
-import { TitleBar, useAppBridge } from "@shopify/app-bridge-react";
+import { TitleBar } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
+import { json } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+
+interface SellingPlan {
+  name: string;
+  merchantCode: string;
+  deliveryDate: string;
+  status: string;
+}
+
+interface SellingPlanNode {
+  name: string;
+  merchantCode: string;
+  sellingPlans: {
+    edges: Array<{
+      node: {
+        deliveryPolicy?: {
+          fulfillmentExactTime: string;
+        };
+      };
+    }>;
+  };
+}
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  await authenticate.admin(request);
+  const { admin } = await authenticate.admin(request);
 
-  return null;
+  const response = await admin.graphql(
+    `#graphql
+    query {
+      sellingPlanGroups(first: 50) {
+        edges {
+          node {
+            id
+            name
+            merchantCode
+            sellingPlans(first: 10) {
+              edges {
+                node {
+                  id
+                  name
+                  options
+                  deliveryPolicy {
+                    ... on SellingPlanFixedDeliveryPolicy {
+                      fulfillmentExactTime
+                    }
+                  }
+                  metafields(first: 10, namespace: "dropdeck_preorder") {
+                    edges {
+                      node {
+                        key
+                        value
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }`
+  );
+
+  const responseJson = await response.json();
+  return json(responseJson);
 };
 
 export default function Index() {
-  const shopify = useAppBridge();
+  const { data } = useLoaderData<typeof loader>();
+  const sellingPlans: SellingPlan[] = data.sellingPlanGroups.edges.map(({ node }: { node: SellingPlanNode }) => ({
+    name: node.name,
+    merchantCode: node.merchantCode,
+    deliveryDate: node.sellingPlans.edges[0]?.node.deliveryPolicy?.fulfillmentExactTime || 'Not set',
+    status: 'Active',
+  }));
 
   return (
     <Page>
-      <TitleBar title="Dropdeck"/>
-
+      <TitleBar title="Dropdeck Preorder Plans" />
       <BlockStack gap="500">
         <Layout>
           <Layout.Section>
@@ -36,50 +99,35 @@ export default function Index() {
               <BlockStack gap="500">
                 <BlockStack gap="200">
                   <Text as="h2" variant="headingMd">
-                    Congrats on creating a new Shopify app 🎉
+                    Preorder Selling Plans
                   </Text>
                   <Text variant="bodyMd" as="p">
-                    This embedded app template uses{" "}
-                    <Link
-                      url="https://shopify.dev/docs/apps/tools/app-bridge"
-                      target="_blank"
-                      removeUnderline
-                    >
-                      App Bridge
-                    </Link>{" "}
-                    interface examples like an{" "}
-                    <Link url="/app/additional" removeUnderline>
-                      additional page in the app nav
-                    </Link>
-                    , as well as an{" "}
-                    <Link
-                      url="https://shopify.dev/docs/api/admin-graphql"
-                      target="_blank"
-                      removeUnderline
-                    >
-                      Admin GraphQL
-                    </Link>{" "}
-                    mutation demo, to provide a starting point for app
-                    development.
+                    Manage your preorder selling plans and their configurations.
                   </Text>
                 </BlockStack>
-                <BlockStack gap="200">
-                  <Text as="h3" variant="headingMd">
-                    Get started with products
-                  </Text>
-                  <Text as="p" variant="bodyMd">
-                    Generate a product with GraphQL and get the JSON output for
-                    that product. Learn more about the{" "}
-                    <Link
-                      url="https://shopify.dev/docs/api/admin-graphql/latest/mutations/productCreate"
-                      target="_blank"
-                      removeUnderline
-                    >
-                      productCreate
-                    </Link>{" "}
-                    mutation in our API references.
-                  </Text>
-                </BlockStack>
+                <DataTable
+                  columnContentTypes={[
+                    'text',
+                    'text',
+                    'text',
+                    'text',
+                    'text',
+                  ]}
+                  headings={[
+                    'Plan Name',
+                    'Merchant Code',
+                    'Delivery Date',
+                    'Status',
+                    'Actions',
+                  ]}
+                  rows={sellingPlans.map((plan: SellingPlan) => [
+                    plan.name,
+                    plan.merchantCode,
+                    plan.deliveryDate,
+                    plan.status,
+                    'Edit',
+                  ])}
+                />
               </BlockStack>
             </Card>
           </Layout.Section>
@@ -88,99 +136,33 @@ export default function Index() {
               <Card>
                 <BlockStack gap="200">
                   <Text as="h2" variant="headingMd">
-                    App template specs
+                    Quick Actions
                   </Text>
                   <BlockStack gap="200">
-                    <InlineStack align="space-between">
-                      <Text as="span" variant="bodyMd">
-                        Framework
-                      </Text>
-                      <Link
-                        url="https://remix.run"
-                        target="_blank"
-                        removeUnderline
-                      >
-                        Remix
-                      </Link>
-                    </InlineStack>
-                    <InlineStack align="space-between">
-                      <Text as="span" variant="bodyMd">
-                        Database
-                      </Text>
-                      <Link
-                        url="https://www.prisma.io/"
-                        target="_blank"
-                        removeUnderline
-                      >
-                        Prisma
-                      </Link>
-                    </InlineStack>
-                    <InlineStack align="space-between">
-                      <Text as="span" variant="bodyMd">
-                        Interface
-                      </Text>
-                      <span>
-                        <Link
-                          url="https://polaris.shopify.com"
-                          target="_blank"
-                          removeUnderline
-                        >
-                          Polaris
-                        </Link>
-                        {", "}
-                        <Link
-                          url="https://shopify.dev/docs/apps/tools/app-bridge"
-                          target="_blank"
-                          removeUnderline
-                        >
-                          App Bridge
-                        </Link>
-                      </span>
-                    </InlineStack>
-                    <InlineStack align="space-between">
-                      <Text as="span" variant="bodyMd">
-                        API
-                      </Text>
-                      <Link
-                        url="https://shopify.dev/docs/api/admin-graphql"
-                        target="_blank"
-                        removeUnderline
-                      >
-                        GraphQL API
-                      </Link>
-                    </InlineStack>
+                    <Button variant="primary">Create New Preorder Plan</Button>
+                    <Button>View All Products</Button>
                   </BlockStack>
                 </BlockStack>
               </Card>
               <Card>
                 <BlockStack gap="200">
                   <Text as="h2" variant="headingMd">
-                    Next steps
+                    Statistics
                   </Text>
-                  <List>
-                    <List.Item>
-                      Build an{" "}
-                      <Link
-                        url="https://shopify.dev/docs/apps/getting-started/build-app-example"
-                        target="_blank"
-                        removeUnderline
-                      >
-                        {" "}
-                        example app
-                      </Link>{" "}
-                      to get started
-                    </List.Item>
-                    <List.Item>
-                      Explore Shopify’s API with{" "}
-                      <Link
-                        url="https://shopify.dev/docs/apps/tools/graphiql-admin-api"
-                        target="_blank"
-                        removeUnderline
-                      >
-                        GraphiQL
-                      </Link>
-                    </List.Item>
-                  </List>
+                  <BlockStack gap="200">
+                    <InlineStack align="space-between">
+                      <Text as="span" variant="bodyMd">
+                        Active Plans
+                      </Text>
+                      <Badge>{sellingPlans.length.toString()}</Badge>
+                    </InlineStack>
+                    <InlineStack align="space-between">
+                      <Text as="span" variant="bodyMd">
+                        Products with Preorders
+                      </Text>
+                      <Badge>12</Badge>
+                    </InlineStack>
+                  </BlockStack>
                 </BlockStack>
               </Card>
             </BlockStack>
