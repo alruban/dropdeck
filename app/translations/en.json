@@ -1,0 +1,11 @@
+{
+  "create_plan": {
+    "title": "Create Preorder Plan",
+    "description": "Create a new preorder plan for your products",
+    "shipping_date": "Expected Shipping Date",
+    "units_per_customer": "Units per Customer",
+    "total_units_available": "Total Units Available",
+    "create": "Create",
+    "cancel": "Cancel"
+  }
+}

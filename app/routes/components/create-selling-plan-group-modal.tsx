@@ -1,5 +1,9 @@
 import { useSubmit } from "@remix-run/react";
 import { BlockStack, DatePicker, Divider, Modal, Text, TextField } from "@shopify/polaris";
+import { useTranslation } from "../../hooks/useTranslation";
+import { getOneMonthAhead } from "@shared/index";
+import { useState } from "react";
+import DateField from "./date-field";
 
 export default function CreateSellingPlanGroupModal({
   createPlanModalOpen,
@@ -11,6 +15,13 @@ export default function CreateSellingPlanGroupModal({
   isLoading: boolean;
 }) {
   const submit = useSubmit();
+  const { t } = useTranslation();
+
+  // States
+  const [dateError, setDateError] = useState<string | undefined>(undefined);
+  const [releaseDate, setReleaseDate] = useState(getOneMonthAhead());
+  const [unitsPerCustomer, setUnitsPerCustomer] = useState("0"); // 0 means unlimited
+  const [totalUnitsAvailable, setTotalUnitsAvailable] = useState("0"); // 0 means unlimited
 
   const confirmCreate = () => {
     const formData = new FormData();
@@ -23,47 +34,65 @@ export default function CreateSellingPlanGroupModal({
     setCreatePlanModalOpen(false);
   };
 
+  const validateDate = (date: string) => {
+    const selectedDate = new Date(date);
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+
+    if (selectedDate < tomorrow) {
+      // setDateError(t("error_date_must_be_future"));
+      return false;
+    }
+    setDateError(undefined);
+    return true;
+  };
+
   return (
     <Modal
       open={createPlanModalOpen}
       onClose={() => setCreatePlanModalOpen(false)}
-      title="Create Preorder Plan"
+      title={t("create_plan.title")}
       primaryAction={{
-        content: "Create",
+        content: t("create_plan.create"),
         destructive: true,
         onAction: confirmCreate,
         loading: isLoading,
       }}
       secondaryActions={[
         {
-          content: "Cancel",
+          content: t("create_plan.cancel"),
           onAction: () => setCreatePlanModalOpen(false),
         },
       ]}
     >
       <Modal.Section>
         <BlockStack gap="500">
-          <Text as="p">{i18n.translate("description")}</Text>
+          {/* <Text as="p">{t("create_plan.description")}</Text> */}
 
           <Divider />
 
           <BlockStack gap="500">
-            <DatePicker
-              label={i18n.translate("shipping_date")}
-              value={releaseDate}
-              onChange={(newDate) => {
-                const date = String(newDate);
-                setReleaseDate(date);
-                validateDate(date);
-              }}
-              error={dateError}
-            />
+            {/* <DatePicker
+              month={new Date().getMonth()}
+              year={new Date().getFullYear()}
+              // label={t("create_plan.shipping_date")}
+              // value={releaseDate}
+              // onChange={(newDate) => {
+              //   const date = String(newDate);
+              //   setReleaseDate(date);
+              //   validateDate(date);
+              // }}
+              // error={dateError}
+            /> */}
+
+            <DateField />
 
             <TextField
               type="number"
               autoComplete="off"
-              label={i18n.translate("units_per_customer")}
-              value={unitsPerCustomer}
+              label={t("create_plan.units_per_customer")}
+              value={unitsPerCustomer.toString()}
               onChange={(newUnitsPerCustomer) => setUnitsPerCustomer(newUnitsPerCustomer)}
               min={0}
             />
@@ -71,8 +100,8 @@ export default function CreateSellingPlanGroupModal({
             <TextField
               type="number"
               autoComplete="off"
-              label={i18n.translate("total_units_available")}
-              value={totalUnitsAvailable}
+              label={t("create_plan.total_units_available")}
+              value={totalUnitsAvailable.toString()}
               onChange={(newTotalUnitsAvailable) => setTotalUnitsAvailable(newTotalUnitsAvailable)}
               min={0}
             />
