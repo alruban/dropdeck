@@ -48,39 +48,39 @@ export default function SellingPlanGroups({
   };
 
   const sellingPlanGroupsTable = () => {
-    const preorderSellingPlanGroup =
-      sellingPlanGroupResponse.sellingPlanGroups.edges[0].node;
-    const preorderSellingPlan =
-      preorderSellingPlanGroup.sellingPlans.edges[0].node;
-    if (!preorderSellingPlanGroup || !preorderSellingPlan) return null;
+    const rows = sellingPlanGroupResponse.sellingPlanGroups.edges.map((edge) => {
+      const sellingPlanGroup = edge.node;
+      const sellingPlan = sellingPlanGroup.sellingPlans.edges[0].node;
+      if (!sellingPlanGroup || !sellingPlan) return null;
 
-    const firstAssignedProductTitle = preorderSellingPlanGroup.products.edges[0].node.title;
-    const assignedProductsTitle = preorderSellingPlanGroup.productsCount.count > 1 ? "Multiple Products" : firstAssignedProductTitle;
+      const firstAssignedProductTitle = sellingPlanGroup.products.edges[0].node.title;
+      const assignedProductsTitle = sellingPlanGroup.productsCount.count > 1 ? "Multiple Products" : firstAssignedProductTitle;
 
-    const rows = [
-      assignedProductsTitle,
-      parseISOStringIntoFormalDate(
-        preorderSellingPlan.deliveryPolicy.fulfillmentExactTime,
-      ),
-      <InlineStack key={preorderSellingPlanGroup.id} align="end">
-        <ButtonGroup>
-          <Button size="slim">Edit</Button>
-          <Button
-            size="slim"
-            variant="plain"
-            tone="critical"
-            onClick={() => handleDelete(preorderSellingPlanGroup)}
-            disabled={isLoading}
-          >
-            Delete
-          </Button>
-        </ButtonGroup>
-      </InlineStack>,
-    ];
+      return [
+        assignedProductsTitle,
+        parseISOStringIntoFormalDate(
+          sellingPlan.deliveryPolicy.fulfillmentExactTime,
+        ),
+        <InlineStack key={sellingPlanGroup.id} align="end">
+          <ButtonGroup>
+            <Button size="slim">Edit</Button>
+            <Button
+              size="slim"
+              variant="plain"
+              tone="critical"
+              onClick={() => handleDelete(sellingPlanGroup)}
+              disabled={isLoading}
+            >
+              Delete
+            </Button>
+          </ButtonGroup>
+        </InlineStack>,
+      ];
+    });
 
     return (
       <DataTable
-        columnContentTypes={["text", "text", "text", "text"]}
+        columnContentTypes={["text", "text", "text"]}
         headings={[
           "Assigned Product(s)",
           "Release Date",
@@ -89,7 +89,7 @@ export default function SellingPlanGroups({
           </Text>,
         ]}
         stickyHeader={true}
-        rows={[rows]}
+        rows={rows}
         verticalAlign="middle"
       />
     );

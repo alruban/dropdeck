@@ -44,16 +44,15 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const productIds = formData.get("productIds");
     if (!productIds) return json({ error: "No product id(s) provided" }, { status: 400 });
 
-    const date = parseISOStringIntoFormalDate(expectedFulfillmentDate as string);
-
     const response = await admin.graphql(
       CREATE_SP_GROUP_MUTATION,
       {
-        variables: createSPGroupVariables(String(productIds).split(","), date, Number(unitsPerCustomer), Number(totalUnitsAvailable)),
+        variables: createSPGroupVariables(String(productIds).split(","), String(expectedFulfillmentDate), Number(unitsPerCustomer), Number(totalUnitsAvailable)),
       }
     )
 
     const responseJson = await response.json();
+    console.log(responseJson)
     return json(responseJson);
   }
 
