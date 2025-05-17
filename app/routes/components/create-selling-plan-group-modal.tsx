@@ -1,5 +1,5 @@
 import { useSubmit } from "@remix-run/react";
-import { BlockStack, DatePicker, Divider, Modal, Text, TextField } from "@shopify/polaris";
+import { BlockStack, Divider, Modal, Text, TextField } from "@shopify/polaris";
 import { useTranslation } from "../../hooks/useTranslation";
 import { getOneMonthAhead } from "@shared/index";
 import { useState } from "react";
@@ -25,10 +25,10 @@ export default function CreateSellingPlanGroupModal({
 
   const confirmCreate = () => {
     const formData = new FormData();
-    // const expectedFulfillmentDate = formData.get("expectedFulfillmentDate");
-    // const unitsPerCustomer = formData.get("unitsPerCustomer");
-    // const totalUnitsAvailable = formData.get("totalUnitsAvailable");
-    // const productId = formData.get("productId");
+    formData.set("expectedFulfillmentDate", releaseDate);
+    formData.set("unitsPerCustomer", unitsPerCustomer);
+    formData.set("totalUnitsAvailable", totalUnitsAvailable);
+    formData.set("productId", productId);
 
     submit(formData, { method: "POST" });
     setCreatePlanModalOpen(false);
@@ -68,7 +68,7 @@ export default function CreateSellingPlanGroupModal({
     >
       <Modal.Section>
         <BlockStack gap="500">
-          {/* <Text as="p">{t("create_plan.description")}</Text> */}
+          <Text as="p">{t("create_plan.description")}</Text>
 
           <Divider />
 
