@@ -7,13 +7,15 @@ import {
   BlockStack,
   InlineStack,
   Badge,
-  Button
+  Button,
+  Modal
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
 import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useNavigation } from "@remix-run/react";
 import SellingPlanGroups from "./components/selling-plan-groups";
+import { useState } from "react";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
@@ -100,6 +102,20 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 export default function Index() {
   const { data } = useLoaderData<typeof loader>();
   const sellingPlanGroupResponse = data as SellingPlanGroupResponse;
+  const navigation = useNavigation();
+
+  // States
+  const [createPlanModalOpen, setCreatePlanModalOpen] = useState(false);
+
+  const isLoading = navigation.state === "submitting";
+
+  const confirmCreate = () => {
+    // const formData = new FormData();
+    // formData.append("sellingPlanId", selectedPlanGroup.id);
+    // submit(formData, { method: "DELETE" });
+    // setDeleteModalOpen(false);
+    // setSelectedPlanGroup(null);
+  };
 
   return (
     <Page>
@@ -117,7 +133,13 @@ export default function Index() {
                     Quick Actions
                   </Text>
                   <BlockStack gap="200">
-                    <Button variant="primary">Create New Preorder Plan</Button>
+                    <Button
+                      variant="primary"
+                      onClick={() => setCreatePlanModalOpen(true)}
+                    >
+                      Create New Preorder Plan
+                    </Button>
+
                     <Button>View All Products</Button>
                   </BlockStack>
                 </BlockStack>
@@ -147,6 +169,31 @@ export default function Index() {
           </Layout.Section>
         </Layout>
       </BlockStack>
+
+      {/* Create Plan Modal */}
+      <Modal
+        open={createPlanModalOpen}
+        onClose={() => setCreatePlanModalOpen(false)}
+        title="Create Preorder Plan"
+        primaryAction={{
+          content: "Create",
+          destructive: true,
+          onAction: confirmCreate,
+          loading: isLoading,
+        }}
+        secondaryActions={[
+          {
+            content: "Cancel",
+            onAction: () => setCreatePlanModalOpen(false),
+          },
+        ]}
+      >
+        <Modal.Section>
+          <Text as="p">
+            XX Create Preorder Plan Modal Content
+          </Text>
+        </Modal.Section>
+      </Modal>
     </Page>
   );
 }
