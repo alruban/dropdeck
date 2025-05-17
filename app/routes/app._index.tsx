@@ -19,53 +19,12 @@ import { useState } from "react";
 import { parseISOStringIntoFormalDate } from "shared";
 import { CREATE_SP_GROUP_MUTATION, createSPGroupVariables } from "@shared/mutations/create-sp-group";
 import { DELETE_SP_GROUP_MUTATION, deleteSPGroupVariables } from "@shared/mutations/delete-sp-group";
+import { GET_SP_GROUPS_QUERY } from "@shared/queries/get-sp-groups";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
 
-  const response = await admin.graphql(`
-    #graphql
-    query {
-      sellingPlanGroups(first: 50) {
-        edges {
-          node {
-            id
-            name
-            merchantCode
-            products(first: 1) {
-              edges {
-                node {
-                  title
-                }
-              }
-            }
-            sellingPlans(first: 10) {
-              edges {
-                node {
-                  id
-                  name
-                  options
-                  deliveryPolicy {
-                    ... on SellingPlanFixedDeliveryPolicy {
-                      fulfillmentExactTime
-                    }
-                  }
-                  metafields(first: 10, namespace: "dropdeck_preorder") {
-                    edges {
-                      node {
-                        key
-                        value
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
+  const response = await admin.graphql(GET_SP_GROUPS_QUERY);
 
   const responseJson = await response.json();
   return json(responseJson);
