@@ -14,6 +14,7 @@ import { useTranslation } from "../../hooks/useTranslation";
 import { useState, useCallback } from "react";
 import DateField from "./date-field";
 import { useAppBridge } from "@shopify/app-bridge-react";
+import { getTomorrow } from "@shared/tools/date-tools";
 
 interface Product {
   id: string;
@@ -37,15 +38,16 @@ export default function CreateSellingPlanGroupModal({
   const [unitsPerCustomer, setUnitsPerCustomer] = useState("0"); // 0 means unlimited
   const [totalUnitsAvailable, setTotalUnitsAvailable] = useState("0"); // 0 means unlimited
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
+  const [expectedFulfillmentDate, setExpectedFulfillmentDate] = useState<Date>(getTomorrow());
 
   const confirmCreate = () => {
     const formData = new FormData();
-    formData.set("expectedFulfillmentDate", new Date().toISOString());
+    formData.set("expectedFulfillmentDate", expectedFulfillmentDate?.toISOString());
     formData.set("unitsPerCustomer", unitsPerCustomer);
     formData.set("totalUnitsAvailable", totalUnitsAvailable);
     formData.set(
       "productIds",
-      JSON.stringify(selectedProducts.map((p) => p.id)),
+      selectedProducts.map((p) => p.id).join(",")
     );
 
     submit(formData, { method: "POST" });
@@ -112,7 +114,10 @@ export default function CreateSellingPlanGroupModal({
             <Divider />
 
             <BlockStack gap="500">
-              <DateField />
+              <DateField
+                onChange={setExpectedFulfillmentDate}
+                label={t("create_selling_plan_group_modal.expected_fulfillment_date")}
+              />
 
               <TextField
                 type="number"

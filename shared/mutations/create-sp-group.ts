@@ -24,7 +24,7 @@ const CREATE_SP_GROUP_MUTATION = `
 `;
 
 const createSPGroupVariables = (
-  productId: string,
+  productIds: string[],
   expectedFulfillmentDate: string, // Format: "2025-06-01T00:00:00Z"
   unitsPerCustomer: number,
   totalUnitsAvailable: number,
@@ -75,7 +75,7 @@ const createSPGroupVariables = (
     ]
   },
   resources: {
-    productIds: [productId],
+    productIds: productIds,
   }
 });
 

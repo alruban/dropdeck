@@ -246,12 +246,12 @@
             fetch("/apps/px", fetchOptions)
                 .then((res) => {
                 console.log("res", res);
-                return res.json();
-            })
+          return res.json();
+        })
                 .then((res) => {
                 this.vData = res.data;
                 const { product } = this.vData.productVariant;
-                const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
+          const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
                 if (sellingPlanGroupsCount === 0)
                     return;
 
@@ -262,7 +262,7 @@
                 if (!sellingPlan)
                     return;
                 const elSellingPlanInput = get('input[name="selling_plan"]', this.elForm);
-                if (!elSellingPlanInput) {
+          if (!elSellingPlanInput) {
                     const sellingPlanId = sellingPlan.node.id.replace("gid://shopify/SellingPlan/", "");
                     const sellingPlanInput = document.createElement("input");
                     sellingPlanInput.setAttribute("name", "selling_plan");
@@ -279,9 +279,9 @@
             })
                 .finally(() => {
                 loader.hide();
-            });
-        }
+        });
     }
+  }
     const loadScript = () => {
         const elCartAddForms = getAll('form[action="/cart/add"]');
         for (const elCartAddForm of elCartAddForms)

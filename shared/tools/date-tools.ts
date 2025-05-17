@@ -24,6 +24,14 @@ export const parseISOString = (isoString: string): { date: string, hours: number
   return { date, hours, minutes };
 };
 
+export const getTomorrow = (): Date => {
+  // Get tomorrow's date as the minimum selectable date
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(0, 0, 0, 0);
+  return tomorrow;
+}
+
 export const getOneMonthAhead = (): string => {
   const today = new Date();
   const oneMonthAhead = new Date(today.setMonth(today.getMonth() + 1));

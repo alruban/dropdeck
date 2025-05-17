@@ -1,15 +1,16 @@
 import { Box, Popover, TextField, Icon, Card, DatePicker } from "@shopify/polaris";
 import { useEffect, useState, forwardRef, useRef } from "react";
 import { CalendarIcon } from '@shopify/polaris-icons';
+import { getTomorrow } from "@shared/tools/date-tools";
 
-const DateField = forwardRef<HTMLDivElement>((props, ref) => {
-  // Get tomorrow's date as the minimum selectable date
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  tomorrow.setHours(0, 0, 0, 0);
+interface DateFieldProps {
+  onChange?: (date: Date) => void;
+  label?: string;
+}
 
+const DateField = forwardRef<HTMLDivElement, DateFieldProps>(({ onChange, label = "Start date" }, ref) => {
   const [visible, setVisible] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(tomorrow);
+  const [selectedDate, setSelectedDate] = useState(getTomorrow());
   const [{ month, year }, setDate] = useState({
     month: selectedDate.getMonth(),
     year: selectedDate.getFullYear(),
@@ -50,8 +51,9 @@ const DateField = forwardRef<HTMLDivElement>((props, ref) => {
     const selectedDate = new Date(newSelectedDate);
     selectedDate.setHours(0, 0, 0, 0);
 
-    if (selectedDate >= tomorrow) {
+    if (selectedDate >= getTomorrow()) {
       setSelectedDate(selectedDate);
+      onChange?.(selectedDate);
       setVisible(false);
     }
   }
@@ -78,7 +80,7 @@ const DateField = forwardRef<HTMLDivElement>((props, ref) => {
           activator={
             <TextField
               role="combobox"
-              label={"Start date"}
+              label={label}
               prefix={<Icon source={CalendarIcon} />}
               value={formattedValue}
               onFocus={() => setVisible(true)}
@@ -95,7 +97,7 @@ const DateField = forwardRef<HTMLDivElement>((props, ref) => {
                 selected={selectedDate}
                 onMonthChange={handleMonthChange}
                 onChange={handleDateSelection}
-                disableDatesBefore={tomorrow}
+                disableDatesBefore={getTomorrow()}
               />
             </Card>
           </Box>

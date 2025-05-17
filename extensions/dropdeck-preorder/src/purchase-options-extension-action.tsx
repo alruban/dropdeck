@@ -85,7 +85,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
     if (!validateDate(releaseDate)) return;
     setIsLoading(true);
     const isoString = createISOString(releaseDate);
-    createPreorderSellingPlanGroup(productId, isoString, unitsPerCustomer, totalUnitsAvailable, () => {
+    createPreorderSellingPlanGroup([productId], isoString, unitsPerCustomer, totalUnitsAvailable, () => {
       setIsLoading(false);
       close();
     });

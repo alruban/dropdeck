@@ -3,7 +3,7 @@ import { gqlFetch } from "../tools/gql-fetch";
 import { CREATE_SP_GROUP_MUTATION, createSPGroupVariables } from "../../../../shared/mutations/create-sp-group";
 
 const createPreorderSellingPlanGroup = (
-  productId: string,
+  productIds: string[],
   expectedFulfillmentDate: string, // Format: "2025-06-01T00:00:00Z"
   unitsPerCustomer: number,
   totalUnitsAvailable: number,
@@ -11,7 +11,7 @@ const createPreorderSellingPlanGroup = (
 ) => {
   gqlFetch({
     query: CREATE_SP_GROUP_MUTATION,
-    variables: createSPGroupVariables(productId, expectedFulfillmentDate, unitsPerCustomer, totalUnitsAvailable),
+    variables: createSPGroupVariables(productIds, expectedFulfillmentDate, unitsPerCustomer, totalUnitsAvailable),
   }, (createPreorderSellingPlanGroup) => {
     isDevelopment && console.log("Selling plan created:", createPreorderSellingPlanGroup);
     if (createdCallback) createdCallback(createPreorderSellingPlanGroup);
