@@ -1,10 +1,15 @@
-import { BlockStack, Box, Popover, TextField, Icon, Card, DatePicker } from "@shopify/polaris";
+import { Box, Popover, TextField, Icon, Card, DatePicker } from "@shopify/polaris";
 import { useEffect, useState, forwardRef, useRef } from "react";
 import { CalendarIcon } from '@shopify/polaris-icons';
 
 const DateField = forwardRef<HTMLDivElement>((props, ref) => {
+  // Get tomorrow's date as the minimum selectable date
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(0, 0, 0, 0);
+
   const [visible, setVisible] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(tomorrow);
   const [{ month, year }, setDate] = useState({
     month: selectedDate.getMonth(),
     year: selectedDate.getFullYear(),
@@ -41,8 +46,14 @@ const DateField = forwardRef<HTMLDivElement>((props, ref) => {
     setDate({ month, year });
   }
   function handleDateSelection({ end: newSelectedDate }: { end: Date }) {
-    setSelectedDate(newSelectedDate);
-    setVisible(false);
+    // Ensure the selected date is not before tomorrow
+    const selectedDate = new Date(newSelectedDate);
+    selectedDate.setHours(0, 0, 0, 0);
+
+    if (selectedDate >= tomorrow) {
+      setSelectedDate(selectedDate);
+      setVisible(false);
+    }
   }
   useEffect(() => {
     if (selectedDate) {
@@ -84,6 +95,7 @@ const DateField = forwardRef<HTMLDivElement>((props, ref) => {
                 selected={selectedDate}
                 onMonthChange={handleMonthChange}
                 onChange={handleDateSelection}
+                disableDatesBefore={tomorrow}
               />
             </Card>
           </Box>
