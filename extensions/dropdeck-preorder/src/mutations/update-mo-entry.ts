@@ -8,7 +8,7 @@ const updatePreorderMetaobjectEntry = (
     value: string | number
   }[],
   createdCallback?: (
-    metaobjectDefinition: any, 
+    metaobjectDefinition: any,
   ) => void
 ) => {
   // Now that we have the definition, we can create the metaobject

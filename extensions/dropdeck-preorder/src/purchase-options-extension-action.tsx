@@ -12,7 +12,7 @@ import {
 import { useEffect, useState } from 'react';
 
 import createPreorderSellingPlanGroup from './mutations/create-sp-group';
-import { getOneMonthAhead, parseISOString, createISOString } from './tools/convert-date'; 
+import { getOneMonthAhead, parseISOString, createISOString } from './tools/convert-date';
 import getPreorderSellingPlanGroup from './queries/get-sp-group.js';
 import { RenderExtensionTarget } from '@shopify/ui-extensions/admin';
 import updatePreorderSellingPlanGroup from './mutations/update-sp-group';
@@ -29,7 +29,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
   const { i18n, close, data } = useApi(extension);
 
   const ids = data.selected?.[0];
-  if (!ids) return; 
+  if (!ids) return;
 
   // States
   const productId = ids.id;

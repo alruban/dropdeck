@@ -3,7 +3,7 @@ import { gqlFetch } from "../tools/gql-fetch";
 
 const getPreorderSellingPlanGroup = (
   sellingPlanGroupId: string,
-  foundCallback?: (sellingPlan: any) => void, 
+  foundCallback?: (sellingPlan: any) => void,
   notFoundCallback?: (error: any) => void
 ) => {
   gqlFetch({
@@ -40,10 +40,10 @@ const getPreorderSellingPlanGroup = (
   }, (sellingPlanGroup) => {
     console.log("sellingPlanGroup", sellingPlanGroup);
     // Only process if we have actual data
-    if (!sellingPlanGroup?.data) return; 
-  
+    if (!sellingPlanGroup?.data) return;
+
     const sellingPlanExists = sellingPlanGroup.data.sellingPlanGroup;
-    
+
     if (sellingPlanExists) {
       isDevelopment && console.log("Selling plan group exists:", sellingPlanExists);
       if (foundCallback) foundCallback(sellingPlanExists);

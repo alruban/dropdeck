@@ -4,7 +4,7 @@ import { gqlFetch } from "../tools/gql-fetch";
 const createPreorderMetaobjectEntry = (
   productId: string,
   createdCallback?: (
-    metaobjectDefinition: any, 
+    metaobjectDefinition: any,
     defaultFields: {
       key: string,
       value: string | number

@@ -254,6 +254,7 @@
                 const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
                 if (sellingPlanGroupsCount === 0)
                     return;
+
                 const sellingPlanGroup = product.sellingPlanGroups.edges.find((sellingPlanGroup) => sellingPlanGroup.node.merchantCode === "Dropdeck Preorder");
                 if (!sellingPlanGroup)
                     return;
@@ -269,13 +270,14 @@
                     sellingPlanInput.setAttribute("value", sellingPlanId);
                     this.elForm.prepend(sellingPlanInput);
                 }
+
+                this.handleVariantIdChanges();
+                this.createPreorderSubmitButton();
             })
                 .catch((error) => {
                 console.error(error);
             })
                 .finally(() => {
-                this.handleVariantIdChanges();
-                this.createPreorderSubmitButton();
                 loader.hide();
             });
         }

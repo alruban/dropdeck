@@ -5,7 +5,7 @@ import { gqlFetch } from "../tools/gql-fetch";
 
 const checkPreorderMetaobjectEntryExists = (
   productId: string,
-  foundCallback?: (metaobjectDefinition: any) => void, 
+  foundCallback?: (metaobjectDefinition: any) => void,
   notFoundCallback?: (error: any) => void
 ) => {
   gqlFetch({
@@ -30,10 +30,10 @@ const checkPreorderMetaobjectEntryExists = (
     }
   }, (metaobjectEntry) => {
     // Only process if we have actual data
-    if (!metaobjectEntry?.data) return; 
+    if (!metaobjectEntry?.data) return;
 
     const metaobjectEntryExists = metaobjectEntry.data.metaobjectByHandle;
-    
+
     if (metaobjectEntryExists) {
       isDevelopment && console.log("Metaobject entry exists:", metaobjectEntryExists);
       if (foundCallback) foundCallback(metaobjectEntry);

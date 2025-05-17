@@ -1,26 +1,26 @@
 export const createISOString = (date: string, hours?: number, minutes?: number): string => {
   // Create a date object from the date string
   const dateObj = new Date(date);
-  
+
   // Set the hours and minutes
   if (hours && minutes) {
     dateObj.setHours(hours, minutes, 0, 0);
   }
-  
+
   // Return ISO string
   return dateObj.toISOString();
 };
 
 export const parseISOString = (isoString: string): { date: string, hours: number, minutes: number } => {
   const dateObj = new Date(isoString);
-  
+
   // Get the date in YYYY-MM-DD format
   const date = dateObj.toISOString().split('T')[0];
-  
+
   // Get hours and minutes
   const hours = dateObj.getHours();
   const minutes = dateObj.getMinutes();
-  
+
   return { date, hours, minutes };
 };
 
