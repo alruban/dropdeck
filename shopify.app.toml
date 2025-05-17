@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://aye-highway-hansen-shot.trycloudflare.com"
+application_url = "https://firm-investment-link-kills.trycloudflare.com"
 embedded = true
 
 [build]
@@ -27,13 +27,13 @@ scopes = "read_metaobject_definitions,read_metaobjects,read_own_subscription_con
 
 [auth]
 redirect_urls = [
-  "https://aye-highway-hansen-shot.trycloudflare.com/auth/callback",
-  "https://aye-highway-hansen-shot.trycloudflare.com/auth/shopify/callback",
-  "https://aye-highway-hansen-shot.trycloudflare.com/api/auth/callback"
+  "https://firm-investment-link-kills.trycloudflare.com/auth/callback",
+  "https://firm-investment-link-kills.trycloudflare.com/auth/shopify/callback",
+  "https://firm-investment-link-kills.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://aye-highway-hansen-shot.trycloudflare.com/app/api"
+url = "https://firm-investment-link-kills.trycloudflare.com/app/api"
 subpath = "px"
 prefix = "apps"
 

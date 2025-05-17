@@ -53,45 +53,43 @@ const DateField = forwardRef<HTMLDivElement>((props, ref) => {
     }
   }, [selectedDate]);
   return (
-    <BlockStack inlineAlign="center" gap="400">
-      <Box minWidth="276px" padding={{ xs: "200" }}>
-        <div ref={containerRef}>
-          <Popover
-            active={visible}
-            autofocusTarget="none"
-            preferredAlignment="left"
-            fullWidth
-            preferInputActivator={false}
-            preferredPosition="below"
-            preventCloseOnChildOverlayClick
-            onClose={handleOnClose}
-            activator={
-              <TextField
-                role="combobox"
-                label={"Start date"}
-                prefix={<Icon source={CalendarIcon} />}
-                value={formattedValue}
-                onFocus={() => setVisible(true)}
-                onChange={handleInputValueChange}
-                autoComplete="off"
+    <Box minWidth="276px">
+      <Box ref={containerRef} width="100%">
+        <Popover
+          active={visible}
+          autofocusTarget="none"
+          preferredAlignment="left"
+          fullWidth
+          preferInputActivator={false}
+          preferredPosition="below"
+          preventCloseOnChildOverlayClick
+          onClose={handleOnClose}
+          activator={
+            <TextField
+              role="combobox"
+              label={"Start date"}
+              prefix={<Icon source={CalendarIcon} />}
+              value={formattedValue}
+              onFocus={() => setVisible(true)}
+              onChange={handleInputValueChange}
+              autoComplete="off"
+            />
+          }
+        >
+          <Box ref={ref}>
+            <Card>
+              <DatePicker
+                month={month}
+                year={year}
+                selected={selectedDate}
+                onMonthChange={handleMonthChange}
+                onChange={handleDateSelection}
               />
-            }
-          >
-            <Box ref={ref}>
-              <Card>
-                <DatePicker
-                  month={month}
-                  year={year}
-                  selected={selectedDate}
-                  onMonthChange={handleMonthChange}
-                  onChange={handleDateSelection}
-                />
-              </Card>
-            </Box>
-          </Popover>
-        </div>
+            </Card>
+          </Box>
+        </Popover>
       </Box>
-    </BlockStack>
+    </Box>
   );
 });
 
