@@ -118,10 +118,13 @@ export default function CreateSellingPlanGroupModal({
                 type="number"
                 autoComplete="off"
                 label={t("create_selling_plan_group_modal.units_per_customer")}
-                value={unitsPerCustomer.toString()}
-                onChange={(newUnitsPerCustomer) =>
-                  setUnitsPerCustomer(newUnitsPerCustomer)
-                }
+                value={unitsPerCustomer}
+                onChange={(newUnitsPerCustomer) => {
+                  const value = parseInt(newUnitsPerCustomer);
+                  if (value >= 0) {
+                    setUnitsPerCustomer(newUnitsPerCustomer);
+                  }
+                }}
                 min={0}
               />
 
@@ -131,10 +134,13 @@ export default function CreateSellingPlanGroupModal({
                 label={t(
                   "create_selling_plan_group_modal.total_units_available",
                 )}
-                value={totalUnitsAvailable.toString()}
-                onChange={(newTotalUnitsAvailable) =>
-                  setTotalUnitsAvailable(newTotalUnitsAvailable)
-                }
+                value={totalUnitsAvailable}
+                onChange={(newTotalUnitsAvailable) => {
+                  const value = parseInt(newTotalUnitsAvailable);
+                  if (value >= 0) {
+                    setTotalUnitsAvailable(newTotalUnitsAvailable);
+                  }
+                }}
                 min={0}
               />
 
