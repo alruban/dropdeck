@@ -7,19 +7,19 @@ import {
   BlockStack,
   InlineStack,
   Badge,
-  Button,
-  Modal
+  Button
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
 import { json } from "@remix-run/node";
-import { useFetcher, useLoaderData, useNavigation, useSubmit } from "@remix-run/react";
+import { useLoaderData, useNavigation } from "@remix-run/react";
 import SellingPlanGroups from "./components/selling-plan-groups";
 import { useState } from "react";
 import { parseISOStringIntoFormalDate } from "shared";
 import { CREATE_SP_GROUP_MUTATION, createSPGroupVariables } from "@shared/mutations/create-sp-group";
 import { DELETE_SP_GROUP_MUTATION, deleteSPGroupVariables } from "@shared/mutations/delete-sp-group";
 import { GET_SP_GROUPS_QUERY } from "@shared/queries/get-sp-groups";
+import CreateSellingPlanGroupModal from "./components/create-selling-plan-group-modal";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
@@ -85,7 +85,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
 export default function Index() {
   const { data } = useLoaderData<typeof loader>();
-  const submit = useSubmit();
   const sellingPlanGroupResponse = data as SellingPlanGroupResponse;
   const navigation = useNavigation();
 
@@ -93,14 +92,6 @@ export default function Index() {
   const [createPlanModalOpen, setCreatePlanModalOpen] = useState(false);
 
   const isLoading = navigation.state === "submitting";
-
-  const confirmCreate = () => {
-    // const formData = new FormData();
-    // formData.append("sellingPlanId", selectedPlanGroup.id);
-    // submit(formData, { method: "DELETE" });
-    // setDeleteModalOpen(false);
-    // setSelectedPlanGroup(null);
-  };
 
   return (
     <Page>
@@ -155,30 +146,11 @@ export default function Index() {
         </Layout>
       </BlockStack>
 
-      {/* Create Plan Modal */}
-      <Modal
-        open={createPlanModalOpen}
-        onClose={() => setCreatePlanModalOpen(false)}
-        title="Create Preorder Plan"
-        primaryAction={{
-          content: "Create",
-          destructive: true,
-          onAction: confirmCreate,
-          loading: isLoading,
-        }}
-        secondaryActions={[
-          {
-            content: "Cancel",
-            onAction: () => setCreatePlanModalOpen(false),
-          },
-        ]}
-      >
-        <Modal.Section>
-          <Text as="p">
-            XX Create Preorder Plan Modal Content
-          </Text>
-        </Modal.Section>
-      </Modal>
+      <CreateSellingPlanGroupModal
+        createPlanModalOpen={createPlanModalOpen}
+        setCreatePlanModalOpen={setCreatePlanModalOpen}
+        isLoading={isLoading}
+      />
     </Page>
   );
 }
