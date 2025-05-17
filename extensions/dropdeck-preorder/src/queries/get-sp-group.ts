@@ -1,5 +1,6 @@
 import { isDevelopment } from "../purchase-options-extension-action";
 import { gqlFetch } from "../tools/gql-fetch";
+import { GET_SP_GROUP_QUERY, getSPGroupVariables } from "../../../../shared/queries/get-sp-group";
 
 const getPreorderSellingPlanGroup = (
   sellingPlanGroupId: string,
@@ -7,38 +8,9 @@ const getPreorderSellingPlanGroup = (
   notFoundCallback?: (error: any) => void
 ) => {
   gqlFetch({
-    query: `
-      query sellingPlanGroups($id: ID!) {
-        sellingPlanGroup(id: $id) {
-          id
-          sellingPlans(first: 1) {
-            edges {
-              node {
-                id
-                deliveryPolicy {
-                  ... on SellingPlanFixedDeliveryPolicy {
-                    fulfillmentExactTime
-                  }
-                }
-                metafields(first: 2, namespace: "dropdeck_preorder") {
-                  edges {
-                    node {
-                      key
-                      value
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    `,
-    variables: {
-      id: sellingPlanGroupId
-    }
+    query: GET_SP_GROUP_QUERY,
+    variables: getSPGroupVariables(sellingPlanGroupId),
   }, (sellingPlanGroup) => {
-    console.log("sellingPlanGroup", sellingPlanGroup);
     // Only process if we have actual data
     if (!sellingPlanGroup?.data) return;
 

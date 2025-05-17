@@ -41,7 +41,6 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
   const [unitsPerCustomer, setUnitsPerCustomer] = useState(0); // 0 means unlimited
   const [totalUnitsAvailable, setTotalUnitsAvailable] = useState(0); // 0 means unlimited
 
-
   useEffect(() => {
     if (sellingPlanGroupId.length === 0) return;
     setIntent("updating");
