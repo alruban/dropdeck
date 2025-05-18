@@ -18,10 +18,12 @@ import DeleteSellingPlanGroupModal from "./delete-selling-plan-group-modal";
 
 type SellingPlanGroupsProps = {
   sellingPlanGroupResponse: SellingPlanGroupResponse;
+  createPreorderPlan: () => void;
 };
 
 export default function SellingPlanGroupsTable({
   sellingPlanGroupResponse,
+  createPreorderPlan,
 }: SellingPlanGroupsProps) {
   const submit = useSubmit();
   const navigation = useNavigation();
@@ -48,49 +50,55 @@ export default function SellingPlanGroupsTable({
   };
 
   const sellingPlanGroupsTable = () => {
-    const rows = sellingPlanGroupResponse.sellingPlanGroups.edges.map((edge) => {
-      const sellingPlanGroup = edge.node;
-      const sellingPlan = sellingPlanGroup.sellingPlans.edges[0];
-      if (!sellingPlanGroup || !sellingPlan) return null;
+    const rows = sellingPlanGroupResponse.sellingPlanGroups.edges.map(
+      (edge) => {
+        const sellingPlanGroup = edge.node;
+        const sellingPlan = sellingPlanGroup.sellingPlans.edges[0];
+        if (!sellingPlanGroup || !sellingPlan) return null;
 
+        let assignedProductsTitle = t(
+          "selling_plan_groups_table.assigned_products_title.none",
+        );
+        const firstAssignedProduct = sellingPlanGroup.products.edges[0];
 
-      let assignedProductsTitle = t("selling_plan_groups_table.assigned_products_title.none");
-      const firstAssignedProduct = sellingPlanGroup.products.edges[0];
+        if (
+          firstAssignedProduct &&
+          sellingPlanGroup.productsCount.count === 1
+        ) {
+          assignedProductsTitle = firstAssignedProduct.node.title;
+        } else if (sellingPlanGroup.productsCount.count > 1) {
+          assignedProductsTitle = t(
+            "selling_plan_groups_table.assigned_products_title.multiple",
+            {
+              count: sellingPlanGroup.productsCount.count,
+            },
+          );
+        }
 
-      if (firstAssignedProduct && sellingPlanGroup.productsCount.count === 1) {
-        assignedProductsTitle = firstAssignedProduct.node.title;
-      } else if (sellingPlanGroup.productsCount.count > 1) {
-        assignedProductsTitle = t("selling_plan_groups_table.assigned_products_title.multiple", {
-          count: sellingPlanGroup.productsCount.count,
-        });
-      }
-
-      return [
-        assignedProductsTitle,
-        parseISOStringIntoFormalDate(
-          sellingPlan.node.deliveryPolicy.fulfillmentExactTime,
-        ),
-        <InlineStack key={sellingPlanGroup.id} align="end">
-          <ButtonGroup>
-          <Button
-              size="slim"
-              onClick={() => handleEdit(sellingPlanGroup)}
-            >
-              {t("selling_plan_groups_table.actions.edit")}
-            </Button>
-            <Button
-              size="slim"
-              variant="plain"
-              tone="critical"
-              onClick={() => handleDelete(sellingPlanGroup)}
-              disabled={isLoading}
-            >
-              {t("selling_plan_groups_table.actions.delete")}
-            </Button>
-          </ButtonGroup>
-        </InlineStack>,
-      ];
-    });
+        return [
+          assignedProductsTitle,
+          parseISOStringIntoFormalDate(
+            sellingPlan.node.deliveryPolicy.fulfillmentExactTime,
+          ),
+          <InlineStack key={sellingPlanGroup.id} align="end">
+            <ButtonGroup>
+              <Button size="slim" onClick={() => handleEdit(sellingPlanGroup)}>
+                {t("selling_plan_groups_table.actions.edit")}
+              </Button>
+              <Button
+                size="slim"
+                variant="plain"
+                tone="critical"
+                onClick={() => handleDelete(sellingPlanGroup)}
+                disabled={isLoading}
+              >
+                {t("selling_plan_groups_table.actions.delete")}
+              </Button>
+            </ButtonGroup>
+          </InlineStack>,
+        ];
+      },
+    );
 
     return (
       <DataTable
@@ -112,12 +120,14 @@ export default function SellingPlanGroupsTable({
   const noSellingPlanGroupsFound = () => {
     return (
       <BlockStack gap="500">
-        <Divider/>
+        <Divider />
         <Text as="p">
-          {t("selling_plan_groups_table.no_selling_plan_groups_found.description")}
+          {t(
+            "selling_plan_groups_table.no_selling_plan_groups_found.description",
+          )}
         </Text>
 
-        <Button variant="primary">
+        <Button variant="primary" onClick={createPreorderPlan}>
           {t("selling_plan_groups_table.no_selling_plan_groups_found.create")}
         </Button>
       </BlockStack>
@@ -137,14 +147,20 @@ export default function SellingPlanGroupsTable({
                 onClick={() => submit(null, { method: "get" })}
                 loading={navigation.state === "loading"}
               >
-                {t("selling_plan_groups_table.selling_plan_groups_found.refresh")}
+                {t(
+                  "selling_plan_groups_table.selling_plan_groups_found.refresh",
+                )}
               </Button>
             </InlineStack>
             <Text variant="bodyMd" as="p">
-              {t("selling_plan_groups_table.selling_plan_groups_found.description")}
+              {t(
+                "selling_plan_groups_table.selling_plan_groups_found.description",
+              )}
             </Text>
           </BlockStack>
-          {hasSellingPlanGroups ? sellingPlanGroupsTable() : noSellingPlanGroupsFound()}
+          {hasSellingPlanGroups
+            ? sellingPlanGroupsTable()
+            : noSellingPlanGroupsFound()}
         </BlockStack>
       </Card>
 

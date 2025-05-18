@@ -94,7 +94,10 @@ export default function Index() {
       <BlockStack gap="500">
         <Layout>
           <Layout.Section>
-            <SellingPlanGroupsTable sellingPlanGroupResponse={sellingPlanGroupResponse} />
+            <SellingPlanGroupsTable
+              sellingPlanGroupResponse={sellingPlanGroupResponse}
+              createPreorderPlan={() => setCreatePlanModalOpen(true)}
+            />
           </Layout.Section>
           <Layout.Section variant="oneThird">
             <BlockStack gap="500">

@@ -17,6 +17,7 @@ const DateField = forwardRef<HTMLDivElement, DateFieldProps>(({ onChange, label 
     year: selectedDate.getFullYear(),
   });
   const containerRef = useRef<HTMLDivElement>(null);
+  const popoverRef = useRef<HTMLDivElement>(null);
 
   // Format date in YYYY-MM-DD format using the user's locale
   const formattedValue = selectedDate.toLocaleDateString(navigator.language, {
@@ -27,7 +28,12 @@ const DateField = forwardRef<HTMLDivElement, DateFieldProps>(({ onChange, label 
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node) &&
+        popoverRef.current &&
+        !popoverRef.current.contains(event.target as Node)
+      ) {
         setVisible(false);
       }
     }
@@ -41,12 +47,15 @@ const DateField = forwardRef<HTMLDivElement, DateFieldProps>(({ onChange, label 
   function handleInputValueChange() {
     console.log("handleInputValueChange");
   }
+
   function handleOnClose() {
     setVisible(false);
   }
+
   function handleMonthChange(month: number, year: number) {
     setDate({ month, year });
   }
+
   function handleDateSelection({ end: newSelectedDate }: { end: Date }) {
     // Ensure the selected date is not before tomorrow
     const selectedDate = new Date(newSelectedDate);
@@ -58,6 +67,7 @@ const DateField = forwardRef<HTMLDivElement, DateFieldProps>(({ onChange, label 
       setVisible(false);
     }
   }
+
   useEffect(() => {
     if (selectedDate) {
       setDate({
@@ -98,7 +108,7 @@ const DateField = forwardRef<HTMLDivElement, DateFieldProps>(({ onChange, label 
             />
           }
         >
-          <Box ref={ref}>
+          <Box ref={popoverRef}>
             <Card>
               <DatePicker
                 month={month}
