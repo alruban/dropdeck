@@ -6,34 +6,27 @@ type Order = {
   id: string;
   tags: string[];
   line_items: {
-    selling_plan_allocation: {
-      selling_plan: {
-        options: {
-          name: string;
-          position: number;
-          value: string;
-        }[];
-      };
-    };
+    properties: {
+      name: string;
+      value: string;
+    }[]
   }[];
 };
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const { shop, topic, payload, admin } = await authenticate.webhook(request);
+  const { shop, topic, payload, session, admin } = await authenticate.webhook(request);
   console.log(`Received ${topic} webhook for ${shop}`);
 
   // Parse the order data
   // Check if any line items are preorders
-  const isPreorder = (payload as Order).line_items.some((item: any) => {
-    return item.selling_plan_allocation.selling_plan.options.some(
-      (option: any) => option.value === "Dropdeck Preorder",
+  const isPreorder = (payload as Order).line_items.some((item) => {
+    return item.properties.some(
+      (property: any) => property.name === "_dropdeck_preorder" && property.value === "true",
     );
   });
 
-  console.log("IS PREORDER", isPreorder);
-
-  if (isPreorder) {
-    const response = await admin?.graphql(
+  if (isPreorder && session) {
+    const response = await admin.graphql(
       `
         mutation orderUpdate($input: OrderInput!) {
           orderUpdate(input: $input) {
@@ -51,8 +44,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       {
         variables: {
           input: {
-            id: payload.id,
-            tags: [...(payload.tags || []), "preorder"],
+            id: `gid://shopify/Order/${payload.id}`,
+            tags: [...(payload.tags || []), "Dropdeck Preorder"],
           },
         },
       },
