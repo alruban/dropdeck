@@ -14,7 +14,11 @@
       "expected_fulfillment_date": "Release Date",
       "actions": "Actions"
     },
-   "actions": {
+    "assigned_products_title": {
+      "none": "No products assigned",
+      "multiple": "{{count}} products assigned"
+    },
+    "actions": {
       "edit": "Edit",
       "delete": "Delete"
     },

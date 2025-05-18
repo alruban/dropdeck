@@ -50,16 +50,25 @@ export default function SellingPlanGroupsTable({
   const sellingPlanGroupsTable = () => {
     const rows = sellingPlanGroupResponse.sellingPlanGroups.edges.map((edge) => {
       const sellingPlanGroup = edge.node;
-      const sellingPlan = sellingPlanGroup.sellingPlans.edges[0].node;
+      const sellingPlan = sellingPlanGroup.sellingPlans.edges[0];
       if (!sellingPlanGroup || !sellingPlan) return null;
 
-      const firstAssignedProductTitle = sellingPlanGroup.products.edges[0].node.title;
-      const assignedProductsTitle = sellingPlanGroup.productsCount.count > 1 ? "Multiple Products" : firstAssignedProductTitle;
+
+      let assignedProductsTitle = t("selling_plan_groups_table.assigned_products_title.none");
+      const firstAssignedProduct = sellingPlanGroup.products.edges[0];
+
+      if (firstAssignedProduct && sellingPlanGroup.productsCount.count === 1) {
+        assignedProductsTitle = firstAssignedProduct.node.title;
+      } else if (sellingPlanGroup.productsCount.count > 1) {
+        assignedProductsTitle = t("selling_plan_groups_table.assigned_products_title.multiple", {
+          count: sellingPlanGroup.productsCount.count,
+        });
+      }
 
       return [
         assignedProductsTitle,
         parseISOStringIntoFormalDate(
-          sellingPlan.deliveryPolicy.fulfillmentExactTime,
+          sellingPlan.node.deliveryPolicy.fulfillmentExactTime,
         ),
         <InlineStack key={sellingPlanGroup.id} align="end">
           <ButtonGroup>
