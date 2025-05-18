@@ -85,3 +85,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   return json({ success: true });
 };
+
+// Add default export to ensure Remix recognizes this as a route
+export default function Webhook() {
+  return null;
+}

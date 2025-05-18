@@ -60,6 +60,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const totalUnitsAvailable = formData.get("totalUnitsAvailable");
     const productIds = formData.get("productIds");
 
+    console.log("productIds", productIds)
+
     const response = await admin.graphql(
       UPDATE_SP_GROUP_MUTATION,
       {
