@@ -3,17 +3,10 @@ import {
   BlockStack,
   Divider,
   Modal,
-  Text,
-  TextField,
-  InlineStack,
-  Tag,
-  Button,
-  Box,
+  Text
 } from "@shopify/polaris";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useState, useCallback } from "react";
-import DateField from "./date-field";
-import { useAppBridge } from "@shopify/app-bridge-react";
 import { getTomorrow } from "@shared/tools/date-tools";
 import SellingPlanGroupForm from "./selling-plan-group-form";
 
@@ -33,7 +26,6 @@ export default function CreateSellingPlanGroupModal({
 }) {
   const submit = useSubmit();
   const { t } = useTranslation();
-  const shopify = useAppBridge();
 
   // States
   const [unitsPerCustomer, setUnitsPerCustomer] = useState("0"); // 0 means unlimited
@@ -54,37 +46,6 @@ export default function CreateSellingPlanGroupModal({
     submit(formData, { method: "POST" });
     setCreatePlanModalOpen(false);
   };
-
-  const handleProductSelect = useCallback(async () => {
-    const selection = await shopify.resourcePicker({
-      type: "product",
-      multiple: true,
-      filter: {
-        hidden: true,
-        variants: false,
-        draft: true,
-        archived: false,
-      },
-      selectionIds: selectedProducts.map((product) => ({
-        id: product.id,
-      })),
-    });
-
-    if (selection) {
-      const newProducts = selection.map((product) => ({
-        id: product.id,
-        title: product.title,
-      }));
-      setSelectedProducts(newProducts);
-    }
-  }, [shopify, selectedProducts]);
-
-  const removeProduct = useCallback(
-    (productId: string) => {
-      setSelectedProducts(selectedProducts.filter((p) => p.id !== productId));
-    },
-    [selectedProducts],
-  );
 
   return (
     <>
