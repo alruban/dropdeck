@@ -2,12 +2,7 @@ import type { LoaderFunctionArgs, ActionFunctionArgs } from "@remix-run/node";
 import {
   Page,
   Layout,
-  Text,
-  Card,
-  BlockStack,
-  InlineStack,
-  Badge,
-  Button
+  BlockStack
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
@@ -19,6 +14,8 @@ import { CREATE_SP_GROUP_MUTATION, createSPGroupVariables } from "@shared/mutati
 import { DELETE_SP_GROUP_MUTATION, deleteSPGroupVariables } from "@shared/mutations/delete-sp-group";
 import { GET_SP_GROUPS_QUERY } from "@shared/queries/get-sp-groups";
 import CreateSellingPlanGroupModal from "./components/create-selling-plan-group-modal";
+import QuickActions from "./components/quick-actions";
+import Statistics from "./components/statistics";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
@@ -93,7 +90,7 @@ export default function Index() {
 
   return (
     <Page>
-      <TitleBar title="Dropdeck" />
+      <TitleBar title="Dropdeck"/>
       <BlockStack gap="500">
         <Layout>
           <Layout.Section>
@@ -101,42 +98,8 @@ export default function Index() {
           </Layout.Section>
           <Layout.Section variant="oneThird">
             <BlockStack gap="500">
-              <Card>
-                <BlockStack gap="200">
-                  <Text as="h2" variant="headingMd">
-                    Quick Actions
-                  </Text>
-                  <BlockStack gap="200">
-                    <Button
-                      variant="primary"
-                      onClick={() => setCreatePlanModalOpen(true)}
-                    >
-                      Create New Preorder Plan
-                    </Button>
-                  </BlockStack>
-                </BlockStack>
-              </Card>
-              <Card>
-                <BlockStack gap="200">
-                  <Text as="h2" variant="headingMd">
-                    Statistics
-                  </Text>
-                  <BlockStack gap="200">
-                    <InlineStack align="space-between">
-                      <Text as="span" variant="bodyMd">
-                        Active Plans
-                      </Text>
-                      <Badge>{sellingPlanGroupResponse.sellingPlanGroups.edges.length.toString()}</Badge>
-                    </InlineStack>
-                    <InlineStack align="space-between">
-                      <Text as="span" variant="bodyMd">
-                        Products with Preorders
-                      </Text>
-                      <Badge>12</Badge>
-                    </InlineStack>
-                  </BlockStack>
-                </BlockStack>
-              </Card>
+              <QuickActions onCreatePreorderPlanClick={() => setCreatePlanModalOpen(true)} />
+              <Statistics sellingPlanGroupResponse={sellingPlanGroupResponse} />
             </BlockStack>
           </Layout.Section>
         </Layout>

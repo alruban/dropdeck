@@ -13,11 +13,6 @@ import DateField from "./date-field";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { getTomorrow } from "@shared/tools/date-tools";
 
-interface Product {
-  id: string;
-  title: string;
-}
-
 interface SellingPlanGroupFormProps {
   onUnitsPerCustomerChange: (value: string) => void;
   onTotalUnitsAvailableChange: (value: string) => void;
@@ -108,7 +103,7 @@ export default function SellingPlanGroupForm({
       <DateField
         onChange={handleExpectedFulfillmentDateChange}
         label={t("selling_plan_group_form.expected_fulfillment_date")}
-        initialValue={initialExpectedFulfillmentDate}
+        initialValue={expectedFulfillmentDate}
       />
 
       <TextField

@@ -1,4 +1,33 @@
 {
+  "quick_actions": {
+    "title": "Quick Actions",
+    "create_preorder_plan": "Create New Preorder Plan"
+  },
+  "statistics": {
+    "title": "Statistics",
+    "active_plans": "Active Plans",
+    "products_with_preorders": "Preorder Products"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Assigned Product(s)",
+      "expected_fulfillment_date": "Release Date",
+      "actions": "Actions"
+    },
+   "actions": {
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "selling_plan_groups_found": {
+      "title": "Preorder Plans",
+      "description": "Manage your preorder selling plans and their configurations.",
+      "refresh": "Refresh"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "It looks like you don't have any preorder selling plans configured. To configure a preorder selling plan, click the button below.",
+      "create": "Create New Preorder Plan"
+    }
+  },
   "create_selling_plan_group_modal": {
     "title": "Create Preorder Selling Plan",
     "description": "You can use this form to create a new selling plan for a specific product or even a selection of products.",

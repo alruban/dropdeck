@@ -8,11 +8,13 @@ import {
   Divider,
   InlineStack,
   Modal,
+  type TableData,
   Text,
 } from "@shopify/polaris";
 import { useState } from "react";
 import { parseISOStringIntoFormalDate } from "shared";
 import EditSellingPlanGroupModal from "./edit-selling-plan-group-modal";
+import { useTranslation } from "app/hooks/useTranslation";
 
 type SellingPlanGroupsProps = {
   sellingPlanGroupResponse: SellingPlanGroupResponse;
@@ -23,6 +25,7 @@ export default function SellingPlanGroupsTable({
 }: SellingPlanGroupsProps) {
   const submit = useSubmit();
   const navigation = useNavigation();
+  const { t } = useTranslation();
 
   // States
   const [editPlanModalOpen, setEditPlanModalOpen] = useState(false);
@@ -74,7 +77,7 @@ export default function SellingPlanGroupsTable({
               size="slim"
               onClick={() => handleEdit(sellingPlanGroup)}
             >
-              Edit
+              {t("selling_plan_groups_table.actions.edit")}
             </Button>
             <Button
               size="slim"
@@ -83,7 +86,7 @@ export default function SellingPlanGroupsTable({
               onClick={() => handleDelete(sellingPlanGroup)}
               disabled={isLoading}
             >
-              Delete
+              {t("selling_plan_groups_table.actions.delete")}
             </Button>
           </ButtonGroup>
         </InlineStack>,
@@ -94,14 +97,14 @@ export default function SellingPlanGroupsTable({
       <DataTable
         columnContentTypes={["text", "text", "text"]}
         headings={[
-          "Assigned Product(s)",
-          "Release Date",
+          t("selling_plan_groups_table.headings.assigned_products"),
+          t("selling_plan_groups_table.headings.expected_fulfillment_date"),
           <Text as="span" key="actions" alignment="end">
-            Actions
+            {t("selling_plan_groups_table.headings.actions")}
           </Text>,
         ]}
         stickyHeader={true}
-        rows={rows}
+        rows={rows as TableData[][]}
         verticalAlign="middle"
       />
     );
@@ -112,10 +115,12 @@ export default function SellingPlanGroupsTable({
       <BlockStack gap="500">
         <Divider/>
         <Text as="p">
-          It looks like you don't have any preorder selling plans configured. To configure a preorder selling plan, click the button below.
+          {t("selling_plan_groups_table.no_selling_plan_groups_found.description")}
         </Text>
 
-        <Button variant="primary">Create New Preorder Plan</Button>
+        <Button variant="primary">
+          {t("selling_plan_groups_table.no_selling_plan_groups_found.create")}
+        </Button>
       </BlockStack>
     );
   };
@@ -127,17 +132,17 @@ export default function SellingPlanGroupsTable({
           <BlockStack gap="200">
             <InlineStack align="space-between">
               <Text as="h2" variant="headingMd">
-                Preorder Plans
+                {t("selling_plan_groups_table.selling_plan_groups_found.title")}
               </Text>
               <Button
                 onClick={() => submit(null, { method: "get" })}
                 loading={navigation.state === "loading"}
               >
-                Refresh
+                {t("selling_plan_groups_table.selling_plan_groups_found.refresh")}
               </Button>
             </InlineStack>
             <Text variant="bodyMd" as="p">
-              Manage your preorder selling plans and their configurations.
+              {t("selling_plan_groups_table.selling_plan_groups_found.description")}
             </Text>
           </BlockStack>
           {hasSellingPlanGroups ? sellingPlanGroupsTable() : noSellingPlanGroupsFound()}
