@@ -244,6 +244,7 @@ export default function OrderTable({ data }: OrderTableProps) {
         resourceName={resourceName}
         itemCount={orders.length}
         headings={columnHeadings as IndexTableProps["headings"]}
+        selectable
       >
         {rowMarkup}
       </IndexTable>
