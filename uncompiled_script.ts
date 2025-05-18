@@ -11,8 +11,9 @@
 // type SellingPlan = {
 //   node: {
 //     id: string;
-//     key: string;
-//     value: string;
+//     deliveryPolicy: {
+//       fulfillmentExactTime: string;
+//     };
 //   };
 // };
 
@@ -264,6 +265,7 @@
 //           const sellingPlan = sellingPlanGroup.node.sellingPlans.edges[0];
 //           if (!sellingPlan) return;
 
+//           // Handle Selling Plan Input
 //           const elSellingPlanInput = get<HTMLInputElement>(
 //             'input[name="selling_plan"]',
 //             this.elForm,
@@ -281,15 +283,34 @@
 //             this.elForm.prepend(sellingPlanInput);
 //           }
 
-//           const dropdeckPreorderProperty = document.createElement("input");
-//           dropdeckPreorderProperty.setAttribute(
+//           // Handle Dropdeck Preorder Properties
+//           const isDropdeckPreorderProp = document.createElement("input");
+//           isDropdeckPreorderProp.setAttribute(
 //             "name",
 //             "properties[_dropdeck_preorder]",
 //           );
-//           dropdeckPreorderProperty.setAttribute("id", "dropdeck_preorder");
-//           dropdeckPreorderProperty.setAttribute("type", "hidden");
-//           dropdeckPreorderProperty.setAttribute("value", "true");
-//           this.elForm.prepend(dropdeckPreorderProperty);
+//           isDropdeckPreorderProp.setAttribute("id", "dropdeck_preorder");
+//           isDropdeckPreorderProp.setAttribute("type", "hidden");
+//           isDropdeckPreorderProp.setAttribute("value", "true");
+//           this.elForm.prepend(isDropdeckPreorderProp);
+
+//           const dropdeckPreorderDataProp = document.createElement("input");
+//           const dropdeckPreorderData = {
+//             sellingPlanGroupId: sellingPlanGroup.node.id,
+//             sellingPlanId: sellingPlan.node.id,
+//             releaseDate: sellingPlan.node.deliveryPolicy.fulfillmentExactTime,
+//           };
+//           dropdeckPreorderDataProp.setAttribute(
+//             "name",
+//             "properties[_dropdeck_preorder_data]",
+//           );
+//           dropdeckPreorderDataProp.setAttribute("id", "dropdeck_preorder_data");
+//           dropdeckPreorderDataProp.setAttribute("type", "hidden");
+//           dropdeckPreorderDataProp.setAttribute(
+//             "value",
+//             JSON.stringify(dropdeckPreorderData),
+//           );
+//           this.elForm.prepend(dropdeckPreorderDataProp);
 
 //           this.handleVariantIdChanges();
 //           this.createPreorderSubmitButton();

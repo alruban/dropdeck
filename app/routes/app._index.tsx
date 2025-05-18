@@ -1,67 +1,48 @@
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData, useSubmit } from "@remix-run/react";
-import { Page, Layout, Card, InlineStack, Box, Button, Text } from "@shopify/polaris";
+import {
+  Page,
+  Layout,
+  Card,
+  InlineStack,
+  Box,
+  Button,
+  Text,
+} from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { useState, useCallback } from "react";
 import { useTranslation } from "../hooks/useTranslation";
 import DateField from "./components/date-field";
 import OrderTable from "./components/order-table";
 import { authenticate } from "../shopify.server";
+import { getDropdeckPreorderOrdersVariables, GET_DROPDECK_PREORDER_ORDERS_QUERY } from "@shared/queries/get-dropdeck-preorder-orders";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
   const url = new URL(request.url);
   const date = url.searchParams.get("date");
 
-  const data: OrderTableRow[] = [
-    {
-      id: "1",
-      order: "#1001",
-      date: "2024-03-20",
-      customer: "John Doe",
-      total: "$100.00",
-      paymentStatus: {
-        status: "complete",
-        label: "Paid"
-      },
-      fulfillmentStatus: {
-        status: "incomplete",
-        label: "Unfulfilled"
-      }
-    },
-    {
-      id: "2",
-      order: "#1002",
-      date: "2024-03-21",
-      customer: "Jane Smith",
-      total: "$150.00",
-      paymentStatus: {
-        status: "partiallyComplete",
-        label: "Partially Paid"
-      },
-      fulfillmentStatus: {
-        status: "complete",
-        label: "Fulfilled"
-      }
-    },
-    {
-      id: "3",
-      order: "#1003",
-      date: "2024-03-22",
-      customer: "Bob Johnson",
-      total: "$200.00",
-      paymentStatus: {
-        status: "incomplete",
-        label: "Unpaid"
-      },
-      fulfillmentStatus: {
-        status: "partiallyComplete",
-        label: "Partially Fulfilled"
-      }
-    }
-  ];
+  const response = await admin.graphql(GET_DROPDECK_PREORDER_ORDERS_QUERY, {
+    variables: getDropdeckPreorderOrdersVariables(),
+  });
 
-  return json({ data, selectedDate: date });
+  // const data: OrderTableRow[] = [
+  //   {
+  //     id: "1",
+  //     order: "#1001",
+  //     customer: "John Doe",
+  //     paymentStatus: {
+  //       status: "complete",
+  //       label: "Paid",
+  //     },
+  //     fulfillmentStatus: {
+  //       status: "incomplete",
+  //       label: "Unfulfilled",
+  //     },
+  //   },
+  // ];
+
+  return json({ data: await response.json(), selectedDate: date });
 };
 
 export default function Index() {
@@ -69,8 +50,10 @@ export default function Index() {
   const submit = useSubmit();
   const { t } = useTranslation();
   const [date, setDate] = useState<Date | undefined>(
-    selectedDate ? new Date(selectedDate) : undefined
+    selectedDate ? new Date(selectedDate) : undefined,
   );
+
+  console.log("DATA", data);
 
   const handleDateChange = useCallback(
     (newDate: Date) => {
@@ -79,7 +62,7 @@ export default function Index() {
       formData.append("date", newDate.toISOString().split("T")[0]);
       submit(formData, { method: "get" });
     },
-    [submit]
+    [submit],
   );
 
   const handleClearFilter = useCallback(() => {

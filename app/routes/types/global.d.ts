@@ -59,14 +59,58 @@ type Metafield = {
   value: string;
 };
 
+type OrderTableRawData = {
+  data: {
+    orders: {
+      edges: {
+        node: {
+          id: string
+          name: string
+          displayFinancialStatus: string
+          displayFulfillmentStatus: string
+          lineItems: {
+            edges: {
+              node: {
+                customAttributes: {
+                  key: string
+                  value: string
+                }[]
+              }
+            }[]
+          }
+        }
+      }[]
+    }
+  }
+  extensions: {
+    cost: {
+      requestedQueryCost: number
+      actualQueryCost: number
+      throttleStatus: {
+        maximumAvailable: number
+        currentlyAvailable: number
+        restoreRate: number
+      }
+    }
+    search: {
+      path: string[]
+      query: string
+      parsed: {
+        and: {
+          field: string
+          match_all: string
+        }[]
+      }
+    }[]
+  }
+}
+
 type OrderProgress = "incomplete" | "partiallyComplete" | "complete";
 
 type OrderTableRow = {
   id: string;
   order: string;
-  date: string;
   customer: string;
-  total: string;
   paymentStatus: {
     status: OrderProgress,
     label: string

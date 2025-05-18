@@ -7,7 +7,7 @@ import {
 } from '@shopify/polaris';
 
 type OrderTableProps = {
-  data: OrderTableRows;
+  data: OrderTableRawData;
 };
 
 export default function OrderTable({ data }: OrderTableProps) {
@@ -16,26 +16,37 @@ export default function OrderTable({ data }: OrderTableProps) {
     plural: 'orders',
   };
 
-  const orders = data.map(order => ({
-    ...order,
-    paymentStatus: (
-      <Badge progress={order.paymentStatus.status as OrderProgress}>
-        {order.paymentStatus.label}
-      </Badge>
-    ),
-    fulfillmentStatus: (
-      <Badge progress={order.fulfillmentStatus.status as OrderProgress}>
-        {order.fulfillmentStatus.label}
-      </Badge>
-    )
-  }));
+
+  const orders = data.data.orders.edges.map(order => {
+    const { id, name } = order.node;
+
+    const dropdeckData = order.node.lineItems.edges.map(lineItem => {
+      return JSON.parse(lineItem.node.customAttributes.find(attribute => attribute.key === "_dropdeck_preorder_data")?.value || "{}");
+    })
+
+    return ({
+      id: id,
+      order: name,
+      date: dropdeckData.map(data => data.releaseDate).join(", "),
+      paymentStatus: (
+        <Badge progress={"complete"}>
+          {order.node.displayFinancialStatus}
+        </Badge>
+      ),
+      fulfillmentStatus: (
+        <Badge progress={"complete"}>
+          {order.node.displayFulfillmentStatus}
+        </Badge>
+      )
+    })
+  });
 
   const {selectedResources, allResourcesSelected, handleSelectionChange} =
   useIndexResourceState(orders);
 
   const rowMarkup = orders.map(
     (
-      {id, order, date, customer, total, paymentStatus, fulfillmentStatus},
+      {id, order, date, paymentStatus, fulfillmentStatus},
       index,
     ) => (
       <IndexTable.Row
@@ -50,10 +61,10 @@ export default function OrderTable({ data }: OrderTableProps) {
           </Text>
         </IndexTable.Cell>
         <IndexTable.Cell>{date}</IndexTable.Cell>
-        <IndexTable.Cell>{customer}</IndexTable.Cell>
+        <IndexTable.Cell>{date}</IndexTable.Cell>
         <IndexTable.Cell>
           <Text as="span" alignment="end" numeric>
-            {total}
+            {date}
           </Text>
         </IndexTable.Cell>
         <IndexTable.Cell>{paymentStatus}</IndexTable.Cell>
