@@ -65,7 +65,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
     const responseJson = await response.json();
     return json(responseJson);
-
   }
 
   switch (request.method) {
