@@ -67,10 +67,10 @@ export default function EditSellingPlanGroupModal({
         title={t("edit_selling_plan_group_modal.title")}
         primaryAction={{
           content: t("edit_selling_plan_group_modal.edit"),
-          destructive: true,
+          destructive: false,
           onAction: confirmEdit,
           loading: isLoading,
-          disabled: selectedProducts.length === 0,
+          disabled: initialSelectedProducts.length === 0,
         }}
         secondaryActions={[
           {
