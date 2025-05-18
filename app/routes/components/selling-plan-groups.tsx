@@ -115,7 +115,7 @@ export default function SellingPlanGroups({
           <BlockStack gap="200">
             <InlineStack align="space-between">
               <Text as="h2" variant="headingMd">
-                Preorder Selling Plans
+                Preorder Plans
               </Text>
               <Button
                 onClick={() => submit(null, { method: "get" })}

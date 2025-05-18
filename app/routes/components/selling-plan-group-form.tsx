@@ -107,13 +107,13 @@ export default function SellingPlanGroupForm({
     <BlockStack gap="500">
       <DateField
         onChange={handleExpectedFulfillmentDateChange}
-        label={t("create_selling_plan_group_modal.expected_fulfillment_date")}
+        label={t("selling_plan_group_form.expected_fulfillment_date")}
       />
 
       <TextField
         type="number"
         autoComplete="off"
-        label={t("create_selling_plan_group_modal.units_per_customer")}
+        label={t("selling_plan_group_form.units_per_customer")}
         value={unitsPerCustomer}
         onChange={handleUnitsPerCustomerChange}
         min={0}
@@ -123,7 +123,7 @@ export default function SellingPlanGroupForm({
         type="number"
         autoComplete="off"
         label={t(
-          "create_selling_plan_group_modal.total_units_available",
+          "selling_plan_group_form.total_units_available",
         )}
         value={totalUnitsAvailable}
         onChange={handleTotalUnitsAvailableChange}
@@ -134,8 +134,8 @@ export default function SellingPlanGroupForm({
         <BlockStack gap="200">
           <Text as="p">
             {selectedProducts.length > 0
-              ? t("create_selling_plan_group_modal.select_products")
-              : t("create_selling_plan_group_modal.no_selected_products")}
+              ? t("selling_plan_group_form.select_products")
+              : t("selling_plan_group_form.no_selected_products")}
           </Text>
 
           {selectedProducts.length > 0 && <InlineStack gap="200" wrap={true}>
@@ -158,9 +158,9 @@ export default function SellingPlanGroupForm({
           >
             {selectedProducts.length > 0
               ? t(
-                  "create_selling_plan_group_modal.add_or_remove_products",
+                  "selling_plan_group_form.add_or_remove_products",
                 )
-              : t("create_selling_plan_group_modal.add_products")}
+              : t("selling_plan_group_form.add_products")}
           </Button>
         </Box>
       </BlockStack>
