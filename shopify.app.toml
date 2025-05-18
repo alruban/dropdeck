@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://brisbane-meat-polyester-nuts.trycloudflare.com"
+application_url = "https://opens-promotes-significant-hurricane.trycloudflare.com"
 embedded = true
 
 [build]
@@ -23,7 +23,7 @@ api_version = "2025-04"
 
   [[webhooks.subscriptions]]
   topics = [ "orders/create" ]
-  uri = "https://close-late-sunday-warrant.trycloudflare.com/webhooks/orders/create"
+  uri = "https://brisbane-meat-polyester-nuts.trycloudflare.com/webhooks/order-create"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
@@ -31,13 +31,13 @@ scopes = "read_metaobject_definitions,read_metaobjects,read_own_subscription_con
 
 [auth]
 redirect_urls = [
-  "https://brisbane-meat-polyester-nuts.trycloudflare.com/auth/callback",
-  "https://brisbane-meat-polyester-nuts.trycloudflare.com/auth/shopify/callback",
-  "https://brisbane-meat-polyester-nuts.trycloudflare.com/api/auth/callback"
+  "https://opens-promotes-significant-hurricane.trycloudflare.com/auth/callback",
+  "https://opens-promotes-significant-hurricane.trycloudflare.com/auth/shopify/callback",
+  "https://opens-promotes-significant-hurricane.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://brisbane-meat-polyester-nuts.trycloudflare.com/app/api"
+url = "https://opens-promotes-significant-hurricane.trycloudflare.com/app/api"
 subpath = "px"
 prefix = "apps"
 
