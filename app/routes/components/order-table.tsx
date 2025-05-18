@@ -126,6 +126,9 @@ export default function OrderTable({ data }: OrderTableProps) {
     (date) => `date--${date}`,
   );
 
+  // Create a flat array of all orders for position tracking
+  const allOrders = Object.values(groupedOrders).flatMap(group => group.orders);
+
   const rowMarkup = Object.keys(groupedOrders).map((date, index) => {
     const { orders, position, id: groupId } = groupedOrders[date];
     let selected: IndexTableRowProps["selected"] = false;
@@ -144,13 +147,19 @@ export default function OrderTable({ data }: OrderTableProps) {
       selected = "indeterminate";
     }
 
+    // Calculate the correct row range for selection
     const selectableOrders = orders.filter(({ disabled }) => !disabled);
-    const rowRange: IndexTableRowProps["selectionRange"] = [
-      selectableOrders.findIndex((row) => row.id === orders[0].id),
-      selectableOrders.findIndex(
-        (row) => row.id === orders[orders.length - 1].id,
-      ),
-    ];
+    const firstSelectableIndex = selectableOrders.length > 0
+      ? allOrders.findIndex(order => order.id === selectableOrders[0].id)
+      : -1;
+    const lastSelectableIndex = selectableOrders.length > 0
+      ? allOrders.findIndex(order => order.id === selectableOrders[selectableOrders.length - 1].id)
+      : -1;
+
+    const rowRange: IndexTableRowProps["selectionRange"] =
+      firstSelectableIndex >= 0 && lastSelectableIndex >= 0
+        ? [firstSelectableIndex, lastSelectableIndex]
+        : undefined;
 
     const disabled = orders.every(({ disabled }) => disabled);
 
@@ -185,7 +194,7 @@ export default function OrderTable({ data }: OrderTableProps) {
                 rowType="child"
                 key={rowIndex}
                 id={id}
-                position={position}
+                position={allOrders.findIndex(order => order.id === id)}
                 selected={selectedResources.includes(id)}
                 disabled={disabled}
               >
