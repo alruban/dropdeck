@@ -114,8 +114,6 @@ export default function Index() {
                     >
                       Create New Preorder Plan
                     </Button>
-
-                    <Button>View All Products</Button>
                   </BlockStack>
                 </BlockStack>
               </Card>

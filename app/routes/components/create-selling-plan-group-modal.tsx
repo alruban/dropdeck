@@ -15,6 +15,7 @@ import { useState, useCallback } from "react";
 import DateField from "./date-field";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { getTomorrow } from "@shared/tools/date-tools";
+import SellingPlanGroupForm from "./selling-plan-group-form";
 
 interface Product {
   id: string;
@@ -113,77 +114,12 @@ export default function CreateSellingPlanGroupModal({
 
             <Divider />
 
-            <BlockStack gap="500">
-              <DateField
-                onChange={setExpectedFulfillmentDate}
-                label={t("create_selling_plan_group_modal.expected_fulfillment_date")}
-              />
-
-              <TextField
-                type="number"
-                autoComplete="off"
-                label={t("create_selling_plan_group_modal.units_per_customer")}
-                value={unitsPerCustomer}
-                onChange={(newUnitsPerCustomer) => {
-                  const value = parseInt(newUnitsPerCustomer);
-                  if (value >= 0) {
-                    setUnitsPerCustomer(newUnitsPerCustomer);
-                  }
-                }}
-                min={0}
-              />
-
-              <TextField
-                type="number"
-                autoComplete="off"
-                label={t(
-                  "create_selling_plan_group_modal.total_units_available",
-                )}
-                value={totalUnitsAvailable}
-                onChange={(newTotalUnitsAvailable) => {
-                  const value = parseInt(newTotalUnitsAvailable);
-                  if (value >= 0) {
-                    setTotalUnitsAvailable(newTotalUnitsAvailable);
-                  }
-                }}
-                min={0}
-              />
-
-              <BlockStack gap={selectedProducts.length > 0 ? "500" : "200"}>
-                <BlockStack gap="200">
-                  <Text as="p">
-                    {selectedProducts.length > 0
-                      ? t("create_selling_plan_group_modal.select_products")
-                      : t("create_selling_plan_group_modal.no_selected_products")}
-                  </Text>
-
-                  {selectedProducts.length > 0 && <InlineStack gap="200" wrap={true}>
-                    {selectedProducts.map((product) => (
-                      <Tag
-                        key={product.id}
-                        onRemove={() => removeProduct(product.id)}
-                      >
-                        {product.title}
-                      </Tag>
-                    ))}
-                  </InlineStack>}
-                </BlockStack>
-
-                <Box maxWidth="200px">
-                  <Button
-                    onClick={handleProductSelect}
-                    variant="primary"
-                    fullWidth={false}
-                  >
-                    {selectedProducts.length > 0
-                      ? t(
-                          "create_selling_plan_group_modal.add_or_remove_products",
-                        )
-                      : t("create_selling_plan_group_modal.add_products")}
-                  </Button>
-                </Box>
-              </BlockStack>
-            </BlockStack>
+            <SellingPlanGroupForm
+              onUnitsPerCustomerChange={setUnitsPerCustomer}
+              onTotalUnitsAvailableChange={setTotalUnitsAvailable}
+              onSelectedProductsChange={setSelectedProducts}
+              onExpectedFulfillmentDateChange={setExpectedFulfillmentDate}
+            />
           </BlockStack>
         </Modal.Section>
       </Modal>
