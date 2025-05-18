@@ -19,23 +19,12 @@ type Order = {
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const { admin } = await authenticate.admin(request);
+  const { shop, topic } = await authenticate.webhook(request);
+  console.log(`Received ${topic} webhook for ${shop}`);
 
+  const { admin } = await authenticate.admin(request);
   // Verify webhook
   const rawBody = await request.text();
-  const hmac = request.headers.get("x-shopify-hmac-sha256");
-  const topic = request.headers.get("x-shopify-topic");
-  const shop = request.headers.get("x-shopify-shop-domain");
-
-  if (!hmac || !topic || !shop) {
-    return json({ error: "Missing required headers" }, { status: 400 });
-  }
-
-  // Verify webhook authenticity
-  const isValid = await authenticate.webhook(request);
-  if (!isValid) {
-    return json({ error: "Invalid webhook signature" }, { status: 401 });
-  }
 
   // Parse the order data
   const order = JSON.parse(rawBody) as Order;
