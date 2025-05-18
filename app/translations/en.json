@@ -40,6 +40,12 @@
     "edit": "Edit",
     "cancel": "Cancel"
   },
+  "delete_selling_plan_group_modal": {
+    "title": "Delete Preorder Selling Plan",
+    "description": "Are you sure you want to delete the preorder selling plan for the following products: {{ products }}? This action cannot be undone.",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
   "selling_plan_group_form": {
     "expected_fulfillment_date": "Expected shipping date",
     "units_per_customer": "Units per customer",

@@ -37,26 +37,25 @@ export default function DeleteSellingPlanGroupModal({
     <Modal
       open={deletePlanModalOpen}
       onClose={() => setDeletePlanModalOpen(false)}
-      title="Delete Preorder Plan"
+      title={t("delete_selling_plan_group_modal.title")}
       primaryAction={{
-        content: "Delete",
+        content: t("delete_selling_plan_group_modal.delete"),
         destructive: true,
         onAction: confirmDelete,
         loading: isLoading,
       }}
       secondaryActions={[
         {
-          content: "Cancel",
+          content: t("delete_selling_plan_group_modal.cancel"),
           onAction: () => setDeletePlanModalOpen(false),
         },
       ]}
     >
       <Modal.Section>
         <Text as="p">
-          Are you sure you want to delete the preorder selling plan for the
-          following products:
-          {selectedPlanGroup?.products.edges.join(",")}"? This action cannot
-          be undone.
+          {t("delete_selling_plan_group_modal.description", {
+            products: selectedPlanGroup?.products.edges.map(edge => edge.node.title).join(", ")
+          })}
         </Text>
       </Modal.Section>
     </Modal>
