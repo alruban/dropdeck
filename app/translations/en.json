@@ -59,5 +59,16 @@
     "no_selected_products": "No products selected, click the button to add products.",
     "add_products": "Add products",
     "add_or_remove_products": "Add or remove products"
+  },
+  "orders": {
+    "title": "Orders",
+    "filter_by_date": "Filter by date",
+    "clear_filter": "Clear filter",
+    "order_number": "Order number",
+    "customer_name": "Customer name",
+    "email": "Email",
+    "items": "Items",
+    "fulfillment_date": "Fulfillment date",
+    "select_date": "Select date"
   }
 }

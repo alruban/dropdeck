@@ -58,3 +58,23 @@ type Metafield = {
   key: string;
   value: string;
 };
+
+type OrderProgress = "incomplete" | "partiallyComplete" | "complete";
+
+type OrderTableRow = {
+  id: string;
+  order: string;
+  date: string;
+  customer: string;
+  total: string;
+  paymentStatus: {
+    status: OrderProgress,
+    label: string
+  },
+  fulfillmentStatus: {
+    status: OrderProgress,
+    label: string
+  }
+}
+
+type OrderTableRows = OrderTableRow[];
