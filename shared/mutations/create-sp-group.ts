@@ -30,14 +30,14 @@ const createSPGroupVariables = (
   totalUnitsAvailable: number,
 ) => ({
   input: {
-    name: "Preorder",
+    name: "Dropdeck Preorder",
     description: `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}, ${unitsPerCustomer} units per customer, ${totalUnitsAvailable} units available.`,
     merchantCode: "Dropdeck Preorder",
-    options: ["Preorder"],
+    options: ["Dropdeck Preorder"],
     sellingPlansToCreate: [
       {
         name: "Preorder",
-        options: ["Preorder"],
+        options: ["Dropdeck Preorder"],
         category: "PRE_ORDER",
         description: `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}`,
         billingPolicy: {

@@ -42,6 +42,8 @@ export default function EditSellingPlanGroupModal({
 
   const confirmEdit = () => {
     const formData = new FormData();
+    formData.set("sellingPlanGroupId", String(selectedPlanGroup?.id));
+    formData.set("sellingPlanId", String(selectedPlanGroup?.sellingPlans.edges[0].node.id));
     formData.set("expectedFulfillmentDate", expectedFulfillmentDate?.toISOString());
     formData.set("unitsPerCustomer", unitsPerCustomer);
     formData.set("totalUnitsAvailable", totalUnitsAvailable);
@@ -50,7 +52,7 @@ export default function EditSellingPlanGroupModal({
       selectedProducts.map((p) => p.id).join(",")
     );
 
-    submit(formData, { method: "POST" });
+    submit(formData, { method: "PATCH" });
     setEditPlanModalOpen(false);
   };
 

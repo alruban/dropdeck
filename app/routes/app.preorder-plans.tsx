@@ -16,6 +16,7 @@ import { GET_SP_GROUPS_QUERY } from "@shared/queries/get-sp-groups";
 import CreateSellingPlanGroupModal from "./components/create-selling-plan-group-modal";
 import QuickActions from "./components/quick-actions";
 import Statistics from "./components/statistics";
+import { UPDATE_SP_GROUP_MUTATION, updateSPGroupVariables } from "@shared/mutations/update-sp-group";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
@@ -48,6 +49,25 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     )
 
     const responseJson = await response.json();
+    return json(responseJson);
+  }
+
+  const updateSellingPlanGroup = async () => {
+    const sellingPlanGroupId = formData.get("sellingPlanGroupId");
+    const sellingPlanId = formData.get("sellingPlanId");
+    const expectedFulfillmentDate = formData.get("expectedFulfillmentDate");
+    const unitsPerCustomer = formData.get("unitsPerCustomer");
+    const totalUnitsAvailable = formData.get("totalUnitsAvailable");
+    const productIds = formData.get("productIds");
+
+    const response = await admin.graphql(
+      UPDATE_SP_GROUP_MUTATION,
+      {
+        variables: updateSPGroupVariables(String(sellingPlanGroupId), String(sellingPlanId), String(expectedFulfillmentDate), Number(unitsPerCustomer), Number(totalUnitsAvailable), String(productIds).split(",")),
+      }
+    )
+
+    const responseJson = await response.json();
     console.log(responseJson)
     return json(responseJson);
   }
@@ -70,6 +90,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   switch (request.method) {
     case "POST":
       return createSellingPlanGroup();
+    case "PATCH":
+      return updateSellingPlanGroup();
     case "DELETE":
       return deleteSellingPlanGroup();
     default:

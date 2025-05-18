@@ -34,18 +34,19 @@ const updateSPGroupVariables = (
   expectedFulfillmentDate: string, // Format: "2025-06-01T00:00:00Z"
   unitsPerCustomer: number,
   totalUnitsAvailable: number,
+  productIds: string[],
 ) => ({
   id: sellingPlanGroupId,
   input: {
-    name: "Preorder",
+    name: "Dropdeck Preorder",
     description: `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}, ${unitsPerCustomer} units per customer, ${totalUnitsAvailable} units available.`,
     merchantCode: "Dropdeck Preorder",
-    options: ["Preorder"],
+    options: ["Dropdeck Preorder"],
     sellingPlansToUpdate: [
       {
         id: sellingPlanId,
         name: "Preorder",
-        options: ["Preorder"],
+        options: ["Dropdeck Preorder"],
         category: "PRE_ORDER",
         description: `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}`,
         billingPolicy: {
@@ -81,6 +82,9 @@ const updateSPGroupVariables = (
         ]
       }
     ]
+  },
+  resources: {
+    productIds: productIds,
   }
 });
 
