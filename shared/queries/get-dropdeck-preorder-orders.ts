@@ -11,6 +11,8 @@ const GET_DROPDECK_PREORDER_ORDERS_QUERY = `
           lineItems(first: 250) {
             edges {
               node {
+                title
+                quantity
                 customAttributes {
                   key
                   value

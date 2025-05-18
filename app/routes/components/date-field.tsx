@@ -7,9 +7,10 @@ interface DateFieldProps {
   onChange?: (date: Date) => void;
   label?: string;
   initialValue?: Date;
+  labelHidden?: boolean;
 }
 
-const DateField = forwardRef<HTMLDivElement, DateFieldProps>(({ onChange, label = "Start date", initialValue }, ref) => {
+const DateField = forwardRef<HTMLDivElement, DateFieldProps>(({ onChange, label = "Start date", initialValue, labelHidden = false }, ref) => {
   const [visible, setVisible] = useState(false);
   const [selectedDate, setSelectedDate] = useState(initialValue || getTomorrow());
   const [{ month, year }, setDate] = useState({
@@ -43,10 +44,6 @@ const DateField = forwardRef<HTMLDivElement, DateFieldProps>(({ onChange, label 
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
-
-  function handleInputValueChange() {
-    console.log("handleInputValueChange");
-  }
 
   function handleOnClose() {
     setVisible(false);
@@ -100,10 +97,10 @@ const DateField = forwardRef<HTMLDivElement, DateFieldProps>(({ onChange, label 
             <TextField
               role="combobox"
               label={label}
+              labelHidden={labelHidden}
               prefix={<Icon source={CalendarIcon} />}
               value={formattedValue}
               onFocus={() => setVisible(true)}
-              onChange={handleInputValueChange}
               autoComplete="off"
             />
           }

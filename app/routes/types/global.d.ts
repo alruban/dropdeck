@@ -71,6 +71,8 @@ type OrderTableRawData = {
           lineItems: {
             edges: {
               node: {
+                title: string
+                quantity: number
                 customAttributes: {
                   key: string
                   value: string

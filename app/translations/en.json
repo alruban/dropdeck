@@ -62,13 +62,10 @@
   },
   "orders": {
     "title": "Orders",
+    "show_orders_from": "Show orders from",
+    "select_date": "Select date",
+    "show_today": "Show today",
     "filter_by_date": "Filter by date",
-    "clear_filter": "Clear filter",
-    "order_number": "Order number",
-    "customer_name": "Customer name",
-    "email": "Email",
-    "items": "Items",
-    "fulfillment_date": "Fulfillment date",
-    "select_date": "Select date"
+    "clear_filter": "Clear filter"
   }
 }
