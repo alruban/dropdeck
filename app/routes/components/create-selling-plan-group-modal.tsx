@@ -10,11 +10,6 @@ import { useState } from "react";
 import { getTomorrow } from "@shared/tools/date-tools";
 import SellingPlanGroupForm from "./selling-plan-group-form";
 
-interface Product {
-  id: string;
-  title: string;
-}
-
 export default function CreateSellingPlanGroupModal({
   createPlanModalOpen,
   setCreatePlanModalOpen,

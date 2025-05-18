@@ -7,7 +7,6 @@ import {
   DataTable,
   Divider,
   InlineStack,
-  Modal,
   type TableData,
   Text,
 } from "@shopify/polaris";
@@ -15,6 +14,7 @@ import { useState } from "react";
 import { parseISOStringIntoFormalDate } from "shared";
 import EditSellingPlanGroupModal from "./edit-selling-plan-group-modal";
 import { useTranslation } from "app/hooks/useTranslation";
+import DeleteSellingPlanGroupModal from "./delete-selling-plan-group-modal";
 
 type SellingPlanGroupsProps = {
   sellingPlanGroupResponse: SellingPlanGroupResponse;
@@ -29,9 +29,9 @@ export default function SellingPlanGroupsTable({
 
   // States
   const [editPlanModalOpen, setEditPlanModalOpen] = useState(false);
+  const [deletePlanModalOpen, setDeletePlanModalOpen] = useState(false);
   const [selectedPlanGroup, setSelectedPlanGroup] =
     useState<SellingPlanGroup | null>(null);
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const hasSellingPlanGroups =
     sellingPlanGroupResponse.sellingPlanGroups.edges.length > 0;
@@ -44,17 +44,7 @@ export default function SellingPlanGroupsTable({
 
   const handleDelete = (planGroup: SellingPlanGroup) => {
     setSelectedPlanGroup(planGroup);
-    setDeleteModalOpen(true);
-  };
-
-  const confirmDelete = () => {
-    if (selectedPlanGroup) {
-      const formData = new FormData();
-      formData.append("sellingPlanGroupId", selectedPlanGroup.id);
-      submit(formData, { method: "DELETE" });
-      setDeleteModalOpen(false);
-      setSelectedPlanGroup(null);
-    }
+    setDeletePlanModalOpen(true);
   };
 
   const sellingPlanGroupsTable = () => {
@@ -149,36 +139,16 @@ export default function SellingPlanGroupsTable({
         </BlockStack>
       </Card>
 
-      {/* Delete Plan Modal */}
-      <Modal
-        open={deleteModalOpen}
-        onClose={() => setDeleteModalOpen(false)}
-        title="Delete Preorder Plan"
-        primaryAction={{
-          content: "Delete",
-          destructive: true,
-          onAction: confirmDelete,
-          loading: isLoading,
-        }}
-        secondaryActions={[
-          {
-            content: "Cancel",
-            onAction: () => setDeleteModalOpen(false),
-          },
-        ]}
-      >
-        <Modal.Section>
-          <Text as="p">
-            Are you sure you want to delete the preorder selling plan for the
-            following products:
-            {selectedPlanGroup?.products.edges.join(",")}"? This action cannot
-            be undone.
-          </Text>
-        </Modal.Section>
-      </Modal>
+      <DeleteSellingPlanGroupModal
+        selectedPlanGroup={selectedPlanGroup}
+        setSelectedPlanGroup={setSelectedPlanGroup}
+        deletePlanModalOpen={deletePlanModalOpen}
+        setDeletePlanModalOpen={setDeletePlanModalOpen}
+        isLoading={isLoading}
+      />
 
       <EditSellingPlanGroupModal
-        targetSellingPlanGroup={selectedPlanGroup}
+        selectedPlanGroup={selectedPlanGroup}
         editPlanModalOpen={editPlanModalOpen}
         setEditPlanModalOpen={setEditPlanModalOpen}
         isLoading={isLoading}
