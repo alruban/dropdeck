@@ -42,7 +42,8 @@
   },
   "delete_selling_plan_group_modal": {
     "title": "Delete Preorder Selling Plan",
-    "description": "Are you sure you want to delete the preorder selling plan for the following products: {{ products }}? This action cannot be undone.",
+    "description": "Are you sure you want to delete the preorder selling plan for the following products:",
+    "warning": "This action cannot be undone.",
     "delete": "Delete",
     "cancel": "Cancel"
   },

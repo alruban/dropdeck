@@ -10,7 +10,7 @@ const GET_SP_GROUPS_QUERY = `
           productsCount {
             count
           }
-          products(first: 1) {
+          products(first: 250) {
             edges {
               node {
                 id

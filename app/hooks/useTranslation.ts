@@ -19,7 +19,7 @@ export function useTranslation() {
     }
   }, [app]);
 
-  const t = (key: string): string => {
+  const t = (key: string, variables?: Record<string, string | number>): string => {
     const keys = key.split(".");
     let value: any = translations[locale];
 
@@ -31,7 +31,17 @@ export function useTranslation() {
       }
     }
 
-    return typeof value === "string" ? value : `Error: translation not found for key "${key}"`;
+    if (typeof value !== "string") {
+      return `Error: translation not found for key "${key}"`;
+    }
+
+    if (variables) {
+      return value.replace(/\{\{\s*(\w+)\s*\}\}/g, (match, key) => {
+        return variables[key]?.toString() ?? match;
+      });
+    }
+
+    return value;
   };
 
   return { t };
