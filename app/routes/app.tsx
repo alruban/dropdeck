@@ -24,6 +24,10 @@ export default function App() {
         <Link to="/app" rel="home">
           Dashboard
         </Link>
+
+        <Link to="/app/preorder-plans">
+          Preorder Plans
+        </Link>
       </NavMenu>
       <Outlet />
     </AppProvider>
