@@ -116,9 +116,7 @@ export default function Index() {
         </Layout.Section>
 
         <Layout.Section>
-          <Card>
-            <OrderTable data={data} />
-          </Card>
+          <OrderTable data={data} />
         </Layout.Section>
       </Layout>
     </Page>
