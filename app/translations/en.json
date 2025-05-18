@@ -5,6 +5,12 @@
     "create": "Create",
     "cancel": "Cancel"
   },
+  "edit_selling_plan_group_modal": {
+    "title": "Edit Preorder Selling Plan",
+    "description": "You can use this form to edit a pre-existing selling plan for a specific product or even a selection of products.",
+    "edit": "Edit",
+    "cancel": "Cancel"
+  },
   "selling_plan_group_form": {
     "expected_fulfillment_date": "Expected shipping date",
     "units_per_customer": "Units per customer",

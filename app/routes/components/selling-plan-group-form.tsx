@@ -108,6 +108,7 @@ export default function SellingPlanGroupForm({
       <DateField
         onChange={handleExpectedFulfillmentDateChange}
         label={t("selling_plan_group_form.expected_fulfillment_date")}
+        initialValue={initialExpectedFulfillmentDate}
       />
 
       <TextField

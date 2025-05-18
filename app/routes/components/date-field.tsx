@@ -6,11 +6,12 @@ import { getTomorrow } from "@shared/tools/date-tools";
 interface DateFieldProps {
   onChange?: (date: Date) => void;
   label?: string;
+  initialValue?: Date;
 }
 
-const DateField = forwardRef<HTMLDivElement, DateFieldProps>(({ onChange, label = "Start date" }, ref) => {
+const DateField = forwardRef<HTMLDivElement, DateFieldProps>(({ onChange, label = "Start date", initialValue }, ref) => {
   const [visible, setVisible] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(getTomorrow());
+  const [selectedDate, setSelectedDate] = useState(initialValue || getTomorrow());
   const [{ month, year }, setDate] = useState({
     month: selectedDate.getMonth(),
     year: selectedDate.getFullYear(),
@@ -65,6 +66,14 @@ const DateField = forwardRef<HTMLDivElement, DateFieldProps>(({ onChange, label 
       });
     }
   }, [selectedDate]);
+
+  // Update selectedDate when initialValue changes
+  useEffect(() => {
+    if (initialValue) {
+      setSelectedDate(initialValue);
+    }
+  }, [initialValue]);
+
   return (
     <Box minWidth="276px">
       <Box ref={containerRef} width="100%">

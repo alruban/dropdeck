@@ -13,6 +13,7 @@ const GET_SP_GROUPS_QUERY = `
           products(first: 1) {
             edges {
               node {
+                id
                 title
               }
             }

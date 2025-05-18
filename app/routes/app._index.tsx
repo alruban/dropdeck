@@ -13,9 +13,8 @@ import { TitleBar } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
 import { json } from "@remix-run/node";
 import { useLoaderData, useNavigation } from "@remix-run/react";
-import SellingPlanGroups from "./components/selling-plan-groups";
+import SellingPlanGroupsTable from "./components/selling-plan-groups-table";
 import { useState } from "react";
-import { parseISOStringIntoFormalDate } from "shared";
 import { CREATE_SP_GROUP_MUTATION, createSPGroupVariables } from "@shared/mutations/create-sp-group";
 import { DELETE_SP_GROUP_MUTATION, deleteSPGroupVariables } from "@shared/mutations/delete-sp-group";
 import { GET_SP_GROUPS_QUERY } from "@shared/queries/get-sp-groups";
@@ -98,7 +97,7 @@ export default function Index() {
       <BlockStack gap="500">
         <Layout>
           <Layout.Section>
-            <SellingPlanGroups sellingPlanGroupResponse={sellingPlanGroupResponse} />
+            <SellingPlanGroupsTable sellingPlanGroupResponse={sellingPlanGroupResponse} />
           </Layout.Section>
           <Layout.Section variant="oneThird">
             <BlockStack gap="500">

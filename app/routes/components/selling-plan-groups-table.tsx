@@ -12,18 +12,20 @@ import {
 } from "@shopify/polaris";
 import { useState } from "react";
 import { parseISOStringIntoFormalDate } from "shared";
+import EditSellingPlanGroupModal from "./edit-selling-plan-group-modal";
 
 type SellingPlanGroupsProps = {
   sellingPlanGroupResponse: SellingPlanGroupResponse;
 };
 
-export default function SellingPlanGroups({
+export default function SellingPlanGroupsTable({
   sellingPlanGroupResponse,
 }: SellingPlanGroupsProps) {
   const submit = useSubmit();
   const navigation = useNavigation();
 
   // States
+  const [editPlanModalOpen, setEditPlanModalOpen] = useState(false);
   const [selectedPlanGroup, setSelectedPlanGroup] =
     useState<SellingPlanGroup | null>(null);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -31,6 +33,11 @@ export default function SellingPlanGroups({
   const hasSellingPlanGroups =
     sellingPlanGroupResponse.sellingPlanGroups.edges.length > 0;
   const isLoading = navigation.state === "submitting";
+
+  const handleEdit = (planGroup: SellingPlanGroup) => {
+    setSelectedPlanGroup(planGroup);
+    setEditPlanModalOpen(true);
+  };
 
   const handleDelete = (planGroup: SellingPlanGroup) => {
     setSelectedPlanGroup(planGroup);
@@ -63,7 +70,12 @@ export default function SellingPlanGroups({
         ),
         <InlineStack key={sellingPlanGroup.id} align="end">
           <ButtonGroup>
-            <Button size="slim">Edit</Button>
+          <Button
+              size="slim"
+              onClick={() => handleEdit(sellingPlanGroup)}
+            >
+              Edit
+            </Button>
             <Button
               size="slim"
               variant="plain"
@@ -159,6 +171,13 @@ export default function SellingPlanGroups({
           </Text>
         </Modal.Section>
       </Modal>
+
+      <EditSellingPlanGroupModal
+        targetSellingPlanGroup={selectedPlanGroup}
+        editPlanModalOpen={editPlanModalOpen}
+        setEditPlanModalOpen={setEditPlanModalOpen}
+        isLoading={isLoading}
+      />
     </>
   );
 }

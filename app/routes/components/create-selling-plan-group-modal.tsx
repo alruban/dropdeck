@@ -6,7 +6,7 @@ import {
   Text
 } from "@shopify/polaris";
 import { useTranslation } from "../../hooks/useTranslation";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { getTomorrow } from "@shared/tools/date-tools";
 import SellingPlanGroupForm from "./selling-plan-group-form";
 
@@ -28,10 +28,10 @@ export default function CreateSellingPlanGroupModal({
   const { t } = useTranslation();
 
   // States
+  const [expectedFulfillmentDate, setExpectedFulfillmentDate] = useState<Date>(getTomorrow());
   const [unitsPerCustomer, setUnitsPerCustomer] = useState("0"); // 0 means unlimited
   const [totalUnitsAvailable, setTotalUnitsAvailable] = useState("0"); // 0 means unlimited
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
-  const [expectedFulfillmentDate, setExpectedFulfillmentDate] = useState<Date>(getTomorrow());
 
   const confirmCreate = () => {
     const formData = new FormData();

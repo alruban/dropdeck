@@ -28,6 +28,7 @@ type ProductEdge = {
 };
 
 type Product = {
+  id: string;
   title: string;
 };
 
