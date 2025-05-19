@@ -18,9 +18,11 @@ import { Fragment } from "react";
 type OrderTableProps = {
   data: OrderTableRawData;
   hideCancelled?: boolean;
+  hideFulfilled?: boolean;
+  showRowColors?: boolean;
 };
 
-export default function OrderTable({ data, hideCancelled = false }: OrderTableProps) {
+export default function OrderTable({ data, hideCancelled = false, hideFulfilled = false, showRowColors = true }: OrderTableProps) {
   interface Order {
     id: string;
     name: string;
@@ -30,6 +32,7 @@ export default function OrderTable({ data, hideCancelled = false }: OrderTablePr
     fulfillmentStatus: JSX.Element;
     disabled?: boolean;
     isCancelled: boolean;
+    isFulfilled: boolean;
   }
 
   interface OrderRow extends Order {
@@ -66,6 +69,7 @@ export default function OrderTable({ data, hideCancelled = false }: OrderTablePr
       dropdeckData[index]?.[0]?.releaseDate || new Date().toISOString()
     );
     const isCancelled = order.node.cancelledAt !== null;
+    const isFulfilled = order.node.displayFulfillmentStatus.toLowerCase() === "fulfilled";
 
     return {
       id,
@@ -87,6 +91,7 @@ export default function OrderTable({ data, hideCancelled = false }: OrderTablePr
         </Badge>
       ),
       isCancelled,
+      isFulfilled,
     };
   }).filter((_order, index) => {
     const orderDate = new Date(dropdeckData[index]?.[0]?.releaseDate || new Date().toISOString());
@@ -97,6 +102,12 @@ export default function OrderTable({ data, hideCancelled = false }: OrderTablePr
     if (hideCancelled) {
       const isCancelled = data.data.orders.edges[index].node.cancelledAt !== null;
       if (isCancelled) return false;
+    }
+
+    // Filter out fulfilled orders if hideFulfilled is true
+    if (hideFulfilled) {
+      const isFulfilled = data.data.orders.edges[index].node.displayFulfillmentStatus.toLowerCase() === "fulfilled";
+      if (isFulfilled) return false;
     }
 
     return orderDate >= today;
@@ -206,10 +217,14 @@ export default function OrderTable({ data, hideCancelled = false }: OrderTablePr
           <IndexTable.Cell />
         </IndexTable.Row>
         {orders.map(
-          ({ id, name, lineItems, paymentStatus, fulfillmentStatus, position, disabled, isCancelled }, rowIndex) => {
+          ({ id, name, lineItems, paymentStatus, fulfillmentStatus, position, disabled, isCancelled, isFulfilled }, rowIndex) => {
             const shopDomain = shopify.config.shop?.replace(".myshopify.com", "");
             const orderIdNumber = id.replace("gid://shopify/Order/", "");
             const orderUrl = `https://admin.shopify.com/store/${shopDomain}/orders/${orderIdNumber}`;
+
+            const rowTone = showRowColors
+              ? (isCancelled ? "critical" : isFulfilled ? "success" : undefined)
+              : undefined;
 
             return (
               <IndexTable.Row
@@ -219,14 +234,14 @@ export default function OrderTable({ data, hideCancelled = false }: OrderTablePr
                 position={allOrders.findIndex(order => order.id === id)}
                 selected={selectedResources.includes(id)}
                 disabled={disabled}
-                tone={isCancelled ? "critical" : undefined}
+                tone={rowTone}
               >
                 <IndexTable.Cell
                   scope="row"
                   headers={`${columnHeadings[0].id} ${groupId}`}
                 >
                   <InlineStack blockAlign="center" gap="100">
-                    <Text variant="bodyMd" fontWeight="bold" as="span" tone={isCancelled ? "critical" : undefined}>
+                    <Text variant="bodyMd" fontWeight="bold" as="span" tone={rowTone}>
                       {name}
                     </Text>
                     <Link
@@ -242,7 +257,7 @@ export default function OrderTable({ data, hideCancelled = false }: OrderTablePr
                   </InlineStack>
                 </IndexTable.Cell>
                 <IndexTable.Cell>
-                  <Text as="span" tone={isCancelled ? "critical" : undefined}>
+                  <Text as="span" tone={rowTone}>
                     {lineItems.join(", ")}
                   </Text>
                 </IndexTable.Cell>
