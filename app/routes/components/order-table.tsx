@@ -1,4 +1,6 @@
+import { useLocation } from "@remix-run/react";
 import { parseISOStringIntoFormalDate } from "@shared/index";
+import { useAppBridge } from "@shopify/app-bridge-react";
 import {
   IndexTable,
   Card,
@@ -22,32 +24,34 @@ type OrderTableProps = {
   showRowColors?: boolean;
 };
 
+interface Order {
+  id: string;
+  name: string;
+  releaseDate: string;
+  lineItems: string[];
+  paymentStatus: JSX.Element;
+  fulfillmentStatus: JSX.Element;
+  disabled?: boolean;
+  isCancelled: boolean;
+  isFulfilled: boolean;
+}
+
+interface OrderRow extends Order {
+  position: number;
+}
+
+interface OrderGroup {
+  id: string;
+  position: number;
+  orders: OrderRow[];
+}
+
+interface Groups {
+  [key: string]: OrderGroup;
+}
+
 export default function OrderTable({ data, hideCancelled = false, hideFulfilled = false, showRowColors = true }: OrderTableProps) {
-  interface Order {
-    id: string;
-    name: string;
-    releaseDate: string;
-    lineItems: string[];
-    paymentStatus: JSX.Element;
-    fulfillmentStatus: JSX.Element;
-    disabled?: boolean;
-    isCancelled: boolean;
-    isFulfilled: boolean;
-  }
-
-  interface OrderRow extends Order {
-    position: number;
-  }
-
-  interface OrderGroup {
-    id: string;
-    position: number;
-    orders: OrderRow[];
-  }
-
-  interface Groups {
-    [key: string]: OrderGroup;
-  }
+  const location = useLocation();
 
   const dropdeckData = data.data.orders.edges.map((order) => {
     return order.node.lineItems.edges.map((lineItem) => {
@@ -218,7 +222,7 @@ export default function OrderTable({ data, hideCancelled = false, hideFulfilled 
         </IndexTable.Row>
         {orders.map(
           ({ id, name, lineItems, paymentStatus, fulfillmentStatus, position, disabled, isCancelled, isFulfilled }, rowIndex) => {
-            const shopDomain = shopify.config.shop?.replace(".myshopify.com", "");
+            const shopDomain = location.pathname.replace("/store/", "").split('/apps/')[0];
             const orderIdNumber = id.replace("gid://shopify/Order/", "");
             const orderUrl = `https://admin.shopify.com/store/${shopDomain}/orders/${orderIdNumber}`;
 
