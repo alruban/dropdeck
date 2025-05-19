@@ -184,10 +184,10 @@
             };
             fetch("/apps/px", fetchOptions)
                 .then((res) => {
-                console.log("res", res);
                 return res.json();
             })
                 .then((res) => {
+                  console.log("res", res.data);
                 this.vData = res.data;
                 const { product } = this.vData.productVariant;
                 const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;

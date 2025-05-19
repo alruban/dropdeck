@@ -187,10 +187,10 @@ interface PreorderResponse {
 
       fetch("/apps/px", fetchOptions)
         .then((res) => {
-          console.log("res", res);
           return res.json() as Promise<PreorderResponse>;
         })
         .then((res: PreorderResponse) => {
+          console.log("res", res.data);
           this.vData = res.data;
           const { product } = this.vData.productVariant;
 
