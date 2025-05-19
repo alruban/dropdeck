@@ -1,5 +1,5 @@
 import { json, type LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData, useNavigation, useSubmit, useFetcher } from "@remix-run/react";
+import { useLoaderData, useNavigation, useSubmit, useSearchParams } from "@remix-run/react";
 import {
   Page,
   Layout,
@@ -16,16 +16,10 @@ import { useTranslation } from "../hooks/useTranslation";
 import OrderTable from "./components/order-table";
 import { authenticate } from "../shopify.server";
 import { getDropdeckPreorderOrdersVariables, GET_DROPDECK_PREORDER_ORDERS_QUERY } from "@shared/queries/get-dropdeck-preorder-orders";
-import { useCallback, useState, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
-  const url = new URL(request.url);
-  const hideCancelled = url.searchParams.get("hideCancelled") === "true";
-  const hideFulfilled = url.searchParams.get("hideFulfilled") === "true";
-  const showRowColors = url.searchParams.get("showRowColors") === "true";
-  const selectedProduct = url.searchParams.get("product") || "";
-
   const response = await admin.graphql(GET_DROPDECK_PREORDER_ORDERS_QUERY, {
     variables: getDropdeckPreorderOrdersVariables(),
   });
@@ -33,22 +27,15 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const responseData = await response.json();
   return json({
     data: responseData as OrderTableRawData,
-    settings: {
-      hideCancelled,
-      hideFulfilled,
-      showRowColors,
-      selectedProduct,
-    }
   });
 };
 
 export default function Index() {
-  const { data, settings: initialSettings } = useLoaderData<typeof loader>();
+  const { data } = useLoaderData<typeof loader>();
   const submit = useSubmit();
   const navigation = useNavigation();
   const { t } = useTranslation();
-  const [settings, setSettings] = useState(initialSettings);
-  const fetcher = useFetcher();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // Extract unique products from orders
   const productOptions = useMemo(() => {
@@ -65,14 +52,21 @@ export default function Index() {
   }, [data]);
 
   const updateSetting = useCallback((key: string, value: string | boolean) => {
-    // Optimistically update the UI
-    setSettings(prev => ({ ...prev, [key]: value }));
+    const newParams = new URLSearchParams(searchParams);
+    if (value === "" || value === false) {
+      newParams.delete(key);
+    } else {
+      newParams.set(key, value.toString());
+    }
+    setSearchParams(newParams);
+  }, [searchParams, setSearchParams]);
 
-    // Update URL params using fetcher
-    const formData = new FormData();
-    formData.append(key, value.toString());
-    fetcher.submit(formData, { method: "get" });
-  }, [fetcher]);
+  const settings = {
+    hideCancelled: searchParams.get("hideCancelled") === "true",
+    hideFulfilled: searchParams.get("hideFulfilled") === "true",
+    showRowColors: searchParams.get("showRowColors") === "true",
+    selectedProduct: searchParams.get("product") || "",
+  };
 
   return (
     <Page>
@@ -107,9 +101,7 @@ export default function Index() {
                   label="Filter by product"
                   options={productOptions}
                   value={settings.selectedProduct}
-                  onChange={(value) => {
-                    updateSetting("product", value);
-                  }}
+                  onChange={(value) => updateSetting("product", value)}
                 />
                 <Checkbox
                   label="Hide cancelled orders"
