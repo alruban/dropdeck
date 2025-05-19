@@ -70,7 +70,14 @@ export default function Index() {
     const products = new Set<string>();
     data.data.orders.edges.forEach(({ node }) => {
       node.lineItems.edges.forEach(({ node: lineItem }) => {
-        products.add(lineItem.title);
+        // Check if this line item has preorder data
+        const hasPreorderData = lineItem.customAttributes.some(
+          (attribute) => attribute.key === "_dropdeck_preorder_data" &&
+          JSON.parse(attribute.value || "{}").releaseDate
+        );
+        if (hasPreorderData) {
+          products.add(lineItem.title);
+        }
       });
     });
     return [
@@ -137,7 +144,7 @@ export default function Index() {
               </InlineStack>
               <BlockStack gap="200">
                 <Select
-                  label="Filter by product"
+                  label="Filter by preorder product"
                   options={productOptions}
                   value={settings.selectedProduct}
                   onChange={(value) => updateSetting("product", value)}

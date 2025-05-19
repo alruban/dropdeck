@@ -11,6 +11,7 @@ import {
   useBreakpoints,
   type IndexTableProps,
   useIndexResourceState,
+  BlockStack,
 } from "@shopify/polaris";
 import { LinkIcon } from "@shopify/polaris-icons";
 import { Fragment, useEffect } from "react";
@@ -62,7 +63,7 @@ export default function OrderTable({
   hideFulfilled = false,
   showRowColors = true,
   selectedProduct = "",
-  onSelectionChange
+  onSelectionChange,
 }: OrderTableProps) {
   // This returns the sellingPlanGroupId, sellingPlanId, and releaseDate for each line item in the order
   // Any line items that are not preorders will return empty objects.
@@ -76,80 +77,102 @@ export default function OrderTable({
     }) as PreorderData[];
   });
 
-  const orders: Order[] = data.data.orders.edges.map((order, index) => {
-    // Check if there's at least one valid preorder in the array
-    const hasValidPreorder = preorderData[index]?.some(item => item.releaseDate);
-    // The order was never a preorder in the first place, the client has added a 'Dropdeck Preorder' tag manually.
-    if (!hasValidPreorder) return null;
-
-    // Find the first line item that has valid preorder data
-    const firstValidPreorder = preorderData[index]?.find(item => item.releaseDate);
-    // The order is a preorder, but there are some line items that are not preorders.
-    if (!firstValidPreorder) return null;
-
-    // Begin mapping data for the order that has a preorder item.
-    const { id, name } = order.node;
-    const releaseDate = firstValidPreorder.releaseDate;
-    const isCancelled = order.node.cancelledAt !== null;
-    const isFulfilled = order.node.displayFulfillmentStatus.toLowerCase() === "fulfilled";
-    return {
-      id,
-      name,
-      releaseDate,
-      lineItems: order.node.lineItems.edges.map((lineItem) => {
-        return `${lineItem.node.quantity} x ${lineItem.node.title}`;
-      }),
-      paymentStatus: (
-        <Badge progress={"complete"}>
-          {order.node.displayFinancialStatus.toLowerCase().slice(0, 1).toUpperCase() +
-           order.node.displayFinancialStatus.toLowerCase().slice(1)}
-        </Badge>
-      ),
-      fulfillmentStatus: (
-        <Badge progress={"complete"}>
-          {order.node.displayFulfillmentStatus.toLowerCase().slice(0, 1).toUpperCase() +
-           order.node.displayFulfillmentStatus.toLowerCase().slice(1)}
-        </Badge>
-      ),
-      isCancelled,
-      isFulfilled,
-    };
-  }).filter((_order, index) => {
-    // Filter out cancelled orders if hideCancelled is true
-    if (hideCancelled) {
-      const isCancelled = data.data.orders.edges[index].node.cancelledAt !== null;
-      if (isCancelled) return false;
-    }
-
-    // Filter out fulfilled orders if hideFulfilled is true
-    if (hideFulfilled) {
-      const isFulfilled = data.data.orders.edges[index].node.displayFulfillmentStatus.toLowerCase() === "fulfilled";
-      if (isFulfilled) return false;
-    }
-
-    // Filter by selected product if one is selected
-    if (selectedProduct) {
-      const hasSelectedProduct = data.data.orders.edges[index].node.lineItems.edges.some(
-        ({ node: lineItem }) => lineItem.title === selectedProduct
+  const orders: Order[] = data.data.orders.edges
+    .map((order, index) => {
+      // Check if there's at least one valid preorder in the array
+      const hasValidPreorder = preorderData[index]?.some(
+        (item) => item.releaseDate,
       );
-      if (!hasSelectedProduct) return false;
-    }
+      // The order was never a preorder in the first place, the client has added a 'Dropdeck Preorder' tag manually.
+      if (!hasValidPreorder) return null;
 
-    // Last: Check if the order is past the release date
-    const firstValidPreorder = preorderData[index]?.find(item => item.releaseDate);
-    if (!firstValidPreorder) return false;
-    const orderDate = new Date(firstValidPreorder.releaseDate);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+      // Find the first line item that has valid preorder data
+      const firstValidPreorder = preorderData[index]?.find(
+        (item) => item.releaseDate,
+      );
+      // The order is a preorder, but there are some line items that are not preorders.
+      if (!firstValidPreorder) return null;
 
-    // Only return orders that have a release date that is in the future
-    return orderDate >= today;
-  }).sort((a, b) => {
-    // Sort by release date chronologically
-    const dateA = new Date(a.releaseDate);
-    const dateB = new Date(b.releaseDate);
-    return dateA.getTime() - dateB.getTime();
-  });
+      // Begin mapping data for the order that has a preorder item.
+      const { id, name } = order.node;
+      const releaseDate = firstValidPreorder.releaseDate;
+      const isCancelled = order.node.cancelledAt !== null;
+      const isFulfilled =
+        order.node.displayFulfillmentStatus.toLowerCase() === "fulfilled";
+      return {
+        id,
+        name,
+        releaseDate,
+        lineItems: order.node.lineItems.edges.map((lineItem) => {
+          return `${lineItem.node.quantity} x ${lineItem.node.title}`;
+        }),
+        paymentStatus: (
+          <Badge progress={"complete"}>
+            {order.node.displayFinancialStatus
+              .toLowerCase()
+              .slice(0, 1)
+              .toUpperCase() +
+              order.node.displayFinancialStatus.toLowerCase().slice(1)}
+          </Badge>
+        ),
+        fulfillmentStatus: (
+          <Badge progress={"complete"}>
+            {order.node.displayFulfillmentStatus
+              .toLowerCase()
+              .slice(0, 1)
+              .toUpperCase() +
+              order.node.displayFulfillmentStatus.toLowerCase().slice(1)}
+          </Badge>
+        ),
+        isCancelled,
+        isFulfilled,
+      };
+    })
+    .filter((_order, index) => {
+      // Filter out cancelled orders if hideCancelled is true
+      if (hideCancelled) {
+        const isCancelled =
+          data.data.orders.edges[index].node.cancelledAt !== null;
+        if (isCancelled) return false;
+      }
+
+      // Filter out fulfilled orders if hideFulfilled is true
+      if (hideFulfilled) {
+        const isFulfilled =
+          data.data.orders.edges[
+            index
+          ].node.displayFulfillmentStatus.toLowerCase() === "fulfilled";
+        if (isFulfilled) return false;
+      }
+
+      // Filter by selected product if one is selected
+      if (selectedProduct) {
+        const hasSelectedProduct = data.data.orders.edges[
+          index
+        ].node.lineItems.edges.some(
+          ({ node: lineItem }) => lineItem.title === selectedProduct,
+        );
+        if (!hasSelectedProduct) return false;
+      }
+
+      // Last: Check if the order is past the release date
+      const firstValidPreorder = preorderData[index]?.find(
+        (item) => item.releaseDate,
+      );
+      if (!firstValidPreorder) return false;
+      const orderDate = new Date(firstValidPreorder.releaseDate);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      // Only return orders that have a release date that is in the future
+      return orderDate >= today;
+    })
+    .sort((a, b) => {
+      // Sort by release date chronologically
+      const dateA = new Date(a.releaseDate);
+      const dateB = new Date(b.releaseDate);
+      return dateA.getTime() - dateB.getTime();
+    });
 
   const columnHeadings = [
     { title: "Order", id: "column-header--order" },
@@ -203,7 +226,9 @@ export default function OrderTable({
   );
 
   // Create a flat array of all orders for position tracking
-  const allOrders = Object.values(groupedOrders).flatMap(group => group.orders);
+  const allOrders = Object.values(groupedOrders).flatMap(
+    (group) => group.orders,
+  );
 
   const rowMarkup = Object.keys(groupedOrders).map((date, index) => {
     const { orders, position, id: groupId } = groupedOrders[date];
@@ -225,12 +250,17 @@ export default function OrderTable({
 
     // Calculate the correct row range for selection
     const selectableOrders = orders.filter(({ disabled }) => !disabled);
-    const firstSelectableIndex = selectableOrders.length > 0
-      ? allOrders.findIndex(order => order.id === selectableOrders[0].id)
-      : -1;
-    const lastSelectableIndex = selectableOrders.length > 0
-      ? allOrders.findIndex(order => order.id === selectableOrders[selectableOrders.length - 1].id)
-      : -1;
+    const firstSelectableIndex =
+      selectableOrders.length > 0
+        ? allOrders.findIndex((order) => order.id === selectableOrders[0].id)
+        : -1;
+    const lastSelectableIndex =
+      selectableOrders.length > 0
+        ? allOrders.findIndex(
+            (order) =>
+              order.id === selectableOrders[selectableOrders.length - 1].id,
+          )
+        : -1;
 
     const rowRange: IndexTableRowProps["selectionRange"] =
       firstSelectableIndex >= 0 && lastSelectableIndex >= 0
@@ -260,13 +290,33 @@ export default function OrderTable({
           <IndexTable.Cell />
         </IndexTable.Row>
         {orders.map(
-          ({ id, name, lineItems, paymentStatus, fulfillmentStatus, position, disabled, isCancelled, isFulfilled }, rowIndex) => {
+          (
+            {
+              id,
+              name,
+              lineItems,
+              paymentStatus,
+              fulfillmentStatus,
+              position,
+              disabled,
+              isCancelled,
+              isFulfilled,
+            },
+            rowIndex,
+          ) => {
             const rowTone = showRowColors
-              ? (isCancelled ? "critical" : isFulfilled ? "success" : undefined)
+              ? isCancelled
+                ? "critical"
+                : isFulfilled
+                  ? "success"
+                  : undefined
               : undefined;
 
             // Get Order URL
-            const shopifyDomain = data.data.shop.myshopifyDomain.replace(".myshopify.com", "");
+            const shopifyDomain = data.data.shop.myshopifyDomain.replace(
+              ".myshopify.com",
+              "",
+            );
             const adminUrl = `https://admin.shopify.com/store/${shopifyDomain}/`;
             const orderUrl = `${adminUrl}orders/${id.replace("gid://shopify/Order/", "")}`;
 
@@ -275,7 +325,7 @@ export default function OrderTable({
                 rowType="child"
                 key={rowIndex}
                 id={id}
-                position={allOrders.findIndex(order => order.id === id)}
+                position={allOrders.findIndex((order) => order.id === id)}
                 selected={selectedResources.includes(id)}
                 disabled={disabled}
                 tone={rowTone}
@@ -285,7 +335,12 @@ export default function OrderTable({
                   headers={`${columnHeadings[0].id} ${groupId}`}
                 >
                   <InlineStack blockAlign="center" gap="100">
-                    <Text variant="bodyMd" fontWeight="bold" as="span" tone={rowTone}>
+                    <Text
+                      variant="bodyMd"
+                      fontWeight="bold"
+                      as="span"
+                      tone={rowTone}
+                    >
                       {name}
                     </Text>
                     <Link
@@ -301,9 +356,15 @@ export default function OrderTable({
                   </InlineStack>
                 </IndexTable.Cell>
                 <IndexTable.Cell>
-                  <Text as="span" tone={rowTone}>
-                    {lineItems.join(", ")}
-                  </Text>
+                  <BlockStack gap="200">
+                    {lineItems.map((item) => {
+                      return (
+                        <Text key={`${id}-${item}`} as="span" tone={rowTone}>
+                          {item}
+                        </Text>
+                      );
+                    })}
+                  </BlockStack>
                 </IndexTable.Cell>
                 <IndexTable.Cell>{paymentStatus}</IndexTable.Cell>
                 <IndexTable.Cell>{fulfillmentStatus}</IndexTable.Cell>
