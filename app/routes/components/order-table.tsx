@@ -12,9 +12,12 @@ import {
   type IndexTableProps,
   useIndexResourceState,
   BlockStack,
+  Button,
 } from "@shopify/polaris";
-import { LinkIcon } from "@shopify/polaris-icons";
+import { LinkIcon, ExportIcon } from "@shopify/polaris-icons";
 import { Fragment, useEffect } from "react";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 
 type OrderTableProps = {
   data: OrderTableRawData;
@@ -128,6 +131,7 @@ export default function OrderTable({
         isFulfilled,
       };
     })
+    .filter((order): order is Order => order !== null) // Remove null entries
     .filter((_order, index) => {
       // Filter out cancelled orders if hideCancelled is true
       if (hideCancelled) {
@@ -376,21 +380,74 @@ export default function OrderTable({
     );
   });
 
+  const handleExportPDF = () => {
+    if (selectedResources.length === 0) return;
+
+    const doc = new jsPDF();
+    const selectedOrders = orders.filter(order => selectedResources.includes(order.id));
+
+    // Add title
+    doc.setFontSize(16);
+    doc.text("Preorder Picking List", 14, 15);
+
+    // Add date
+    doc.setFontSize(10);
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 25);
+
+    // Prepare table data
+    const tableData = selectedOrders.map(order => [
+      order.name,
+      order.lineItems.join(", "),
+      parseISOStringIntoFormalDate(order.releaseDate),
+      order.isFulfilled ? "Fulfilled" : "Pending"
+    ]);
+
+    // Add table
+    (doc as any).autoTable({
+      startY: 35,
+      head: [["Order #", "Items", "Release Date", "Status"]],
+      body: tableData,
+      theme: "grid",
+      styles: { fontSize: 8 },
+      headStyles: { fillColor: [41, 128, 185] },
+      columnStyles: {
+        0: { cellWidth: 30 },
+        1: { cellWidth: 80 },
+        2: { cellWidth: 40 },
+        3: { cellWidth: 30 }
+      }
+    });
+
+    // Save the PDF
+    doc.save("preorder-picking-list.pdf");
+  };
+
   return (
     <Card>
-      <IndexTable
-        condensed={useBreakpoints().smDown}
-        onSelectionChange={handleSelectionChange}
-        selectedItemsCount={
-          allResourcesSelected ? "All" : selectedResources.length
-        }
-        resourceName={resourceName}
-        itemCount={orders.length}
-        headings={columnHeadings as IndexTableProps["headings"]}
-        selectable
-      >
-        {rowMarkup}
-      </IndexTable>
+      <BlockStack gap="400">
+        <InlineStack align="end">
+          <Button
+            icon={ExportIcon}
+            onClick={handleExportPDF}
+            disabled={selectedResources.length === 0}
+          >
+            Export Picking List
+          </Button>
+        </InlineStack>
+        <IndexTable
+          condensed={useBreakpoints().smDown}
+          onSelectionChange={handleSelectionChange}
+          selectedItemsCount={
+            allResourcesSelected ? "All" : selectedResources.length
+          }
+          resourceName={resourceName}
+          itemCount={orders.length}
+          headings={columnHeadings as IndexTableProps["headings"]}
+          selectable
+        >
+          {rowMarkup}
+        </IndexTable>
+      </BlockStack>
     </Card>
   );
 }
