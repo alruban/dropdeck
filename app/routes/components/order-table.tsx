@@ -282,7 +282,7 @@ export default function OrderTable({
         >
           <IndexTable.Cell scope="col" id={groupId}>
             <Text as="span" fontWeight="semibold">
-              {`Release Date: ${parseISOStringIntoFormalDate(date)} (${orders.length})`}
+              {`${parseISOStringIntoFormalDate(date)} (${orders.length})`}
             </Text>
           </IndexTable.Cell>
           <IndexTable.Cell />
