@@ -1,10 +1,8 @@
 import { useLocation } from "@remix-run/react";
 import { parseISOStringIntoFormalDate } from "@shared/index";
-import { useAppBridge } from "@shopify/app-bridge-react";
 import {
-  IndexTable,
   Card,
-  useIndexResourceState,
+  IndexTable,
   Text,
   Badge,
   Link,
@@ -13,6 +11,7 @@ import {
   type IndexTableRowProps,
   useBreakpoints,
   type IndexTableProps,
+  useIndexResourceState,
 } from "@shopify/polaris";
 import { LinkIcon } from "@shopify/polaris-icons";
 import { Fragment } from "react";
@@ -22,6 +21,7 @@ type OrderTableProps = {
   hideCancelled?: boolean;
   hideFulfilled?: boolean;
   showRowColors?: boolean;
+  selectedProduct?: string;
 };
 
 interface Order {
@@ -50,7 +50,7 @@ interface Groups {
   [key: string]: OrderGroup;
 }
 
-export default function OrderTable({ data, hideCancelled = false, hideFulfilled = false, showRowColors = true }: OrderTableProps) {
+export default function OrderTable({ data, hideCancelled = false, hideFulfilled = false, showRowColors = true, selectedProduct = "" }: OrderTableProps) {
   const location = useLocation();
 
   const dropdeckData = data.data.orders.edges.map((order) => {
@@ -112,6 +112,14 @@ export default function OrderTable({ data, hideCancelled = false, hideFulfilled 
     if (hideFulfilled) {
       const isFulfilled = data.data.orders.edges[index].node.displayFulfillmentStatus.toLowerCase() === "fulfilled";
       if (isFulfilled) return false;
+    }
+
+    // Filter by selected product if one is selected
+    if (selectedProduct) {
+      const hasSelectedProduct = data.data.orders.edges[index].node.lineItems.edges.some(
+        ({ node: lineItem }) => lineItem.title === selectedProduct
+      );
+      if (!hasSelectedProduct) return false;
     }
 
     return orderDate >= today;

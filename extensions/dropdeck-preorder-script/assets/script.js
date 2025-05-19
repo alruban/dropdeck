@@ -245,7 +245,6 @@
             };
             fetch("/apps/px", fetchOptions)
                 .then((res) => {
-                console.log("res", res);
                 return res.json();
             })
                 .then((res) => {

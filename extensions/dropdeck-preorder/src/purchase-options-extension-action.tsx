@@ -80,7 +80,6 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
   };
 
   const create = () => {
-    console.log(ids.id)
     if (productId.length === 0) return;
     if (!validateDate(releaseDate)) return;
     setIsLoading(true);

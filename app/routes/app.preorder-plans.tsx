@@ -68,7 +68,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     )
 
     const responseJson = await response.json();
-    console.log(responseJson)
     return json(responseJson);
   }
 

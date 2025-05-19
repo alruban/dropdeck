@@ -9,13 +9,14 @@ import {
   Text,
   Checkbox,
   BlockStack,
+  Select,
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { useTranslation } from "../hooks/useTranslation";
 import OrderTable from "./components/order-table";
 import { authenticate } from "../shopify.server";
 import { getDropdeckPreorderOrdersVariables, GET_DROPDECK_PREORDER_ORDERS_QUERY } from "@shared/queries/get-dropdeck-preorder-orders";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useMemo } from "react";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
@@ -23,6 +24,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const hideCancelled = url.searchParams.get("hideCancelled") === "true";
   const hideFulfilled = url.searchParams.get("hideFulfilled") === "true";
   const showRowColors = url.searchParams.get("showRowColors") === "true";
+  const selectedProduct = url.searchParams.get("product") || "";
 
   const response = await admin.graphql(GET_DROPDECK_PREORDER_ORDERS_QUERY, {
     variables: getDropdeckPreorderOrdersVariables(),
@@ -35,6 +37,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
       hideCancelled,
       hideFulfilled,
       showRowColors,
+      selectedProduct,
     }
   });
 };
@@ -47,7 +50,21 @@ export default function Index() {
   const [settings, setSettings] = useState(initialSettings);
   const fetcher = useFetcher();
 
-  const updateSetting = useCallback((key: string, value: boolean) => {
+  // Extract unique products from orders
+  const productOptions = useMemo(() => {
+    const products = new Set<string>();
+    data.data.orders.edges.forEach(({ node }) => {
+      node.lineItems.edges.forEach(({ node: lineItem }) => {
+        products.add(lineItem.title);
+      });
+    });
+    return [
+      { label: "All products", value: "" },
+      ...Array.from(products).map(title => ({ label: title, value: title }))
+    ];
+  }, [data]);
+
+  const updateSetting = useCallback((key: string, value: string | boolean) => {
     // Optimistically update the UI
     setSettings(prev => ({ ...prev, [key]: value }));
 
@@ -86,6 +103,14 @@ export default function Index() {
                 </Text>
               </InlineStack>
               <BlockStack gap="200">
+                <Select
+                  label="Filter by product"
+                  options={productOptions}
+                  value={settings.selectedProduct}
+                  onChange={(value) => {
+                    updateSetting("product", value);
+                  }}
+                />
                 <Checkbox
                   label="Hide cancelled orders"
                   checked={settings.hideCancelled}
@@ -112,6 +137,7 @@ export default function Index() {
             hideCancelled={settings.hideCancelled}
             hideFulfilled={settings.hideFulfilled}
             showRowColors={settings.showRowColors}
+            selectedProduct={settings.selectedProduct}
           />
         </Layout.Section>
       </Layout>
