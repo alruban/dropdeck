@@ -13,7 +13,7 @@ import {
   useIndexResourceState,
 } from "@shopify/polaris";
 import { LinkIcon } from "@shopify/polaris-icons";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 
 type OrderTableProps = {
   data: OrderTableRawData;
@@ -21,6 +21,7 @@ type OrderTableProps = {
   hideFulfilled?: boolean;
   showRowColors?: boolean;
   selectedProduct?: string;
+  onSelectionChange?: (selectedResources: string[]) => void;
 };
 
 interface Order {
@@ -49,7 +50,7 @@ interface Groups {
   [key: string]: OrderGroup;
 }
 
-export default function OrderTable({ data, hideCancelled = false, hideFulfilled = false, showRowColors = true, selectedProduct = "" }: OrderTableProps) {
+export default function OrderTable({ data, hideCancelled = false, hideFulfilled = false, showRowColors = true, selectedProduct = "", onSelectionChange }: OrderTableProps) {
   const shopifyDomain = data.data.shop.myshopifyDomain.replace(".myshopify.com", "");
   const adminUrl = `https://admin.shopify.com/store/${shopifyDomain}/`;
 
@@ -166,6 +167,11 @@ export default function OrderTable({ data, hideCancelled = false, hideFulfilled 
   const { selectedResources, allResourcesSelected, handleSelectionChange } =
     useIndexResourceState(orders as unknown as { [key: string]: unknown }[]);
 
+  // Call the parent's onSelectionChange when selection changes
+  useEffect(() => {
+    onSelectionChange?.(selectedResources);
+  }, [selectedResources, onSelectionChange]);
+
   const groupedOrders = groupRowsByGroupKey(
     "releaseDate",
     (date) => `date--${date}`,
@@ -221,7 +227,7 @@ export default function OrderTable({ data, hideCancelled = false, hideFulfilled 
         >
           <IndexTable.Cell scope="col" id={groupId}>
             <Text as="span" fontWeight="semibold">
-              {date}
+              {`Release Date: ${date} (${orders.length})`}
             </Text>
           </IndexTable.Cell>
           <IndexTable.Cell />

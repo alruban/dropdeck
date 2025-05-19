@@ -16,7 +16,7 @@ import { useTranslation } from "../hooks/useTranslation";
 import OrderTable from "./components/order-table";
 import { authenticate } from "../shopify.server";
 import { getDropdeckPreorderOrdersVariables, GET_DROPDECK_PREORDER_ORDERS_QUERY } from "@shared/queries/get-dropdeck-preorder-orders";
-import { useCallback, useMemo, useEffect } from "react";
+import { useCallback, useMemo, useEffect, useState } from "react";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
@@ -36,6 +36,7 @@ export default function Index() {
   const navigation = useNavigation();
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedResources, setSelectedResources] = useState<string[]>([]);
 
   // Set default values on first load
   useEffect(() => {
@@ -86,6 +87,8 @@ export default function Index() {
       newParams.set(key, value.toString());
     }
     setSearchParams(newParams);
+    // Clear selections when any setting changes
+    setSelectedResources([]);
   }, [searchParams, setSearchParams]);
 
   const handleRefresh = useCallback(() => {
@@ -166,6 +169,7 @@ export default function Index() {
             hideFulfilled={settings.hideFulfilled}
             showRowColors={settings.showRowColors}
             selectedProduct={settings.selectedProduct}
+            onSelectionChange={setSelectedResources}
           />
         </Layout.Section>
       </Layout>
