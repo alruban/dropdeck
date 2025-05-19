@@ -17,7 +17,7 @@ import {
 import { LinkIcon, ExportIcon } from "@shopify/polaris-icons";
 import { Fragment, useEffect } from "react";
 import { jsPDF } from "jspdf";
-import "jspdf-autotable";
+import autoTable from "jspdf-autotable";
 
 type OrderTableProps = {
   data: OrderTableRawData;
@@ -394,18 +394,31 @@ export default function OrderTable({
     doc.setFontSize(10);
     doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 25);
 
-    // Prepare table data
-    const tableData = selectedOrders.map(order => [
-      order.name,
-      order.lineItems.join(", "),
-      parseISOStringIntoFormalDate(order.releaseDate),
-      order.isFulfilled ? "Fulfilled" : "Pending"
-    ]);
+    // Prepare table data with line items
+    const tableData = selectedOrders.flatMap(order => {
+      // First row with order info
+      const orderRow = [
+        order.name,
+        order.lineItems[0], // First line item
+        order.paymentStatus.props.children,
+        order.fulfillmentStatus.props.children
+      ];
+
+      // Additional rows for remaining line items
+      const additionalRows = order.lineItems.slice(1).map(item => [
+        "", // Empty order number
+        item, // Line item
+        "", // Empty payment status
+        "" // Empty fulfillment status
+      ]);
+
+      return [orderRow, ...additionalRows];
+    });
 
     // Add table
-    (doc as any).autoTable({
+    autoTable(doc, {
       startY: 35,
-      head: [["Order #", "Items", "Release Date", "Status"]],
+      head: [["Order #", "Items", "Payment Status", "Fulfillment Status"]],
       body: tableData,
       theme: "grid",
       styles: { fontSize: 8 },
@@ -414,7 +427,7 @@ export default function OrderTable({
         0: { cellWidth: 30 },
         1: { cellWidth: 80 },
         2: { cellWidth: 40 },
-        3: { cellWidth: 30 }
+        3: { cellWidth: 40 }
       }
     });
 

@@ -69,6 +69,7 @@ type OrderTableRawData = {
         node: {
           id: string;
           name: string;
+          createdAt: string;
           displayFinancialStatus: string;
           displayFulfillmentStatus: string;
           cancelledAt: boolean;

@@ -9,6 +9,7 @@ const GET_DROPDECK_PREORDER_ORDERS_QUERY = `
         node {
           id
           name
+          createdAt
           displayFinancialStatus
           displayFulfillmentStatus
           cancelledAt
