@@ -64,48 +64,49 @@ type OrderTableRawData = {
     orders: {
       edges: {
         node: {
-          id: string
-          name: string
-          displayFinancialStatus: string
-          displayFulfillmentStatus: string
+          id: string;
+          name: string;
+          displayFinancialStatus: string;
+          displayFulfillmentStatus: string;
+          cancelledAt: boolean;
           lineItems: {
             edges: {
               node: {
-                title: string
-                quantity: number
+                title: string;
+                quantity: number;
                 customAttributes: {
-                  key: string
-                  value: string
-                }[]
-              }
-            }[]
-          }
-        }
-      }[]
-    }
-  }
+                  key: string;
+                  value: string;
+                }[];
+              };
+            }[];
+          };
+        };
+      }[];
+    };
+  };
   extensions: {
     cost: {
-      requestedQueryCost: number
-      actualQueryCost: number
+      requestedQueryCost: number;
+      actualQueryCost: number;
       throttleStatus: {
-        maximumAvailable: number
-        currentlyAvailable: number
-        restoreRate: number
-      }
-    }
+        maximumAvailable: number;
+        currentlyAvailable: number;
+        restoreRate: number;
+      };
+    };
     search: {
-      path: string[]
-      query: string
+      path: string[];
+      query: string;
       parsed: {
         and: {
-          field: string
-          match_all: string
-        }[]
-      }
-    }[]
-  }
-}
+          field: string;
+          match_all: string;
+        }[];
+      };
+    }[];
+  };
+};
 
 type OrderProgress = "incomplete" | "partiallyComplete" | "complete";
 
@@ -124,3 +125,4 @@ type OrderTableRow = {
 }
 
 type OrderTableRows = OrderTableRow[];
+

@@ -8,6 +8,7 @@ const GET_DROPDECK_PREORDER_ORDERS_QUERY = `
           name
           displayFinancialStatus
           displayFulfillmentStatus
+          cancelledAt
           lineItems(first: 250) {
             edges {
               node {

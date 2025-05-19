@@ -44,18 +44,24 @@ export default function OrderTable({ data }: OrderTableProps) {
     [key: string]: OrderGroup;
   }
 
-  const orders: Order[] = data.data.orders.edges.map((order) => {
-    const dropdeckData = order.node.lineItems.edges.map((lineItem) => {
+  const dropdeckData = data.data.orders.edges.map((order) => {
+    return order.node.lineItems.edges.map((lineItem) => {
       return JSON.parse(
         lineItem.node.customAttributes.find(
           (attribute) => attribute.key === "_dropdeck_preorder_data",
         )?.value || "{}",
       );
-    });
+    }) as {
+      sellingPlanGroupId: string;
+      sellingPlanId: string;
+      releaseDate: string;
+    }[];
+  });
 
+  const orders: Order[] = data.data.orders.edges.map((order, index) => {
     const { id, name } = order.node;
     const releaseDate = parseISOStringIntoFormalDate(
-      dropdeckData.map((data) => data.releaseDate).toString(),
+      dropdeckData[index]?.[0]?.releaseDate || new Date().toISOString()
     );
 
     return {
@@ -78,6 +84,12 @@ export default function OrderTable({ data }: OrderTableProps) {
         </Badge>
       ),
     };
+  }).filter((_order, index) => {
+    const orderDate = new Date(dropdeckData[index]?.[0]?.releaseDate || new Date().toISOString());
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    console.log(orderDate, today);
+    return orderDate >= today;
   });
 
   const columnHeadings = [

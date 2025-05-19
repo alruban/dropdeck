@@ -62,10 +62,9 @@
   },
   "orders": {
     "title": "Orders",
-    "show_orders_from": "Show orders from",
-    "select_date": "Select date",
-    "show_today": "Show today",
-    "filter_by_date": "Filter by date",
-    "clear_filter": "Clear filter"
+    "bar": {
+      "title": "Upcoming Preorders",
+      "refresh": "Refresh"
+    }
   }
 }
