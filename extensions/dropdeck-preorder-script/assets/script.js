@@ -16,11 +16,20 @@
                     this.createFatalErrorElement();
                     return;
                 }
+                this.startRejectingFormSubmissions();
+                this.injectSellingPlan();
+            };
+            this.startRejectingFormSubmissions = () => {
                 // Prevent form submission immediately
                 this.elForm.addEventListener("submit", this.rejectFormSubmission, {
                     capture: true,
                 });
-                this.injectSellingPlan();
+            };
+            this.stopRejectingFormSubmissions = () => {
+                // Prevent form submission immediately
+                this.elForm.removeEventListener("submit", this.rejectFormSubmission, {
+                    capture: true,
+                });
             };
             this.rejectFormSubmission = (e) => {
                 e.preventDefault();
@@ -163,10 +172,10 @@
                 const button = this.elBtn;
                 const buttonContainer = button.parentElement;
                 if (!buttonContainer)
-                    return;
+                    return this.stopRejectingFormSubmissions();
                 const variant = this.getVariant();
                 if (!variant)
-                    return;
+                    return this.stopRejectingFormSubmissions();
                 const { availableForSale, inventoryPolicy, inventoryQuantity } = variant.node;
                 // Create preorder button
                 const preorderButton = document.createElement("button");
@@ -175,7 +184,7 @@
                 buttonContainer.prepend(preorderButton);
                 const originalButtonText = button.textContent?.trim();
                 if (!originalButtonText)
-                    return;
+                    return this.stopRejectingFormSubmissions();
                 this.updatePreorderButton(availableForSale, inventoryPolicy, inventoryQuantity, preorderButton, originalButtonText);
                 // Hide original button but keep it in DOM for observation
                 button.style.display = "none";
@@ -186,10 +195,10 @@
                             mutation.type === "childList") {
                             const originalButtonText = button.textContent?.trim();
                             if (!originalButtonText)
-                                return;
+                                return this.stopRejectingFormSubmissions();
                             const newVariant = this.getVariant();
                             if (!newVariant)
-                                return;
+                                return this.stopRejectingFormSubmissions();
                             const { availableForSale, inventoryPolicy, inventoryQuantity } = newVariant.node;
                             this.updatePreorderButton(availableForSale, inventoryPolicy, inventoryQuantity, preorderButton, originalButtonText);
                         }
@@ -202,13 +211,9 @@
                     subtree: true,
                 });
                 preorderButton.addEventListener("click", () => {
-                    this.elForm.removeEventListener("submit", this.rejectFormSubmission, {
-                        capture: true,
-                    });
+                    this.stopRejectingFormSubmissions();
                     this.elBtn?.click();
-                    this.elForm.addEventListener("submit", this.rejectFormSubmission, {
-                        capture: true,
-                    });
+                    this.startRejectingFormSubmissions();
                 });
             };
             this.updatePreorderButton = (availableForSale, inventoryPolicy, inventoryQuantity, targetButton, originalButtonText) => {
@@ -245,6 +250,7 @@
             };
             fetch("/apps/px", fetchOptions)
                 .then((res) => {
+                console.log("res", res);
                 return res.json();
             })
                 .then((res) => {
@@ -252,13 +258,13 @@
                 const { product } = this.vData.productVariant;
                 const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
                 if (sellingPlanGroupsCount === 0)
-                    return;
+                    return this.stopRejectingFormSubmissions();
                 const sellingPlanGroup = product.sellingPlanGroups.edges.find((sellingPlanGroup) => sellingPlanGroup.node.merchantCode === "Dropdeck Preorder");
                 if (!sellingPlanGroup)
-                    return;
+                    return this.stopRejectingFormSubmissions();
                 const sellingPlan = sellingPlanGroup.node.sellingPlans.edges[0];
                 if (!sellingPlan)
-                    return;
+                    return this.stopRejectingFormSubmissions();
                 // Handle Selling Plan Input
                 const elSellingPlanInput = get('input[name="selling_plan"]', this.elForm);
                 if (!elSellingPlanInput) {

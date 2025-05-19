@@ -50,11 +50,17 @@ interface Groups {
   [key: string]: OrderGroup;
 }
 
-export default function OrderTable({ data, hideCancelled = false, hideFulfilled = false, showRowColors = true, selectedProduct = "", onSelectionChange }: OrderTableProps) {
-  const shopifyDomain = data.data.shop.myshopifyDomain.replace(".myshopify.com", "");
-  const adminUrl = `https://admin.shopify.com/store/${shopifyDomain}/`;
-
-  const dropdeckData = data.data.orders.edges.map((order) => {
+export default function OrderTable({
+  data,
+  hideCancelled = false,
+  hideFulfilled = false,
+  showRowColors = true,
+  selectedProduct = "",
+  onSelectionChange
+}: OrderTableProps) {
+  // This returns the sellingPlanGroupId, sellingPlanId, and releaseDate for each line item in the order
+  // Any line items that are not preorders will return empty objects.
+  const preorderData = data.data.orders.edges.map((order) => {
     return order.node.lineItems.edges.map((lineItem) => {
       return JSON.parse(
         lineItem.node.customAttributes.find(
@@ -67,12 +73,17 @@ export default function OrderTable({ data, hideCancelled = false, hideFulfilled 
       releaseDate: string;
     }[];
   });
+  console.log("preorderData", preorderData);
 
   const orders: Order[] = data.data.orders.edges.map((order, index) => {
     const { id, name } = order.node;
+
+    // Find the first line item that has valid preorder data
+    const firstValidPreorder = preorderData[index]?.find(item => item.releaseDate);
     const releaseDate = parseISOStringIntoFormalDate(
-      dropdeckData[index]?.[0]?.releaseDate || new Date().toISOString()
+      firstValidPreorder?.releaseDate || new Date().toISOString()
     );
+
     const isCancelled = order.node.cancelledAt !== null;
     const isFulfilled = order.node.displayFulfillmentStatus.toLowerCase() === "fulfilled";
 
@@ -99,7 +110,9 @@ export default function OrderTable({ data, hideCancelled = false, hideFulfilled 
       isFulfilled,
     };
   }).filter((_order, index) => {
-    const orderDate = new Date(dropdeckData[index]?.[0]?.releaseDate || new Date().toISOString());
+    // Find the first line item that has valid preorder data
+    const firstValidPreorder = preorderData[index]?.find(item => item.releaseDate);
+    const orderDate = new Date(firstValidPreorder.releaseDate);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
@@ -124,6 +137,11 @@ export default function OrderTable({ data, hideCancelled = false, hideFulfilled 
     }
 
     return orderDate >= today;
+  }).sort((a, b) => {
+    // Sort by release date chronologically
+    const dateA = new Date(a.releaseDate);
+    const dateB = new Date(b.releaseDate);
+    return dateA.getTime() - dateB.getTime();
   });
 
   const columnHeadings = [
@@ -240,6 +258,9 @@ export default function OrderTable({ data, hideCancelled = false, hideFulfilled 
               ? (isCancelled ? "critical" : isFulfilled ? "success" : undefined)
               : undefined;
 
+            // Get Order URL
+            const shopifyDomain = data.data.shop.myshopifyDomain.replace(".myshopify.com", "");
+            const adminUrl = `https://admin.shopify.com/store/${shopifyDomain}/`;
             const orderUrl = `${adminUrl}orders/${id.replace("gid://shopify/Order/", "")}`;
 
             return (
