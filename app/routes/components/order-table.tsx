@@ -17,9 +17,10 @@ import { Fragment } from "react";
 
 type OrderTableProps = {
   data: OrderTableRawData;
+  hideCancelled?: boolean;
 };
 
-export default function OrderTable({ data }: OrderTableProps) {
+export default function OrderTable({ data, hideCancelled = false }: OrderTableProps) {
   interface Order {
     id: string;
     name: string;
@@ -28,6 +29,7 @@ export default function OrderTable({ data }: OrderTableProps) {
     paymentStatus: JSX.Element;
     fulfillmentStatus: JSX.Element;
     disabled?: boolean;
+    isCancelled: boolean;
   }
 
   interface OrderRow extends Order {
@@ -63,6 +65,7 @@ export default function OrderTable({ data }: OrderTableProps) {
     const releaseDate = parseISOStringIntoFormalDate(
       dropdeckData[index]?.[0]?.releaseDate || new Date().toISOString()
     );
+    const isCancelled = order.node.cancelledAt !== null;
 
     return {
       id,
@@ -83,12 +86,19 @@ export default function OrderTable({ data }: OrderTableProps) {
            order.node.displayFulfillmentStatus.toLowerCase().slice(1)}
         </Badge>
       ),
+      isCancelled,
     };
   }).filter((_order, index) => {
     const orderDate = new Date(dropdeckData[index]?.[0]?.releaseDate || new Date().toISOString());
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    console.log(orderDate, today);
+
+    // Filter out cancelled orders if hideCancelled is true
+    if (hideCancelled) {
+      const isCancelled = data.data.orders.edges[index].node.cancelledAt !== null;
+      if (isCancelled) return false;
+    }
+
     return orderDate >= today;
   });
 
@@ -196,7 +206,7 @@ export default function OrderTable({ data }: OrderTableProps) {
           <IndexTable.Cell />
         </IndexTable.Row>
         {orders.map(
-          ({ id, name, lineItems, paymentStatus, fulfillmentStatus, position, disabled }, rowIndex) => {
+          ({ id, name, lineItems, paymentStatus, fulfillmentStatus, position, disabled, isCancelled }, rowIndex) => {
             const shopDomain = shopify.config.shop?.replace(".myshopify.com", "");
             const orderIdNumber = id.replace("gid://shopify/Order/", "");
             const orderUrl = `https://admin.shopify.com/store/${shopDomain}/orders/${orderIdNumber}`;
@@ -209,13 +219,14 @@ export default function OrderTable({ data }: OrderTableProps) {
                 position={allOrders.findIndex(order => order.id === id)}
                 selected={selectedResources.includes(id)}
                 disabled={disabled}
+                tone={isCancelled ? "critical" : undefined}
               >
                 <IndexTable.Cell
                   scope="row"
                   headers={`${columnHeadings[0].id} ${groupId}`}
                 >
                   <InlineStack blockAlign="center" gap="100">
-                    <Text variant="bodyMd" fontWeight="bold" as="span">
+                    <Text variant="bodyMd" fontWeight="bold" as="span" tone={isCancelled ? "critical" : undefined}>
                       {name}
                     </Text>
                     <Link
@@ -231,7 +242,7 @@ export default function OrderTable({ data }: OrderTableProps) {
                   </InlineStack>
                 </IndexTable.Cell>
                 <IndexTable.Cell>
-                  <Text as="span">
+                  <Text as="span" tone={isCancelled ? "critical" : undefined}>
                     {lineItems.join(", ")}
                   </Text>
                 </IndexTable.Cell>

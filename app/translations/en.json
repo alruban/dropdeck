@@ -65,6 +65,12 @@
     "bar": {
       "title": "Upcoming Preorders",
       "refresh": "Refresh"
+    },
+    "settings": {
+      "title": "Settings",
+      "filters": {
+        "hide_cancelled_orders": "Hide cancelled orders"
+      }
     }
   }
 }

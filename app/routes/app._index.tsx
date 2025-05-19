@@ -7,8 +7,11 @@ import {
   InlineStack,
   Button,
   Text,
+  Checkbox,
+  BlockStack,
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
+import { useState } from "react";
 import { useTranslation } from "../hooks/useTranslation";
 import OrderTable from "./components/order-table";
 import { authenticate } from "../shopify.server";
@@ -30,6 +33,7 @@ export default function Index() {
   const submit = useSubmit();
   const navigation = useNavigation();
   const { t } = useTranslation();
+  const [hideCancelled, setHideCancelled] = useState(true);
 
   return (
     <Page>
@@ -52,7 +56,24 @@ export default function Index() {
         </Layout.Section>
 
         <Layout.Section>
-          <OrderTable data={data} />
+          <Card>
+            <BlockStack gap="400">
+              <InlineStack align="space-between" blockAlign="center">
+                <Text as="h2" variant="headingMd">
+                  {t("orders.settings.title")}
+                </Text>
+              </InlineStack>
+              <Checkbox
+                label="Hide cancelled orders"
+                checked={hideCancelled}
+                onChange={setHideCancelled}
+              />
+            </BlockStack>
+          </Card>
+        </Layout.Section>
+
+        <Layout.Section>
+          <OrderTable data={data} hideCancelled={hideCancelled} />
         </Layout.Section>
       </Layout>
     </Page>
