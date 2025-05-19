@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://earned-laboratories-fall-lil.trycloudflare.com"
+application_url = "https://understand-dt-keyboards-pockets.trycloudflare.com"
 embedded = true
 
 [build]
@@ -31,13 +31,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://earned-laboratories-fall-lil.trycloudflare.com/auth/callback",
-  "https://earned-laboratories-fall-lil.trycloudflare.com/auth/shopify/callback",
-  "https://earned-laboratories-fall-lil.trycloudflare.com/api/auth/callback"
+  "https://understand-dt-keyboards-pockets.trycloudflare.com/auth/callback",
+  "https://understand-dt-keyboards-pockets.trycloudflare.com/auth/shopify/callback",
+  "https://understand-dt-keyboards-pockets.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://earned-laboratories-fall-lil.trycloudflare.com/app/api"
+url = "https://understand-dt-keyboards-pockets.trycloudflare.com/app/api"
 subpath = "px"
 prefix = "apps"
 

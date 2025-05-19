@@ -1,4 +1,3 @@
-import { useLocation } from "@remix-run/react";
 import { parseISOStringIntoFormalDate } from "@shared/index";
 import {
   Card,
@@ -51,7 +50,8 @@ interface Groups {
 }
 
 export default function OrderTable({ data, hideCancelled = false, hideFulfilled = false, showRowColors = true, selectedProduct = "" }: OrderTableProps) {
-  const location = useLocation();
+  const shopifyDomain = data.data.shop.myshopifyDomain.replace(".myshopify.com", "");
+  const adminUrl = `https://admin.shopify.com/store/${shopifyDomain}/`;
 
   const dropdeckData = data.data.orders.edges.map((order) => {
     return order.node.lineItems.edges.map((lineItem) => {
@@ -230,13 +230,11 @@ export default function OrderTable({ data, hideCancelled = false, hideFulfilled 
         </IndexTable.Row>
         {orders.map(
           ({ id, name, lineItems, paymentStatus, fulfillmentStatus, position, disabled, isCancelled, isFulfilled }, rowIndex) => {
-            const shopDomain = location.pathname.replace("/store/", "").split('/apps/')[0];
-            const orderIdNumber = id.replace("gid://shopify/Order/", "");
-            const orderUrl = `https://admin.shopify.com/store/${shopDomain}/orders/${orderIdNumber}`;
-
             const rowTone = showRowColors
               ? (isCancelled ? "critical" : isFulfilled ? "success" : undefined)
               : undefined;
+
+            const orderUrl = `${adminUrl}orders/${id.replace("gid://shopify/Order/", "")}`;
 
             return (
               <IndexTable.Row

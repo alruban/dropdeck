@@ -61,6 +61,9 @@ type Metafield = {
 
 type OrderTableRawData = {
   data: {
+    shop: {
+      myshopifyDomain: string;
+    }
     orders: {
       edges: {
         node: {

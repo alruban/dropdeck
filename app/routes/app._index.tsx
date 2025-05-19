@@ -16,7 +16,7 @@ import { useTranslation } from "../hooks/useTranslation";
 import OrderTable from "./components/order-table";
 import { authenticate } from "../shopify.server";
 import { getDropdeckPreorderOrdersVariables, GET_DROPDECK_PREORDER_ORDERS_QUERY } from "@shared/queries/get-dropdeck-preorder-orders";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useEffect } from "react";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
@@ -36,6 +36,33 @@ export default function Index() {
   const navigation = useNavigation();
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  // Set default values on first load
+  useEffect(() => {
+    const newParams = new URLSearchParams(searchParams);
+    let hasChanges = false;
+
+    if (!searchParams.has("hideCancelled")) {
+      newParams.set("hideCancelled", "false");
+      hasChanges = true;
+    }
+    if (!searchParams.has("hideFulfilled")) {
+      newParams.set("hideFulfilled", "false");
+      hasChanges = true;
+    }
+    if (!searchParams.has("showRowColors")) {
+      newParams.set("showRowColors", "true");
+      hasChanges = true;
+    }
+    if (!searchParams.has("product")) {
+      newParams.set("product", "");
+      hasChanges = true;
+    }
+
+    if (hasChanges) {
+      setSearchParams(newParams);
+    }
+  }, []); // Empty dependency array means this runs once on mount
 
   // Extract unique products from orders
   const productOptions = useMemo(() => {
@@ -61,6 +88,15 @@ export default function Index() {
     setSearchParams(newParams);
   }, [searchParams, setSearchParams]);
 
+  const handleRefresh = useCallback(() => {
+    // Create a new FormData with all current search params
+    const formData = new FormData();
+    searchParams.forEach((value, key) => {
+      formData.append(key, value);
+    });
+    submit(formData, { method: "get" });
+  }, [searchParams, submit]);
+
   const settings = {
     hideCancelled: searchParams.get("hideCancelled") === "true",
     hideFulfilled: searchParams.get("hideFulfilled") === "true",
@@ -79,7 +115,7 @@ export default function Index() {
                 {t("orders.bar.title")}
               </Text>
               <Button
-                onClick={() => submit(null, { method: "get" })}
+                onClick={handleRefresh}
                 loading={navigation.state === "loading"}
               >
                 {t("orders.bar.refresh")}
