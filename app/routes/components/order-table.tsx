@@ -50,6 +50,12 @@ interface Groups {
   [key: string]: OrderGroup;
 }
 
+interface PreorderData {
+  sellingPlanGroupId: string;
+  sellingPlanId: string;
+  releaseDate: string;
+}
+
 export default function OrderTable({
   data,
   hideCancelled = false,
@@ -67,26 +73,25 @@ export default function OrderTable({
           (attribute) => attribute.key === "_dropdeck_preorder_data",
         )?.value || "{}",
       );
-    }) as {
-      sellingPlanGroupId: string;
-      sellingPlanId: string;
-      releaseDate: string;
-    }[];
+    }) as PreorderData[];
   });
-  console.log("preorderData", preorderData);
 
   const orders: Order[] = data.data.orders.edges.map((order, index) => {
-    const { id, name } = order.node;
+    // Check if there's at least one valid preorder in the array
+    const hasValidPreorder = preorderData[index]?.some(item => item.releaseDate);
+    // The order was never a preorder in the first place, the client has added a 'Dropdeck Preorder' tag manually.
+    if (!hasValidPreorder) return null;
 
     // Find the first line item that has valid preorder data
     const firstValidPreorder = preorderData[index]?.find(item => item.releaseDate);
-    const releaseDate = parseISOStringIntoFormalDate(
-      firstValidPreorder?.releaseDate || new Date().toISOString()
-    );
+    // The order is a preorder, but there are some line items that are not preorders.
+    if (!firstValidPreorder) return null;
 
+    // Begin mapping data for the order that has a preorder item.
+    const { id, name } = order.node;
+    const releaseDate = firstValidPreorder.releaseDate;
     const isCancelled = order.node.cancelledAt !== null;
     const isFulfilled = order.node.displayFulfillmentStatus.toLowerCase() === "fulfilled";
-
     return {
       id,
       name,
@@ -110,12 +115,6 @@ export default function OrderTable({
       isFulfilled,
     };
   }).filter((_order, index) => {
-    // Find the first line item that has valid preorder data
-    const firstValidPreorder = preorderData[index]?.find(item => item.releaseDate);
-    const orderDate = new Date(firstValidPreorder.releaseDate);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
     // Filter out cancelled orders if hideCancelled is true
     if (hideCancelled) {
       const isCancelled = data.data.orders.edges[index].node.cancelledAt !== null;
@@ -136,6 +135,14 @@ export default function OrderTable({
       if (!hasSelectedProduct) return false;
     }
 
+    // Last: Check if the order is past the release date
+    const firstValidPreorder = preorderData[index]?.find(item => item.releaseDate);
+    if (!firstValidPreorder) return false;
+    const orderDate = new Date(firstValidPreorder.releaseDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Only return orders that have a release date that is in the future
     return orderDate >= today;
   }).sort((a, b) => {
     // Sort by release date chronologically
@@ -245,7 +252,7 @@ export default function OrderTable({
         >
           <IndexTable.Cell scope="col" id={groupId}>
             <Text as="span" fontWeight="semibold">
-              {`Release Date: ${date} (${orders.length})`}
+              {`Release Date: ${parseISOStringIntoFormalDate(date)} (${orders.length})`}
             </Text>
           </IndexTable.Cell>
           <IndexTable.Cell />
