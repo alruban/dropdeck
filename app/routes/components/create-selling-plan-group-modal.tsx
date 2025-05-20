@@ -25,14 +25,12 @@ export default function CreateSellingPlanGroupModal({
   // States
   const [expectedFulfillmentDate, setExpectedFulfillmentDate] = useState<Date>(getTomorrow());
   const [unitsPerCustomer, setUnitsPerCustomer] = useState("0"); // 0 means unlimited
-  const [totalUnitsAvailable, setTotalUnitsAvailable] = useState("0"); // 0 means unlimited
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
 
   const confirmCreate = () => {
     const formData = new FormData();
     formData.set("expectedFulfillmentDate", expectedFulfillmentDate?.toISOString());
     formData.set("unitsPerCustomer", unitsPerCustomer);
-    formData.set("totalUnitsAvailable", totalUnitsAvailable);
     formData.set(
       "productIds",
       selectedProducts.map((p) => p.id).join(",")
@@ -72,7 +70,6 @@ export default function CreateSellingPlanGroupModal({
 
             <SellingPlanGroupForm
               onUnitsPerCustomerChange={setUnitsPerCustomer}
-              onTotalUnitsAvailableChange={setTotalUnitsAvailable}
               onSelectedProductsChange={setSelectedProducts}
               onExpectedFulfillmentDateChange={setExpectedFulfillmentDate}
             />

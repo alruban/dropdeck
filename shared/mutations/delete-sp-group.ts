@@ -14,7 +14,9 @@ const DELETE_SP_GROUP_MUTATION = `
 const deleteSPGroupVariables = (
   sellingPlanGroupId: string,
 ) => ({
-  id: sellingPlanGroupId,
+  variables: {
+    id: sellingPlanGroupId,
+  }
 });
 
 export { DELETE_SP_GROUP_MUTATION, deleteSPGroupVariables };

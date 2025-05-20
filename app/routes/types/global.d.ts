@@ -130,4 +130,3 @@ type OrderTableRow = {
 }
 
 type OrderTableRows = OrderTableRow[];
-

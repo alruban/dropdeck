@@ -15,22 +15,18 @@ import { getTomorrow } from "@shared/tools/date-tools";
 
 interface SellingPlanGroupFormProps {
   onUnitsPerCustomerChange: (value: string) => void;
-  onTotalUnitsAvailableChange: (value: string) => void;
   onSelectedProductsChange: (products: Product[]) => void;
   onExpectedFulfillmentDateChange: (date: Date) => void;
   initialUnitsPerCustomer?: string;
-  initialTotalUnitsAvailable?: string;
   initialSelectedProducts?: Product[];
   initialExpectedFulfillmentDate?: Date;
 }
 
 export default function SellingPlanGroupForm({
   onUnitsPerCustomerChange,
-  onTotalUnitsAvailableChange,
   onSelectedProductsChange,
   onExpectedFulfillmentDateChange,
   initialUnitsPerCustomer = "0",
-  initialTotalUnitsAvailable = "0",
   initialSelectedProducts = [],
   initialExpectedFulfillmentDate = getTomorrow(),
 }: SellingPlanGroupFormProps) {
@@ -39,7 +35,6 @@ export default function SellingPlanGroupForm({
 
   // States
   const [unitsPerCustomer, setUnitsPerCustomer] = useState(initialUnitsPerCustomer);
-  const [totalUnitsAvailable, setTotalUnitsAvailable] = useState(initialTotalUnitsAvailable);
   const [selectedProducts, setSelectedProducts] = useState<Product[]>(initialSelectedProducts);
   const [expectedFulfillmentDate, setExpectedFulfillmentDate] = useState<Date>(initialExpectedFulfillmentDate);
 
@@ -50,14 +45,6 @@ export default function SellingPlanGroupForm({
       onUnitsPerCustomerChange(newValue);
     }
   }, [onUnitsPerCustomerChange]);
-
-  const handleTotalUnitsAvailableChange = useCallback((newValue: string) => {
-    const value = parseInt(newValue);
-    if (value >= 0) {
-      setTotalUnitsAvailable(newValue);
-      onTotalUnitsAvailableChange(newValue);
-    }
-  }, [onTotalUnitsAvailableChange]);
 
   const handleExpectedFulfillmentDateChange = useCallback((date: Date) => {
     setExpectedFulfillmentDate(date);
@@ -115,17 +102,6 @@ export default function SellingPlanGroupForm({
         min={0}
       />
 
-      <TextField
-        type="number"
-        autoComplete="off"
-        label={t(
-          "selling_plan_group_form.total_units_available",
-        )}
-        value={totalUnitsAvailable}
-        onChange={handleTotalUnitsAvailableChange}
-        min={0}
-      />
-
       <BlockStack gap={selectedProducts.length > 0 ? "500" : "200"}>
         <BlockStack gap="200">
           <Text as="p">
@@ -134,16 +110,18 @@ export default function SellingPlanGroupForm({
               : t("selling_plan_group_form.no_selected_products")}
           </Text>
 
-          {selectedProducts.length > 0 && <InlineStack gap="200" wrap={true}>
-            {selectedProducts.map((product) => (
-              <Tag
-                key={product.id}
-                onRemove={() => removeProduct(product.id)}
-              >
-                {product.title}
-              </Tag>
-            ))}
-          </InlineStack>}
+          {selectedProducts.length > 0 && (
+            <InlineStack gap="200" wrap={true}>
+              {selectedProducts.map((product) => (
+                <Tag
+                  key={product.id}
+                  onRemove={() => removeProduct(product.id)}
+                >
+                  {product.title}
+                </Tag>
+              ))}
+            </InlineStack>
+          )}
         </BlockStack>
 
         <Box maxWidth="200px">

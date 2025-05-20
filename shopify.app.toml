@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://re-portable-soundtrack-friendly.trycloudflare.com"
+application_url = "https://substantial-important-cst-membrane.trycloudflare.com"
 embedded = true
 
 [build]
@@ -31,13 +31,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://re-portable-soundtrack-friendly.trycloudflare.com/auth/callback",
-  "https://re-portable-soundtrack-friendly.trycloudflare.com/auth/shopify/callback",
-  "https://re-portable-soundtrack-friendly.trycloudflare.com/api/auth/callback"
+  "https://substantial-important-cst-membrane.trycloudflare.com/auth/callback",
+  "https://substantial-important-cst-membrane.trycloudflare.com/auth/shopify/callback",
+  "https://substantial-important-cst-membrane.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://re-portable-soundtrack-friendly.trycloudflare.com/app/api"
+url = "https://substantial-important-cst-membrane.trycloudflare.com/app/api"
 subpath = "px"
 prefix = "apps"
 

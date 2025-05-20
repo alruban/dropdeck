@@ -29,7 +29,7 @@ const GET_SP_GROUPS_QUERY = `
                     fulfillmentExactTime
                   }
                 }
-                metafields(first: 10, namespace: "dropdeck_preorder") {
+                metafields(first: 1, namespace: "dropdeck_preorder") {
                   edges {
                     node {
                       key

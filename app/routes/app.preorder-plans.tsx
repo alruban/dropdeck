@@ -36,16 +36,16 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     if (!expectedFulfillmentDate) return json({ error: "No expected fulfillment date provided" }, { status: 400 });
     const unitsPerCustomer = formData.get("unitsPerCustomer");
     if (!unitsPerCustomer) return json({ error: "No units per customer provided" }, { status: 400 });
-    const totalUnitsAvailable = formData.get("totalUnitsAvailable");
-    if (!totalUnitsAvailable) return json({ error: "No total units available provided" }, { status: 400 });
     const productIds = formData.get("productIds");
     if (!productIds) return json({ error: "No product id(s) provided" }, { status: 400 });
 
     const response = await admin.graphql(
       CREATE_SP_GROUP_MUTATION,
-      {
-        variables: createSPGroupVariables(String(productIds).split(","), String(expectedFulfillmentDate), Number(unitsPerCustomer), Number(totalUnitsAvailable)),
-      }
+      createSPGroupVariables(
+        String(productIds).split(","),
+        String(expectedFulfillmentDate),
+        Number(unitsPerCustomer)
+      )
     )
 
     const responseJson = await response.json();
@@ -57,14 +57,17 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const sellingPlanId = formData.get("sellingPlanId");
     const expectedFulfillmentDate = formData.get("expectedFulfillmentDate");
     const unitsPerCustomer = formData.get("unitsPerCustomer");
-    const totalUnitsAvailable = formData.get("totalUnitsAvailable");
     const productIds = formData.get("productIds");
 
     const response = await admin.graphql(
       UPDATE_SP_GROUP_MUTATION,
-      {
-        variables: updateSPGroupVariables(String(sellingPlanGroupId), String(sellingPlanId), String(expectedFulfillmentDate), Number(unitsPerCustomer), Number(totalUnitsAvailable), String(productIds).split(",")),
-      }
+      updateSPGroupVariables(
+        String(sellingPlanGroupId),
+        String(sellingPlanId),
+        String(productIds).split(","),
+        String(expectedFulfillmentDate),
+        Number(unitsPerCustomer)
+      )
     )
 
     const responseJson = await response.json();
@@ -77,9 +80,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
     const response = await admin.graphql(
       DELETE_SP_GROUP_MUTATION,
-      {
-        variables: deleteSPGroupVariables(String(sellingPlanGroupId)),
-      },
+      deleteSPGroupVariables(String(sellingPlanGroupId))
     );
 
     const responseJson = await response.json();

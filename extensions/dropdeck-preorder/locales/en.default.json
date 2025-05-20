@@ -6,7 +6,7 @@
   "cancel": "Cancel",
   "shipping_date": "Expected shipping date",
   "units_per_customer": "Units per customer (0 means unlimited)",
-  "total_units_available": "Total units available (0 means unlimited)",
+  "affected_products": "Editing the above selling plan will also affect the following products:",
   "submit_create_preorder": "Create preorder",
   "submit_creating_preorder": "Creating preorder selling plan...",
   "submit_update_preorder": "Update preorder",

@@ -31,61 +31,59 @@ const UPDATE_SP_GROUP_MUTATION = `
 const updateSPGroupVariables = (
   sellingPlanGroupId: string,
   sellingPlanId: string,
+  productIds: string[],
   expectedFulfillmentDate: string, // Format: "2025-06-01T00:00:00Z"
   unitsPerCustomer: number,
-  totalUnitsAvailable: number,
-  productIds: string[],
 ) => ({
-  id: sellingPlanGroupId,
-  input: {
-    name: "Dropdeck Preorder",
-    description: `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}, ${unitsPerCustomer} units per customer, ${totalUnitsAvailable} units available.`,
-    merchantCode: "Dropdeck Preorder",
-    options: ["Dropdeck Preorder"],
-    sellingPlansToUpdate: [
-      {
-        id: sellingPlanId,
-        name: "Preorder",
-        options: ["Dropdeck Preorder"],
-        category: "PRE_ORDER",
-        description: `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}`,
-        billingPolicy: {
-          fixed: {
-            checkoutCharge: {
-              type: "PERCENTAGE",
-              value: {
-                percentage: 100
-              }
+  variables: {
+    id: sellingPlanGroupId,
+    input: {
+      name: "Dropdeck Preorder",
+      description:
+        unitsPerCustomer === 0
+          ? `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}`
+          : `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}, ${unitsPerCustomer} units per customer`,
+      merchantCode: "Dropdeck Preorder",
+      options: ["Dropdeck Preorder"],
+      sellingPlansToUpdate: [
+        {
+          id: sellingPlanId,
+          name: "Preorder",
+          options: ["Dropdeck Preorder"],
+          category: "PRE_ORDER",
+          description: `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}`,
+          billingPolicy: {
+            fixed: {
+              checkoutCharge: {
+                type: "PERCENTAGE",
+                value: {
+                  percentage: 100,
+                },
+              },
+              remainingBalanceChargeTrigger: "NO_REMAINING_BALANCE",
             },
-            remainingBalanceChargeTrigger: "NO_REMAINING_BALANCE"
           },
+          deliveryPolicy: {
+            fixed: {
+              fulfillmentExactTime: expectedFulfillmentDate, // When fulfillment is expected
+              fulfillmentTrigger: "EXACT_TIME",
+            },
+          },
+          metafields: [
+            {
+              value: String(unitsPerCustomer),
+              type: "number_integer",
+              namespace: "dropdeck_preorder",
+              key: "units_per_customer",
+            },
+          ],
         },
-        deliveryPolicy: {
-          fixed: {
-            fulfillmentExactTime: expectedFulfillmentDate, // When fulfillment is expected
-            fulfillmentTrigger: "EXACT_TIME"
-          },
-        },
-        metafields: [
-          {
-            value: String(unitsPerCustomer),
-            type: "number_integer",
-            namespace: "dropdeck_preorder",
-            key: "units_per_customer"
-          },
-          {
-            value: String(totalUnitsAvailable),
-            type: "number_integer",
-            namespace: "dropdeck_preorder",
-            key: "total_units_available"
-          }
-        ]
-      }
-    ]
+      ],
+    },
+    resources: {
+      productIds: productIds,
+    },
   },
-  resources: {
-    productIds: productIds,
-  }
 });
 
 export { UPDATE_SP_GROUP_MUTATION, updateSPGroupVariables };
