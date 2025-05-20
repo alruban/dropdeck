@@ -63,7 +63,7 @@ export default function EditSellingPlanGroupModal({
         destructive: false,
         onAction: confirmEdit,
         loading: isLoading,
-        disabled: initialSelectedProducts.length === 0,
+        disabled: selectedProducts.length === 0,
       }}
       secondaryActions={[
         {

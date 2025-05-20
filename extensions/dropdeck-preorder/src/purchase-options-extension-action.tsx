@@ -76,16 +76,15 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
     .then((res: GetSPGroupResponse) => {
       const { sellingPlanGroup } = res.data;
 
-      console.log(sellingPlanGroup.sellingPlans.edges[0].node.deliveryPolicy.fulfillmentExactTime)
       if (sellingPlanGroup) {
         isDevelopment && console.log("Selling plan group retrieved:", sellingPlanGroup);
         setSellingPlanId(sellingPlanGroup.sellingPlans.edges[0].node.id);
         setExpectedFulfillmentDate(parseISOString(sellingPlanGroup.sellingPlans.edges[0].node.deliveryPolicy.fulfillmentExactTime).date);
         setUnitsPerCustomer(Number(sellingPlanGroup.sellingPlans.edges[0].node.metafields.edges.find((metafield) => metafield.node.key === "units_per_customer")?.node.value));
-        setAffectedProducts(sellingPlanGroup.products.edges.map((product) => ({
+        setAffectedProducts(sellingPlanGroup.products.edges.map((product) => (productId !== product.node.id ? {
           id: product.node.id,
           title: product.node.title
-        })));
+        } : null)).filter((product) => product !== null));
       } else {
         isDevelopment && console.log("Failed to retrieve selling plan group:", res);
       }
@@ -213,7 +212,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
             />
           </BlockStack>
 
-          {intent === "updating" && (
+          {intent === "updating" && affectedProducts.length > 0 && (
             <BlockStack gap="base">
               <Text>{i18n.translate("affected_products")}</Text>
               <InlineStack gap="base">
