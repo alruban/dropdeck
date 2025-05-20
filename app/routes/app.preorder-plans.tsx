@@ -23,8 +23,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
   const response = await admin.graphql(GET_SP_GROUPS_QUERY);
 
-  const responseJson = await response.json();
-  return json(responseJson);
+  return json(await response.json());
 };
 
 export const action = async ({ request }: ActionFunctionArgs) => {
@@ -48,8 +47,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       )
     )
 
-    const responseJson = await response.json();
-    return json(responseJson);
+    return json(await response.json());
   }
 
   const updateSellingPlanGroup = async () => {
@@ -70,8 +68,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       )
     )
 
-    const responseJson = await response.json();
-    return json(responseJson);
+    return json(await response.json());
   }
 
   const deleteSellingPlanGroup = async () => {
@@ -83,8 +80,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       deleteSPGroupVariables(String(sellingPlanGroupId))
     );
 
-    const responseJson = await response.json();
-    return json(responseJson);
+    return json(await response.json());
   }
 
   switch (request.method) {
