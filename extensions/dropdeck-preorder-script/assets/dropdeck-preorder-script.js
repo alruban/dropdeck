@@ -8,7 +8,7 @@
     }
     class DropdeckPreorder {
         constructor(form) {
-            this.testtest = true;
+            this.eachshit = true;
             this.buttonPreorderText = "Preorder";
             this.init = () => {
                 if (!this.elOriginalBtn)

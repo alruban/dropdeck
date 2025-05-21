@@ -11,6 +11,6 @@
     "removeComments": true,
     "sourceMap": false
   },
-  "include": ["./extensions/dropdeck-preorder-script/script.ts"],
+  "include": ["./extensions/dropdeck-preorder-script/dropdeck-preorder-script.ts"],
   "exclude": ["node_modules"]
 }

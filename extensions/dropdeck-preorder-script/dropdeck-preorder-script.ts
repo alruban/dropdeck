@@ -74,7 +74,7 @@ interface PreorderResponse {
   }
 
   class DropdeckPreorder {
-    testtest: boolean = true;
+    eachshit: boolean = true;
     // Elements
     elForm: HTMLFormElement;
     elOriginalBtn: HTMLButtonElement | undefined;

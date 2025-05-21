@@ -17,7 +17,8 @@
     "prisma": "prisma",
     "graphql-codegen": "graphql-codegen",
     "vite": "vite",
-    "build:ps": "tsc -p tsconfig.preorder.json"
+    "build:ps": "tsc -p tsconfig.dropdeck-preorder-script.json",
+    "watch:ps": "tsc -p tsconfig.dropdeck-preorder-script.json --watch"
   },
   "type": "module",
   "engines": {
