@@ -1,5 +1,24 @@
-const DELETE_SP_GROUP_MUTATION = `
-  #graphql
+type DeleteSPGroupResponse = {
+  data: {
+    sellingPlanGroupDelete: {
+      deletedSellingPlanGroupId: string;
+      userErrors: [];
+    };
+  };
+  extensions: {
+    cost: {
+      requestedQueryCost: 10;
+      actualQueryCost: 10;
+      throttleStatus: {
+        maximumAvailable: number;
+        currentlyAvailable: number;
+        restoreRate: number;
+      };
+    };
+  };
+};
+
+const DELETE_SP_GROUP_MUTATION = `#graphql
   mutation sellingPlanGroupDelete($id: ID!) {
     sellingPlanGroupDelete(id: $id) {
       deletedSellingPlanGroupId
@@ -11,12 +30,10 @@ const DELETE_SP_GROUP_MUTATION = `
   }
 `;
 
-const deleteSPGroupVariables = (
-  sellingPlanGroupId: string,
-) => ({
+const deleteSPGroupVariables = (sellingPlanGroupId: string) => ({
   variables: {
     id: sellingPlanGroupId,
-  }
+  },
 });
 
 export { DELETE_SP_GROUP_MUTATION, deleteSPGroupVariables };

@@ -1,12 +1,66 @@
 import { parseISOStringIntoFormalDate } from "../tools/date-tools";
 
-const UPDATE_SP_GROUP_MUTATION = `
-  #graphql
+type UpdateSPGroupResponse = {
+  data: {
+    sellingPlanGroupUpdate: {
+      sellingPlanGroup: {
+        id: string;
+        description: string;
+        productsCount: { count: number };
+        products: {
+          edges: [
+            {
+              node: {
+                id: string;
+                title: string;
+              };
+            },
+          ];
+        };
+        sellingPlans: {
+          edges: {
+            node: {
+              id: string;
+              deliveryPolicy: {
+                fulfillmentExactTime: string;
+              };
+            };
+          }[];
+        };
+      };
+      userErrors: [];
+    };
+  };
+  extensions: {
+    cost: {
+      requestedQueryCost: number;
+      actualQueryCost: number;
+      throttleStatus: {
+        maximumAvailable: number;
+        currentlyAvailable: number;
+        restoreRate: number;
+      };
+    };
+  };
+};
+
+const UPDATE_SP_GROUP_MUTATION = `#graphql
   mutation sellingPlanGroupUpdate($id: ID!, $input: SellingPlanGroupInput!) {
     sellingPlanGroupUpdate(id: $id, input: $input) {
       sellingPlanGroup {
         id
         description
+        productsCount {
+          count
+        }
+        products(first: 250) {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
         sellingPlans(first: 1) {
           edges {
             node {
@@ -86,4 +140,4 @@ const updateSPGroupVariables = (
   },
 });
 
-export { UPDATE_SP_GROUP_MUTATION, updateSPGroupVariables };
+export { UPDATE_SP_GROUP_MUTATION, updateSPGroupVariables, UpdateSPGroupResponse };

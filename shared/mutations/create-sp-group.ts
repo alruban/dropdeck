@@ -1,7 +1,32 @@
 import { parseISOStringIntoFormalDate } from "../tools/date-tools";
 
-const CREATE_SP_GROUP_MUTATION = `
-  #graphql
+type CreateSPGroupResponse = {
+  data: {
+    sellingPlanGroupCreate: {
+      sellingPlanGroup: {
+        id: string;
+        description: string;
+        sellingPlans: {
+          edges: [{ node: { id: string } }];
+        };
+      };
+      userErrors: [];
+    };
+  };
+  extensions: {
+    cost: {
+      requestedQueryCost: number;
+      actualQueryCost: number;
+      throttleStatus: {
+        maximumAvailable: number;
+        currentlyAvailable: number;
+        restoreRate: number;
+      };
+    };
+  };
+};
+
+const CREATE_SP_GROUP_MUTATION = `#graphql
   mutation createSellingPlanGroup($input: SellingPlanGroupInput!, $resources: SellingPlanGroupResourceInput) {
     sellingPlanGroupCreate(input: $input, resources: $resources) {
       sellingPlanGroup {
@@ -77,4 +102,4 @@ const createSPGroupVariables = (
   },
 });
 
-export { CREATE_SP_GROUP_MUTATION, createSPGroupVariables };
+export { CREATE_SP_GROUP_MUTATION, createSPGroupVariables, CreateSPGroupResponse };

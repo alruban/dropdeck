@@ -1,4 +1,4 @@
-export type GetSPGroupResponse = {
+type GetSPGroupResponse = {
   data: {
     sellingPlanGroup: {
       id: string,
@@ -46,8 +46,8 @@ export type GetSPGroupResponse = {
   }
 }
 
-const GET_SP_GROUP_QUERY = `
-  #graphql
+const GET_SP_GROUP_QUERY =
+`#graphql
   query sellingPlanGroups($id: ID!) {
     sellingPlanGroup(id: $id) {
       id
@@ -94,4 +94,4 @@ const getSPGroupVariables = (
   }
 });
 
-export { GET_SP_GROUP_QUERY, getSPGroupVariables };
+export { GET_SP_GROUP_QUERY, getSPGroupVariables, GetSPGroupResponse };

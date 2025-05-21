@@ -17,8 +17,8 @@ export type GetShopResponse = {
   }
 };
 
-const GET_SHOP_QUERY = `
-  #graphql
+const GET_SHOP_QUERY =
+`#graphql
   query {
     shop {
       myshopifyDomain

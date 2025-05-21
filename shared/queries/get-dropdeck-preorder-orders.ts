@@ -1,5 +1,5 @@
-const GET_DROPDECK_PREORDER_ORDERS_QUERY = `
-  #graphql
+const GET_DROPDECK_PREORDER_ORDERS_QUERY =
+`#graphql
   query getOrders($query: String!) {
     shop {
       myshopifyDomain

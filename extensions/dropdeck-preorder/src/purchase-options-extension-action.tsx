@@ -19,9 +19,9 @@ import { type RenderExtensionTarget } from '@shopify/ui-extensions/admin';
 import { CREATE_SP_GROUP_MUTATION, createSPGroupVariables } from '../../../shared/mutations/create-sp-group';
 import { UPDATE_SP_GROUP_MUTATION, updateSPGroupVariables } from '../../../shared/mutations/update-sp-group.js';
 import { type GetSPGroupResponse, GET_SP_GROUP_QUERY, getSPGroupVariables } from '../../../shared/queries/get-sp-group.js';
-import { GET_SHOP_QUERY, GetShopResponse } from '../../../shared/queries/get-shop';
+import { GET_SHOP_QUERY, type GetShopResponse } from '../../../shared/queries/get-shop';
 
-export const isDevelopment = process.env.NODE_ENV === "development";
+import { isDevelopment } from '../../../shared/tools/is-development';
 
 type Props = {
   extension: RenderExtensionTarget;

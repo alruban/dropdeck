@@ -10,7 +10,7 @@ import { json } from "@remix-run/node";
 import { useLoaderData, useNavigation } from "@remix-run/react";
 import SellingPlanGroupsTable from "./components/selling-plan-groups-table";
 import { useState } from "react";
-import { CREATE_SP_GROUP_MUTATION, createSPGroupVariables } from "@shared/mutations/create-sp-group";
+import { CREATE_SP_GROUP_MUTATION, CreateSPGroupResponse, createSPGroupVariables } from "@shared/mutations/create-sp-group";
 import { DELETE_SP_GROUP_MUTATION, deleteSPGroupVariables } from "@shared/mutations/delete-sp-group";
 import { GET_SP_GROUPS_QUERY } from "@shared/queries/get-sp-groups";
 import CreateSellingPlanGroupModal from "./components/create-selling-plan-group-modal";
@@ -38,7 +38,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const productIds = formData.get("productIds");
     if (!productIds) return json({ error: "No product id(s) provided" }, { status: 400 });
 
-    const response = await admin.graphql(
+    const res = await admin.graphql(
       CREATE_SP_GROUP_MUTATION,
       createSPGroupVariables(
         String(productIds).split(","),
@@ -47,7 +47,14 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       )
     )
 
-    return json(await response.json());
+    const djson = await res.json();
+
+    if (djson.data.sellingPlanGroupCreate.userErrors.length > 0) {
+      const errors = djson.data.sellingPlanGroupUpdate.userErrors.map((error: any) => error.message).join(", ");
+      return json({ error: errors }, { status: 400 });
+    } else {
+      return json(djson);
+    }
   }
 
   const updateSellingPlanGroup = async () => {
@@ -57,7 +64,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const unitsPerCustomer = formData.get("unitsPerCustomer");
     const productIds = formData.get("productIds");
 
-    const response = await admin.graphql(
+    const res = await admin.graphql(
       UPDATE_SP_GROUP_MUTATION,
       updateSPGroupVariables(
         String(sellingPlanGroupId),
@@ -68,19 +75,33 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       )
     )
 
-    return json(await response.json());
+    const djson = await res.json();
+
+    if (djson.data.sellingPlanGroupUpdate.userErrors.length > 0) {
+      const errors = djson.data.sellingPlanGroupUpdate.userErrors.map((error: any) => error.message).join(", ");
+      return json({ error: errors }, { status: 400 });
+    } else {
+      return json(djson);
+    }
   }
 
   const deleteSellingPlanGroup = async () => {
     const sellingPlanGroupId = formData.get("sellingPlanGroupId");
     if (!sellingPlanGroupId) return json({ error: "No selling plan group id provided" }, { status: 400 });
 
-    const response = await admin.graphql(
+    const res = await admin.graphql(
       DELETE_SP_GROUP_MUTATION,
       deleteSPGroupVariables(String(sellingPlanGroupId))
     );
 
-    return json(await response.json());
+    const djson = await res.json();
+
+    if (djson.data.sellingPlanGroupDelete.userErrors.length > 0) {
+      const errors = djson.data.sellingPlanGroupUpdate.userErrors.map((error: any) => error.message).join(", ");
+      return json({ error: errors }, { status: 400 });
+    } else {
+      return json(djson);
+    }
   }
 
   switch (request.method) {

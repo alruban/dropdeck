@@ -1,5 +1,5 @@
-const GET_SP_GROUPS_QUERY = `
-  #graphql
+const GET_SP_GROUPS_QUERY =
+`#graphql
   query {
     sellingPlanGroups(first: 50) {
       edges {
