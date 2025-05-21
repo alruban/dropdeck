@@ -63,7 +63,7 @@ async function handleProductInteraction(body: RequestBody, admin: AdminApiContex
                           fulfillmentExactTime
                         }
                       }
-                      metafields(first: 2, namespace: "dropdeck_preorder") {
+                      metafields(first: 1, namespace: "dropdeck_preorder") {
                         edges {
                           node {
                             key

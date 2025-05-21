@@ -14,6 +14,13 @@ type PSSellingPlan = {
     deliveryPolicy: {
       fulfillmentExactTime: string;
     };
+    metafields: {
+      edges: {
+        node: {
+          value: number;
+        };
+      }[];
+    };
   };
 };
 
@@ -191,7 +198,6 @@ interface PSPreorderResponse {
           return res.json() as Promise<PSPreorderResponse>;
         })
         .then((res: PSPreorderResponse) => {
-          console.log("res", res.data);
           this.vData = res.data;
           const { product } = this.vData.productVariant;
 
@@ -241,7 +247,9 @@ interface PSPreorderResponse {
             sellingPlanGroupId: sellingPlanGroup.node.id,
             sellingPlanId: sellingPlan.node.id,
             releaseDate: sellingPlan.node.deliveryPolicy.fulfillmentExactTime,
+            unitsPerCustomer: Number(sellingPlan.node.metafields.edges[0].node.value),
           };
+
           dropdeckPreorderDataProp.setAttribute(
             "name",
             "properties[_dropdeck_preorder_data]",
@@ -252,9 +260,11 @@ interface PSPreorderResponse {
             "value",
             JSON.stringify(dropdeckPreorderData),
           );
+
           this.elForm.prepend(dropdeckPreorderDataProp);
 
           this.handleVariantIdChanges();
+          this.createUnitsPerCustomerMessage(dropdeckPreorderData.unitsPerCustomer)
           this.createPreorderSubmitButton();
         })
         .catch((error: unknown) => {
@@ -304,6 +314,15 @@ interface PSPreorderResponse {
           return vId === this.vId;
         },
       );
+    };
+
+    private createUnitsPerCustomerMessage = (unitsPerCustomer: number) => {
+      if (unitsPerCustomer === 0) return;
+      const elUnitsPerCustomerMessage = document.createElement("small");
+      elUnitsPerCustomerMessage.textContent = `Limit per customer: ${unitsPerCustomer} unit(s)`;
+      elUnitsPerCustomerMessage.style.display = "block";
+      elUnitsPerCustomerMessage.style.marginBottom = "6px";
+      this.elForm.prepend(elUnitsPerCustomerMessage);
     };
 
     private createPreorderSubmitButton = () => {
