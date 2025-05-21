@@ -45,7 +45,11 @@ export default function EditSellingPlanGroupModal({
     formData.set("expectedFulfillmentDate", expectedFulfillmentDate?.toISOString());
     formData.set("unitsPerCustomer", unitsPerCustomer);
     formData.set(
-      "productIds",
+      "originalProductIds",
+      initialSelectedProducts.map((p) => p.id).join(",")
+    );
+    formData.set(
+      "newProductIds",
       selectedProducts.map((p) => p.id).join(",")
     );
 

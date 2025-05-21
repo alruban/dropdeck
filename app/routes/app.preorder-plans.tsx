@@ -10,7 +10,7 @@ import { json } from "@remix-run/node";
 import { useLoaderData, useNavigation } from "@remix-run/react";
 import SellingPlanGroupsTable from "./components/selling-plan-groups-table";
 import { useState } from "react";
-import { CREATE_SP_GROUP_MUTATION, CreateSPGroupResponse, createSPGroupVariables } from "@shared/mutations/create-sp-group";
+import { CREATE_SP_GROUP_MUTATION, createSPGroupVariables } from "@shared/mutations/create-sp-group";
 import { DELETE_SP_GROUP_MUTATION, deleteSPGroupVariables } from "@shared/mutations/delete-sp-group";
 import { GET_SP_GROUPS_QUERY } from "@shared/queries/get-sp-groups";
 import CreateSellingPlanGroupModal from "./components/create-selling-plan-group-modal";
@@ -62,7 +62,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const sellingPlanId = formData.get("sellingPlanId");
     const expectedFulfillmentDate = formData.get("expectedFulfillmentDate");
     const unitsPerCustomer = formData.get("unitsPerCustomer");
-    const productIds = formData.get("productIds");
+    const originalProductIds = formData.get("originalProductIds");
+    const newProductIds = formData.get("newProductIds");
 
     const res = await admin.graphql(
       UPDATE_SP_GROUP_MUTATION,
