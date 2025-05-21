@@ -17,6 +17,8 @@ import CreateSellingPlanGroupModal from "./components/create-selling-plan-group-
 import QuickActions from "./components/quick-actions";
 import Statistics from "./components/statistics";
 import { UPDATE_SP_GROUP_MUTATION, updateSPGroupVariables } from "@shared/mutations/update-sp-group";
+import { ADD_SP_GROUP_PRODUCTS_MUTATION, addSPGroupProductsVariables } from "@shared/mutations/add-sp-group-products";
+import { REMOVE_SP_GROUP_PRODUCTS_MUTATION, removeSPGroupProductsVariables } from "@shared/mutations/remove-sp-group-products";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
@@ -65,7 +67,22 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const originalProductIds = formData.get("originalProductIds");
     const newProductIds = formData.get("newProductIds");
 
-    const res = await admin.graphql(
+    // Convert string arrays to actual arrays
+    const originalProducts = String(originalProductIds).split(",");
+    const newProducts = String(newProductIds).split(",");
+
+    // Create Sets for efficient comparison
+    const originalSet = new Set(originalProducts);
+    const newSet = new Set(newProducts);
+
+    // Products to add: in newSet but not in originalSet
+    const productsToAdd = newProducts.filter(id => !originalSet.has(id));
+
+    // Products to remove: in originalSet but not in newSet
+    const productsToRemove = originalProducts.filter(id => !newSet.has(id));
+
+    // First update the selling plan details
+    const updateDetailsResponse = await admin.graphql(
       UPDATE_SP_GROUP_MUTATION,
       updateSPGroupVariables(
         String(sellingPlanGroupId),
@@ -73,16 +90,45 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         String(expectedFulfillmentDate),
         Number(unitsPerCustomer)
       )
-    )
+    );
 
-    const djson = await res.json();
+    // Then handle product changes if any
+    const productUpdatePromises = [];
 
-    if (djson.data.sellingPlanGroupUpdate.userErrors.length > 0) {
-      const errors = djson.data.sellingPlanGroupUpdate.userErrors.map((error: any) => error.message).join(", ");
-      return json({ error: errors }, { status: 400 });
-    } else {
-      return json(djson);
+    if (productsToAdd.length > 0) {
+      productUpdatePromises.push(
+        admin.graphql(
+          ADD_SP_GROUP_PRODUCTS_MUTATION,
+          addSPGroupProductsVariables(
+            String(sellingPlanGroupId),
+            productsToAdd
+          )
+        )
+      );
     }
+
+    if (productsToRemove.length > 0) {
+      productUpdatePromises.push(
+        admin.graphql(
+          REMOVE_SP_GROUP_PRODUCTS_MUTATION,
+          removeSPGroupProductsVariables(
+            String(sellingPlanGroupId),
+            productsToRemove
+          )
+        )
+      );
+    }
+
+    // Wait for all updates to complete
+    const [detailsResult, ...productResults] = await Promise.all([
+      updateDetailsResponse,
+      ...productUpdatePromises
+    ]);
+
+    return json({
+      details: await detailsResult.json(),
+      productUpdates: await Promise.all(productResults.map(r => r.json()))
+    });
   }
 
   const deleteSellingPlanGroup = async () => {
