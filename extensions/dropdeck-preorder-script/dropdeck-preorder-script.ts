@@ -1,14 +1,14 @@
-type SellingPlanGroup = {
+type PSSellingPlanGroup = {
   node: {
     id: string;
     merchantCode: string;
     sellingPlans: {
-      edges: SellingPlan[];
+      edges: PSSellingPlan[];
     };
   };
 };
 
-type SellingPlan = {
+type PSSellingPlan = {
   node: {
     id: string;
     deliveryPolicy: {
@@ -17,7 +17,7 @@ type SellingPlan = {
   };
 };
 
-type ProductVariant = {
+type PSProductVariant = {
   node: {
     id: string;
     availableForSale: boolean;
@@ -26,25 +26,25 @@ type ProductVariant = {
   };
 };
 
-type ProductVariantData = {
+type PSProductVariantData = {
   productVariant: {
     product: {
       id: string;
       variants: {
-        edges: ProductVariant[];
+        edges: PSProductVariant[];
       };
       sellingPlanGroupsCount: {
         count: number;
       };
       sellingPlanGroups: {
-        edges: SellingPlanGroup[];
+        edges: PSSellingPlanGroup[];
       };
     };
   };
 };
 
-interface PreorderResponse {
-  data: ProductVariantData;
+interface PSPreorderResponse {
+  data: PSProductVariantData;
   extensions: {
     cost: {
       requestedQueryCost: number;
@@ -84,7 +84,7 @@ interface PreorderResponse {
     // State
     vId: string | undefined;
     pId: string | undefined;
-    vData: ProductVariantData | undefined;
+    vData: PSProductVariantData | undefined;
     buttonPreorderText = "Preorder";
     loader: ReturnType<typeof this.handleLoadingStyling>;
 
@@ -188,9 +188,9 @@ interface PreorderResponse {
 
       fetch("/apps/px", fetchOptions)
         .then((res) => {
-          return res.json() as Promise<PreorderResponse>;
+          return res.json() as Promise<PSPreorderResponse>;
         })
-        .then((res: PreorderResponse) => {
+        .then((res: PSPreorderResponse) => {
           console.log("res", res.data);
           this.vData = res.data;
           const { product } = this.vData.productVariant;
