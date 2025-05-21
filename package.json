@@ -16,7 +16,8 @@
     "shopify": "shopify",
     "prisma": "prisma",
     "graphql-codegen": "graphql-codegen",
-    "vite": "vite"
+    "vite": "vite",
+    "build:ps": "tsc -p tsconfig.preorder.json"
   },
   "type": "module",
   "engines": {

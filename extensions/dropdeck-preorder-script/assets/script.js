@@ -8,6 +8,7 @@
     }
     class DropdeckPreorder {
         constructor(form) {
+            this.testtest = true;
             this.buttonPreorderText = "Preorder";
             this.init = () => {
                 if (!this.elOriginalBtn)
@@ -19,13 +20,11 @@
                 this.injectSellingPlan();
             };
             this.startRejectingFormSubmissions = () => {
-                // Prevent form submission immediately
                 this.elForm.addEventListener("submit", this.rejectFormSubmission, {
                     capture: true,
                 });
             };
             this.stopRejectingFormSubmissions = () => {
-                // Prevent form submission immediately
                 this.elForm.removeEventListener("submit", this.rejectFormSubmission, {
                     capture: true,
                 });
@@ -42,6 +41,7 @@
                 this.elForm.prepend(elError);
             };
             this.handleLoadingStyling = () => {
+                this.elShopifyAlternatePayment = get(".shopify-payment-button[data-shopify=payment-button]", this.elForm);
                 return {
                     setup: () => {
                         if (!this.elOriginalBtn || !this.elShopifyAlternatePayment)
@@ -68,7 +68,6 @@
                 };
             };
             this.handleVariantIdChanges = () => {
-                // Watch for changes to the variant ID input
                 const observer = new MutationObserver((mutations) => {
                     for (const mutation of mutations) {
                         if (mutation.type === "attributes" &&
@@ -80,7 +79,6 @@
                         }
                     }
                 });
-                // Watch for changes to the variant ID input
                 const variantInput = get('input[name="id"]', this.elForm);
                 if (variantInput) {
                     observer.observe(variantInput, {
@@ -104,7 +102,6 @@
                 if (!variant)
                     return this.stopRejectingFormSubmissions();
                 const { availableForSale, inventoryPolicy, inventoryQuantity } = variant.node;
-                // Create preorder button
                 this.elPreorderBtn = document.createElement("button");
                 this.elPreorderBtn.type = "submit";
                 this.elPreorderBtn.className = button.className;
@@ -113,9 +110,7 @@
                 if (!originalButtonText)
                     return this.stopRejectingFormSubmissions();
                 this.updatePreorderButton(availableForSale, inventoryPolicy, inventoryQuantity, this.elPreorderBtn, originalButtonText);
-                // Hide original button but keep it in DOM for observation
                 button.style.display = "none";
-                // Create observer to watch for text changes
                 const observer = new MutationObserver((mutations) => {
                     for (const mutation of mutations) {
                         if (mutation.type === "characterData" ||
@@ -131,7 +126,6 @@
                         }
                     }
                 });
-                // Start observing the original button for text changes
                 observer.observe(button, {
                     characterData: true,
                     childList: true,
@@ -187,7 +181,7 @@
                 return res.json();
             })
                 .then((res) => {
-                  console.log("res", res.data);
+                console.log("res", res.data);
                 this.vData = res.data;
                 const { product } = this.vData.productVariant;
                 const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
@@ -199,7 +193,6 @@
                 const sellingPlan = sellingPlanGroup.node.sellingPlans.edges[0];
                 if (!sellingPlan)
                     return this.stopRejectingFormSubmissions();
-                // Handle Selling Plan Input
                 const elSellingPlanInput = get('input[name="selling_plan"]', this.elForm);
                 if (!elSellingPlanInput) {
                     const sellingPlanId = sellingPlan.node.id.replace("gid://shopify/SellingPlan/", "");
@@ -209,7 +202,6 @@
                     sellingPlanInput.setAttribute("value", sellingPlanId);
                     this.elForm.prepend(sellingPlanInput);
                 }
-                // Handle Dropdeck Preorder Properties
                 const isDropdeckPreorderProp = document.createElement("input");
                 isDropdeckPreorderProp.setAttribute("name", "properties[_dropdeck_preorder]");
                 isDropdeckPreorderProp.setAttribute("id", "dropdeck_preorder");
@@ -246,4 +238,3 @@
     document.addEventListener("DOMContentLoaded", loadScript);
     document.addEventListener("shopify:section:load", loadScript);
 })();
-
