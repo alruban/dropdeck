@@ -85,7 +85,6 @@ const UPDATE_SP_GROUP_MUTATION = `#graphql
 const updateSPGroupVariables = (
   sellingPlanGroupId: string,
   sellingPlanId: string,
-  productIds: string[],
   expectedFulfillmentDate: string, // Format: "2025-06-01T00:00:00Z"
   unitsPerCustomer: number,
 ) => ({
@@ -133,9 +132,6 @@ const updateSPGroupVariables = (
           ],
         },
       ],
-    },
-    resources: {
-      productIds: productIds,
     },
   },
 });

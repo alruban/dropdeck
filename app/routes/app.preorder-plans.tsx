@@ -69,7 +69,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       updateSPGroupVariables(
         String(sellingPlanGroupId),
         String(sellingPlanId),
-        String(productIds).split(","),
         String(expectedFulfillmentDate),
         Number(unitsPerCustomer)
       )

@@ -134,7 +134,6 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
       updateSPGroupVariables(
         sellingPlanGroupId,
         sellingPlanId,
-        affectedProducts.map((product) => product.id),
         createISOString(expectedFulfillmentDate),
         unitsPerCustomer
       )
