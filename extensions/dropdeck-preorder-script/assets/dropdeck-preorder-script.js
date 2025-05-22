@@ -36,7 +36,7 @@
             this.createFatalErrorElement = () => {
                 const elError = document.createElement("span");
                 elError.textContent =
-                    "Fatal error: please contact samclarkeweb@protonmail.com with your store address and details.";
+                    "Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details.";
                 this.elForm.prepend(elError);
             };
             this.handleLoadingStyling = () => {
