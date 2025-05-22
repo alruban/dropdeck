@@ -265,6 +265,7 @@
     }
     class ApplyDropdeckToCartForm {
         constructor(form) {
+            this.loaders = new Map();
             this.init = () => {
                 console.log(this.elInputs);
                 if (this.elInputs.length === 0) {
@@ -338,6 +339,7 @@
                 };
             };
             this.enforceUnitsPerCustomerLimit = (elInput, unitsPerCustomer) => {
+                console.log('enforce', elInput, unitsPerCustomer);
                 if (unitsPerCustomer === 0)
                     return;
                 elInput.max = unitsPerCustomer.toString();
@@ -352,9 +354,10 @@
             if (!vId)
                 return;
             this.startRejectingFormSubmissions();
-            this.loader = this.handleLoadingStyling(elInput);
-            this.loader?.setup();
-            this.loader?.show();
+            const loader = this.handleLoadingStyling(elInput);
+            this.loaders.set(elInput, loader);
+            loader.setup();
+            loader.show();
             const fetchOptions = {
                 method: "POST",
                 headers: {
@@ -388,12 +391,19 @@
                 };
                 const { unitsPerCustomer } = dropdeckPreorderData;
                 this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
+                this.elForm.addEventListener("change", () => {
+                    console.log('change');
+                    setTimeout(() => {
+                        this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
+                    }, 300);
+                });
             })
                 .catch((error) => {
                 console.error(error);
             })
                 .finally(() => {
-                this.loader?.hide();
+                const loader = this.loaders.get(elInput);
+                loader?.hide();
             });
         }
     }

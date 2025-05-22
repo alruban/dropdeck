@@ -457,7 +457,7 @@ interface PSPreorderResponse {
 
     // State
     vData: PSProductVariantData | undefined;
-    loader: ReturnType<typeof this.handleLoadingStyling> | undefined;
+    loaders: Map<HTMLInputElement, ReturnType<typeof this.handleLoadingStyling>> = new Map();
 
     constructor(form: HTMLFormElement) {
       this.elSection = form.closest(".shopify-section") as HTMLElement;
@@ -554,9 +554,10 @@ interface PSPreorderResponse {
       if (!vId) return;
 
       this.startRejectingFormSubmissions()
-      this.loader = this.handleLoadingStyling(elInput);
-      this.loader?.setup();
-      this.loader?.show();
+      const loader = this.handleLoadingStyling(elInput);
+      this.loaders.set(elInput, loader);
+      loader.setup();
+      loader.show();
 
       const fetchOptions = {
         method: "POST",
@@ -599,12 +600,12 @@ interface PSPreorderResponse {
 
           this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
 
-          // this.elForm.addEventListener("change", () => {
-          //   console.log('change')
-          //   setTimeout(() => {
-          //     this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
-          //   }, 300);
-          // });
+          this.elForm.addEventListener("change", () => {
+            console.log('change')
+            setTimeout(() => {
+              this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
+            }, 300);
+          });
 
           // this.elForm.addEventListener("submit", () => {
           //   const formData = new FormData(this.elForm);
@@ -620,11 +621,13 @@ interface PSPreorderResponse {
           console.error(error);
         })
         .finally(() => {
-          this.loader?.hide();
+          const loader = this.loaders.get(elInput);
+          loader?.hide();
         });
     }
 
     private enforceUnitsPerCustomerLimit = (elInput: HTMLInputElement, unitsPerCustomer: number) => {
+      console.log('enforce', elInput, unitsPerCustomer)
       if (unitsPerCustomer === 0) return;
       elInput.max = unitsPerCustomer.toString();
     };
