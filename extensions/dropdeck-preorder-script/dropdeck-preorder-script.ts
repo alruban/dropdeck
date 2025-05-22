@@ -468,7 +468,6 @@ interface PSPreorderResponse {
     }
 
     private init = () => {
-      console.log(this.elInputs);
       if (this.elInputs.length === 0) {
         console.error("Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details.")
         return;
