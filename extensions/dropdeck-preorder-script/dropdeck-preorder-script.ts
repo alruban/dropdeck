@@ -80,10 +80,11 @@ interface PSPreorderResponse {
     return [...node.querySelectorAll(selector)] as T[];
   }
 
-  class DropdeckPreorder {
-    eachshit: boolean = true;
+  class ApplyDropdeckToAddToCartForm {
     // Elements
+    elSection: HTMLElement;
     elForm: HTMLFormElement;
+    elQuantityInput: HTMLInputElement | undefined;
     elOriginalBtn: HTMLButtonElement | undefined;
     elShopifyAlternatePayment: HTMLButtonElement | undefined;
     elPreorderBtn: HTMLButtonElement | undefined;
@@ -96,10 +97,15 @@ interface PSPreorderResponse {
     loader: ReturnType<typeof this.handleLoadingStyling>;
 
     constructor(form: HTMLFormElement) {
+      this.elSection = form.closest(".shopify-section") as HTMLElement;
       this.elForm = form;
       this.vId =
         get<HTMLInputElement>('input[name="id"]', form)?.value ??
         (new FormData(form).get("id") as string);
+      this.elQuantityInput = get<HTMLInputElement>(
+        'input[name="quantity"]',
+        this.elSection
+      );
       this.elOriginalBtn = get<HTMLButtonElement>("button[type='submit']", form);
       this.elShopifyAlternatePayment = get<HTMLButtonElement>(
         ".shopify-payment-button[data-shopify=payment-button]",
@@ -263,9 +269,28 @@ interface PSPreorderResponse {
 
           this.elForm.prepend(dropdeckPreorderDataProp);
 
+          const { unitsPerCustomer } = dropdeckPreorderData;
+
           this.handleVariantIdChanges();
-          this.createUnitsPerCustomerMessage(dropdeckPreorderData.unitsPerCustomer)
+          this.createUnitsPerCustomerMessage(unitsPerCustomer)
           this.createPreorderSubmitButton();
+          this.enforceUnitsPerCustomerLimit(unitsPerCustomer);
+
+          this.elForm.addEventListener("change", () => {
+            setTimeout(() => {
+              this.enforceUnitsPerCustomerLimit(unitsPerCustomer);
+            }, 300);
+          });
+
+          this.elForm.addEventListener("submit", () => {
+            const formData = new FormData(this.elForm);
+            const currentQuantity = parseInt(String(formData.get("quantity")));
+
+            if (currentQuantity > unitsPerCustomer) {
+              formData.set("quantity", unitsPerCustomer.toString());
+              if (this.elQuantityInput) this.elQuantityInput.value = unitsPerCustomer.toString();
+            }
+          });
         })
         .catch((error: unknown) => {
           console.error(error);
@@ -314,6 +339,12 @@ interface PSPreorderResponse {
           return vId === this.vId;
         },
       );
+    };
+
+    private enforceUnitsPerCustomerLimit = (unitsPerCustomer: number) => {
+      if (!this.elQuantityInput || unitsPerCustomer === 0) return;
+      this.elQuantityInput.max = unitsPerCustomer.toString();
+      this.elQuantityInput.value = "1";
     };
 
     private createUnitsPerCustomerMessage = (unitsPerCustomer: number) => {
@@ -417,10 +448,196 @@ interface PSPreorderResponse {
       }
     };
   }
+
+  class ApplyDropdeckToCartForm {
+    // Elements
+    elSection: HTMLElement;
+    elForm: HTMLFormElement;
+    elInputs: HTMLInputElement[];
+
+    // State
+    vData: PSProductVariantData | undefined;
+    loader: ReturnType<typeof this.handleLoadingStyling> | undefined;
+
+    constructor(form: HTMLFormElement) {
+      this.elSection = form.closest(".shopify-section") as HTMLElement;
+      this.elForm = form;
+      this.elInputs = getAll<HTMLInputElement>('input[name="updates[]"]', this.elForm);
+
+      this.init();
+    }
+
+    private init = () => {
+      console.log(this.elInputs);
+      if (this.elInputs.length === 0) {
+        console.error("Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details.")
+        return;
+      }
+
+      for (const elInput of this.elInputs) {
+        this.injectSellingPlan(elInput);
+      }
+    };
+
+    private startRejectingFormSubmissions = () => {
+      // Prevent form submission immediately
+      this.elForm.addEventListener("submit", this.rejectFormSubmission, {
+        capture: true,
+      });
+    };
+
+    private stopRejectingFormSubmissions = () => {
+      // Prevent form submission immediately
+      this.elForm.removeEventListener("submit", this.rejectFormSubmission, {
+        capture: true,
+      });
+    };
+
+    private rejectFormSubmission = (e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    };
+
+    private handleLoadingStyling = (elInput: HTMLInputElement) => {
+      const elInputContainer = elInput.parentElement;
+      let elButtonPlus: HTMLButtonElement | undefined
+      let elButtonMinus: HTMLButtonElement | undefined;
+
+      if (elInputContainer) {
+        elButtonPlus = get("[name=plus]", elInputContainer);
+        elButtonMinus = get("[name=minus]", elInputContainer);
+      }
+
+      return {
+        setup: () => {
+          if (elButtonPlus) {
+            elButtonPlus.style.transition = "opacity 300ms ease-in-out";
+            elButtonPlus.style.willChange = "opacity";
+          }
+          if (elButtonMinus) {
+            elButtonMinus.style.transition = "opacity 300ms ease-in-out";
+            elButtonMinus.style.willChange = "opacity";
+          }
+          elInput.style.transition = "opacity 300ms ease-in-out";
+          elInput.style.willChange = "opacity";
+        },
+        show: () => {
+          if (elButtonPlus) {
+            elButtonPlus.setAttribute("disabled", "");
+            elButtonPlus.style.opacity = "0.3";
+          }
+          if (elButtonMinus) {
+            elButtonMinus.setAttribute("disabled", "");
+            elButtonMinus.style.opacity = "0.3";
+          }
+          elInput.setAttribute("disabled", "");
+          elInput.style.opacity = "0.3";
+        },
+        hide: () => {
+          if (elButtonPlus) {
+            elButtonPlus.removeAttribute("disabled");
+            elButtonPlus.style.opacity = "1";
+          }
+          if (elButtonMinus) {
+            elButtonMinus.removeAttribute("disabled");
+            elButtonMinus.style.opacity = "1";
+          }
+          elInput.removeAttribute("disabled");
+          elInput.style.opacity = "1";
+        },
+      };
+    };
+
+    private injectSellingPlan(elInput: HTMLInputElement) {
+      const vId = elInput.dataset.variantId || elInput.dataset.quantityVariantId || elInput.dataset.id;
+      if (!vId) return;
+
+      this.startRejectingFormSubmissions()
+      this.loader = this.handleLoadingStyling(elInput);
+      this.loader?.setup();
+      this.loader?.show();
+
+      const fetchOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          variantId: vId,
+          target: "product-interaction",
+        }),
+      };
+
+      fetch("/apps/px", fetchOptions)
+        .then((res) => res.json() as Promise<PSPreorderResponse>)
+        .then((res: PSPreorderResponse) => {
+          const vData = res.data;
+          const { product } = vData.productVariant;
+
+          const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
+          if (sellingPlanGroupsCount === 0) return this.stopRejectingFormSubmissions();
+
+          const sellingPlanGroup = product.sellingPlanGroups.edges.find(
+            (sellingPlanGroup) =>
+              sellingPlanGroup.node.merchantCode === "Dropdeck Preorder",
+          );
+          if (!sellingPlanGroup) return this.stopRejectingFormSubmissions();
+
+          const sellingPlan = sellingPlanGroup.node.sellingPlans.edges[0];
+          if (!sellingPlan) return this.stopRejectingFormSubmissions();
+
+          const dropdeckPreorderData = {
+            sellingPlanGroupId: sellingPlanGroup.node.id,
+            sellingPlanId: sellingPlan.node.id,
+            releaseDate: sellingPlan.node.deliveryPolicy.fulfillmentExactTime,
+            unitsPerCustomer: Number(sellingPlan.node.metafields.edges[0].node.value),
+          };
+
+          const { unitsPerCustomer } = dropdeckPreorderData;
+
+          this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
+
+          // this.elForm.addEventListener("change", () => {
+          //   console.log('change')
+          //   setTimeout(() => {
+          //     this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
+          //   }, 300);
+          // });
+
+          // this.elForm.addEventListener("submit", () => {
+          //   const formData = new FormData(this.elForm);
+          //   const currentQuantity = parseInt(String(formData.get("quantity")));
+
+          //   if (currentQuantity > unitsPerCustomer) {
+          //     formData.set("quantity", unitsPerCustomer.toString());
+          //     if (this.elInput) this.elInput.value = unitsPerCustomer.toString();
+          //   }
+          // });
+        })
+        .catch((error: unknown) => {
+          console.error(error);
+        })
+        .finally(() => {
+          this.loader?.hide();
+        });
+    }
+
+    private enforceUnitsPerCustomerLimit = (elInput: HTMLInputElement, unitsPerCustomer: number) => {
+      if (unitsPerCustomer === 0) return;
+      elInput.max = unitsPerCustomer.toString();
+    };
+  }
+
   const loadScript = () => {
     const elCartAddForms = getAll<HTMLFormElement>('form[action="/cart/add"]');
     for (const elCartAddForm of elCartAddForms)
-      new DropdeckPreorder(elCartAddForm);
+      new ApplyDropdeckToAddToCartForm(elCartAddForm);
+
+    const elCartForms = getAll<HTMLFormElement>('form[action="/cart"]');
+    for (const elCartForm of elCartForms)
+      new ApplyDropdeckToCartForm(elCartForm);
   };
 
   document.addEventListener("DOMContentLoaded", loadScript);

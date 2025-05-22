@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://growing-vt-speakers-defence.trycloudflare.com"
+application_url = "https://heroes-italy-within-longitude.trycloudflare.com"
 embedded = true
 
 [build]
@@ -31,13 +31,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://growing-vt-speakers-defence.trycloudflare.com/auth/callback",
-  "https://growing-vt-speakers-defence.trycloudflare.com/auth/shopify/callback",
-  "https://growing-vt-speakers-defence.trycloudflare.com/api/auth/callback"
+  "https://heroes-italy-within-longitude.trycloudflare.com/auth/callback",
+  "https://heroes-italy-within-longitude.trycloudflare.com/auth/shopify/callback",
+  "https://heroes-italy-within-longitude.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://growing-vt-speakers-defence.trycloudflare.com/app/api"
+url = "https://heroes-italy-within-longitude.trycloudflare.com/app/api"
 subpath = "px"
 prefix = "apps"
 
