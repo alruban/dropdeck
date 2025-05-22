@@ -601,21 +601,20 @@ interface PSPreorderResponse {
           this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
 
           this.elForm.addEventListener("change", () => {
-            console.log('change')
             setTimeout(() => {
-              this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
+              // First try to find the input by its original dataset values
+              const vId = elInput.dataset.variantId || elInput.dataset.quantityVariantId || elInput.dataset.id;
+              if (!vId) return;
+
+              // Try to find the input in the DOM
+              const currentInput = get<HTMLInputElement>(`input[data-variant-id="${vId}"], input[data-quantity-variant-id="${vId}"], input[data-id="${vId}"]`, this.elForm);
+
+              // If we found the input (either original or new), enforce the limit
+              if (currentInput) {
+                this.enforceUnitsPerCustomerLimit(currentInput, unitsPerCustomer);
+              }
             }, 300);
           });
-
-          // this.elForm.addEventListener("submit", () => {
-          //   const formData = new FormData(this.elForm);
-          //   const currentQuantity = parseInt(String(formData.get("quantity")));
-
-          //   if (currentQuantity > unitsPerCustomer) {
-          //     formData.set("quantity", unitsPerCustomer.toString());
-          //     if (this.elInput) this.elInput.value = unitsPerCustomer.toString();
-          //   }
-          // });
         })
         .catch((error: unknown) => {
           console.error(error);
@@ -627,7 +626,6 @@ interface PSPreorderResponse {
     }
 
     private enforceUnitsPerCustomerLimit = (elInput: HTMLInputElement, unitsPerCustomer: number) => {
-      console.log('enforce', elInput, unitsPerCustomer)
       if (unitsPerCustomer === 0) return;
       elInput.max = unitsPerCustomer.toString();
     };

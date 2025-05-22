@@ -339,7 +339,6 @@
                 };
             };
             this.enforceUnitsPerCustomerLimit = (elInput, unitsPerCustomer) => {
-                console.log('enforce', elInput, unitsPerCustomer);
                 if (unitsPerCustomer === 0)
                     return;
                 elInput.max = unitsPerCustomer.toString();
@@ -392,9 +391,14 @@
                 const { unitsPerCustomer } = dropdeckPreorderData;
                 this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
                 this.elForm.addEventListener("change", () => {
-                    console.log('change');
                     setTimeout(() => {
-                        this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
+                        const vId = elInput.dataset.variantId || elInput.dataset.quantityVariantId || elInput.dataset.id;
+                        if (!vId)
+                            return;
+                        const currentInput = get(`input[data-variant-id="${vId}"], input[data-quantity-variant-id="${vId}"], input[data-id="${vId}"]`, this.elForm);
+                        if (currentInput) {
+                            this.enforceUnitsPerCustomerLimit(currentInput, unitsPerCustomer);
+                        }
                     }, 300);
                 });
             })
