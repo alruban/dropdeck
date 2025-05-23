@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://heroes-italy-within-longitude.trycloudflare.com"
+application_url = "https://irrigation-madagascar-basename-treasury.trycloudflare.com"
 embedded = true
 
 [build]
@@ -31,13 +31,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://heroes-italy-within-longitude.trycloudflare.com/auth/callback",
-  "https://heroes-italy-within-longitude.trycloudflare.com/auth/shopify/callback",
-  "https://heroes-italy-within-longitude.trycloudflare.com/api/auth/callback"
+  "https://irrigation-madagascar-basename-treasury.trycloudflare.com/auth/callback",
+  "https://irrigation-madagascar-basename-treasury.trycloudflare.com/auth/shopify/callback",
+  "https://irrigation-madagascar-basename-treasury.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://heroes-italy-within-longitude.trycloudflare.com/app/api"
+url = "https://irrigation-madagascar-basename-treasury.trycloudflare.com/app/api"
 subpath = "px"
 prefix = "apps"
 

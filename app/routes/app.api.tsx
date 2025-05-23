@@ -3,7 +3,7 @@ import { authenticate } from "../shopify.server";
 import { type AdminApiContextWithoutRest } from "node_modules/@shopify/shopify-app-remix/dist/ts/server/clients/admin/types";
 
 type RequestBody = {
-  target: 'customer' | 'product-interaction';
+  target: 'checkout-interaction' | 'product-interaction';
   customerId?: string;
   variantId?: string;
 }
@@ -17,8 +17,8 @@ export async function action({ request }: ActionFunctionArgs) {
 
   // Handle different paths
   switch (target) {
-    case 'customer':
-      return handleCustomer(body, admin);
+    case 'checkout-interaction':
+      return handleCheckoutInteraction(body, admin);
     case 'product-interaction':
       return handleProductInteraction(body, admin);
     default:
@@ -90,7 +90,7 @@ async function handleProductInteraction(body: RequestBody, admin: AdminApiContex
   return json(await response.json());
 }
 
-async function handleCustomer(body: RequestBody, admin: AdminApiContextWithoutRest) {
+async function handleCheckoutInteraction(body: RequestBody, admin: AdminApiContextWithoutRest) {
   const { customerId } = body;
 
   const response = await admin.graphql(

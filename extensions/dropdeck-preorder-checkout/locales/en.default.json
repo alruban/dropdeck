@@ -1,0 +1,4 @@
+{
+  "welcome": "Welcome to the {{target}} extension!",
+  "shipsOnOrAfter": "Ships on or after {{date}}"
+}
