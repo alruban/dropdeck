@@ -1,10 +1,14 @@
 import {
   reactExtension,
+  useApi,
   Text,
   useCartLineTarget,
-  useTranslate
+  useCustomer,
+  useTranslate,
+  useEmail
 } from "@shopify/ui-extensions-react/checkout";
 import { parseISOStringIntoFormalDate } from "../../../shared/tools/date-tools";
+import { useEffect } from "react";
 
 // 1. Choose an extension target
 export default reactExtension("purchase.checkout.cart-line-item.render-after", () => (
@@ -14,6 +18,9 @@ export default reactExtension("purchase.checkout.cart-line-item.render-after", (
 function Extension() {
   const translate = useTranslate();
   const cartLine = useCartLineTarget();
+  const customer = useCustomer();
+  const email = useEmail();
+  const { shop } = useApi()
 
   // Handle Data
   const preorderData = cartLine.attributes.find((attr) => attr.key === "_dropdeck_preorder_data");
@@ -21,29 +28,55 @@ function Extension() {
   const preorderJson = JSON.parse(preorderData.value);
   if (!preorderJson) return null;
 
+  const fetchUrl = `https://${shop.myshopifyDomain}/apps/px`
+
+  async function getCustomer(email: string) {
+    const fetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        customerEmail: email,
+        target: "get-customer",
+      }),
+    };
+
+    console.log("Fetching customer...")
+
+    fetch(fetchUrl, fetchOptions)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+
   const { releaseDate, unitsPerCustomer } = preorderJson;
 
-  // Handle UI
-  const fetchOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({
-      variantId: this.vId,
-      target: "product-interaction",
-    }),
-  };
+  console.log("email", email)
+  console.log("customer", customer)
 
-  fetch("/apps/px", fetchOptions)
-    .then((res) => res.json())
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.error(err)
-    })
+  if (!customer) {
+    console.log("shop", shop)
+    console.log("getCustomer")
+    getCustomer(email);
+  } else {
+    console.log("getCustomerOrders")
+  }
+
+
+  // fetch("/apps/px", fetchOptions)
+  //   .then((res) => res.json())
+  //   .then((res) => {
+  //     console.log(res)
+  //   })
+  //   .catch((err) => {
+  //     console.error(err)
+  //   })
 
   return (
     <Text appearance="subdued" size="small" >

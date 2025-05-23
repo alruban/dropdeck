@@ -3,7 +3,8 @@ import { authenticate } from "../shopify.server";
 import { type AdminApiContextWithoutRest } from "node_modules/@shopify/shopify-app-remix/dist/ts/server/clients/admin/types";
 
 type RequestBody = {
-  target: 'checkout-interaction' | 'product-interaction';
+  target: 'get-customer' | 'get-customer-orders' | 'product-interaction';
+  customerEmail?: string;
   customerId?: string;
   variantId?: string;
 }
@@ -17,16 +18,18 @@ export async function action({ request }: ActionFunctionArgs) {
 
   // Handle different paths
   switch (target) {
-    case 'checkout-interaction':
-      return handleCheckoutInteraction(body, admin);
+    case 'get-customer':
+      return getCustomer(body, admin);
+    case 'get-customer-orders':
+      return getCustomerOrders(body, admin);
     case 'product-interaction':
-      return handleProductInteraction(body, admin);
+      return onPreorderProductInteraction(body, admin);
     default:
       return false;
   }
 }
 
-async function handleProductInteraction(body: RequestBody, admin: AdminApiContextWithoutRest
+async function onPreorderProductInteraction(body: RequestBody, admin: AdminApiContextWithoutRest
 ) {
   const { variantId } = body;
 
@@ -90,7 +93,31 @@ async function handleProductInteraction(body: RequestBody, admin: AdminApiContex
   return json(await response.json());
 }
 
-async function handleCheckoutInteraction(body: RequestBody, admin: AdminApiContextWithoutRest) {
+async function getCustomer(body: RequestBody, admin: AdminApiContextWithoutRest) {
+  const { customerEmail } = body;
+
+  const response = await admin.graphql(
+    `#graphql
+    query getCustomerId($email: String!) {
+      customers (first: 1, query: $email) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }`,
+    {
+      variables: {
+        email: customerEmail
+      }
+    }
+  );
+
+  return json(await response.json());
+}
+
+async function getCustomerOrders(body: RequestBody, admin: AdminApiContextWithoutRest) {
   const { customerId } = body;
 
   const response = await admin.graphql(
