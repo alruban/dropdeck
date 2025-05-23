@@ -1,7 +1,11 @@
 type SellingPlanGroupResponse = {
-  sellingPlanGroups: {
-    edges: SellingPlanGroupEdge[];
-  };
+  data: {
+    sellingPlanGroups: {
+      edges: SellingPlanGroupEdge[];
+    };
+  }
+  init: ResponseInit | null;
+  type: string;
 };
 
 type SellingPlanGroupEdge = {

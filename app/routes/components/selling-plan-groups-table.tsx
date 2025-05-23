@@ -35,8 +35,8 @@ export default function SellingPlanGroupsTable({
   const [selectedPlanGroup, setSelectedPlanGroup] =
     useState<SellingPlanGroup | null>(null);
 
-  const hasSellingPlanGroups =
-    sellingPlanGroupResponse.sellingPlanGroups.edges.length > 0;
+  const { sellingPlanGroups }  = sellingPlanGroupResponse.data;
+  const hasSellingPlanGroups = sellingPlanGroups.edges.length > 0;
   const isLoading = navigation.state === "submitting";
 
   const handleEdit = (planGroup: SellingPlanGroup) => {
@@ -50,7 +50,7 @@ export default function SellingPlanGroupsTable({
   };
 
   const sellingPlanGroupsTable = () => {
-    const rows = sellingPlanGroupResponse.sellingPlanGroups.edges.map(
+    const rows = sellingPlanGroups.edges.map(
       (edge) => {
         const sellingPlanGroup = edge.node;
         const sellingPlan = sellingPlanGroup.sellingPlans.edges[0];

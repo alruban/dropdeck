@@ -1,4 +1,4 @@
-import { json, type LoaderFunctionArgs } from "@remix-run/node";
+import { data, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData, useNavigation, useSubmit, useSearchParams } from "@remix-run/react";
 import {
   Page,
@@ -24,10 +24,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     variables: getDropdeckPreorderOrdersVariables(),
   });
 
-  const responseData = await response.json();
-  return json({
-    data: responseData as OrderTableRawData,
-  });
+  return data(await response.json() as OrderTableRawData);
 };
 
 export default function Index() {

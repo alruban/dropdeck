@@ -14,8 +14,9 @@ type StatisticsProps = {
 export default function Statistics({ sellingPlanGroupResponse }: StatisticsProps) {
   const { t } = useTranslation();
 
-  const activePlans = sellingPlanGroupResponse.sellingPlanGroups.edges.length.toString();
-  const productsWithPreorders = sellingPlanGroupResponse.sellingPlanGroups.edges.reduce((acc, sellingPlanGroup) => {
+  const { sellingPlanGroups } = sellingPlanGroupResponse.data;
+  const activePlans = sellingPlanGroups.edges.length.toString();
+  const productsWithPreorders = sellingPlanGroups.edges.reduce((acc, sellingPlanGroup) => {
     return acc + sellingPlanGroup.node.products.edges.length;
   }, 0).toString();
 

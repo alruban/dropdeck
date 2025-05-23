@@ -51,18 +51,22 @@ type PSProductVariantData = {
 };
 
 interface PSPreorderResponse {
-  data: PSProductVariantData;
-  extensions: {
-    cost: {
-      requestedQueryCost: number;
-      actualQueryCost: number;
-      throttleStatus: {
-        maximumAvailable: number;
-        currentlyAvailable: number;
-        restoreRate: number;
+  data: {
+    data: PSProductVariantData;
+    extensions: {
+      cost: {
+        requestedQueryCost: number;
+        actualQueryCost: number;
+        throttleStatus: {
+          maximumAvailable: number;
+          currentlyAvailable: number;
+          restoreRate: number;
+        };
       };
     };
   };
+  init: ResponseInit | null;
+  type: string;
 }
 
 (function () {
@@ -204,7 +208,7 @@ interface PSPreorderResponse {
           return res.json() as Promise<PSPreorderResponse>;
         })
         .then((res: PSPreorderResponse) => {
-          this.vData = res.data;
+          this.vData = res.data.data;
           const { product } = this.vData.productVariant;
 
           const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
@@ -573,7 +577,7 @@ interface PSPreorderResponse {
       fetch("/apps/px", fetchOptions)
         .then((res) => res.json() as Promise<PSPreorderResponse>)
         .then((res: PSPreorderResponse) => {
-          const vData = res.data;
+          const vData = res.data.data;
           const { product } = vData.productVariant;
 
           const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
@@ -621,6 +625,7 @@ interface PSPreorderResponse {
         .finally(() => {
           const loader = this.loaders.get(elInput);
           loader?.hide();
+          this.stopRejectingFormSubmissions();
         });
     }
 

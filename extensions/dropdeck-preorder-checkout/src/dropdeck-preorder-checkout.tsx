@@ -8,7 +8,6 @@ import {
   useEmail
 } from "@shopify/ui-extensions-react/checkout";
 import { parseISOStringIntoFormalDate } from "../../../shared/tools/date-tools";
-import { useEffect } from "react";
 
 // 1. Choose an extension target
 export default reactExtension("purchase.checkout.cart-line-item.render-after", () => (
@@ -20,7 +19,7 @@ function Extension() {
   const cartLine = useCartLineTarget();
   const customer = useCustomer();
   const email = useEmail();
-  const { shop } = useApi()
+  const { shop, query } = useApi()
 
   // Handle Data
   const preorderData = cartLine.attributes.find((attr) => attr.key === "_dropdeck_preorder_data");
@@ -33,10 +32,6 @@ function Extension() {
   async function getCustomer(email: string) {
     const fetchOptions = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
       body: JSON.stringify({
         customerEmail: email,
         target: "get-customer",
@@ -46,12 +41,15 @@ function Extension() {
     console.log("Fetching customer...")
 
     fetch(fetchUrl, fetchOptions)
-      .then((res) => res.json())
+      .then((res) => {
+        console.log("RES", res)
+        return res.json();
+      })
       .then((res) => {
         console.log(res)
       })
       .catch((err) => {
-        console.error(err)
+        console.error("ERROR HERE", err)
       })
   }
 

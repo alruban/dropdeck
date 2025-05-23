@@ -1,4 +1,4 @@
-import { json } from "@remix-run/node";
+import { data } from "@remix-run/node";
 import type { ActionFunctionArgs } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 
@@ -58,11 +58,11 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         "Error updating order:",
         responseJson.data.orderUpdate.userErrors,
       );
-      return json({ error: "Failed to update order" }, { status: 500 });
+      return data({ error: "Failed to update order" }, { status: 500 });
     }
   }
 
-  return json({ success: true });
+  return data({ success: true });
 };
 
 // Add default export to ensure Remix recognizes this as a route

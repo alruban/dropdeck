@@ -197,7 +197,7 @@
                 return res.json();
             })
                 .then((res) => {
-                this.vData = res.data;
+                this.vData = res.data.data;
                 const { product } = this.vData.productVariant;
                 const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
                 if (sellingPlanGroupsCount === 0)
@@ -370,7 +370,7 @@
             fetch("/apps/px", fetchOptions)
                 .then((res) => res.json())
                 .then((res) => {
-                const vData = res.data;
+                const vData = res.data.data;
                 const { product } = vData.productVariant;
                 const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
                 if (sellingPlanGroupsCount === 0)
@@ -407,6 +407,7 @@
                 .finally(() => {
                 const loader = this.loaders.get(elInput);
                 loader?.hide();
+                this.stopRejectingFormSubmissions();
             });
         }
     }

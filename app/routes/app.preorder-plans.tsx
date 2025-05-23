@@ -6,7 +6,7 @@ import {
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
-import { json } from "@remix-run/node";
+import { data } from "@remix-run/node";
 import { useLoaderData, useNavigation } from "@remix-run/react";
 import SellingPlanGroupsTable from "./components/selling-plan-groups-table";
 import { useState } from "react";
@@ -22,10 +22,8 @@ import { REMOVE_SP_GROUP_PRODUCTS_MUTATION, removeSPGroupProductsVariables } fro
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
-
   const response = await admin.graphql(GET_SP_GROUPS_QUERY);
-
-  return json(await response.json());
+  return data(await response.json());
 };
 
 export const action = async ({ request }: ActionFunctionArgs) => {
@@ -34,11 +32,11 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   const createSellingPlanGroup = async () => {
     const expectedFulfillmentDate = formData.get("expectedFulfillmentDate");
-    if (!expectedFulfillmentDate) return json({ error: "No expected fulfillment date provided" }, { status: 400 });
+    if (!expectedFulfillmentDate) return data({ error: "No expected fulfillment date provided" }, { status: 400 });
     const unitsPerCustomer = formData.get("unitsPerCustomer");
-    if (!unitsPerCustomer) return json({ error: "No units per customer provided" }, { status: 400 });
+    if (!unitsPerCustomer) return data({ error: "No units per customer provided" }, { status: 400 });
     const productIds = formData.get("productIds");
-    if (!productIds) return json({ error: "No product id(s) provided" }, { status: 400 });
+    if (!productIds) return data({ error: "No product id(s) provided" }, { status: 400 });
 
     const res = await admin.graphql(
       CREATE_SP_GROUP_MUTATION,
@@ -53,9 +51,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
     if (djson.data.sellingPlanGroupCreate.userErrors.length > 0) {
       const errors = djson.data.sellingPlanGroupUpdate.userErrors.map((error: any) => error.message).join(", ");
-      return json({ error: errors }, { status: 400 });
+      return data({ error: errors }, { status: 400 });
     } else {
-      return json(djson);
+      return data(djson);
     }
   }
 
@@ -125,7 +123,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       ...productUpdatePromises
     ]);
 
-    return json({
+    return data({
       details: await detailsResult.json(),
       productUpdates: await Promise.all(productResults.map(r => r.json()))
     });
@@ -133,7 +131,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   const deleteSellingPlanGroup = async () => {
     const sellingPlanGroupId = formData.get("sellingPlanGroupId");
-    if (!sellingPlanGroupId) return json({ error: "No selling plan group id provided" }, { status: 400 });
+    if (!sellingPlanGroupId) return data({ error: "No selling plan group id provided" }, { status: 400 });
 
     const res = await admin.graphql(
       DELETE_SP_GROUP_MUTATION,
@@ -144,9 +142,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
     if (djson.data.sellingPlanGroupDelete.userErrors.length > 0) {
       const errors = djson.data.sellingPlanGroupUpdate.userErrors.map((error: any) => error.message).join(", ");
-      return json({ error: errors }, { status: 400 });
+      return data({ error: errors }, { status: 400 });
     } else {
-      return json(djson);
+      return data(djson);
     }
   }
 
@@ -158,7 +156,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     case "DELETE":
       return deleteSellingPlanGroup();
     default:
-      return json({ error: "Invalid request" }, { status: 400 });
+      return data({ error: "Invalid request" }, { status: 400 });
   }
 };
 

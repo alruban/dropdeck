@@ -1,4 +1,4 @@
-import { type ActionFunctionArgs, json } from "@remix-run/node";
+import { data, type ActionFunctionArgs } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 import { type AdminApiContextWithoutRest } from "node_modules/@shopify/shopify-app-remix/dist/ts/server/clients/admin/types";
 
@@ -25,7 +25,7 @@ export async function action({ request }: ActionFunctionArgs) {
     case 'product-interaction':
       return onPreorderProductInteraction(body, admin);
     default:
-      return false;
+      return data(false, { status: 200 });
   }
 }
 
@@ -90,7 +90,7 @@ async function onPreorderProductInteraction(body: RequestBody, admin: AdminApiCo
     }
   );
 
-  return json(await response.json());
+  return data(await response.json());
 }
 
 async function getCustomer(body: RequestBody, admin: AdminApiContextWithoutRest) {
@@ -114,7 +114,7 @@ async function getCustomer(body: RequestBody, admin: AdminApiContextWithoutRest)
     }
   );
 
-  return json(await response.json());
+  return data(await response.json());
 }
 
 async function getCustomerOrders(body: RequestBody, admin: AdminApiContextWithoutRest) {
@@ -148,5 +148,5 @@ async function getCustomerOrders(body: RequestBody, admin: AdminApiContextWithou
     }
   );
 
-  return json(await response.json());
+  return data(await response.json());
 }
