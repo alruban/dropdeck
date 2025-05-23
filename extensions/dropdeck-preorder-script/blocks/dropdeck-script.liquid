@@ -2,8 +2,20 @@
 {
   "name": "Dropdeck Script",
   "target": "head",
-  "settings": []
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Dropdeck offers two solutions to enable preorders on your store. We recommend setting up the application manually through our manual guide which can be found [here](https://docs.dropdeck.com/preorders/shopify/), but this of course requires some technical knowledge. This script is a simple way to enable preorders on your store without the need for the application, however depending on the theme and complexity of your store, it may not work as expected. If you'd like to use the manual guide but need help, please contact us at [support@dropdeck.com](mailto:support@dropdeck.com)."
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_preorder_script",
+      "label": "Enable Preorder Script"
+    }
+  ]
 }
 {% endschema %}
 
-<script class="dropdeck-script" src="{{ 'dropdeck-preorder-script.js' | asset_url }}" defer></script>
+{% if section.settings.enable_preorder_script %}
+  <script class="dropdeck-script" src="{{ 'dropdeck-preorder-script.js' | asset_url }}" defer></script>
+{% endif %}
