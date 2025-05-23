@@ -132,39 +132,29 @@ export default function OrderTable({
       };
     })
     .filter((order): order is Order => order !== null) // Remove null entries
-    .filter((_order, index) => {
+    .filter((order) => {
       // Filter out cancelled orders if hideCancelled is true
-      if (hideCancelled) {
-        const isCancelled =
-          data.data.orders.edges[index].node.cancelledAt !== null;
-        if (isCancelled) return false;
+      if (hideCancelled && order.isCancelled) {
+        return false;
       }
 
       // Filter out fulfilled orders if hideFulfilled is true
-      if (hideFulfilled) {
-        const isFulfilled =
-          data.data.orders.edges[
-            index
-          ].node.displayFulfillmentStatus.toLowerCase() === "fulfilled";
-        if (isFulfilled) return false;
+      if (hideFulfilled && order.isFulfilled) {
+        return false;
       }
 
       // Filter by selected product if one is selected
       if (selectedProduct) {
-        const hasSelectedProduct = data.data.orders.edges[
-          index
-        ].node.lineItems.edges.some(
+        const hasSelectedProduct = data.data.orders.edges.find(
+          (o) => o.node.id === order.id
+        )?.node.lineItems.edges.some(
           ({ node: lineItem }) => lineItem.title === selectedProduct,
         );
         if (!hasSelectedProduct) return false;
       }
 
       // Last: Check if the order is past the release date
-      const firstValidPreorder = preorderData[index]?.find(
-        (item) => item.releaseDate,
-      );
-      if (!firstValidPreorder) return false;
-      const orderDate = new Date(firstValidPreorder.releaseDate);
+      const orderDate = new Date(order.releaseDate);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
