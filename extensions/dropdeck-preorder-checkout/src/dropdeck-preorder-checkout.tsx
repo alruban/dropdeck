@@ -6,7 +6,8 @@ import {
   useCustomer,
   useTranslate,
   useEmail,
-  BlockStack
+  BlockStack,
+  useBuyerJourneyIntercept
 } from "@shopify/ui-extensions-react/checkout";
 import { parseISOStringIntoFormalDate } from "../../../shared/tools/date-tools";
 import { type CustomerOrder, type GetCustomerOrdersResponse, type GetCustomerResponse } from "../../../app/routes/app.api-checkout";
@@ -119,6 +120,7 @@ function Extension() {
 
     if (preorderData) {
       if (!customerId) {
+        console.log(1)
         getCustomer(email, (newCustomerId) => {
           if (newCustomerId !== customerId) {
             setCustomerId(newCustomerId);
@@ -128,6 +130,7 @@ function Extension() {
           }
         });
       } else {
+        console.log(2)
         getCustomerOrders(customerId, (newCustomerOrders) => {
           determineIfCustomerHasExceededPreorderLimit(newCustomerOrders)
         })
@@ -135,39 +138,54 @@ function Extension() {
     }
   }, [preorderData, customerId])
 
-  if (!preorderData) return null;
+  useBuyerJourneyIntercept(({ canBlockProgress }) => {
+    if (preorderData && hasExceededLimit) {
+      return {
+        behavior: 'block',
+        reason: 'Preorder limit exceeded.',
+      };
+    }
 
-  return (
-    <BlockStack spacing="none">
-      <Text appearance="subdued" size="small" >
-        {translate("ships_on_or_after", {
-          date: parseISOStringIntoFormalDate(preorderData.releaseDate),
-        })}
-      </Text>
-      {preorderData.unitsPerCustomer > 0 && (
+    return {
+      behavior: 'allow',
+    };
+  });
+
+  if (preorderData) {
+    return (
+      <BlockStack spacing="none">
         <Text appearance="subdued" size="small" >
-          {translate("units_per_customer", {
-            total_units: String(preorderData.unitsPerCustomer)
+          {translate("ships_on_or_after", {
+            date: parseISOStringIntoFormalDate(preorderData.releaseDate),
           })}
         </Text>
-      )}
-      {hasExceededLimit ? (
-        <>
-          <Text appearance="critical" size="small" >
-            {translate("preorder_limit_exceeded")}
+        {preorderData.unitsPerCustomer > 0 && (
+          <Text appearance="subdued" size="small" >
+            {translate("units_per_customer", {
+              total_units: String(preorderData.unitsPerCustomer)
+            })}
           </Text>
-          <Text appearance="critical" size="small" >
-            Units bought in previous orders: {unitsBoughtInPreviousOrders}
+        )}
+        {hasExceededLimit ? (
+          <>
+            <Text appearance="critical" size="small" >
+              {translate("preorder_limit_exceeded")}
+            </Text>
+            <Text appearance="critical" size="small" >
+              Units bought in previous orders: {unitsBoughtInPreviousOrders}
+            </Text>
+            <Text appearance="critical" size="small" >
+              Units in this order: {unitsInThisOrder}
+            </Text>
+          </>
+        ) : (
+          <Text appearance="success" size="small">
+            Not exceeded
           </Text>
-          <Text appearance="critical" size="small" >
-            Units in this order: {unitsInThisOrder}
-          </Text>
-        </>
-      ) : (
-        <Text appearance="success" size="small">
-          Not exceeded
-        </Text>
-      )}
-    </BlockStack>
-  );
+        )}
+      </BlockStack>
+    );
+  } else {
+    return null;
+  }
 }
