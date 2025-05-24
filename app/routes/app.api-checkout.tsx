@@ -2,8 +2,59 @@ import { data, type ActionFunctionArgs } from "@remix-run/node";
 import { authenticate, unauthenticated } from "../shopify.server";
 import { type AdminApiContextWithoutRest } from "node_modules/@shopify/shopify-app-remix/dist/ts/server/clients/admin/types";
 
+export type CustomerOrderLineItem = {
+  node: {
+    customAttributes: {
+      key: string;
+      value: string;
+    }[];
+    product: {
+      id: string;
+    };
+    quantity: number;
+  };
+};
+
+export type CustomerOrder = {
+  node: {
+    lineItems: {
+      edges: CustomerOrderLineItem[];
+    };
+  };
+};
+
+export type GetCustomerOrdersResponse = {
+  data: {
+    data: {
+      customer: {
+        orders: {
+          edges: CustomerOrder[];
+        };
+      };
+    };
+  };
+  init: ResponseInit | null;
+  type: string;
+};
+
+export type GetCustomerResponse = {
+  data: {
+    data: {
+      customers: {
+        edges: {
+          node: {
+            id: string;
+          };
+        }[];
+      };
+    };
+  };
+  init: ResponseInit | null;
+  type: string;
+};
+
 type CheckoutRequestBody = {
-  target: "get-customer" | "get-customer-orders"
+  target: "get-customer" | "get-customer-orders";
   customerEmail?: string;
   customerId?: string;
   variantId?: string;
@@ -26,10 +77,10 @@ export async function action({ request }: ActionFunctionArgs) {
       return data(
         {
           body: body,
-          message: "No target found."
+          message: "No target found.",
         },
         {
-          status: 200
+          status: 200,
         },
       );
   }
@@ -59,7 +110,7 @@ async function getCustomer(
     },
   );
 
-  return data(await response.json());
+  return data(await response.json()) as GetCustomerResponse;
 }
 
 async function getCustomerOrders(
@@ -70,7 +121,7 @@ async function getCustomerOrders(
 
   const response = await admin.graphql(
     `#graphql
-    query getCustomerData($customerId: ID!) {
+    query getCustomerOrders($customerId: ID!) {
       customer(id: $customerId) {
         orders(first: 40) {
           edges {
@@ -78,9 +129,14 @@ async function getCustomerOrders(
               lineItems (first: 100) {
                 edges {
                   node {
+                    customAttributes {
+                      key
+                      value
+                    }
                     product {
                       id
                     }
+                    quantity
                   }
                 }
               }
@@ -91,10 +147,10 @@ async function getCustomerOrders(
     }`,
     {
       variables: {
-        id: customerId,
+        customerId,
       },
     },
   );
 
-  return data(await response.json());
+  return data(await response.json()) as GetCustomerOrdersResponse;
 }
