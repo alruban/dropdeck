@@ -14,9 +14,9 @@ url = "/create-preorder"
 module = "./src/product-extension.tsx"
 target = "admin.product-purchase-option.action.render"
 
-[[extensions.targeting]]
-module = "./src/product-variant-extension.tsx"
-target = "admin.product-variant-purchase-option.action.render"
+# [[extensions.targeting]]
+# module = "./src/product-variant-extension.tsx"
+# target = "admin.product-variant-purchase-option.action.render"
 
 # Valid extension targets:
 

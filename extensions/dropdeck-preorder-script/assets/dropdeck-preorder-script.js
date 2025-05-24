@@ -129,7 +129,10 @@
                     for (const mutation of mutations) {
                         if (mutation.type === "characterData" ||
                             mutation.type === "childList") {
-                            const originalButtonText = button.textContent?.trim();
+                            let originalButtonText = button.textContent?.trim();
+                            if (originalButtonText?.toLowerCase().includes("added")) {
+                                originalButtonText = originalButtonText.replace(" Added", "").replace(" added", "");
+                            }
                             if (!originalButtonText)
                                 return this.stopRejectingFormSubmissions();
                             const newVariant = this.getVariant();
