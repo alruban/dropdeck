@@ -19,12 +19,16 @@ export async function action({ request }: ActionFunctionArgs) {
   // Handle different paths
   switch (target) {
     case 'get-customer':
+      console.log("GET CUSTOMER RUNNING....")
       return getCustomer(body, admin);
     case 'get-customer-orders':
+      console.log("GET CUSTOMER ORDERS RUNNING....")
       return getCustomerOrders(body, admin);
     case 'product-interaction':
+      console.log("PRODUCT INTERACTION RUNNING....")
       return onPreorderProductInteraction(body, admin);
     default:
+      console.log("DEFAULT RUNNING....")
       return data(false, { status: 200 });
   }
 }
