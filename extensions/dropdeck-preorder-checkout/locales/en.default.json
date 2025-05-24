@@ -1,5 +1,6 @@
 {
   "welcome": "Welcome to the {{target}} extension!",
   "ships_on_or_after": "Ships on or after {{date}}",
-  "units_per_customer": "{{ total_units }} units per customer"
+  "units_per_customer": "{{ total_units }} units per customer",
+  "preorder_limit_exceeded": "You have exceeded the preorder limit"
 }
