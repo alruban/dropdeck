@@ -30,6 +30,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
   const formData = await request.formData();
 
+  console.log("This is the admin request", request)
+
   const createSellingPlanGroup = async () => {
     const expectedFulfillmentDate = formData.get("expectedFulfillmentDate");
     if (!expectedFulfillmentDate) return data({ error: "No expected fulfillment date provided" }, { status: 400 });

@@ -19,7 +19,7 @@ function Extension() {
   const cartLine = useCartLineTarget();
   const customer = useCustomer();
   const email = useEmail();
-  const { shop } = useApi()
+  const { shop, sessionToken } = useApi()
 
   // Handle Data
   const preorderData = cartLine.attributes.find((attr) => attr.key === "_dropdeck_preorder_data");
@@ -28,23 +28,27 @@ function Extension() {
   if (!preorderJson) return null;
 
   async function getCustomer(email: string) {
+    const token = await sessionToken.get();
+
     const fetchOptions = {
       method: "POST",
       body: JSON.stringify({
         customerEmail: email,
         target: "get-customer",
       }),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     };
 
     console.log("Fetching customer...")
 
-    fetch(`${shop.storefrontUrl}/apps/px`, fetchOptions)
-      .then((res) => {
-        console.log("RES", res)
-        return res.json();
-      })
-      .then((res) => {
-        console.log(res)
+    fetch(`${process.env.APP_URL}/app/checkout`, fetchOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Data", data)
       })
       .catch((err) => {
         console.error("ERROR HERE", err)
