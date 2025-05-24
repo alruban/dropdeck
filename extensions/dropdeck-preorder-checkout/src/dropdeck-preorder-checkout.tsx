@@ -137,7 +137,6 @@ function Extension() {
 
     if (preorderData) {
       if (!customerId) {
-        console.log(1);
         getCustomer(email, (newCustomerId) => {
           if (newCustomerId !== customerId) {
             setCustomerId(newCustomerId);
@@ -147,7 +146,6 @@ function Extension() {
           }
         });
       } else {
-        console.log(2);
         getCustomerOrders(customerId, (newCustomerOrders) => {
           determineIfLimitExceeded(newCustomerOrders);
         });
