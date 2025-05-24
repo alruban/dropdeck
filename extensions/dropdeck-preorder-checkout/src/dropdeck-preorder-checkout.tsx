@@ -19,15 +19,13 @@ function Extension() {
   const cartLine = useCartLineTarget();
   const customer = useCustomer();
   const email = useEmail();
-  const { shop, query } = useApi()
+  const { shop } = useApi()
 
   // Handle Data
   const preorderData = cartLine.attributes.find((attr) => attr.key === "_dropdeck_preorder_data");
   if (!preorderData) return null;
   const preorderJson = JSON.parse(preorderData.value);
   if (!preorderJson) return null;
-
-  const fetchUrl = `https://${shop.myshopifyDomain}/apps/px`
 
   async function getCustomer(email: string) {
     const fetchOptions = {
@@ -40,7 +38,7 @@ function Extension() {
 
     console.log("Fetching customer...")
 
-    fetch(fetchUrl, fetchOptions)
+    fetch(`${process.env.APP_URL}/app/api`, fetchOptions)
       .then((res) => {
         console.log("RES", res)
         return res.json();

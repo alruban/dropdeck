@@ -29,8 +29,7 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 }
 
-async function onPreorderProductInteraction(body: RequestBody, admin: AdminApiContextWithoutRest
-) {
+async function onPreorderProductInteraction(body: RequestBody, admin: AdminApiContextWithoutRest) {
   const { variantId } = body;
 
   const response = await admin.graphql(
