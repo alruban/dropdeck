@@ -1,6 +1,17 @@
 {
-  "welcome": "Welcome to the {{target}} extension!",
-  "ships_on_or_after": "Ships on or after {{date}}",
-  "units_per_customer": "{{ total_units }} units per customer",
-  "preorder_limit_exceeded": "You have exceeded the preorder limit"
+  "page": {
+    "error_preorder_limit_exceeded": {
+      "message_reduce_units": "You have exceeded the preorder limit. Please remove {{units}} units from your order.",
+      "message_remove_all_units": "You have exceeded the preorder limit. Please remove the product '{{product_name}}' from your cart."
+    }
+  },
+  "line_item": {
+    "ships_on_or_after": "Ships on or after {{date}}",
+    "units_per_customer": "{{ total_units }} units per customer",
+    "error_preorder_limit_exceeded": {
+      "message": "You have exceeded the preorder limit.",
+      "units_bought_in_previous_orders": "Units bought in previous orders: {{units}}",
+      "units_in_this_order": "Units in this order: {{units}}"
+    }
+  }
 }
