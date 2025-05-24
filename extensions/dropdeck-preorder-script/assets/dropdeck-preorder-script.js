@@ -189,7 +189,7 @@
                 },
                 body: JSON.stringify({
                     variantId: this.vId,
-                    target: "product-interaction",
+                    target: "get-preorder-data",
                 }),
             };
             fetch("/apps/px", fetchOptions)
@@ -364,7 +364,7 @@
                 },
                 body: JSON.stringify({
                     variantId: vId,
-                    target: "product-interaction",
+                    target: "get-preorder-data",
                 }),
             };
             fetch("/apps/px", fetchOptions)

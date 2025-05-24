@@ -45,7 +45,7 @@ function Extension() {
 
     console.log("Fetching customer...")
 
-    fetch(`${process.env.APP_URL}/app/checkout`, fetchOptions)
+    fetch(`${process.env.APP_URL}/app/api-checkout`, fetchOptions)
       .then((res) => res.json())
       .then((data) => {
         console.log("Data", data)

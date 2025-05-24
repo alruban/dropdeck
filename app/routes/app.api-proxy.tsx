@@ -2,8 +2,8 @@ import { data, type ActionFunctionArgs } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 import { type AdminApiContextWithoutRest } from "node_modules/@shopify/shopify-app-remix/dist/ts/server/clients/admin/types";
 
-type RequestBody = {
-  target: 'get-customer' | 'get-customer-orders' | 'product-interaction';
+type ProductRequestBody = {
+  target: 'get-preorder-data';
   customerEmail?: string;
   customerId?: string;
   variantId?: string;
@@ -18,27 +18,27 @@ export async function action({ request }: ActionFunctionArgs) {
 
   // Handle different paths
   switch (target) {
-    case 'get-customer':
-      console.log("GET CUSTOMER RUNNING....")
-      return getCustomer(body, admin);
-    case 'get-customer-orders':
-      console.log("GET CUSTOMER ORDERS RUNNING....")
-      return getCustomerOrders(body, admin);
-    case 'product-interaction':
-      console.log("PRODUCT INTERACTION RUNNING....")
-      return onPreorderProductInteraction(body, admin);
+    case 'get-preorder-data':
+      return getPreorderData(body, admin);
     default:
-      console.log("DEFAULT RUNNING....")
-      return data(false, { status: 200 });
+      return data(
+        {
+          body: body,
+          message: "No target found."
+        },
+        {
+          status: 200
+        },
+      );
   }
 }
 
-async function onPreorderProductInteraction(body: RequestBody, admin: AdminApiContextWithoutRest) {
+async function getPreorderData(body: ProductRequestBody, admin: AdminApiContextWithoutRest) {
   const { variantId } = body;
 
   const response = await admin.graphql(
     `#graphql
-    query getProductVariant($id: ID!) {
+    query getPreorderData($id: ID!) {
       productVariant(id: $id) {
         product {
           id
@@ -89,64 +89,6 @@ async function onPreorderProductInteraction(body: RequestBody, admin: AdminApiCo
     {
       variables: {
         id: `gid://shopify/ProductVariant/${variantId}`
-      }
-    }
-  );
-
-  return data(await response.json());
-}
-
-async function getCustomer(body: RequestBody, admin: AdminApiContextWithoutRest) {
-  const { customerEmail } = body;
-
-  const response = await admin.graphql(
-    `#graphql
-    query getCustomerId($email: String!) {
-      customers (first: 1, query: $email) {
-        edges {
-          node {
-            id
-          }
-        }
-      }
-    }`,
-    {
-      variables: {
-        email: customerEmail
-      }
-    }
-  );
-
-  return data(await response.json());
-}
-
-async function getCustomerOrders(body: RequestBody, admin: AdminApiContextWithoutRest) {
-  const { customerId } = body;
-
-  const response = await admin.graphql(
-    `#graphql
-    query getCustomerData($customerId: ID!) {
-      customer(id: $customerId) {
-        orders(first: 40) {
-          edges {
-            node {
-              lineItems (first: 100) {
-                edges {
-                  node {
-                    product {
-                      id
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }`,
-    {
-      variables: {
-        id: `gid://shopify/Customer/${customerId}`
       }
     }
   );

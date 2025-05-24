@@ -1,20 +1,12 @@
-import { data, json, type ActionFunctionArgs } from "@remix-run/node";
+import { data, type ActionFunctionArgs } from "@remix-run/node";
 import { authenticate, unauthenticated } from "../shopify.server";
 import { type AdminApiContextWithoutRest } from "node_modules/@shopify/shopify-app-remix/dist/ts/server/clients/admin/types";
-import { EnsureCORSFunction } from "node_modules/@shopify/shopify-app-remix/dist/ts/server/authenticate/helpers/ensure-cors-headers";
 
-type RequestBody = {
-  target: "get-customer" | "get-customer-orders" | "product-interaction";
+type CheckoutRequestBody = {
+  target: "get-customer" | "get-customer-orders"
   customerEmail?: string;
   customerId?: string;
   variantId?: string;
-};
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Accept, Authorization",
-  "Access-Control-Allow-Credentials": "true",
 };
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -22,35 +14,29 @@ export async function action({ request }: ActionFunctionArgs) {
   const { target } = body;
 
   // Authenticate Checkout Request
-  const { sessionToken, cors } = await authenticate.public.checkout(request);
+  const { sessionToken } = await authenticate.public.checkout(request);
   const { admin } = await unauthenticated.admin(sessionToken.dest);
 
   switch (target) {
     case "get-customer":
-      console.log("GET CUSTOMER RUNNING....");
       return getCustomer(body, admin);
     case "get-customer-orders":
-      console.log("GET CUSTOMER ORDERS RUNNING....");
       return getCustomerOrders(body, admin);
     default:
-      console.log("DEFAULT RUNNING....");
-      return cors(
-        data(
-          {
-            body: body,
-            sessionToken: sessionToken.dest,
-          },
-          {
-            status: 200,
-            headers: corsHeaders,
-          },
-        ),
+      return data(
+        {
+          body: body,
+          message: "No target found."
+        },
+        {
+          status: 200
+        },
       );
   }
 }
 
 async function getCustomer(
-  body: RequestBody,
+  body: CheckoutRequestBody,
   admin: AdminApiContextWithoutRest,
 ) {
   const { customerEmail } = body;
@@ -73,12 +59,11 @@ async function getCustomer(
     },
   );
 
-  const responseData = await response.json();
-  return data(responseData);
+  return data(await response.json());
 }
 
 async function getCustomerOrders(
-  body: RequestBody,
+  body: CheckoutRequestBody,
   admin: AdminApiContextWithoutRest,
 ) {
   const { customerId } = body;
@@ -106,11 +91,10 @@ async function getCustomerOrders(
     }`,
     {
       variables: {
-        id: `gid://shopify/Customer/${customerId}`,
+        id: customerId,
       },
     },
   );
 
-  const responseData = await response.json();
-  return data(responseData);
+  return data(await response.json());
 }

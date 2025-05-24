@@ -199,7 +199,7 @@ interface PSPreorderResponse {
         },
         body: JSON.stringify({
           variantId: this.vId,
-          target: "product-interaction",
+          target: "get-preorder-data",
         }),
       };
 
@@ -570,7 +570,7 @@ interface PSPreorderResponse {
         },
         body: JSON.stringify({
           variantId: vId,
-          target: "product-interaction",
+          target: "get-preorder-data",
         }),
       };
 
