@@ -1,4 +1,12 @@
 {
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "orders": "Orders",
+    "plans": "Preorder Plans"
+  },
   "quick_actions": {
     "title": "Quick Actions",
     "create_preorder_plan": "Create New Preorder Plan"
@@ -59,8 +67,14 @@
     "add_products": "Add products",
     "add_or_remove_products": "Add or remove products"
   },
+  "index": {
+    "title": "Welcome to Dropdeck"
+  },
+  "plans": {
+    "title": "Preorder Selling Plans"
+  },
   "orders": {
-    "title": "Orders",
+    "title": "Your Preorders",
     "bar": {
       "title": "Upcoming Preorders",
       "refresh": "Refresh"

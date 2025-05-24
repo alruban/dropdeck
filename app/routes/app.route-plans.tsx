@@ -19,6 +19,7 @@ import Statistics from "./components/statistics";
 import { UPDATE_SP_GROUP_MUTATION, updateSPGroupVariables } from "@shared/mutations/update-sp-group";
 import { ADD_SP_GROUP_PRODUCTS_MUTATION, addSPGroupProductsVariables } from "@shared/mutations/add-sp-group-products";
 import { REMOVE_SP_GROUP_PRODUCTS_MUTATION, removeSPGroupProductsVariables } from "@shared/mutations/remove-sp-group-products";
+import { useTranslation } from "../hooks/useTranslation";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
@@ -29,8 +30,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export const action = async ({ request }: ActionFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
   const formData = await request.formData();
-
-  console.log("This is the admin request", request)
 
   const createSellingPlanGroup = async () => {
     const expectedFulfillmentDate = formData.get("expectedFulfillmentDate");
@@ -166,6 +165,7 @@ export default function Index() {
   const { data } = useLoaderData<typeof loader>();
   const sellingPlanGroupResponse = data as SellingPlanGroupResponse;
   const navigation = useNavigation();
+  const { t } = useTranslation();
 
   // States
   const [createPlanModalOpen, setCreatePlanModalOpen] = useState(false);
@@ -174,7 +174,7 @@ export default function Index() {
 
   return (
     <Page>
-      <TitleBar title="Dropdeck"/>
+      <TitleBar title={t("plans.title")} />
       <BlockStack gap="500">
         <Layout>
           <Layout.Section>
