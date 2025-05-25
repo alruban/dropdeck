@@ -90,6 +90,33 @@
       "filters": {
         "hide_cancelled_orders": "Hide cancelled orders"
       }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Order",
+        "line_items": "Line items",
+        "payment_status": "Payment status",
+        "fulfillment_status": "Fulfillment status"
+      },
+      "resource_name": {
+        "singular": "order",
+        "plural": "orders"
+      },
+      "row": {
+        "select_all": "Select all orders with release date {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Order",
+          "line_items": "Line items",
+          "payment_status": "Payment status",
+          "fulfillment_status": "Fulfillment status"
+        },
+        "title": "Preorder Picking List",
+        "generated_on": "Generated on: {{date}}",
+        "file_name": "preorder-picking-list",
+        "button_text": "Export Picking List"
+      }
     }
   }
 }

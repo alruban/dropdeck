@@ -18,6 +18,7 @@ import { LinkIcon, ExportIcon } from "@shopify/polaris-icons";
 import { Fragment, useEffect } from "react";
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
+import { useTranslation } from "app/hooks/useTranslation";
 
 type OrderTableProps = {
   data: OrderTableRawData;
@@ -68,6 +69,8 @@ export default function OrderTable({
   selectedProduct = "",
   onSelectionChange,
 }: OrderTableProps) {
+  const { t } = useTranslation();
+
   // This returns the sellingPlanGroupId, sellingPlanId, and releaseDate for each line item in the order
   // Any line items that are not preorders will return empty objects.
   const preorderData = data.data.orders.edges.map((order) => {
@@ -169,10 +172,10 @@ export default function OrderTable({
     });
 
   const columnHeadings = [
-    { title: "Order", id: "column-header--order" },
-    { title: "Line items", id: "column-header--items" },
-    { title: "Payment status", id: "column-header--payment" },
-    { title: "Fulfillment status", id: "column-header--fulfillment" },
+    { title: t("orders.table.headings.order_number"), id: "column-header--order" },
+    { title: t("orders.table.headings.line_items"), id: "column-header--items" },
+    { title: t("orders.table.headings.payment_status"), id: "column-header--payment" },
+    { title: t("orders.table.headings.fulfillment_status"), id: "column-header--fulfillment" },
   ];
 
   const groupRowsByGroupKey = (
@@ -199,11 +202,6 @@ export default function OrderTable({
     }, {});
 
     return groups;
-  };
-
-  const resourceName = {
-    singular: "order",
-    plural: "orders",
   };
 
   const { selectedResources, allResourcesSelected, handleSelectionChange } =
@@ -272,7 +270,7 @@ export default function OrderTable({
           position={position}
           selected={selected}
           disabled={disabled}
-          accessibilityLabel={`Select all orders with release date ${date}`}
+          accessibilityLabel={t("orders.table.row.select_all", { date })}
         >
           <IndexTable.Cell scope="col" id={groupId}>
             <Text as="span" fontWeight="semibold">
@@ -378,11 +376,11 @@ export default function OrderTable({
 
     // Add title
     doc.setFontSize(16);
-    doc.text("Preorder Picking List", 14, 15);
+    doc.text(t("orders.table.export_pdf.title"), 14, 15);
 
     // Add date
     doc.setFontSize(10);
-    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 25);
+    doc.text(t("orders.table.export_pdf.generated_on", { date: new Date().toLocaleDateString() }), 14, 25);
 
     // Prepare table data with line items
     const tableData = selectedOrders.flatMap(order => {
@@ -408,7 +406,12 @@ export default function OrderTable({
     // Add table
     autoTable(doc, {
       startY: 35,
-      head: [["Order #", "Items", "Payment Status", "Fulfillment Status"]],
+      head: [[
+        t("orders.table.export_pdf.headings.order_number"),
+        t("orders.table.export_pdf.headings.line_items"),
+        t("orders.table.export_pdf.headings.payment_status"),
+        t("orders.table.export_pdf.headings.fulfillment_status")
+      ]],
       body: tableData,
       theme: "grid",
       styles: { fontSize: 8 },
@@ -422,7 +425,7 @@ export default function OrderTable({
     });
 
     // Save the PDF
-    doc.save("preorder-picking-list.pdf");
+    doc.save(`${t("orders.table.export_pdf.file_name")}.pdf`);
   };
 
   return (
@@ -434,7 +437,7 @@ export default function OrderTable({
             onClick={handleExportPDF}
             disabled={selectedResources.length === 0}
           >
-            Export Picking List
+            {t("orders.table.export_pdf.button_text")}
           </Button>
         </InlineStack>
         <IndexTable
@@ -443,7 +446,10 @@ export default function OrderTable({
           selectedItemsCount={
             allResourcesSelected ? "All" : selectedResources.length
           }
-          resourceName={resourceName}
+          resourceName={{
+            singular: t("orders.table.resource_name.singular"),
+            plural: t("orders.table.resource_name.plural"),
+          }}
           itemCount={orders.length}
           headings={columnHeadings as IndexTableProps["headings"]}
           selectable
