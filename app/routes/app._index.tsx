@@ -70,7 +70,7 @@ export default function Index() {
                           paddingTop: "20px",
                         }}
                       >
-                        <Link url="/app/route-quick-start">
+                        <Link url="/app/route-guide">
                           <Button
                             variant="primary"
                             size="large"

@@ -26,6 +26,9 @@ export default function App() {
         <Link to="/app" rel="home">
           {t("navigation.dashboard")}
         </Link>
+        <Link to="/app/route-guide">
+          {t("navigation.guide")}
+        </Link>
         <Link to="/app/route-orders">
           {t("navigation.orders")}
         </Link>

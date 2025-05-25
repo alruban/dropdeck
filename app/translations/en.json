@@ -4,6 +4,7 @@
   },
   "navigation": {
     "dashboard": "Dashboard",
+    "guide": "Quick Start Guide",
     "orders": "Orders",
     "plans": "Preorder Plans"
   },
@@ -116,6 +117,24 @@
         "generated_on": "Generated on: {{date}}",
         "file_name": "preorder-picking-list",
         "button_text": "Export Picking List"
+      }
+    }
+  },
+  "guide": {
+    "title": "🚀 Quick Start Guide for Dropdeck",
+    "description": "Dropdeck helps you set up powerful preorder experiences in Shopify with flexible control over availability and purchase limits.",
+    "steps": {
+      "1": {
+        "title": "Step 1: Create a Preorder Selling Plan",
+        "description": "What is a selling plan? A selling plan is Shopify's way of scheduling products so they can be fulfilled at a later date, so- to create a preorder you need to create a preorder selling plan. You can two this in two ways with Dropdeck:",
+        "steps": {
+          "1": "Create or add a pre-existing preorder selling plan on the product admin page under 'Purchase options', which will assign that product alone to the plan.",
+          "2": "Create a preorder selling plan for a selection of products or even just a product on Dropdeck's preorder plans page."
+        },
+        "conclusion": "Either way, all you need to supply to Dropdeck here is the expected fulfillment date (as Shopify calls it), or the 'Release Date' (as we call it), and optionally the number of units to restrict a customer to. Setting this to 0 will allow unlimited preorders for that product."
+      },
+      "2": {
+        "title": "Step 2: Add Products to the Preorder Selling Plan"
       }
     }
   }
