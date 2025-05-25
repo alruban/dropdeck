@@ -5,10 +5,31 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Dropdeck offers two preorder solutions: a manual setup (recommended) and this script. The manual guide at docs.dropdeck.com/preorders/shopify requires technical knowledge but offers better reliability. This script provides a simpler setup but may have compatibility issues with certain themes. Need help with the manual setup? Contact support@dropdeck.com."
+      "content": "Dropdeck offers two setup methods: there's the simple setup, and the advanced setup. The simple setup requires no further setup other than enabling it, but it may have compatability issues with certain themes as it attempts to inject code into your theme, while the advanced setup requires you to enter some code into your theme yourself, which means you need some technical knowledge."
+    },
+    {
+      "type": "select",
+      "id": "setup_choice",
+      "label": "Setup Choice",
+      "options": [
+        {
+          "value": "simple",
+          "label": "Simple Setup"
+        },
+        {
+          "value": "advanced",
+          "label": "Advanced Setup"
+        }
+      ],
+      "default": "simple"
     }
   ]
 }
 {% endschema %}
 
-<script class="dropdeck-script" src="{{ 'dropdeck-preorder-script.js' | asset_url }}" defer></script>
+{%- case settings.setup_choice -%}
+  {%- when "simple" -%}
+    <script src="{{ 'dropdeck-preorder-script-simple.js' | asset_url }}" defer></script>
+  {%- when "advanced" -%}
+    <script src="{{ 'dropdeck-preorder-script-advanced.js' | asset_url }}" defer></script>
+{%- endcase -%}
