@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://packages-nd-ff-saving.trycloudflare.com"
+application_url = "https://str-atom-mysql-sunshine.trycloudflare.com"
 embedded = true
 
 [build]
@@ -31,13 +31,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://packages-nd-ff-saving.trycloudflare.com/auth/callback",
-  "https://packages-nd-ff-saving.trycloudflare.com/auth/shopify/callback",
-  "https://packages-nd-ff-saving.trycloudflare.com/api/auth/callback"
+  "https://str-atom-mysql-sunshine.trycloudflare.com/auth/callback",
+  "https://str-atom-mysql-sunshine.trycloudflare.com/auth/shopify/callback",
+  "https://str-atom-mysql-sunshine.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://packages-nd-ff-saving.trycloudflare.com/app/api-proxy"
+url = "https://str-atom-mysql-sunshine.trycloudflare.com/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 
