@@ -121,20 +121,34 @@
     }
   },
   "guide": {
-    "title": "🚀 Quick Start Guide for Dropdeck",
-    "description": "Dropdeck helps you set up powerful preorder experiences in Shopify with flexible control over availability and purchase limits.",
-    "steps": {
-      "1": {
-        "title": "Step 1: Create a Preorder Selling Plan",
-        "description": "What is a selling plan? A selling plan is Shopify's way of scheduling products so they can be fulfilled at a later date, so- to create a preorder you need to create a preorder selling plan. You can two this in two ways with Dropdeck:",
-        "steps": {
-          "1": "Create or add a pre-existing preorder selling plan on the product admin page under 'Purchase options', which will assign that product alone to the plan.",
-          "2": "Create a preorder selling plan for a selection of products or even just a product on Dropdeck's preorder plans page."
+    "title": "Quick Start Guide",
+    "card": {
+      "title": "🚀 Quick Start Guide for Dropdeck",
+      "description": "Dropdeck helps you set up powerful preorder experiences in Shopify with flexible control over availability and purchase limits.",
+      "steps": {
+        "1": {
+          "title": "Step 1: Create a preorder selling plan",
+          "description": "What is a selling plan? A selling plan is Shopify's way of scheduling products so they can be fulfilled at a later date, so- to create a preorder you need to create a preorder selling plan. You can two this in two ways with Dropdeck:",
+          "steps": {
+            "1": "Create or add a pre-existing preorder selling plan on the product admin page under 'Purchase options', which will assign that product alone to the plan.",
+            "2": "Create a preorder selling plan for a selection of products or even just a product on Dropdeck's preorder plans page."
+          },
+          "conclusion": "Either way, all you need to supply to Dropdeck here is the 'Expected Fulfillment Date' (as Shopify calls it), or the 'Release Date' (as we call it), and optionally the number of units to restrict a customer to. Setting this to 0 will allow unlimited preorders for that product."
         },
-        "conclusion": "Either way, all you need to supply to Dropdeck here is the expected fulfillment date (as Shopify calls it), or the 'Release Date' (as we call it), and optionally the number of units to restrict a customer to. Setting this to 0 will allow unlimited preorders for that product."
-      },
-      "2": {
-        "title": "Step 2: Add Products to the Preorder Selling Plan"
+        "2": {
+          "title": "Step 2: Setup your theme to use Dropdeck",
+          "description": "Now we need to setup your theme to use Dropdeck, there are two ways to do this:",
+          "choices": {
+            "1": {
+              "title": "Manually setting up your theme to use Dropdeck (Recommended)",
+              "description": "This is the recommended way to setup Dropdeck, the theme app block method is the easiest way to setup Dropdeck but it is not a perfect solution - for most basic Shopify themes it will work out of the box, but for custom themes or themes with lots of edited code - it may not work/break the functionality of your theme. The best way to setup Dropdeck is to do it manually by adding our code snippets directly into your theme’s codebase."
+            },
+            "2": {
+              "title": "Adding the Dropdeck Script to your theme via the theme app block",
+              "description": "This is the easiest way to setup Dropdeck, but it requires you to have a Shopify theme with the theme app block enabled. If you don't have a theme with the theme app block enabled, you can skip this step and see Step 3 for information on manually setting up your theme to use Dropdeck."
+            }
+          }
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
 {
-  "include": ["env.d.ts", "**/*.ts", "**/*.tsx", "extensions/dropdeck-preorder/src/mutations/create-sp-group.ts", "extensions/dropdeck-preorder/src/mutations/update-preorder-sp-groupts"],
+  "include": ["env.d.ts", "**/*.ts", "**/*.tsx", "extensions/dropdeck-preorder-purchase-options/src/mutations/create-sp-group.ts", "extensions/dropdeck-preorder-purchase-options/src/mutations/update-preorder-sp-group.ts"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "strict": true,

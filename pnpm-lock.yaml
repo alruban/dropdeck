@@ -103,7 +103,7 @@ importers:
         specifier: ^6.2.2
         version: 6.3.5(@types/node@22.15.17)
 
-  extensions/dropdeck-preorder:
+  extensions/dropdeck-preorder-checkout:
     dependencies:
       '@shopify/ui-extensions':
         specifier: 2025.4.x
@@ -122,7 +122,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.21
 
-  extensions/dropdeck-preorder-checkout:
+  extensions/dropdeck-preorder-purchase-option:
     dependencies:
       '@shopify/ui-extensions':
         specifier: 2025.4.x
