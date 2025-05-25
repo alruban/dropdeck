@@ -257,6 +257,7 @@
                             this.elQuantityInput.value = unitsPerCustomer.toString();
                     }
                 });
+                this.elForm.classList.add("js-dropdeck-script-injected");
             })
                 .catch((error) => {
                 console.error(error);
@@ -403,6 +404,7 @@
                         }
                     }, 300);
                 });
+                this.elForm.classList.add("js-dropdeck-script-injected");
             })
                 .catch((error) => {
                 console.error(error);
@@ -416,12 +418,19 @@
     }
     const loadScript = () => {
         const elCartAddForms = getAll('form[action="/cart/add"]');
-        for (const elCartAddForm of elCartAddForms)
+        for (const elCartAddForm of elCartAddForms) {
+            if (elCartAddForm.classList.contains("js-dropdeck-preorder-script-simple-injected"))
+                continue;
             new ApplyDropdeckToAddToCartForm(elCartAddForm);
+        }
         const elCartForms = getAll('form[action="/cart"]');
-        for (const elCartForm of elCartForms)
+        for (const elCartForm of elCartForms) {
+            if (elCartForm.classList.contains("js-dropdeck-preorder-script-simple-injected"))
+                continue;
             new ApplyDropdeckToCartForm(elCartForm);
+        }
     };
     document.addEventListener("DOMContentLoaded", loadScript);
     document.addEventListener("shopify:section:load", loadScript);
+    document.addEventListener("dropdeck:reload", loadScript);
 })();

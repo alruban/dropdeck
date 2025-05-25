@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://listing-dozen-determine-cake.trycloudflare.com"
+application_url = "https://memorabilia-received-play-stocks.trycloudflare.com"
 embedded = true
 
 [build]
@@ -31,13 +31,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://listing-dozen-determine-cake.trycloudflare.com/auth/callback",
-  "https://listing-dozen-determine-cake.trycloudflare.com/auth/shopify/callback",
-  "https://listing-dozen-determine-cake.trycloudflare.com/api/auth/callback"
+  "https://memorabilia-received-play-stocks.trycloudflare.com/auth/callback",
+  "https://memorabilia-received-play-stocks.trycloudflare.com/auth/shopify/callback",
+  "https://memorabilia-received-play-stocks.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://listing-dozen-determine-cake.trycloudflare.com/app/api-proxy"
+url = "https://memorabilia-received-play-stocks.trycloudflare.com/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 

@@ -295,6 +295,9 @@ interface PSPreorderResponse {
               if (this.elQuantityInput) this.elQuantityInput.value = unitsPerCustomer.toString();
             }
           });
+
+          // Cement that the script has run
+          this.elForm.classList.add("js-dropdeck-script-injected");
         })
         .catch((error: unknown) => {
           console.error(error);
@@ -624,6 +627,9 @@ interface PSPreorderResponse {
               }
             }, 300);
           });
+
+          // Cement that the script has run
+          this.elForm.classList.add("js-dropdeck-script-injected");
         })
         .catch((error: unknown) => {
           console.error(error);
@@ -643,14 +649,23 @@ interface PSPreorderResponse {
 
   const loadScript = () => {
     const elCartAddForms = getAll<HTMLFormElement>('form[action="/cart/add"]');
-    for (const elCartAddForm of elCartAddForms)
+    for (const elCartAddForm of elCartAddForms) {
+      // The script has already been run on this element.
+      if (elCartAddForm.classList.contains("js-dropdeck-preorder-script-simple-injected")) continue;
+
       new ApplyDropdeckToAddToCartForm(elCartAddForm);
+    }
 
     const elCartForms = getAll<HTMLFormElement>('form[action="/cart"]');
-    for (const elCartForm of elCartForms)
+    for (const elCartForm of elCartForms) {
+      // The script has already been run on this element.
+      if (elCartForm.classList.contains("js-dropdeck-preorder-script-simple-injected")) continue;
+
       new ApplyDropdeckToCartForm(elCartForm);
+    }
   };
 
   document.addEventListener("DOMContentLoaded", loadScript);
   document.addEventListener("shopify:section:load", loadScript);
+  document.addEventListener("dropdeck:reload", loadScript);
 })();

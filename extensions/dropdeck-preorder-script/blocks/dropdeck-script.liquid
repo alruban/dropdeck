@@ -27,7 +27,7 @@
 }
 {% endschema %}
 
-{%- case settings.setup_choice -%}
+{%- case block.settings.setup_choice -%}
   {%- when "simple" -%}
     <script src="{{ 'dropdeck-preorder-script-simple.js' | asset_url }}" defer></script>
   {%- when "advanced" -%}
