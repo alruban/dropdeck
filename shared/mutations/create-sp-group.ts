@@ -52,54 +52,79 @@ const createSPGroupVariables = (
   productIds: string[],
   expectedFulfillmentDate: string, // Format: "2025-06-01T00:00:00Z"
   unitsPerCustomer: number,
-) => ({
-  variables: {
-    input: {
-      name: "Dropdeck Preorder",
-      description:
-        unitsPerCustomer === 0
-          ? `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}`
-          : `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}, ${unitsPerCustomer} units per customer`,
-      merchantCode: "Dropdeck Preorder",
-      options: ["Dropdeck Preorder"],
-      sellingPlansToCreate: [
-        {
-          name: "Preorder",
-          options: ["Dropdeck Preorder"],
-          category: "PRE_ORDER",
-          description: `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}`,
-          billingPolicy: {
-            fixed: {
-              checkoutCharge: {
-                type: "PERCENTAGE",
-                value: {
-                  percentage: 100,
-                },
-              },
-              remainingBalanceChargeTrigger: "NO_REMAINING_BALANCE",
-            },
-          },
-          deliveryPolicy: {
-            fixed: {
-              fulfillmentExactTime: expectedFulfillmentDate, // When fulfillment is expected
-              fulfillmentTrigger: "EXACT_TIME",
-            },
-          },
-          metafields: [
-            {
-              value: String(unitsPerCustomer),
-              type: "number_integer",
-              namespace: "dropdeck_preorder",
-              key: "units_per_customer",
-            },
-          ],
-        },
-      ],
-    },
-    resources: {
-      productIds: productIds,
-    },
-  },
-});
+) => {
+  const descriptionForPlanWithNoUnitRestriction = `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}`;
+  const descriptionForPlanWithUnitRestriction =
+    descriptionForPlanWithNoUnitRestriction.concat(
+      `, ${unitsPerCustomer} units per customer`,
+    );
 
-export { CREATE_SP_GROUP_MUTATION, createSPGroupVariables, CreateSPGroupResponse };
+  // Storing the preorder details in the option fields so they can be used on the front end without fetching...
+  const option = `${expectedFulfillmentDate}|${unitsPerCustomer}`;
+
+  return {
+    variables: {
+      input: {
+        appId: "DROPDECK_PREORDER",
+        description:
+          unitsPerCustomer === 0
+            ? descriptionForPlanWithNoUnitRestriction
+            : descriptionForPlanWithUnitRestriction,
+        merchantCode: "Dropdeck Preorder", // Merchant Facing
+        name: "Preorder", // Buyer Facing
+        // position: X,
+        options: [option],
+        sellingPlansToCreate: [
+          {
+            billingPolicy: {
+              fixed: {
+                checkoutCharge: {
+                  type: "PERCENTAGE",
+                  value: {
+                    percentage: 100,
+                  },
+                },
+                remainingBalanceChargeTrigger: "NO_REMAINING_BALANCE",
+              },
+            },
+            category: "PRE_ORDER",
+            deliveryPolicy: {
+              fixed: {
+                fulfillmentExactTime: expectedFulfillmentDate, // When fulfillment is expected
+                fulfillmentTrigger: "EXACT_TIME",
+              },
+            },
+            description: descriptionForPlanWithNoUnitRestriction, // Buyer Facing
+            // id: X
+            inventoryPolicy: {
+              reserve: "ON_SALE", // Fulfills when the item is sold, rather than fulfilled (ON_FULFILLMENT)
+            },
+            metafields: [
+              {
+                value: String(unitsPerCustomer),
+                type: "number_integer",
+                namespace: "dropdeck_preorder",
+                key: "units_per_customer",
+              },
+            ],
+            name: "Preorder", // Buyer Facing
+            options: [option],
+            // position: X
+            // pricingPolicies: X
+          },
+        ],
+        // sellingPlansToDelete: X
+        // sellingPlansToUpdate: X
+      },
+      resources: {
+        productIds: productIds,
+      },
+    },
+  };
+};
+
+export {
+  CREATE_SP_GROUP_MUTATION,
+  createSPGroupVariables,
+  CreateSPGroupResponse,
+};

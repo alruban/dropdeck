@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://sole-score-commodity-oval.trycloudflare.com"
+application_url = "https://heading-quickly-unemployment-is.trycloudflare.com"
 embedded = true
 
 [build]
@@ -31,13 +31,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://sole-score-commodity-oval.trycloudflare.com/auth/callback",
-  "https://sole-score-commodity-oval.trycloudflare.com/auth/shopify/callback",
-  "https://sole-score-commodity-oval.trycloudflare.com/api/auth/callback"
+  "https://heading-quickly-unemployment-is.trycloudflare.com/auth/callback",
+  "https://heading-quickly-unemployment-is.trycloudflare.com/auth/shopify/callback",
+  "https://heading-quickly-unemployment-is.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://sole-score-commodity-oval.trycloudflare.com/app/api-proxy"
+url = "https://heading-quickly-unemployment-is.trycloudflare.com/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 
