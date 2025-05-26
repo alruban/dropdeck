@@ -1,73 +1,4 @@
-type PSSellingPlanGroup = {
-  node: {
-    id: string;
-    merchantCode: string;
-    sellingPlans: {
-      edges: PSSellingPlan[];
-    };
-  };
-};
-
-type PSSellingPlan = {
-  node: {
-    id: string;
-    deliveryPolicy: {
-      fulfillmentExactTime: string;
-    };
-    metafields: {
-      edges: {
-        node: {
-          value: number;
-        };
-      }[];
-    };
-  };
-};
-
-type PSProductVariant = {
-  node: {
-    id: string;
-    availableForSale: boolean;
-    inventoryPolicy: string;
-    inventoryQuantity: number;
-  };
-};
-
-type PSProductVariantData = {
-  productVariant: {
-    product: {
-      id: string;
-      variants: {
-        edges: PSProductVariant[];
-      };
-      sellingPlanGroupsCount: {
-        count: number;
-      };
-      sellingPlanGroups: {
-        edges: PSSellingPlanGroup[];
-      };
-    };
-  };
-};
-
-interface PSPreorderResponse {
-  data: {
-    data: PSProductVariantData;
-    extensions: {
-      cost: {
-        requestedQueryCost: number;
-        actualQueryCost: number;
-        throttleStatus: {
-          maximumAvailable: number;
-          currentlyAvailable: number;
-          restoreRate: number;
-        };
-      };
-    };
-  };
-  init: ResponseInit | null;
-  type: string;
-}
+import { type PSProductVariantData, type PSPreorderResponse } from "./types";
 
 (function () {
   function get<T extends HTMLElement>(
@@ -150,10 +81,11 @@ interface PSPreorderResponse {
     };
 
     private createFatalErrorElement = () => {
+      const errorMessage = "Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details."
       const elError = document.createElement("span");
-      elError.textContent =
-        "Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details.";
+      elError.textContent = errorMessage;
       this.elForm.prepend(elError);
+      console.error(this.elForm, errorMessage)
     };
 
     private handleLoadingStyling = () => {
@@ -472,17 +404,42 @@ interface PSPreorderResponse {
     vData: PSProductVariantData | undefined;
     loaders: Map<HTMLInputElement, ReturnType<typeof this.handleLoadingStyling>> = new Map();
 
+    private getUniqueSelector(el: Element): string {
+      if (!(el instanceof Element)) return '';
+      const parts: string[] = [];
+
+      while (el && el.nodeType === Node.ELEMENT_NODE && el.tagName.toLowerCase() !== 'html') {
+        const parent = el.parentElement;
+        if (!parent) break;
+
+        const tag = el.tagName.toLowerCase();
+        // eslint-disable-next-line no-loop-func
+        const siblings = Array.from(parent.children).filter(e => e.tagName === el.tagName);
+        const index = siblings.indexOf(el) + 1;
+
+        if (siblings.length > 1) {
+          parts.unshift(`${tag}:nth-of-type(${index})`);
+        } else {
+          parts.unshift(tag);
+        }
+
+        el = parent;
+      }
+
+      return parts.length ? `html > ${parts.join(' > ')}` : '';
+    }
+
     constructor(form: HTMLFormElement) {
       this.elSection = form.closest(".shopify-section") as HTMLElement;
       this.elForm = form;
-      this.elInputs = getAll<HTMLInputElement>('input[name="updates[]"]', this.elForm);
+      this.elInputs = getAll<HTMLInputElement>('input[name="updates[]"], input[name="quantity"]', this.elForm);
 
       this.init();
     }
 
     private init = () => {
       if (this.elInputs.length === 0) {
-        console.error("Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details.")
+        console.error(this.elForm, "Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details.")
         return;
       }
 
@@ -583,6 +540,9 @@ interface PSPreorderResponse {
         }),
       };
 
+      // Get a fingerprint of the input to find it again later.
+      const uniqueSelector = this.getUniqueSelector(elInput);
+
       fetch("/apps/px", fetchOptions)
         .then((res) => res.json() as Promise<PSPreorderResponse>)
         .then((res: PSPreorderResponse) => {
@@ -614,12 +574,10 @@ interface PSPreorderResponse {
 
           this.elForm.addEventListener("change", () => {
             setTimeout(() => {
-              // First try to find the input by its original dataset values
-              const vId = elInput.dataset.variantId || elInput.dataset.quantityVariantId || elInput.dataset.id;
-              if (!vId) return;
-
-              // Try to find the input in the DOM
-              const currentInput = get<HTMLInputElement>(`input[data-variant-id="${vId}"], input[data-quantity-variant-id="${vId}"], input[data-id="${vId}"]`, this.elForm);
+              // Find the input using its original XPath
+              const currentInput = get<HTMLInputElement>(uniqueSelector);;
+              console.log(uniqueSelector)
+              console.log(currentInput)
 
               // If we found the input (either original or new), enforce the limit
               if (currentInput) {
@@ -651,7 +609,7 @@ interface PSPreorderResponse {
     const elCartAddForms = getAll<HTMLFormElement>('form[action="/cart/add"]');
     for (const elCartAddForm of elCartAddForms) {
       // The script has already been run on this element.
-      if (elCartAddForm.classList.contains("js-dropdeck-preorder-script-simple-injected")) continue;
+      if (elCartAddForm.classList.contains("js-dropdeck-script-injected")) continue;
 
       new ApplyDropdeckToAddToCartForm(elCartAddForm);
     }
@@ -659,7 +617,7 @@ interface PSPreorderResponse {
     const elCartForms = getAll<HTMLFormElement>('form[action="/cart"]');
     for (const elCartForm of elCartForms) {
       // The script has already been run on this element.
-      if (elCartForm.classList.contains("js-dropdeck-preorder-script-simple-injected")) continue;
+      if (elCartForm.classList.contains("js-dropdeck-script-injected")) continue;
 
       new ApplyDropdeckToCartForm(elCartForm);
     }
@@ -668,4 +626,20 @@ interface PSPreorderResponse {
   document.addEventListener("DOMContentLoaded", loadScript);
   document.addEventListener("shopify:section:load", loadScript);
   document.addEventListener("dropdeck:reload", loadScript);
+
+  console.log("LOADED ")
+
+  // Define window.dropdeck type at file level
+  type DropdeckWindow = Window & {
+    dropdeck: {
+      refresh?: () => void;
+    }
+  }
+
+  // Initialize dropdeck object
+  ((window as unknown) as DropdeckWindow).dropdeck = {
+    refresh: function() {
+      return loadScript();
+    }
+  };
 })();

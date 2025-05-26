@@ -1,4 +1,3 @@
-"use strict";
 (function () {
     function get(selector, node = document) {
         return node.querySelector(selector) ?? undefined;
@@ -34,10 +33,11 @@
                 return false;
             };
             this.createFatalErrorElement = () => {
+                const errorMessage = "Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details.";
                 const elError = document.createElement("span");
-                elError.textContent =
-                    "Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details.";
+                elError.textContent = errorMessage;
                 this.elForm.prepend(elError);
+                console.error(this.elForm, errorMessage);
             };
             this.handleLoadingStyling = () => {
                 this.elShopifyAlternatePayment = get(".shopify-payment-button[data-shopify=payment-button]", this.elForm);
@@ -268,11 +268,32 @@
         }
     }
     class ApplyDropdeckToCartForm {
+        getUniqueSelector(el) {
+            if (!(el instanceof Element))
+                return '';
+            const parts = [];
+            while (el && el.nodeType === Node.ELEMENT_NODE && el.tagName.toLowerCase() !== 'html') {
+                const parent = el.parentElement;
+                if (!parent)
+                    break;
+                const tag = el.tagName.toLowerCase();
+                const siblings = Array.from(parent.children).filter(e => e.tagName === el.tagName);
+                const index = siblings.indexOf(el) + 1;
+                if (siblings.length > 1) {
+                    parts.unshift(`${tag}:nth-of-type(${index})`);
+                }
+                else {
+                    parts.unshift(tag);
+                }
+                el = parent;
+            }
+            return parts.length ? `html > ${parts.join(' > ')}` : '';
+        }
         constructor(form) {
             this.loaders = new Map();
             this.init = () => {
                 if (this.elInputs.length === 0) {
-                    console.error("Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details.");
+                    console.error(this.elForm, "Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details.");
                     return;
                 }
                 for (const elInput of this.elInputs) {
@@ -348,7 +369,7 @@
             };
             this.elSection = form.closest(".shopify-section");
             this.elForm = form;
-            this.elInputs = getAll('input[name="updates[]"]', this.elForm);
+            this.elInputs = getAll('input[name="updates[]"], input[name="quantity"]', this.elForm);
             this.init();
         }
         injectSellingPlan(elInput) {
@@ -371,6 +392,7 @@
                     target: "get-preorder-data",
                 }),
             };
+            const uniqueSelector = this.getUniqueSelector(elInput);
             fetch("/apps/px", fetchOptions)
                 .then((res) => res.json())
                 .then((res) => {
@@ -395,10 +417,10 @@
                 this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
                 this.elForm.addEventListener("change", () => {
                     setTimeout(() => {
-                        const vId = elInput.dataset.variantId || elInput.dataset.quantityVariantId || elInput.dataset.id;
-                        if (!vId)
-                            return;
-                        const currentInput = get(`input[data-variant-id="${vId}"], input[data-quantity-variant-id="${vId}"], input[data-id="${vId}"]`, this.elForm);
+                        const currentInput = get(uniqueSelector);
+                        ;
+                        console.log(uniqueSelector);
+                        console.log(currentInput);
                         if (currentInput) {
                             this.enforceUnitsPerCustomerLimit(currentInput, unitsPerCustomer);
                         }
@@ -419,13 +441,13 @@
     const loadScript = () => {
         const elCartAddForms = getAll('form[action="/cart/add"]');
         for (const elCartAddForm of elCartAddForms) {
-            if (elCartAddForm.classList.contains("js-dropdeck-preorder-script-simple-injected"))
+            if (elCartAddForm.classList.contains("js-dropdeck-script-injected"))
                 continue;
             new ApplyDropdeckToAddToCartForm(elCartAddForm);
         }
         const elCartForms = getAll('form[action="/cart"]');
         for (const elCartForm of elCartForms) {
-            if (elCartForm.classList.contains("js-dropdeck-preorder-script-simple-injected"))
+            if (elCartForm.classList.contains("js-dropdeck-script-injected"))
                 continue;
             new ApplyDropdeckToCartForm(elCartForm);
         }
@@ -433,4 +455,11 @@
     document.addEventListener("DOMContentLoaded", loadScript);
     document.addEventListener("shopify:section:load", loadScript);
     document.addEventListener("dropdeck:reload", loadScript);
+    console.log("LOADED ");
+    window.dropdeck = {
+        refresh: function () {
+            return loadScript();
+        }
+    };
 })();
+export {};
