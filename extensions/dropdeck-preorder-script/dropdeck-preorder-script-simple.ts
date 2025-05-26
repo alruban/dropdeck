@@ -1,5 +1,3 @@
-import { type PSProductVariantData, type PSPreorderResponse } from "./types";
-
 (function () {
   function get<T extends HTMLElement>(
     selector: `#${string}` | `.${string}` | `${T["tagName"]}`,
@@ -404,31 +402,6 @@ import { type PSProductVariantData, type PSPreorderResponse } from "./types";
     vData: PSProductVariantData | undefined;
     loaders: Map<HTMLInputElement, ReturnType<typeof this.handleLoadingStyling>> = new Map();
 
-    private getUniqueSelector(el: Element): string {
-      if (!(el instanceof Element)) return '';
-      const parts: string[] = [];
-
-      while (el && el.nodeType === Node.ELEMENT_NODE && el.tagName.toLowerCase() !== 'html') {
-        const parent = el.parentElement;
-        if (!parent) break;
-
-        const tag = el.tagName.toLowerCase();
-        // eslint-disable-next-line no-loop-func
-        const siblings = Array.from(parent.children).filter(e => e.tagName === el.tagName);
-        const index = siblings.indexOf(el) + 1;
-
-        if (siblings.length > 1) {
-          parts.unshift(`${tag}:nth-of-type(${index})`);
-        } else {
-          parts.unshift(tag);
-        }
-
-        el = parent;
-      }
-
-      return parts.length ? `html > ${parts.join(' > ')}` : '';
-    }
-
     constructor(form: HTMLFormElement) {
       this.elSection = form.closest(".shopify-section") as HTMLElement;
       this.elForm = form;
@@ -446,6 +419,15 @@ import { type PSProductVariantData, type PSPreorderResponse } from "./types";
       for (const elInput of this.elInputs) {
         this.injectSellingPlan(elInput);
       }
+
+      // A change likely means the elements inside it were
+      this.elForm.addEventListener("change", () => {
+        setTimeout(() => {
+          for (const elInput of this.elInputs) {
+            this.injectSellingPlan(elInput);
+          }
+        }, 300);
+      });
     };
 
     private startRejectingFormSubmissions = () => {
@@ -518,8 +500,37 @@ import { type PSProductVariantData, type PSPreorderResponse } from "./types";
       };
     };
 
+    private findVariantId(el: HTMLElement): string | undefined {
+      const dataAttributes = [
+        { dataset: 'variantId', selector: 'variant-id' },
+        { dataset: 'quantityVariantId', selector: 'quantity-variant-id' },
+        { dataset: 'quantityId', selector: 'quantity-id' },
+        { dataset: 'lineItemVariantId', selector: 'line-item-variant-id' },
+        { dataset: 'lineItemId', selector: 'line-item-id' },
+        { dataset: 'itemId', selector: 'item-id' },
+        { dataset: 'id', selector: 'id' }
+      ];
+
+      // First check the element itself
+      for (const attr of dataAttributes) {
+        const value = el.dataset[attr.dataset];
+        if (value) return value;
+      }
+
+      // Then check all parents using closest
+      for (const attr of dataAttributes) {
+        const selector = `[data-${attr.selector}]`;
+        const element = el.closest(selector);
+        if (element) {
+          return (element as HTMLElement).dataset[attr.dataset];
+        }
+      }
+
+      return undefined;
+    }
+
     private injectSellingPlan(elInput: HTMLInputElement) {
-      const vId = elInput.dataset.variantId || elInput.dataset.quantityVariantId || elInput.dataset.id;
+      const vId = this.findVariantId(elInput);
       if (!vId) return;
 
       this.startRejectingFormSubmissions()
@@ -539,9 +550,6 @@ import { type PSProductVariantData, type PSPreorderResponse } from "./types";
           target: "get-preorder-data",
         }),
       };
-
-      // Get a fingerprint of the input to find it again later.
-      const uniqueSelector = this.getUniqueSelector(elInput);
 
       fetch("/apps/px", fetchOptions)
         .then((res) => res.json() as Promise<PSPreorderResponse>)
@@ -571,20 +579,6 @@ import { type PSProductVariantData, type PSPreorderResponse } from "./types";
           const { unitsPerCustomer } = dropdeckPreorderData;
 
           this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
-
-          this.elForm.addEventListener("change", () => {
-            setTimeout(() => {
-              // Find the input using its original XPath
-              const currentInput = get<HTMLInputElement>(uniqueSelector);;
-              console.log(uniqueSelector)
-              console.log(currentInput)
-
-              // If we found the input (either original or new), enforce the limit
-              if (currentInput) {
-                this.enforceUnitsPerCustomerLimit(currentInput, unitsPerCustomer);
-              }
-            }, 300);
-          });
 
           // Cement that the script has run
           this.elForm.classList.add("js-dropdeck-script-injected");
@@ -626,8 +620,6 @@ import { type PSProductVariantData, type PSPreorderResponse } from "./types";
   document.addEventListener("DOMContentLoaded", loadScript);
   document.addEventListener("shopify:section:load", loadScript);
   document.addEventListener("dropdeck:reload", loadScript);
-
-  console.log("LOADED ")
 
   // Define window.dropdeck type at file level
   type DropdeckWindow = Window & {

@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://mitsubishi-consequences-inclusive-assured.trycloudflare.com"
+application_url = "https://laboratory-capacity-confidentiality-abc.trycloudflare.com"
 embedded = true
 
 [build]
@@ -31,13 +31,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://mitsubishi-consequences-inclusive-assured.trycloudflare.com/auth/callback",
-  "https://mitsubishi-consequences-inclusive-assured.trycloudflare.com/auth/shopify/callback",
-  "https://mitsubishi-consequences-inclusive-assured.trycloudflare.com/api/auth/callback"
+  "https://laboratory-capacity-confidentiality-abc.trycloudflare.com/auth/callback",
+  "https://laboratory-capacity-confidentiality-abc.trycloudflare.com/auth/shopify/callback",
+  "https://laboratory-capacity-confidentiality-abc.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://mitsubishi-consequences-inclusive-assured.trycloudflare.com/app/api-proxy"
+url = "https://laboratory-capacity-confidentiality-abc.trycloudflare.com/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 

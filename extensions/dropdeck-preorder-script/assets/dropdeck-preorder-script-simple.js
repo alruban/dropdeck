@@ -1,3 +1,4 @@
+"use strict";
 (function () {
     function get(selector, node = document) {
         return node.querySelector(selector) ?? undefined;
@@ -268,27 +269,6 @@
         }
     }
     class ApplyDropdeckToCartForm {
-        getUniqueSelector(el) {
-            if (!(el instanceof Element))
-                return '';
-            const parts = [];
-            while (el && el.nodeType === Node.ELEMENT_NODE && el.tagName.toLowerCase() !== 'html') {
-                const parent = el.parentElement;
-                if (!parent)
-                    break;
-                const tag = el.tagName.toLowerCase();
-                const siblings = Array.from(parent.children).filter(e => e.tagName === el.tagName);
-                const index = siblings.indexOf(el) + 1;
-                if (siblings.length > 1) {
-                    parts.unshift(`${tag}:nth-of-type(${index})`);
-                }
-                else {
-                    parts.unshift(tag);
-                }
-                el = parent;
-            }
-            return parts.length ? `html > ${parts.join(' > ')}` : '';
-        }
         constructor(form) {
             this.loaders = new Map();
             this.init = () => {
@@ -299,6 +279,13 @@
                 for (const elInput of this.elInputs) {
                     this.injectSellingPlan(elInput);
                 }
+                this.elForm.addEventListener("change", () => {
+                    setTimeout(() => {
+                        for (const elInput of this.elInputs) {
+                            this.injectSellingPlan(elInput);
+                        }
+                    }, 300);
+                });
             };
             this.startRejectingFormSubmissions = () => {
                 this.elForm.addEventListener("submit", this.rejectFormSubmission, {
@@ -372,8 +359,32 @@
             this.elInputs = getAll('input[name="updates[]"], input[name="quantity"]', this.elForm);
             this.init();
         }
+        findVariantId(el) {
+            const dataAttributes = [
+                { dataset: 'variantId', selector: 'variant-id' },
+                { dataset: 'quantityVariantId', selector: 'quantity-variant-id' },
+                { dataset: 'quantityId', selector: 'quantity-id' },
+                { dataset: 'lineItemVariantId', selector: 'line-item-variant-id' },
+                { dataset: 'lineItemId', selector: 'line-item-id' },
+                { dataset: 'itemId', selector: 'item-id' },
+                { dataset: 'id', selector: 'id' }
+            ];
+            for (const attr of dataAttributes) {
+                const value = el.dataset[attr.dataset];
+                if (value)
+                    return value;
+            }
+            for (const attr of dataAttributes) {
+                const selector = `[data-${attr.selector}]`;
+                const element = el.closest(selector);
+                if (element) {
+                    return element.dataset[attr.dataset];
+                }
+            }
+            return undefined;
+        }
         injectSellingPlan(elInput) {
-            const vId = elInput.dataset.variantId || elInput.dataset.quantityVariantId || elInput.dataset.id;
+            const vId = this.findVariantId(elInput);
             if (!vId)
                 return;
             this.startRejectingFormSubmissions();
@@ -392,7 +403,6 @@
                     target: "get-preorder-data",
                 }),
             };
-            const uniqueSelector = this.getUniqueSelector(elInput);
             fetch("/apps/px", fetchOptions)
                 .then((res) => res.json())
                 .then((res) => {
@@ -415,17 +425,6 @@
                 };
                 const { unitsPerCustomer } = dropdeckPreorderData;
                 this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
-                this.elForm.addEventListener("change", () => {
-                    setTimeout(() => {
-                        const currentInput = get(uniqueSelector);
-                        ;
-                        console.log(uniqueSelector);
-                        console.log(currentInput);
-                        if (currentInput) {
-                            this.enforceUnitsPerCustomerLimit(currentInput, unitsPerCustomer);
-                        }
-                    }, 300);
-                });
                 this.elForm.classList.add("js-dropdeck-script-injected");
             })
                 .catch((error) => {
@@ -455,11 +454,9 @@
     document.addEventListener("DOMContentLoaded", loadScript);
     document.addEventListener("shopify:section:load", loadScript);
     document.addEventListener("dropdeck:reload", loadScript);
-    console.log("LOADED ");
     window.dropdeck = {
         refresh: function () {
             return loadScript();
         }
     };
 })();
-export {};

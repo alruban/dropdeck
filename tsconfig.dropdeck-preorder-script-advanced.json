@@ -12,6 +12,5 @@
     "sourceMap": false
   },
   "include": ["./extensions/dropdeck-preorder-script/dropdeck-preorder-script-advanced.ts"],
-  "exclude": ["node_modules"],
-  "types": ["./extensions/dropdeck-preorder-script/types.d.ts"]
+  "exclude": ["node_modules"]
 }
