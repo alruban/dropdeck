@@ -279,12 +279,20 @@
                 for (const elInput of this.elInputs) {
                     this.injectSellingPlan(elInput);
                 }
-                this.elForm.addEventListener("change", () => {
-                    setTimeout(() => {
+                const observer = new MutationObserver((mutations) => {
+                    const hasElementChanges = mutations.some(mutation => mutation.type === 'childList' &&
+                        (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0) &&
+                        this.elForm.contains(mutation.target));
+                    if (hasElementChanges) {
+                        this.elInputs = getAll('input[name="updates[]"], input[name="quantity"]', this.elForm);
                         for (const elInput of this.elInputs) {
                             this.injectSellingPlan(elInput);
                         }
-                    }, 300);
+                    }
+                });
+                observer.observe(this.elForm, {
+                    childList: true,
+                    subtree: true
                 });
             };
             this.startRejectingFormSubmissions = () => {

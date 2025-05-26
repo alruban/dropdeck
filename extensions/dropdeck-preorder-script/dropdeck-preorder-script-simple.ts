@@ -420,13 +420,28 @@
         this.injectSellingPlan(elInput);
       }
 
-      // A change likely means the elements inside it were
-      this.elForm.addEventListener("change", () => {
-        setTimeout(() => {
+      // Watch for changes to the form's children, if there are any removed/added nodes then reinject the selling plan conditions.
+      const observer = new MutationObserver((mutations) => {
+        // Only process if elements were added or removed
+        const hasElementChanges = mutations.some(mutation =>
+          mutation.type === 'childList' &&
+          (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0) &&
+          this.elForm.contains(mutation.target)
+        );
+
+        if (hasElementChanges) {
+          this.elInputs = getAll<HTMLInputElement>('input[name="updates[]"], input[name="quantity"]', this.elForm);
+
           for (const elInput of this.elInputs) {
             this.injectSellingPlan(elInput);
           }
-        }, 300);
+        }
+      });
+
+      // Start observing the form for changes to its children
+      observer.observe(this.elForm, {
+        childList: true,
+        subtree: true
       });
     };
 
