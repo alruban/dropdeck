@@ -6,6 +6,7 @@ import {
   Tag,
   Button,
   Box,
+  Checkbox,
 } from "@shopify/polaris";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useState, useCallback } from "react";
@@ -14,10 +15,11 @@ import { useAppBridge } from "@shopify/app-bridge-react";
 import { getTomorrow } from "@shared/tools/date-tools";
 
 interface SellingPlanGroupFormProps {
-  onUnitsPerCustomerChange: (value: string) => void;
+  onUnitsPerCustomerChange: (value: number) => void;
   onSelectedProductsChange: (products: Product[]) => void;
   onExpectedFulfillmentDateChange: (date: Date) => void;
-  initialUnitsPerCustomer?: string;
+  initialUnitsPerCustomer?: number;
+  initialUnitsPerCustomerMin?: number;
   initialSelectedProducts?: Product[];
   initialExpectedFulfillmentDate?: Date;
 }
@@ -26,7 +28,8 @@ export default function SellingPlanGroupForm({
   onUnitsPerCustomerChange,
   onSelectedProductsChange,
   onExpectedFulfillmentDateChange,
-  initialUnitsPerCustomer = "0",
+  initialUnitsPerCustomer = 0,
+  initialUnitsPerCustomerMin = 0,
   initialSelectedProducts = [],
   initialExpectedFulfillmentDate = getTomorrow(),
 }: SellingPlanGroupFormProps) {
@@ -34,15 +37,17 @@ export default function SellingPlanGroupForm({
   const shopify = useAppBridge();
 
   // States
+  const [enableUnitRestriction, setEnableUnitRestriction] = useState(initialUnitsPerCustomer > 0);
   const [unitsPerCustomer, setUnitsPerCustomer] = useState(initialUnitsPerCustomer);
+  const [unitsPerCustomerMin, setUnitsPerCustomerMin] = useState(initialUnitsPerCustomerMin);
   const [selectedProducts, setSelectedProducts] = useState<Product[]>(initialSelectedProducts);
   const [expectedFulfillmentDate, setExpectedFulfillmentDate] = useState<Date>(initialExpectedFulfillmentDate);
 
   const handleUnitsPerCustomerChange = useCallback((newValue: string) => {
     const value = parseInt(newValue);
     if (value >= 0) {
-      setUnitsPerCustomer(newValue);
-      onUnitsPerCustomerChange(newValue);
+      setUnitsPerCustomer(value);
+      onUnitsPerCustomerChange(value);
     }
   }, [onUnitsPerCustomerChange]);
 
@@ -85,6 +90,24 @@ export default function SellingPlanGroupForm({
     [selectedProducts, onSelectedProductsChange],
   );
 
+  // Handle Unit Restriction Input/Appearance
+  const handleEnableRestrictionChange = (newChecked: boolean) => {
+    setEnableUnitRestriction(newChecked)
+
+    let units;
+    if (!newChecked) {
+      units = 0;
+    } else if (initialUnitsPerCustomer >= 1 || unitsPerCustomer >= 1) {
+      units = initialUnitsPerCustomer > 1 ? initialUnitsPerCustomer : unitsPerCustomer;
+    } else {
+      units = 1;
+    }
+
+    setUnitsPerCustomer(units);
+    setUnitsPerCustomerMin(newChecked ? 1 : 0);
+    handleUnitsPerCustomerChange(String(units));
+  };
+
   return (
     <BlockStack gap="500">
       <DateField
@@ -93,14 +116,22 @@ export default function SellingPlanGroupForm({
         initialValue={expectedFulfillmentDate}
       />
 
-      <TextField
-        type="number"
-        autoComplete="off"
-        label={t("selling_plan_group_form.units_per_customer")}
-        value={unitsPerCustomer}
-        onChange={handleUnitsPerCustomerChange}
-        min={0}
+      <Checkbox
+        label={t("selling_plan_group_form.enable_unit_restriction")}
+        checked={enableUnitRestriction}
+        onChange={(newChecked) => handleEnableRestrictionChange(newChecked)}
       />
+
+      {enableUnitRestriction && (
+        <TextField
+          type="number"
+          autoComplete="off"
+          label={t("selling_plan_group_form.units_per_customer")}
+          value={String(unitsPerCustomer)}
+          onChange={handleUnitsPerCustomerChange}
+          min={unitsPerCustomerMin}
+        />
+      )}
 
       <BlockStack gap={selectedProducts.length > 0 ? "500" : "200"}>
         <BlockStack gap="200">

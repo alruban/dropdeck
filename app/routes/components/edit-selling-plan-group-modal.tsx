@@ -11,7 +11,7 @@ import { getTomorrow } from "@shared/tools/date-tools";
 import SellingPlanGroupForm from "./selling-plan-group-form";
 
 type EditSellingPlanGroupModalProps = {
-  selectedPlanGroup: SellingPlanGroup | null;
+  selectedPlanGroup: SellingPlanGroup;
   editPlanModalOpen: boolean;
   setEditPlanModalOpen: (open: boolean) => void;
   isLoading: boolean;
@@ -26,24 +26,24 @@ export default function EditSellingPlanGroupModal({
   const submit = useSubmit();
   const { t } = useTranslation();
 
-  const initialExpectedFulfillmentDate = selectedPlanGroup?.sellingPlans.edges[0].node.deliveryPolicy.fulfillmentExactTime ? new Date(selectedPlanGroup.sellingPlans.edges[0].node.deliveryPolicy.fulfillmentExactTime) : getTomorrow();
-  const initialUnitsPerCustomer = selectedPlanGroup?.sellingPlans.edges[0].node.metafields.edges.find(metafield => metafield.node.key === "units_per_customer")?.node.value || "0";
-  const initialSelectedProducts = selectedPlanGroup?.products.edges.map(edge => ({
+  const initialExpectedFulfillmentDate = selectedPlanGroup.sellingPlans.edges[0].node.deliveryPolicy.fulfillmentExactTime ? new Date(selectedPlanGroup.sellingPlans.edges[0].node.deliveryPolicy.fulfillmentExactTime) : getTomorrow();
+  const initialUnitsPerCustomer = Number(selectedPlanGroup.sellingPlans.edges[0].node.metafields.edges.find(metafield => metafield.node.key === "units_per_customer")?.node.value || "0");
+  const initialSelectedProducts = selectedPlanGroup.products.edges.map(edge => ({
     id: edge.node.id,
     title: edge.node.title
   })) || [];
 
   // States
   const [expectedFulfillmentDate, setExpectedFulfillmentDate] = useState<Date>(initialExpectedFulfillmentDate);
-  const [unitsPerCustomer, setUnitsPerCustomer] = useState(initialUnitsPerCustomer); // 0 means unlimited
+  const [unitsPerCustomer, setUnitsPerCustomer] = useState(initialUnitsPerCustomer);
   const [selectedProducts, setSelectedProducts] = useState<Product[]>(initialSelectedProducts);
 
   const confirmEdit = () => {
     const formData = new FormData();
-    formData.set("sellingPlanGroupId", String(selectedPlanGroup?.id));
-    formData.set("sellingPlanId", String(selectedPlanGroup?.sellingPlans.edges[0].node.id));
+    formData.set("sellingPlanGroupId", String(selectedPlanGroup.id));
+    formData.set("sellingPlanId", String(selectedPlanGroup.sellingPlans.edges[0].node.id));
     formData.set("expectedFulfillmentDate", expectedFulfillmentDate?.toISOString());
-    formData.set("unitsPerCustomer", unitsPerCustomer);
+    formData.set("unitsPerCustomer", String(unitsPerCustomer));
     formData.set(
       "originalProductIds",
       initialSelectedProducts.map((p) => p.id).join(",")
@@ -67,7 +67,7 @@ export default function EditSellingPlanGroupModal({
         destructive: false,
         onAction: confirmEdit,
         loading: isLoading,
-        disabled: selectedProducts.length === 0,
+        disabled: selectedProducts.length === 0
       }}
       secondaryActions={[
         {

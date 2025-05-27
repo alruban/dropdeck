@@ -26,6 +26,8 @@ export default function DeleteSellingPlanGroupModal({
   const submit = useSubmit();
   const { t } = useTranslation();
 
+  const products = selectedPlanGroup?.products.edges || [];
+
   const confirmDelete = () => {
     if (selectedPlanGroup) {
       const formData = new FormData();
@@ -57,21 +59,23 @@ export default function DeleteSellingPlanGroupModal({
       <Modal.Section>
         <BlockStack gap="400">
           <Text as="p">
-            {t("delete_selling_plan_group_modal.description")}
+            {products.length > 0 ? t("delete_selling_plan_group_modal.description.applied_to_products") : t("delete_selling_plan_group_modal.description.applied_to_all_products")}
           </Text>
-          <Box paddingBlock="100">
-            <Scrollable style={{ maxHeight: "200px" }} shadow>
-              <Box padding="400" borderRadius="200" borderColor="border" borderWidth="100">
-                <BlockStack gap="200">
-                  {selectedPlanGroup?.products.edges.map((edge) => (
-                    <Text key={edge.node.id} as="p">
-                      {edge.node.title}
-                    </Text>
-                  ))}
-                </BlockStack>
-              </Box>
-            </Scrollable>
-          </Box>
+          {products.length > 0 && (
+            <Box paddingBlock="100">
+              <Scrollable style={{ maxHeight: "200px" }} shadow>
+                <Box padding="400" borderRadius="200" borderColor="border" borderWidth="100">
+                  <BlockStack gap="200">
+                    {products.map((edge) => (
+                      <Text key={edge.node.id} as="p">
+                        {edge.node.title}
+                      </Text>
+                    ))}
+                  </BlockStack>
+                </Box>
+              </Scrollable>
+            </Box>
+          )}
           <Text as="p">
             {t("delete_selling_plan_group_modal.warning")}
           </Text>

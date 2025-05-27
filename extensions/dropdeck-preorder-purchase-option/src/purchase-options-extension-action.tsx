@@ -9,10 +9,11 @@ import {
   NumberField,
   InlineStack,
   Badge,
-  Link
+  Link,
+  Checkbox
 } from '@shopify/ui-extensions-react/admin';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { createISOString, getOneMonthAhead, parseISOString } from '../../../shared/tools/date-tools';
 import { type RenderExtensionTarget } from '@shopify/ui-extensions/admin';
@@ -44,7 +45,10 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
 
   const [sellingPlanId, setSellingPlanId] = useState<string | undefined>(undefined);
   const [expectedFulfillmentDate, setExpectedFulfillmentDate] = useState(getOneMonthAhead());
-  const [unitsPerCustomer, setUnitsPerCustomer] = useState(0); // 0 means unlimited
+  const [enableUnitRestriction, setEnableUnitRestriction] = useState(false);
+  const [initialUnitsPerCustomer, setInitialUnitsPerCustomer] = useState(enableUnitRestriction ? 1 : 0);
+  const [unitsPerCustomer, setUnitsPerCustomer] = useState(enableUnitRestriction ? 1 : 0);
+  const [unitsPerCustomerMin, setUnitsPerCustomerMin] = useState(enableUnitRestriction ? 1 : 0);
   const [affectedProducts, setAffectedProducts] = useState<{
     id: string;
     title: string;
@@ -77,14 +81,22 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
       const { sellingPlanGroup } = res.data;
 
       if (sellingPlanGroup) {
-        isDevelopment && console.log("Selling plan group retrieved:", sellingPlanGroup);
-        setSellingPlanId(sellingPlanGroup.sellingPlans.edges[0].node.id);
-        setExpectedFulfillmentDate(parseISOString(sellingPlanGroup.sellingPlans.edges[0].node.deliveryPolicy.fulfillmentExactTime).date);
-        setUnitsPerCustomer(Number(sellingPlanGroup.sellingPlans.edges[0].node.metafields.edges.find((metafield) => metafield.node.key === "units_per_customer")?.node.value));
-        setAffectedProducts(sellingPlanGroup.products.edges.map((product) => (productId !== product.node.id ? {
+        const sellingPlanId = sellingPlanGroup.sellingPlans.edges[0].node.id;
+        const expectedFulfillmentDate = parseISOString(sellingPlanGroup.sellingPlans.edges[0].node.deliveryPolicy.fulfillmentExactTime).date;
+        const unitsPerCustomer = Number(sellingPlanGroup.sellingPlans.edges[0].node.metafields.edges.find((metafield) => metafield.node.key === "units_per_customer")?.node.value);
+        const affectedProducts = sellingPlanGroup.products.edges.map((product) => (productId !== product.node.id ? {
           id: product.node.id,
           title: product.node.title
-        } : null)).filter((product) => product !== null));
+        } : null)).filter((product) => product !== null)
+
+        isDevelopment && console.log("Selling plan group retrieved:", sellingPlanGroup);
+
+        setSellingPlanId(sellingPlanId);
+        setExpectedFulfillmentDate(expectedFulfillmentDate);
+        setAffectedProducts(affectedProducts);
+        setInitialUnitsPerCustomer(unitsPerCustomer);
+        setUnitsPerCustomer(unitsPerCustomer);
+        setEnableUnitRestriction(unitsPerCustomer > 0);
       } else {
         isDevelopment && console.log("Failed to retrieve selling plan group:", res);
       }
@@ -164,6 +176,23 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
     return true;
   };
 
+  // Handle Unit Restriction Input/Appearance
+  const handleEnableRestrictionChange = (newChecked: boolean) => {
+    setEnableUnitRestriction(newChecked)
+
+    let units;
+    if (!newChecked) {
+      units = 0;
+    } else if (initialUnitsPerCustomer >= 1 || unitsPerCustomer >= 1) {
+      units = initialUnitsPerCustomer > 1 ? initialUnitsPerCustomer : unitsPerCustomer;
+    } else {
+      units = 1;
+    }
+
+    setUnitsPerCustomer(units);
+    setUnitsPerCustomerMin(enableUnitRestriction ? 1 : 0);
+  };
+
   return (
     <AdminAction
       title={intent === "creating" ? i18n.translate("heading_create_preorder") : i18n.translate("heading_update_preorder")}
@@ -203,12 +232,20 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
               error={dateError}
             />
 
-            <NumberField
-              label={i18n.translate("units_per_customer")}
-              value={unitsPerCustomer}
-              onChange={(newUnitsPerCustomer) => setUnitsPerCustomer(newUnitsPerCustomer)}
-              min={0}
+            <Checkbox
+              label={i18n.translate("enable_unit_restriction")}
+              checked={enableUnitRestriction}
+              onChange={(value) => handleEnableRestrictionChange(value)}
             />
+
+            {enableUnitRestriction && (
+              <NumberField
+                label={i18n.translate("units_per_customer")}
+                value={unitsPerCustomer}
+                onChange={(newUnitsPerCustomer) => setUnitsPerCustomer(newUnitsPerCustomer)}
+                min={unitsPerCustomerMin}
+              />
+            )}
           </BlockStack>
 
           {intent === "updating" && affectedProducts.length > 0 && (

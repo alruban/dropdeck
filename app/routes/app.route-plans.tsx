@@ -67,8 +67,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const newProductIds = formData.get("newProductIds");
 
     // Convert string arrays to actual arrays
-    const originalProducts = String(originalProductIds).split(",");
-    const newProducts = String(newProductIds).split(",");
+    const originalProducts = String(originalProductIds).split(",").filter(id => id !== "");
+    const newProducts = String(newProductIds).split(",").filter(id => id !== "");
 
     // Create Sets for efficient comparison
     const originalSet = new Set(originalProducts);

@@ -172,12 +172,14 @@ export default function SellingPlanGroupsTable({
         isLoading={isLoading}
       />
 
-      <EditSellingPlanGroupModal
-        selectedPlanGroup={selectedPlanGroup}
-        editPlanModalOpen={editPlanModalOpen}
-        setEditPlanModalOpen={setEditPlanModalOpen}
-        isLoading={isLoading}
-      />
+      {selectedPlanGroup && (
+        <EditSellingPlanGroupModal
+          selectedPlanGroup={selectedPlanGroup}
+          editPlanModalOpen={editPlanModalOpen}
+          setEditPlanModalOpen={setEditPlanModalOpen}
+          isLoading={isLoading}
+        />
+      )}
     </>
   );
 }

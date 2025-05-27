@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://airfare-change-closely-hard.trycloudflare.com"
+application_url = "https://guarantees-consideration-scary-rates.trycloudflare.com"
 embedded = true
 
 [build]
@@ -31,13 +31,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://airfare-change-closely-hard.trycloudflare.com/auth/callback",
-  "https://airfare-change-closely-hard.trycloudflare.com/auth/shopify/callback",
-  "https://airfare-change-closely-hard.trycloudflare.com/api/auth/callback"
+  "https://guarantees-consideration-scary-rates.trycloudflare.com/auth/callback",
+  "https://guarantees-consideration-scary-rates.trycloudflare.com/auth/shopify/callback",
+  "https://guarantees-consideration-scary-rates.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://airfare-change-closely-hard.trycloudflare.com/app/api-proxy"
+url = "https://guarantees-consideration-scary-rates.trycloudflare.com/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 
