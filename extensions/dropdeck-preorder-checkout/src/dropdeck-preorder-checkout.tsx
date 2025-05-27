@@ -37,6 +37,7 @@ function Extension() {
   const { sessionToken } = useApi();
 
   // States
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [customerId, setCustomerId] = useState<string | null>(
     customer && customer.id ? customer.id : null,
   );
@@ -72,6 +73,8 @@ function Extension() {
     if (unitsAssociatedWithCustomer > preorderData.unitsPerCustomer) {
       setHasExceededLimit(true);
     }
+
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -187,7 +190,7 @@ function Extension() {
   }, [customerId]);
 
   useBuyerJourneyIntercept(({ canBlockProgress }) => {
-    if (canBlockProgress && preorderData && hasExceededLimit) {
+    if ((canBlockProgress && isLoading) || (canBlockProgress && preorderData && hasExceededLimit)) {
 
       let pageError;
 
