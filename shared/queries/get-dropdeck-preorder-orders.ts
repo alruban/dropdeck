@@ -1,5 +1,5 @@
 const GET_DROPDECK_PREORDER_ORDERS_QUERY =
-`#graphql
+  `#graphql
   query getOrders($query: String!) {
     shop {
       myshopifyDomain
@@ -13,15 +13,37 @@ const GET_DROPDECK_PREORDER_ORDERS_QUERY =
           displayFinancialStatus
           displayFulfillmentStatus
           cancelledAt
-          lineItems(first: 250) {
+          lineItems(first: 30) {
             edges {
               node {
                 id
                 title
                 quantity
-                customAttributes {
-                  key
-                  value
+                product {
+                  sellingPlanGroups(first: 3) {
+                    edges {
+                      node {
+                        appId
+                        sellingPlans(first: 1) {
+                          nodes {
+                            deliveryPolicy {
+                              ... on SellingPlanFixedDeliveryPolicy {
+                                fulfillmentExactTime
+                              }
+                            }
+                            metafields(first: 1, namespace: "dropdeck_preorder") {
+                              edges {
+                                node {
+                                  key
+                                  value
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -33,7 +55,10 @@ const GET_DROPDECK_PREORDER_ORDERS_QUERY =
 `;
 
 const getDropdeckPreorderOrdersVariables = () => ({
-  query: "tag:\"Dropdeck Preorder\""
+  query: 'tag:"Dropdeck Preorder"',
 });
 
-export { GET_DROPDECK_PREORDER_ORDERS_QUERY, getDropdeckPreorderOrdersVariables };
+export {
+  GET_DROPDECK_PREORDER_ORDERS_QUERY,
+  getDropdeckPreorderOrdersVariables,
+};

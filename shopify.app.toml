@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://heading-quickly-unemployment-is.trycloudflare.com"
+application_url = "https://airfare-change-closely-hard.trycloudflare.com"
 embedded = true
 
 [build]
@@ -31,13 +31,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://heading-quickly-unemployment-is.trycloudflare.com/auth/callback",
-  "https://heading-quickly-unemployment-is.trycloudflare.com/auth/shopify/callback",
-  "https://heading-quickly-unemployment-is.trycloudflare.com/api/auth/callback"
+  "https://airfare-change-closely-hard.trycloudflare.com/auth/callback",
+  "https://airfare-change-closely-hard.trycloudflare.com/auth/shopify/callback",
+  "https://airfare-change-closely-hard.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://heading-quickly-unemployment-is.trycloudflare.com/app/api-proxy"
+url = "https://airfare-change-closely-hard.trycloudflare.com/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 

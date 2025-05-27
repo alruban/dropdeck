@@ -29,7 +29,7 @@ type OrderTableProps = {
   onSelectionChange?: (selectedResources: string[]) => void;
 };
 
-interface Order {
+type Order = {
   id: string;
   name: string;
   releaseDate: string;
@@ -56,8 +56,6 @@ interface Groups {
 }
 
 interface PreorderData {
-  sellingPlanGroupId: string;
-  sellingPlanId: string;
   releaseDate: string;
 }
 
@@ -71,19 +69,22 @@ export default function OrderTable({
 }: OrderTableProps) {
   const { t } = useTranslation();
 
-  // This returns the sellingPlanGroupId, sellingPlanId, and releaseDate for each line item in the order
-  // Any line items that are not preorders will return empty objects.
   const preorderData = data.data.orders.edges.map((order) => {
     return order.node.lineItems.edges.map((lineItem) => {
-      return JSON.parse(
-        lineItem.node.customAttributes.find(
-          (attribute) => attribute.key === "_dropdeck_preorder_data",
-        )?.value || "{}",
+      const sellingPlanGroup = lineItem.node.product.sellingPlanGroups.edges.find(
+        (sellingPlanGroup) => sellingPlanGroup.node.appId === "DROPDECK_PREORDER"
       );
+      if (!sellingPlanGroup) return null;
+
+      const sellingPlan = sellingPlanGroup.node.sellingPlans.nodes[0];
+
+      return {
+        releaseDate: sellingPlan.deliveryPolicy.fulfillmentExactTime,
+      };
     }) as PreorderData[];
   });
 
-  const orders: Order[] = data.data.orders.edges
+  const orders = data.data.orders.edges
     .map((order, index) => {
       // Check if there's at least one valid preorder in the array
       const hasValidPreorder = preorderData[index]?.some(
@@ -134,7 +135,7 @@ export default function OrderTable({
         isFulfilled,
       };
     })
-    .filter((order): order is Order => order !== null) // Remove null entries
+    .filter((order): order is NonNullable<typeof order> => order !== null)
     .filter((order) => {
       // Filter out cancelled orders if hideCancelled is true
       if (hideCancelled && order.isCancelled) {
@@ -169,7 +170,7 @@ export default function OrderTable({
       const dateA = new Date(a.releaseDate);
       const dateB = new Date(b.releaseDate);
       return dateA.getTime() - dateB.getTime();
-    });
+    }) as Order[];
 
   const columnHeadings = [
     { title: t("orders.table.headings.order_number"), id: "column-header--order" },

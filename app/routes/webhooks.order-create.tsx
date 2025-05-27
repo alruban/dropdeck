@@ -5,12 +5,11 @@ import { authenticate } from "../shopify.server";
 type Order = {
   id: string;
   tags: string[];
-  line_items: {
-    properties: {
-      name: string;
-      value: string;
-    }[]
-  }[];
+  product: {
+    selling_plan_groups: {
+      app_id: string;
+    }[];
+  };
 };
 
 export const action = async ({ request }: ActionFunctionArgs) => {
@@ -19,10 +18,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   // Parse the order data
   // Check if any line items are preorders
-  const isPreorder = (payload as Order).line_items.some((item) => {
-    return item.properties.some(
-      (property: any) => property.name === "_dropdeck_preorder" && property.value === "true",
-    );
+  const isPreorder = (payload as Order).product.selling_plan_groups.some((selling_plan_group) => {
+    return selling_plan_group.app_id === "DROPDECK_PREORDER";
   });
 
   if (isPreorder && session) {

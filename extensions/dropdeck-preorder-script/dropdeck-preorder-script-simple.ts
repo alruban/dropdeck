@@ -171,39 +171,7 @@
             this.elForm.prepend(sellingPlanInput);
           }
 
-          // Handle Dropdeck Preorder Properties
-          const isDropdeckPreorderProp = document.createElement("input");
-          isDropdeckPreorderProp.setAttribute(
-            "name",
-            "properties[_dropdeck_preorder]",
-          );
-          isDropdeckPreorderProp.setAttribute("id", "dropdeck_preorder");
-          isDropdeckPreorderProp.setAttribute("type", "hidden");
-          isDropdeckPreorderProp.setAttribute("value", "true");
-          this.elForm.prepend(isDropdeckPreorderProp);
-
-          const dropdeckPreorderDataProp = document.createElement("input");
-          const dropdeckPreorderData = {
-            sellingPlanGroupId: sellingPlanGroup.node.id,
-            sellingPlanId: sellingPlan.node.id,
-            releaseDate: sellingPlan.node.deliveryPolicy.fulfillmentExactTime,
-            unitsPerCustomer: Number(sellingPlan.node.metafields.edges[0].node.value),
-          };
-
-          dropdeckPreorderDataProp.setAttribute(
-            "name",
-            "properties[_dropdeck_preorder_data]",
-          );
-          dropdeckPreorderDataProp.setAttribute("id", "dropdeck_preorder_data");
-          dropdeckPreorderDataProp.setAttribute("type", "hidden");
-          dropdeckPreorderDataProp.setAttribute(
-            "value",
-            JSON.stringify(dropdeckPreorderData),
-          );
-
-          this.elForm.prepend(dropdeckPreorderDataProp);
-
-          const { unitsPerCustomer } = dropdeckPreorderData;
+          const unitsPerCustomer = Number(sellingPlan.node.metafields.edges[0].node.value);
 
           this.handleVariantIdChanges();
           this.createUnitsPerCustomerMessage(unitsPerCustomer)

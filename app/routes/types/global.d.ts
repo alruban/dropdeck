@@ -3,7 +3,7 @@ type SellingPlanGroupResponse = {
     sellingPlanGroups: {
       edges: SellingPlanGroupEdge[];
     };
-  }
+  };
   init: ResponseInit | null;
   type: string;
 };
@@ -18,7 +18,7 @@ type SellingPlanGroup = {
   merchantCode: string;
   productsCount: {
     count: number;
-  }
+  };
   products: {
     edges: ProductEdge[];
   };
@@ -67,53 +67,73 @@ type OrderTableRawData = {
   data: {
     shop: {
       myshopifyDomain: string;
-    }
+    };
     orders: {
-      edges: {
-        node: {
-          id: string;
-          name: string;
-          createdAt: string;
-          displayFinancialStatus: string;
-          displayFulfillmentStatus: string;
-          cancelledAt: boolean;
-          lineItems: {
-            edges: {
-              node: {
-                id: string;
-                title: string;
-                quantity: number;
-                customAttributes: {
-                  key: string;
-                  value: string;
-                }[];
-              };
-            }[];
+      edges: [
+        {
+          node: {
+            id: "gid://shopify/Order/6379934482709";
+            name: "#1044";
+            createdAt: "2025-05-26T16:51:43Z";
+            displayFinancialStatus: "PAID";
+            displayFulfillmentStatus: "SCHEDULED";
+            cancelledAt: null;
+            lineItems: {
+              edges: [
+                {
+                  node: {
+                    id: "gid://shopify/LineItem/15710276419861";
+                    title: "Orange Snowboard";
+                    quantity: 1;
+                    product: {
+                      sellingPlanGroups: {
+                        edges: [
+                          {
+                            node: {
+                              appId: "DROPDECK_PREORDER";
+                              sellingPlans: {
+                                nodes: [
+                                  {
+                                    deliveryPolicy: {
+                                      fulfillmentExactTime: "2025-05-26T23:00:00Z";
+                                    };
+                                    metafields: {
+                                      edges: [
+                                        {
+                                          node: {
+                                            key: "units_per_customer";
+                                            value: "2";
+                                          };
+                                        },
+                                      ];
+                                    };
+                                  },
+                                ];
+                              };
+                            };
+                          },
+                        ];
+                      };
+                    };
+                  };
+                },
+              ];
+            };
           };
-        };
-      }[];
+        },
+      ];
     };
   };
   extensions: {
     cost: {
-      requestedQueryCost: number;
-      actualQueryCost: number;
+      requestedQueryCost: 863;
+      actualQueryCost: 17;
       throttleStatus: {
-        maximumAvailable: number;
-        currentlyAvailable: number;
-        restoreRate: number;
+        maximumAvailable: 2000;
+        currentlyAvailable: 1983;
+        restoreRate: 100;
       };
     };
-    search: {
-      path: string[];
-      query: string;
-      parsed: {
-        and: {
-          field: string;
-          match_all: string;
-        }[];
-      };
-    }[];
   };
 };
 
@@ -124,13 +144,13 @@ type OrderTableRow = {
   order: string;
   customer: string;
   paymentStatus: {
-    status: OrderProgress,
-    label: string
-  },
+    status: OrderProgress;
+    label: string;
+  };
   fulfillmentStatus: {
-    status: OrderProgress,
-    label: string
-  }
-}
+    status: OrderProgress;
+    label: string;
+  };
+};
 
 type OrderTableRows = OrderTableRow[];

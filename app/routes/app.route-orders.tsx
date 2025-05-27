@@ -24,7 +24,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     variables: getDropdeckPreorderOrdersVariables(),
   });
 
-  return data(await response.json() as OrderTableRawData);
+  return data(await response.json());
 };
 
 export default function Index() {
@@ -34,6 +34,8 @@ export default function Index() {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedResources, setSelectedResources] = useState<string[]>([]);
+
+  const orders = data as OrderTableRawData;
 
   // Set default values on first load
   useEffect(() => {
@@ -62,18 +64,18 @@ export default function Index() {
     }
   }, []); // Empty dependency array means this runs once on mount
 
+  console.log("DATA", data);
   // Extract unique products from orders
   const productOptions = useMemo(() => {
     const products = new Set<string>();
-    data.data.orders.edges.forEach(({ node }) => {
-      node.lineItems.edges.forEach(({ node: lineItem }) => {
+    orders.data.orders.edges.forEach(( order ) => {
+      order.node.lineItems.edges.forEach((lineItem) => {
         // Check if this line item has preorder data
-        const hasPreorderData = lineItem.customAttributes.some(
-          (attribute) => attribute.key === "_dropdeck_preorder_data" &&
-          JSON.parse(attribute.value || "{}").releaseDate
+        const hasPreorderData = lineItem.node.product.sellingPlanGroups.edges.some(
+          (sellingPlanGroup) => sellingPlanGroup.node.appId === "DROPDECK_PREORDER"
         );
         if (hasPreorderData) {
-          products.add(lineItem.title);
+          products.add(lineItem.node.title);
         }
       });
     });

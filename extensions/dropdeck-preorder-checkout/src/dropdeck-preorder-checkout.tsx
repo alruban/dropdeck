@@ -11,6 +11,7 @@ import {
 } from "@shopify/ui-extensions-react/checkout";
 import { parseISOStringIntoFormalDate } from "../../../shared/tools/date-tools";
 import {
+  type GetPreorderDataResponse,
   type CustomerOrder,
   type GetCustomerOrdersResponse,
   type GetCustomerResponse,
@@ -23,6 +24,11 @@ export default reactExtension(
   () => <Extension />,
 );
 
+type PreorderData = {
+  releaseDate: string;
+  unitsPerCustomer: number;
+}
+
 function Extension() {
   const translate = useTranslate();
   const cartLine = useCartLineTarget();
@@ -34,12 +40,7 @@ function Extension() {
   const [customerId, setCustomerId] = useState<string | null>(
     customer && customer.id ? customer.id : null,
   );
-  const [preorderData, setPreorderData] = useState<{
-    sellingPlanGroupId: string;
-    sellingPlanId: string;
-    releaseDate: string;
-    unitsPerCustomer: number;
-  } | null>(null);
+  const [preorderData, setPreorderData] = useState<PreorderData | null>(null);
   const [hasExceededLimit, setHasExceededLimit] = useState<boolean>(false);
   const [unitsInPreviousOrders, setUnitsInPreviousOrders] = useState<number>(0);
   const preorderProductId = cartLine.merchandise.product.id;
@@ -52,9 +53,8 @@ function Extension() {
       (total, order) =>
         total +
         order.node.lineItems.edges.reduce((orderTotal, lineItem) => {
-          const isDropdeckPreorder = lineItem.node.customAttributes.some(
-            (attr) =>
-              attr.key === "_dropdeck_preorder" && attr.value === "true",
+          const isDropdeckPreorder = lineItem.node.product.sellingPlanGroups.edges.some(
+            (sellingPlanGroup) => sellingPlanGroup.node.appId === "DROPDECK_PREORDER"
           );
           const isMatchingProduct =
             lineItem.node.product.id === preorderProductId;
@@ -68,25 +68,54 @@ function Extension() {
     setUnitsInPreviousOrders(_unitsBoughtInPreviousOrders);
     const unitsAssociatedWithCustomer =
       _unitsBoughtInPreviousOrders + unitsInThisOrder;
+
     if (unitsAssociatedWithCustomer > preorderData.unitsPerCustomer) {
       setHasExceededLimit(true);
     }
   }
 
   useEffect(() => {
-    // Handle Data
-    const preorderData = cartLine.attributes.find(
-      (attr) => attr.key === "_dropdeck_preorder_data",
-    );
-    if (!preorderData) return;
-    const preorderJson = JSON.parse(preorderData.value);
-    if (!preorderJson) return;
-    setPreorderData(preorderJson);
-  }, [cartLine]);
+    async function getPreorderData(
+      productId: string,
+      successCallback: (preorderData: PreorderData) => void,
+    ) {
+      const token = await sessionToken.get();
 
-  useEffect(() => {
+      fetch(`${process.env.APP_URL}/app/api-checkout`, {
+        method: "POST",
+        body: JSON.stringify({
+          productId,
+          target: "get-preorder-data",
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json() as Promise<GetPreorderDataResponse>)
+        .then((res: GetPreorderDataResponse) => {
+          const { sellingPlanGroups } = res.data.data.product;
+
+          const sellingPlanGroup = sellingPlanGroups.edges.find(
+            (sellingPlanGroup) => sellingPlanGroup.node.appId === "DROPDECK_PREORDER"
+          );
+
+          if (sellingPlanGroup) {
+            successCallback({
+              releaseDate: sellingPlanGroup.node.sellingPlans.nodes[0].deliveryPolicy.fulfillmentExactTime,
+              unitsPerCustomer: Number(sellingPlanGroup.node.sellingPlans.nodes[0].metafields.edges.find(
+                (metafield) => metafield.node.key === "units_per_customer"
+              )?.node.value),
+            });
+          } else {
+            throw new Error("Fatal error: No selling plan group found for preorder product.");
+          }
+        })
+        .catch((err) => console.error(err));
+    }
+
     async function getCustomer(
-      email: string,
+      customerEmail: string,
       successCallback: (customerId: string) => void,
     ) {
       const token = await sessionToken.get();
@@ -94,7 +123,7 @@ function Extension() {
       fetch(`${process.env.APP_URL}/app/api-checkout`, {
         method: "POST",
         body: JSON.stringify({
-          customerEmail: email,
+          customerEmail,
           target: "get-customer",
         }),
         headers: {
@@ -111,7 +140,7 @@ function Extension() {
     }
 
     async function getCustomerOrders(
-      id: string,
+      customerId: string,
       successCallback: (customerOrders: CustomerOrder[]) => void,
     ) {
       const token = await sessionToken.get();
@@ -119,7 +148,7 @@ function Extension() {
       fetch(`${process.env.APP_URL}/app/api-checkout`, {
         method: "POST",
         body: JSON.stringify({
-          customerId: id,
+          customerId,
           target: "get-customer-orders",
         }),
         headers: {
@@ -135,26 +164,31 @@ function Extension() {
         .catch((err) => console.error(err));
     }
 
-    if (preorderData) {
-      if (!customerId) {
-        getCustomer(email, (newCustomerId) => {
-          if (newCustomerId !== customerId) {
-            setCustomerId(newCustomerId);
-            getCustomerOrders(newCustomerId, (newCustomerOrders) => {
-              determineIfLimitExceeded(newCustomerOrders);
-            });
-          }
-        });
-      } else {
-        getCustomerOrders(customerId, (newCustomerOrders) => {
-          determineIfLimitExceeded(newCustomerOrders);
-        });
+    getPreorderData(preorderProductId, (sellingPlanGroups) => {
+      setPreorderData(sellingPlanGroups);
+
+      if (preorderData) {
+        if (!customerId) {
+          getCustomer(email, (newCustomerId) => {
+            if (newCustomerId !== customerId) {
+              setCustomerId(newCustomerId);
+              getCustomerOrders(newCustomerId, (newCustomerOrders) => {
+                determineIfLimitExceeded(newCustomerOrders);
+              });
+            }
+          });
+        } else {
+          getCustomerOrders(customerId, (newCustomerOrders) => {
+            determineIfLimitExceeded(newCustomerOrders);
+          });
+        }
       }
-    }
-  }, [preorderData, customerId]);
+    });
+  }, [customerId]);
 
   useBuyerJourneyIntercept(({ canBlockProgress }) => {
     if (canBlockProgress && preorderData && hasExceededLimit) {
+
       let pageError;
 
       if (unitsInPreviousOrders > preorderData.unitsPerCustomer) {
