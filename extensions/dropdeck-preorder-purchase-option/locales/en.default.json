@@ -12,5 +12,6 @@
   "submit_creating_preorder": "Creating preorder selling plan...",
   "submit_update_preorder": "Update preorder",
   "submit_updating_preorder": "Updating preorder selling plan...",
-  "error_date_must_be_future": "The date must be in the future."
+  "error_date_must_be_future": "The date must be in the future.",
+  "notice_selling_plan_requirement": "Any product added to a selling plan will automatically require one. This removes the product from sales channels that don't support Shopify preorders and prevents it from being sold there. Unchecking the 'Only sell this product as a subscription' option on the product admin pages will remove this requirement, which we advise against as it may lead to your preorders coming through as standard orders."
 }

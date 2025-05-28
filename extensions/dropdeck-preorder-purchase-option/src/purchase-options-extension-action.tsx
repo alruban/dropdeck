@@ -10,7 +10,9 @@ import {
   InlineStack,
   Badge,
   Link,
-  Checkbox
+  Checkbox,
+  Banner,
+  Box
 } from '@shopify/ui-extensions-react/admin';
 
 import { useEffect, useState } from 'react';
@@ -21,6 +23,7 @@ import { CREATE_SP_GROUP_MUTATION, createSPGroupVariables } from '../../../share
 import { UPDATE_SP_GROUP_MUTATION, updateSPGroupVariables } from '../../../shared/mutations/update-sp-group.js';
 import { type GetSPGroupResponse, GET_SP_GROUP_QUERY, getSPGroupVariables } from '../../../shared/queries/get-sp-group.js';
 import { GET_SHOP_QUERY, type GetShopResponse } from '../../../shared/queries/get-shop';
+import { UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION, updateProductSPRequirementVariables } from '../../../shared/mutations/update-product-sp-requirement';
 
 import { isDevelopment } from '../../../shared/tools/is-development';
 
@@ -116,14 +119,28 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
     setIsLoading(true);
     const isoString = createISOString(expectedFulfillmentDate);
 
-    query(
+    const promises = [];
+
+    // Create the selling plan group.
+    promises.push(query(
       CREATE_SP_GROUP_MUTATION,
       createSPGroupVariables(
         [productId],
         isoString,
         unitsPerCustomer
       )
-    )
+    ));
+
+    // Set the selling plan requirement to true for the product.
+    promises.push(query(
+      UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION,
+      updateProductSPRequirementVariables(
+        productId,
+        true
+      )
+    ))
+
+    Promise.all(promises)
     .then((response) => {
       isDevelopment && console.log("Selling plan group created:", response);
     })
@@ -141,7 +158,10 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
     if (!validateDate(expectedFulfillmentDate)) return;
     setIsLoading(true);
 
-    query(
+    const promises = [];
+
+    // Update the selling plan group.
+    promises.push(query(
       UPDATE_SP_GROUP_MUTATION,
       updateSPGroupVariables(
         sellingPlanGroupId,
@@ -149,7 +169,18 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
         createISOString(expectedFulfillmentDate),
         unitsPerCustomer
       )
-    )
+    ));
+
+    // Set the selling plan requirement to true for the product.
+    promises.push(query(
+      UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION,
+      updateProductSPRequirementVariables(
+        productId,
+        true
+      )
+    ))
+
+    Promise.all(promises)
     .then((response) => {
       isDevelopment && console.log("Selling plan group updated:", response);
     })
@@ -272,6 +303,10 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
               </InlineStack>
             </BlockStack>
           )}
+
+          <Box paddingBlockStart="small">
+            <Banner tone="info" title={i18n.translate("notice_selling_plan_requirement")} />
+          </Box>
         </BlockStack>
       </BlockStack>
     </AdminAction>
