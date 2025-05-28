@@ -20,6 +20,7 @@ import { UPDATE_SP_GROUP_MUTATION, updateSPGroupVariables } from "@shared/mutati
 import { ADD_SP_GROUP_PRODUCTS_MUTATION, addSPGroupProductsVariables } from "@shared/mutations/add-sp-group-products";
 import { REMOVE_SP_GROUP_PRODUCTS_MUTATION, removeSPGroupProductsVariables } from "@shared/mutations/remove-sp-group-products";
 import { useTranslation } from "../hooks/useTranslation";
+import { UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION, updateProductSPRequirementVariables } from "@shared/mutations/update-product-sp-requirement";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
@@ -39,23 +40,31 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const productIds = formData.get("productIds");
     if (!productIds) return data({ error: "No product id(s) provided" }, { status: 400 });
 
-    const res = await admin.graphql(
+    const productIdsArray = String(productIds).split(",");
+    const promises = [];
+
+    promises.push(admin.graphql(
       CREATE_SP_GROUP_MUTATION,
       createSPGroupVariables(
         String(productIds).split(","),
         String(expectedFulfillmentDate),
         Number(unitsPerCustomer)
       )
-    )
+    ));
 
-    const djson = await res.json();
-
-    if (djson.data.sellingPlanGroupCreate.userErrors.length > 0) {
-      const errors = djson.data.sellingPlanGroupUpdate.userErrors.map((error: any) => error.message).join(", ");
-      return data({ error: errors }, { status: 400 });
-    } else {
-      return data(djson);
+    for (const productId of productIdsArray) {
+      promises.push(admin.graphql(
+        UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION,
+        updateProductSPRequirementVariables(
+          productId,
+          true
+        )
+      ));
     }
+
+    const responses = await Promise.all(promises);
+    // Wait for all updates to complete
+    return data(responses);
   }
 
   const updateSellingPlanGroup = async () => {
@@ -104,6 +113,16 @@ export const action = async ({ request }: ActionFunctionArgs) => {
           )
         )
       );
+
+      // Set the selling plan requirement to true for the products to be added.
+      for (const productId of productsToAdd) {
+        productUpdatePromises.push(
+          admin.graphql(
+            UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION,
+            updateProductSPRequirementVariables(productId, true)
+          )
+        );
+      }
     }
 
     if (productsToRemove.length > 0) {
@@ -116,6 +135,16 @@ export const action = async ({ request }: ActionFunctionArgs) => {
           )
         )
       );
+
+      // Set the selling plan requirement to false for the products to be removed.
+      for (const productId of productsToRemove) {
+        productUpdatePromises.push(
+          admin.graphql(
+            UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION,
+            updateProductSPRequirementVariables(productId, false)
+          )
+        );
+      }
     }
 
     // Wait for all updates to complete
