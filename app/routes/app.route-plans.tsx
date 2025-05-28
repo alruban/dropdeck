@@ -63,8 +63,36 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     }
 
     const responses = await Promise.all(promises);
-    // Wait for all updates to complete
-    return data(responses);
+
+    // Parse and check each response
+    const parsedResponses = await Promise.all(responses.map(async (response, index) => {
+      const json = await response.json();
+
+      if (index === 0) {
+        // First response is the selling plan group creation
+        if (json.data.sellingPlanGroupCreate.userErrors.length > 0) {
+          const errors = json.data.sellingPlanGroupCreate.userErrors.map((error: any) => error.message).join(", ");
+          return { error: errors };
+        }
+      } else {
+        // Other responses are product updates
+        if (json.data.productUpdate.userErrors.length > 0) {
+          const errors = json.data.productUpdate.userErrors.map((error: any) => error.message).join(", ");
+          return { error: `Product ${productIdsArray[index - 1]}: ${errors}` };
+        }
+      }
+      return json;
+    }));
+
+    // Check if any responses had errors
+    const errors = parsedResponses
+      .filter((r): r is { error: string } => 'error' in r)
+      .map(r => r.error);
+    if (errors.length > 0) {
+      return data({ error: errors.join(", ") }, { status: 400 });
+    }
+
+    return data(parsedResponses);
   }
 
   const updateSellingPlanGroup = async () => {
@@ -161,21 +189,57 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   const deleteSellingPlanGroup = async () => {
     const sellingPlanGroupId = formData.get("sellingPlanGroupId");
-    if (!sellingPlanGroupId) return data({ error: "No selling plan group id provided" }, { status: 400 });
+    const productIds = formData.get("productIds");
 
-    const res = await admin.graphql(
+    const productIdsArray = String(productIds).split(",");
+    const promises = [];
+
+    promises.push(admin.graphql(
       DELETE_SP_GROUP_MUTATION,
       deleteSPGroupVariables(String(sellingPlanGroupId))
-    );
+    ));
 
-    const djson = await res.json();
-
-    if (djson.data.sellingPlanGroupDelete.userErrors.length > 0) {
-      const errors = djson.data.sellingPlanGroupUpdate.userErrors.map((error: any) => error.message).join(", ");
-      return data({ error: errors }, { status: 400 });
-    } else {
-      return data(djson);
+    for (const productId of productIdsArray) {
+      promises.push(admin.graphql(
+        UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION,
+        updateProductSPRequirementVariables(
+          productId,
+          false
+        )
+      ));
     }
+
+    const responses = await Promise.all(promises);
+
+    // Parse and check each response
+    const parsedResponses = await Promise.all(responses.map(async (response, index) => {
+      const json = await response.json();
+
+      if (index === 0) {
+        // First response is the selling plan group deletion
+        if (json.data.sellingPlanGroupDelete.userErrors.length > 0) {
+          const errors = json.data.sellingPlanGroupDelete.userErrors.map((error: any) => error.message).join(", ");
+          return { error: errors };
+        }
+      } else {
+        // Other responses are product updates
+        if (json.data.productUpdate.userErrors.length > 0) {
+          const errors = json.data.productUpdate.userErrors.map((error: any) => error.message).join(", ");
+          return { error: `Product ${productIdsArray[index - 1]}: ${errors}` };
+        }
+      }
+      return json;
+    }));
+
+    // Check if any responses had errors
+    const errors = parsedResponses
+      .filter((r): r is { error: string } => 'error' in r)
+      .map(r => r.error);
+    if (errors.length > 0) {
+      return data({ error: errors.join(", ") }, { status: 400 });
+    }
+
+    return data(parsedResponses);
   }
 
   switch (request.method) {

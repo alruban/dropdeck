@@ -18,8 +18,8 @@ const updateProductSPRequirementVariables = (
   requiresSellingPlan: boolean
 ) => ({
   variables: {
-    id,
     product: {
+      id,
       requiresSellingPlan,
     },
   },

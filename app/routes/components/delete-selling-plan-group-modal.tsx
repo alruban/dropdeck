@@ -32,6 +32,8 @@ export default function DeleteSellingPlanGroupModal({
     if (selectedPlanGroup) {
       const formData = new FormData();
       formData.append("sellingPlanGroupId", selectedPlanGroup.id);
+      formData.append("productIds", products.map((edge) => edge.node.id).join(","));
+
       submit(formData, { method: "DELETE" });
       setDeletePlanModalOpen(false);
       setSelectedPlanGroup(null);
