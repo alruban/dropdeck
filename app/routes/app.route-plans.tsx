@@ -285,11 +285,13 @@ export default function Index() {
         </Layout>
       </BlockStack>
 
-      <CreateSellingPlanGroupModal
-        createPlanModalOpen={createPlanModalOpen}
-        setCreatePlanModalOpen={setCreatePlanModalOpen}
-        isLoading={isLoading}
-      />
+      {createPlanModalOpen &&
+        <CreateSellingPlanGroupModal
+          createPlanModalOpen={createPlanModalOpen}
+          setCreatePlanModalOpen={setCreatePlanModalOpen}
+          isLoading={isLoading}
+        />
+      }
     </Page>
   );
 }

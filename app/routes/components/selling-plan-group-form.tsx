@@ -7,6 +7,7 @@ import {
   Button,
   Box,
   Checkbox,
+  Banner,
 } from "@shopify/polaris";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useState, useCallback } from "react";
@@ -167,6 +168,10 @@ export default function SellingPlanGroupForm({
                 )
               : t("selling_plan_group_form.add_products")}
           </Button>
+        </Box>
+
+        <Box paddingBlockStart="200">
+          <Banner tone="info" title={t("selling_plan_group_form.notice_selling_plan_requirement")} />
         </Box>
       </BlockStack>
     </BlockStack>

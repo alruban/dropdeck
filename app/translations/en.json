@@ -6,7 +6,7 @@
     "dashboard": "Dashboard",
     "guide": "Quick Start Guide",
     "orders": "Orders",
-    "plans": "Preorder Plans"
+    "plans": "Preorder Selling Plans"
   },
   "quick_actions": {
     "title": "Quick Actions",
@@ -32,7 +32,7 @@
       "delete": "Delete"
     },
     "selling_plan_groups_found": {
-      "title": "Preorder Plans",
+      "title": "Preorder Selling Plans",
       "description": "Manage your preorder selling plans and their configurations.",
       "refresh": "Refresh"
     },
@@ -70,7 +70,8 @@
     "select_products": "Your preorder plan will apply to the following products:",
     "no_selected_products": "No products selected, click the button to add products.",
     "add_products": "Add products",
-    "add_or_remove_products": "Add or remove products"
+    "add_or_remove_products": "Add or remove products",
+    "notice_selling_plan_requirement": "Any product added to a selling plan will automatically require one. This removes the product from sales channels that don't support Shopify preorders and prevents it from being sold there. Unchecking the 'Only sell this product as a subscription' option on the product admin pages will remove this requirement, which we advise against as it may lead to your preorders coming through as standard orders."
   },
   "index": {
     "title": "Dropdeck",
