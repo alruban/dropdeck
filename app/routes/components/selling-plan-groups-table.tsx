@@ -164,13 +164,15 @@ export default function SellingPlanGroupsTable({
         </BlockStack>
       </Card>
 
-      <DeleteSellingPlanGroupModal
-        selectedPlanGroup={selectedPlanGroup}
-        setSelectedPlanGroup={setSelectedPlanGroup}
-        deletePlanModalOpen={deletePlanModalOpen}
-        setDeletePlanModalOpen={setDeletePlanModalOpen}
-        isLoading={isLoading}
-      />
+      {deletePlanModalOpen && (
+        <DeleteSellingPlanGroupModal
+          selectedPlanGroup={selectedPlanGroup}
+          setSelectedPlanGroup={setSelectedPlanGroup}
+          deletePlanModalOpen={deletePlanModalOpen}
+          setDeletePlanModalOpen={setDeletePlanModalOpen}
+          isLoading={isLoading}
+        />
+      )}
 
       {selectedPlanGroup && (
         <EditSellingPlanGroupModal
