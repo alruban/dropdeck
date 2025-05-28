@@ -19,7 +19,9 @@ const updateProductSPRequirementVariables = (
 ) => ({
   variables: {
     id,
-    requiresSellingPlan,
+    product: {
+      requiresSellingPlan,
+    },
   },
 });
 

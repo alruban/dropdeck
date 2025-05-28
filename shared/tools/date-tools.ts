@@ -32,10 +32,10 @@ export const getTomorrow = (): Date => {
   return tomorrow;
 }
 
-export const getOneMonthAhead = (): string => {
+export const getOneMonthAhead = (): Date => {
   const today = new Date();
   const oneMonthAhead = new Date(today.setMonth(today.getMonth() + 1));
-  return oneMonthAhead.toISOString().split('T')[0]; // Returns YYYY-MM-DD format
+  return oneMonthAhead;
 }
 
 export const createDateFromNumbers = (yyyymmdd: string): string => {

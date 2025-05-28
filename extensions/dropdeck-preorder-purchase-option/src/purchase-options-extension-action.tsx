@@ -13,7 +13,7 @@ import {
   Checkbox
 } from '@shopify/ui-extensions-react/admin';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { createISOString, getOneMonthAhead, parseISOString } from '../../../shared/tools/date-tools';
 import { type RenderExtensionTarget } from '@shopify/ui-extensions/admin';
@@ -44,7 +44,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
   const [shopifyDomain, setShopifyDomain] = useState<string | undefined>(undefined);
 
   const [sellingPlanId, setSellingPlanId] = useState<string | undefined>(undefined);
-  const [expectedFulfillmentDate, setExpectedFulfillmentDate] = useState(getOneMonthAhead());
+  const [expectedFulfillmentDate, setExpectedFulfillmentDate] = useState(getOneMonthAhead().toISOString().split('T')[0]);// Returns YYYY-MM-DD format
   const [enableUnitRestriction, setEnableUnitRestriction] = useState(false);
   const [initialUnitsPerCustomer, setInitialUnitsPerCustomer] = useState(enableUnitRestriction ? 1 : 0);
   const [unitsPerCustomer, setUnitsPerCustomer] = useState(enableUnitRestriction ? 1 : 0);

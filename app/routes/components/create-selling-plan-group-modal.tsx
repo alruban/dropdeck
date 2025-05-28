@@ -7,7 +7,7 @@ import {
 } from "@shopify/polaris";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useState } from "react";
-import { getTomorrow } from "@shared/tools/date-tools";
+import { getOneMonthAhead } from "@shared/tools/date-tools";
 import SellingPlanGroupForm from "./selling-plan-group-form";
 
 export default function CreateSellingPlanGroupModal({
@@ -23,7 +23,7 @@ export default function CreateSellingPlanGroupModal({
   const { t } = useTranslation();
 
   // States
-  const [expectedFulfillmentDate, setExpectedFulfillmentDate] = useState<Date>(getTomorrow());
+  const [expectedFulfillmentDate, setExpectedFulfillmentDate] = useState<Date>(getOneMonthAhead());
   const [unitsPerCustomer, setUnitsPerCustomer] = useState(0);
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
 
@@ -72,6 +72,7 @@ export default function CreateSellingPlanGroupModal({
               onUnitsPerCustomerChange={setUnitsPerCustomer}
               onSelectedProductsChange={setSelectedProducts}
               onExpectedFulfillmentDateChange={setExpectedFulfillmentDate}
+              initialExpectedFulfillmentDate={expectedFulfillmentDate}
             />
           </BlockStack>
         </Modal.Section>

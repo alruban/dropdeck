@@ -20,6 +20,7 @@ import { UPDATE_SP_GROUP_MUTATION, updateSPGroupVariables } from "@shared/mutati
 import { ADD_SP_GROUP_PRODUCTS_MUTATION, addSPGroupProductsVariables } from "@shared/mutations/add-sp-group-products";
 import { REMOVE_SP_GROUP_PRODUCTS_MUTATION, removeSPGroupProductsVariables } from "@shared/mutations/remove-sp-group-products";
 import { useTranslation } from "../hooks/useTranslation";
+import { UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION, updateProductSPRequirementVariables } from "@shared/mutations/update-product-sp-requirement";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
@@ -39,23 +40,39 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const productIds = formData.get("productIds");
     if (!productIds) return data({ error: "No product id(s) provided" }, { status: 400 });
 
+    const productIdsArray = String(productIds).split(",");
+
     const res = await admin.graphql(
       CREATE_SP_GROUP_MUTATION,
       createSPGroupVariables(
-        String(productIds).split(","),
+        productIdsArray,
         String(expectedFulfillmentDate),
         Number(unitsPerCustomer)
       )
-    )
+    );
 
     const djson = await res.json();
 
     if (djson.data.sellingPlanGroupCreate.userErrors.length > 0) {
       const errors = djson.data.sellingPlanGroupUpdate.userErrors.map((error: any) => error.message).join(", ");
       return data({ error: errors }, { status: 400 });
-    } else {
-      return data(djson);
     }
+
+    // Set selling plan requirement for all products
+    const productUpdatePromises = productIdsArray.map(productId =>
+      admin.graphql(
+        UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION,
+        updateProductSPRequirementVariables(productId, true)
+      )
+    );
+
+    const productResults = await Promise.all(productUpdatePromises);
+    const productUpdates = await Promise.all(productResults.map(r => r.json()));
+
+    return data({
+      ...djson,
+      productUpdates
+    });
   }
 
   const updateSellingPlanGroup = async () => {
@@ -104,6 +121,16 @@ export const action = async ({ request }: ActionFunctionArgs) => {
           )
         )
       );
+
+      // Add selling plan requirement for new products
+      productsToAdd.forEach(productId => {
+        productUpdatePromises.push(
+          admin.graphql(
+            UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION,
+            updateProductSPRequirementVariables(productId, true)
+          )
+        );
+      });
     }
 
     if (productsToRemove.length > 0) {
@@ -116,6 +143,16 @@ export const action = async ({ request }: ActionFunctionArgs) => {
           )
         )
       );
+
+      // Remove selling plan requirement for removed products
+      productsToRemove.forEach(productId => {
+        productUpdatePromises.push(
+          admin.graphql(
+            UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION,
+            updateProductSPRequirementVariables(productId, false)
+          )
+        );
+      });
     }
 
     // Wait for all updates to complete
