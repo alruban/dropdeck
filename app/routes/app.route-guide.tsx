@@ -10,19 +10,13 @@ import {
   List,
   Scrollable,
   Pagination,
-  Icon,
   Button
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { useTranslation } from "../hooks/useTranslation";
 import banner from "../assets/guide_landing.jpg";
 import { useState } from "react";
-
-function AppEmbedIcon() {
-  return (
-    <Icon source="<svg viewBox='0 0 20 20' focusable='false'><path fill-rule='evenodd' d='M3.5 5.75a2.25 2.25 0 0 1 2.25-2.25h2.75a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2.75Zm2.25-.75a.75.75 0 0 0-.75.75v2.25h3v-3h-2.25Z'></path><path fill-rule='evenodd' d='M3.5 14.25a2.25 2.25 0 0 0 2.25 2.25h2.75a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v2.75Zm2.25.75a.75.75 0 0 1-.75-.75v-2.25h3v3h-2.25Z'></path><path fill-rule='evenodd' d='M14.25 16.5a2.25 2.25 0 0 0 2.25-2.25v-2.75a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2.75Zm.75-2.25a.75.75 0 0 1-.75.75h-2.25v-3h3v2.25Z'></path><path d='M13.5 3.5a.75.75 0 0 1 .75.75v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v1.5a.75.75 0 0 1-1.5 0v-1.5h-1.5a.75.75 0 0 1 0-1.5h1.5v-1.5a.75.75 0 0 1 .75-.75Z'></path></svg>"/>
-  );
-}
+import { downloadFile } from "../utils/file-download";
 
 export default function Index() {
   const { t } = useTranslation();
@@ -93,7 +87,9 @@ export default function Index() {
             <Button
               variant="secondary"
               onClick={() => {
-
+                downloadFile("dropdeck-get-sp.liquid", "dropdeck-get-sp.liquid").catch(error => {
+                  console.error("Failed to download file:", error);
+                });
               }}
             >
               {t("guide.card.steps.3.download")}
