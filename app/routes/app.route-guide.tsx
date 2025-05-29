@@ -13,7 +13,8 @@ import {
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { useTranslation } from "../hooks/useTranslation";
-import banner from "../assets/guide_landing.jpg";
+import bannerDesktop from "../assets/guide-landing-desktop.jpg";
+import bannerMobile from "../assets/guide-landing-mobile.jpg";
 import { useState } from "react";
 import { downloadFile } from "../utils/file-download";
 
@@ -139,18 +140,20 @@ export default function Index() {
       <Layout>
         <Layout.Section>
           <Card padding="0">
-            <InlineGrid columns={"400px 1fr"}>
+            <InlineGrid columns={{ xs: "1fr", md: "400px 1fr" }}>
               <Box>
-                <img
-                  alt=""
-                  width="100%"
-                  height="100%"
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "center",
-                  }}
-                  src={banner}
-                />
+                <picture>
+                  <source media="(max-width: 767px)" srcSet={bannerMobile} />
+                  <source media="(min-width: 768px)" srcSet={bannerDesktop} />
+                  <img
+                    src={bannerDesktop}
+                    alt=""
+                    width="100%"
+                    height="100%"
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                    loading="lazy"
+                  />
+                </picture>
               </Box>
               <div style={{
                 display: "flex",

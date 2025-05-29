@@ -11,7 +11,7 @@ import {
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { useTranslation } from "../hooks/useTranslation";
-import banner from "../assets/banner_image.jpg";
+import banner from "../assets/banner-image.jpg";
 
 export default function Index() {
   const { t } = useTranslation();
