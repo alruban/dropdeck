@@ -8,7 +8,6 @@ import {
   BlockStack,
   Divider,
   List,
-  Scrollable,
   Pagination,
   Button
 } from "@shopify/polaris";
@@ -83,11 +82,45 @@ export default function Index() {
           <Text as="p" variant="bodyMd">
             {t("guide.card.steps.3.description")}
           </Text>
+          <List>
+            <List.Item>
+              <Text as="h4" variant="headingSm" fontWeight="medium">
+                {t("guide.card.steps.3.snippets.1.title")}
+              </Text>
+              <Text as="p" variant="bodyMd">
+                {t("guide.card.steps.3.snippets.1.description")}
+              </Text>
+            </List.Item>
+            <List.Item>
+              <Text as="h4" variant="headingSm" fontWeight="medium">
+                {t("guide.card.steps.3.snippets.2.title")}
+              </Text>
+              <Text as="p" variant="bodyMd">
+                {t("guide.card.steps.3.snippets.2.description")}
+              </Text>
+            </List.Item>
+            <List.Item>
+              <Text as="h4" variant="headingSm" fontWeight="medium">
+                {t("guide.card.steps.3.snippets.3.title")}
+              </Text>
+              <Text as="p" variant="bodyMd">
+                {t("guide.card.steps.3.snippets.3.description")}
+              </Text>
+            </List.Item>
+            <List.Item>
+              <Text as="h4" variant="headingSm" fontWeight="medium">
+                {t("guide.card.steps.3.snippets.4.title")}
+              </Text>
+              <Text as="p" variant="bodyMd">
+                {t("guide.card.steps.3.snippets.4.description")}
+              </Text>
+            </List.Item>
+          </List>
           <Box maxWidth="400">
             <Button
               variant="secondary"
               onClick={() => {
-                downloadFile("dropdeck-get-sp.liquid", "dropdeck-get-sp.liquid").catch(error => {
+                downloadFile("dropdeck-snippets.zip", "dropdeck-snippets.zip").catch(error => {
                   console.error("Failed to download file:", error);
                 });
               }}
@@ -138,24 +171,20 @@ export default function Index() {
                   <Divider />
                 </Box>
 
-                <Scrollable
-                  style={{
-                    maxHeight: "360px",
-                    height: "100%",
-                  }}
-                >
+                <Box minHeight="480px">
                   <BlockStack gap="400">
                     <Step1 hidden={step !== 1} />
                     <Step2 hidden={step !== 2} />
                     <Step3 hidden={step !== 3} />
                   </BlockStack>
-                </Scrollable>
+                </Box>
 
                 <div style={{
                   marginTop: "auto",
                   display: "flex",
                   justifyContent: "flex-end",
-                  alignItems: "center"
+                  alignItems: "center",
+                  paddingBlockStart: "36px",
                 }}>
                   <Pagination
                     hasPrevious={step > 1}

@@ -145,19 +145,37 @@
           "description": "There are two ways to utilise Dropdeck in your theme, both of which require you to head into your theme's customiser to enable Dropdeck's 'app embed'. You can enable app embeds to your theme by visiting to the app embeds areas on the left-hand side toolbar of the customiser. This will offer you two options under the 'Setup Choice' option:",
           "choices": {
             "1": {
-              "title": "Simple Setup:",
-              "description": "This is the easiest way to setup Dropdeck, once 'Setup Choice' is set to 'Simple Setup' there's nothing else you need to do. The selling plan will automatically be injected into any purchase form on your site. The caveat being that there is a chance this will break some functionality on your theme if your theme has undergone a lot of customisations, or if it's a theme that wasn't developed by Shopify. Which is why we recommend the advanced setup to prevent any issues. You can skip step 3 as it only relates to the advanced setup."
+              "title": "Simple Setup (Recommended):",
+              "description": "This is the easiest way to setup Dropdeck, once 'Setup Choice' is set to 'Simple Setup' there's nothing else you need to do. The selling plan will automatically be injected into any purchase form on your site. The caveat being that there is a chance this will break some functionality on your theme if your theme has undergone a lot of customisations, or if it's a theme that wasn't developed by Shopify. You can skip step 3 as it only relates to the advanced setup."
             },
             "2": {
-              "title": "Advanced Setup (Recommended):",
+              "title": "Advanced Setup:",
               "description": "This is the recommended way to setup Dropdeck, but it requires technical knowledge of your theme's codebase. Once 'Setup Choice' is set to 'Advanced Setup' you will need to add the following code snippets into your theme's codebase. This will allow you to control the placement of the preorder selling plan on your site, and also allows you to add additional functionality to the preorder selling plan. Continue to step 3 for more information on how to add the code snippets into your theme's codebase."
             }
           }
         },
         "3": {
           "title": "Step 3: Installing code snippets for the advanced setup",
-          "description": "",
-          "download": "Download Snippets"
+          "description": "Start off by clicking the button below to download the zipped code snippets. Once downloaded, these snippets will need to be added into your theme's codebase in the snippets folder.",
+          "download": "Download Snippets",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "This snippet is used to return various pieces of data about the preorder selling plan easily."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "This should be included inside of all forms with the action '/cart/add' in your theme. This applies the preorder selling plan you created to the product."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "This snippet is used to display the release date for a product with a preorder selling plan."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "This snippet is used to display the unit restriction for a product with a preorder selling plan."
+            }
+          }
         }
       }
     }
