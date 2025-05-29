@@ -85,7 +85,7 @@ export default function OrderTable({
       return {
         releaseDate: sellingPlan.deliveryPolicy.fulfillmentExactTime,
       };
-    }).filter(Boolean);
+    }).filter(Boolean) as PreorderData[];
   }).filter(items => items.length > 0);
 
   const orders = data.data.orders.edges
