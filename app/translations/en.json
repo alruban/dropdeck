@@ -64,7 +64,7 @@
     "cancel": "Cancel"
   },
   "selling_plan_group_form": {
-    "expected_fulfillment_date": "Expected shipping date",
+    "expected_fulfillment_date": "Release Date",
     "enable_unit_restriction": "Enable unit restriction",
     "units_per_customer": "Units per customer",
     "select_products": "Your preorder plan will apply to the following products:",
@@ -132,25 +132,25 @@
       "description": "Dropdeck helps you set up powerful preorder experiences in Shopify with flexible control over availability and purchase limits.",
       "steps": {
         "1": {
-          "title": "Step 1: Create a preorder selling plan",
+          "title": "Step 1: Creating a preorder selling plan",
           "description": "What is a selling plan? A selling plan is Shopify's way of scheduling products so they can be fulfilled at a later date, so- to create a preorder you need to create a preorder selling plan. You can two this in two ways with Dropdeck:",
           "steps": {
             "1": "Create or add a pre-existing preorder selling plan on the product admin page under 'Purchase options', which will assign that product alone to the plan.",
             "2": "Create a preorder selling plan for a selection of products or even just a product on Dropdeck's preorder plans page."
           },
-          "conclusion": "Either way, all you need to supply to Dropdeck here is the 'Expected Fulfillment Date' (as Shopify calls it), or the 'Release Date' (as we call it), and optionally the number of units to restrict a customer to. Setting this to 0 will allow unlimited preorders for that product."
+          "conclusion": "Either way, all you need to supply to Dropdeck here is the 'Release Date' for your preorder product, and optionally the number of units to restrict a customer to."
         },
         "2": {
-          "title": "Step 2: Setup your theme to use Dropdeck",
-          "description": "Now we need to setup your theme to use Dropdeck, there are two ways to do this:",
+          "title": "Step 2: Setting up your theme to use Dropdeck",
+          "description": "There are two ways to utilise Dropdeck in your theme, both of which require you to head into your theme's customiser to add Dropdeck's 'app embed'. You can add app embeds to your theme by clicking the {{ icon }} on the left-hand side toolbar of the customiser.",
           "choices": {
             "1": {
-              "title": "Manually setting up your theme to use Dropdeck (Recommended)",
-              "description": "This is the recommended way to setup Dropdeck, the theme app block method is the easiest way to setup Dropdeck but it is not a perfect solution - for most basic Shopify themes it will work out of the box, but for custom themes or themes with lots of edited code - it may not work/break the functionality of your theme. The best way to setup Dropdeck is to do it manually by adding our code snippets directly into your theme’s codebase."
+              "title": "Adding the Dropdeck Script to your theme via the theme app block",
+              "description": "This is the easiest way to setup Dropdeck, all you need to do is go into your theme customiser, "
             },
             "2": {
-              "title": "Adding the Dropdeck Script to your theme via the theme app block",
-              "description": "This is the easiest way to setup Dropdeck, but it requires you to have a Shopify theme with the theme app block enabled. If you don't have a theme with the theme app block enabled, you can skip this step and see Step 3 for information on manually setting up your theme to use Dropdeck."
+              "title": "Manually setting up your theme to use Dropdeck (Recommended)",
+              "description": "This is the recommended way to setup Dropdeck, the theme app block method is the easiest way to setup Dropdeck but it is not a perfect solution - for most basic Shopify themes it will work out of the box, but for custom themes or themes with lots of edited code - it may not work/break the functionality of your theme. The best way to setup Dropdeck is to do it manually by adding our code snippets directly into your theme’s codebase."
             }
           }
         }
