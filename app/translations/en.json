@@ -142,17 +142,23 @@
         },
         "2": {
           "title": "Step 2: Setting up your theme to use Dropdeck",
-          "description": "There are two ways to utilise Dropdeck in your theme, both of which require you to head into your theme's customiser to add Dropdeck's 'app embed'. You can add app embeds to your theme by clicking the {{ icon }} on the left-hand side toolbar of the customiser.",
+          "description": "There are two ways to utilise Dropdeck in your theme, both of which require you to head into your theme's customiser to enable Dropdeck's 'app embed'. You can enable app embeds to your theme by visiting to the app embeds areas on the left-hand side toolbar of the customiser. This will offer you two options under the 'Setup Choice' option:",
           "choices": {
             "1": {
-              "title": "Adding the Dropdeck Script to your theme via the theme app block",
-              "description": "This is the easiest way to setup Dropdeck, all you need to do is go into your theme customiser, "
+              "title": "Simple Setup:",
+              "description": "This is the easiest way to setup Dropdeck, once 'Setup Choice' is set to 'Simple Setup' there's nothing else you need to do. The selling plan will automatically be injected into any purchase form on your site. The caveat being that there is a chance this will break some functionality on your theme if your theme has undergone a lot of customisations, or if it's a theme that wasn't developed by Shopify. Which is why we recommend the advanced setup to prevent any issues. You can skip step 3 as it only relates to the advanced setup."
             },
             "2": {
-              "title": "Manually setting up your theme to use Dropdeck (Recommended)",
-              "description": "This is the recommended way to setup Dropdeck, the theme app block method is the easiest way to setup Dropdeck but it is not a perfect solution - for most basic Shopify themes it will work out of the box, but for custom themes or themes with lots of edited code - it may not work/break the functionality of your theme. The best way to setup Dropdeck is to do it manually by adding our code snippets directly into your theme’s codebase."
+              "title": "Advanced Setup (Recommended):",
+              "description": "This is the recommended way to setup Dropdeck, but it requires technical knowledge of your theme's codebase. Once 'Setup Choice' is set to 'Advanced Setup' you will need to add the following code snippets into your theme's codebase. This will allow you to control the placement of the preorder selling plan on your site, and also allows you to add additional functionality to the preorder selling plan. Continue to step 3 for more information on how to add the code snippets into your theme's codebase."
             }
           }
+        },
+        "3": {
+          "title": "Step 3: Installing code snippets for the advanced setup",
+          "description": "",
+          "steps": "",
+          "conclusion": ""
         }
       }
     }

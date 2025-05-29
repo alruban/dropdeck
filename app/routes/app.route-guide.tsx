@@ -59,7 +59,7 @@ export default function Index() {
             {t("guide.card.steps.2.title")}
           </Text>
           <Text as="p" variant="bodyMd">
-            {t("guide.card.steps.2.description", { icon: <AppEmbedIcon /> })}
+            {t("guide.card.steps.2.description")}
           </Text>
           <Text as="h4" variant="headingSm" fontWeight="medium">
             {t("guide.card.steps.2.choices.1.title")}
@@ -72,6 +72,21 @@ export default function Index() {
           </Text>
           <Text as="p" variant="bodyMd">
             {t("guide.card.steps.2.choices.2.description")}
+          </Text>
+        </BlockStack>
+      </div>
+    )
+  }
+
+  function Step3({ hidden = true }) {
+    return (
+      <div hidden={hidden}>
+        <BlockStack gap="200">
+          <Text as="h3" variant="headingMd" fontWeight="medium">
+            {t("guide.card.steps.3.title")}
+          </Text>
+          <Text as="p" variant="bodyMd">
+            {t("guide.card.steps.3.description")}
           </Text>
         </BlockStack>
       </div>
@@ -125,6 +140,7 @@ export default function Index() {
                   <BlockStack gap="400">
                     <Step1 hidden={step !== 1} />
                     <Step2 hidden={step !== 2} />
+                    <Step3 hidden={step !== 3} />
                   </BlockStack>
                 </Scrollable>
 
@@ -137,11 +153,11 @@ export default function Index() {
                   <Pagination
                     hasPrevious={step > 1}
                     onPrevious={() => {
-                      setStep(Math.max(step - 1, 1));
+                      setStep(step - 1);
                     }}
-                    hasNext={step < 2}
+                    hasNext={step < 3}
                     onNext={() => {
-                      setStep(Math.max(step - 1, 2));
+                      setStep(step + 1);
                     }}
                   />
                 </div>
