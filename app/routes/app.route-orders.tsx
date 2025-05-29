@@ -64,7 +64,6 @@ export default function Index() {
     }
   }, []); // Empty dependency array means this runs once on mount
 
-  console.log("DATA", data);
   // Extract unique products from orders
   const productOptions = useMemo(() => {
     const products = new Set<string>();

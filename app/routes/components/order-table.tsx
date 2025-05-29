@@ -71,21 +71,28 @@ export default function OrderTable({
 
   const preorderData = data.data.orders.edges.map((order) => {
     return order.node.lineItems.edges.map((lineItem) => {
+      // Check the original selling plan hasn't been removed, if it has there's a possibility we check the wrong selling plan.
+      const originalSellingPlan = lineItem.node.sellingPlan.sellingPlanId === null;
+      if (originalSellingPlan) return false;
+
       const sellingPlanGroup = lineItem.node.product.sellingPlanGroups.edges.find(
         (sellingPlanGroup) => sellingPlanGroup.node.appId === "DROPDECK_PREORDER"
       );
-      if (!sellingPlanGroup) return null;
+      if (!sellingPlanGroup) return false;
 
       const sellingPlan = sellingPlanGroup.node.sellingPlans.nodes[0];
 
       return {
         releaseDate: sellingPlan.deliveryPolicy.fulfillmentExactTime,
       };
-    }) as PreorderData[];
-  });
+    }).filter(Boolean);
+  }).filter(items => items.length > 0);
 
   const orders = data.data.orders.edges
     .map((order, index) => {
+      // Ensure the order has preorder data.
+      if (!preorderData[index]) return null;
+
       // Check if there's at least one valid preorder in the array
       const hasValidPreorder = preorderData[index]?.some(
         (item) => item.releaseDate,

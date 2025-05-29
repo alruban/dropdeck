@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://fresh-examines-finnish-sponsor.trycloudflare.com"
+application_url = "https://massachusetts-lens-realtors-imagination.trycloudflare.com"
 embedded = true
 
 [build]
@@ -31,13 +31,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://fresh-examines-finnish-sponsor.trycloudflare.com/auth/callback",
-  "https://fresh-examines-finnish-sponsor.trycloudflare.com/auth/shopify/callback",
-  "https://fresh-examines-finnish-sponsor.trycloudflare.com/api/auth/callback"
+  "https://massachusetts-lens-realtors-imagination.trycloudflare.com/auth/callback",
+  "https://massachusetts-lens-realtors-imagination.trycloudflare.com/auth/shopify/callback",
+  "https://massachusetts-lens-realtors-imagination.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://fresh-examines-finnish-sponsor.trycloudflare.com/app/api-proxy"
+url = "https://massachusetts-lens-realtors-imagination.trycloudflare.com/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 

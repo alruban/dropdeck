@@ -19,6 +19,10 @@ const GET_DROPDECK_PREORDER_ORDERS_QUERY =
                 id
                 title
                 quantity
+                sellingPlan {
+                  name
+                  sellingPlanId
+                }
                 product {
                   sellingPlanGroups(first: 3) {
                     edges {

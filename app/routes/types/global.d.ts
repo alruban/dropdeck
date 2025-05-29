@@ -72,37 +72,41 @@ type OrderTableRawData = {
       edges: [
         {
           node: {
-            id: "gid://shopify/Order/6379934482709";
-            name: "#1044";
-            createdAt: "2025-05-26T16:51:43Z";
-            displayFinancialStatus: "PAID";
-            displayFulfillmentStatus: "SCHEDULED";
-            cancelledAt: null;
+            id: string;
+            name: string;
+            createdAt: string;
+            displayFinancialStatus: string;
+            displayFulfillmentStatus: string;
+            cancelledAt: string | null;
             lineItems: {
               edges: [
                 {
                   node: {
-                    id: "gid://shopify/LineItem/15710276419861";
-                    title: "Orange Snowboard";
-                    quantity: 1;
+                    id: string;
+                    title: string;
+                    quantity: number;
+                    sellingPlan: {
+                      name: string;
+                      sellingPlanId: string;
+                    }
                     product: {
                       sellingPlanGroups: {
                         edges: [
                           {
                             node: {
-                              appId: "DROPDECK_PREORDER";
+                              appId: string;
                               sellingPlans: {
                                 nodes: [
                                   {
                                     deliveryPolicy: {
-                                      fulfillmentExactTime: "2025-05-26T23:00:00Z";
+                                      fulfillmentExactTime: string;
                                     };
                                     metafields: {
                                       edges: [
                                         {
                                           node: {
-                                            key: "units_per_customer";
-                                            value: "2";
+                                            key: string;
+                                            value: string;
                                           };
                                         },
                                       ];

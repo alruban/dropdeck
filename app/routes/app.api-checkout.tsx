@@ -54,17 +54,13 @@ export type GetPreorderDataResponse = {
 
 export type CustomerOrderLineItem = {
   node: {
-    customAttributes: {
-      key: string;
-      value: string;
-    }[];
-    product: {
-      id: string;
-      sellingPlanGroups: {
-        edges: SellingPlanGroupEdge[];
-      };
-    };
+    id: string;
+    title: string;
     quantity: number;
+    sellingPlan: {
+      name: string;
+      sellingPlanId: string;
+    };
   };
 };
 
