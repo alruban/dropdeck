@@ -1,0 +1,18 @@
+{%- doc -%}
+  Returns the units per customer for a Dropdeck preorder product.
+
+  @param {object} product
+
+  @example
+  {%- render 'dropdeck-unit-restriction', product: product -%}
+{%- enddoc -%}
+
+{%- liquid 
+  capture units_per_customer
+    render 'dropdeck-get-sp', product: product, return: 'units_per_customer'
+  endcapture  
+
+  if units_per_customer != blank
+    echo units_per_customer
+  endif
+-%}

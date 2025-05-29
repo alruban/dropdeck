@@ -1,0 +1,18 @@
+{%- doc -%}
+  Returns the expected fulfillment date for a Dropdeck preorder product.
+
+  @param {object} product
+
+  @example
+  {%- render 'dropdeck-release-date', product: product -%}
+{%- enddoc -%}
+
+{%- liquid 
+  capture expected_fulfillment_date
+    render 'dropdeck-get-sp', product: product, return: 'expected_fulfillment_date'
+  endcapture  
+
+  if expected_fulfillment_date != blank
+    echo expected_fulfillment_date | date: '%B %d, %Y'
+  endif
+-%}

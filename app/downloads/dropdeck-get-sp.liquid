@@ -1,0 +1,30 @@
+{%- doc -%}
+  Gets and returns data from the Dropdeck preorder selling plan.
+
+  @param {object} product
+  @param {string} return - The data to return (Can be: selling_plan_id, expected_fulfillment_date, units_per_customer)
+
+  @example
+  {%- render 'dropdeck-get-sp', product: product, return: 'expected_fulfillment_date' -%}
+{%- enddoc -%}
+
+{%- liquid 
+  assign dropdeck_selling_group = product.selling_plan_groups | where: 'app_id', "DROPDECK_PREORDER" | first 
+  assign dropdeck_selling_plan = dropdeck_selling_group.selling_plans | first
+  assign dropdeck_option = dropdeck_selling_group.options | first
+  assign expected_fulfillment_date = dropdeck_option.name | split: '|' | first | date: '%B %d, %Y'
+  assign units_per_customer = dropdeck_option.name | split: '|' | last
+
+  if dropdeck_selling_group != blank
+    case return
+      when 'selling_plan_id'
+        echo dropdeck_selling_plan.id
+      when 'expected_fulfillment_date'
+        echo expected_fulfillment_date
+      when 'units_per_customer'
+        echo units_per_customer
+      else
+        echo 'Please pass a valid return value'
+    endcase
+  endif
+-%}

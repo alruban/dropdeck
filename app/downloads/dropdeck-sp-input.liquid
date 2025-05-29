@@ -1,0 +1,23 @@
+{%- doc -%}
+  For adding the Dropdeck preorder selling plan id to the 'cart/add' forms.
+
+  @param {object} product
+
+  @example
+  {%- render 'dropdeck-sp-input', product: product -%}
+{%- enddoc -%}
+
+{%- liquid 
+  capture selling_plan_id
+    render 'dropdeck-get-sp', product: product, return: 'selling_plan_id'
+  endcapture  
+-%}
+
+{%- if selling_plan_id != blank -%}
+  <input 
+    id="dropdeck-preorder-selling-plan"
+    type="hidden" 
+    name="selling_plan" 
+    value="{{ selling_plan_id }}"
+  />
+{%- endif -%}

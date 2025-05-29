@@ -10,7 +10,8 @@ import {
   List,
   Scrollable,
   Pagination,
-  Icon
+  Icon,
+  Button
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { useTranslation } from "../hooks/useTranslation";
@@ -88,6 +89,16 @@ export default function Index() {
           <Text as="p" variant="bodyMd">
             {t("guide.card.steps.3.description")}
           </Text>
+          <Box maxWidth="400">
+            <Button
+              variant="secondary"
+              onClick={() => {
+
+              }}
+            >
+              {t("guide.card.steps.3.download")}
+            </Button>
+          </Box>
         </BlockStack>
       </div>
     )
