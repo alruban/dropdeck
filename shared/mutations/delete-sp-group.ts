@@ -1,4 +1,4 @@
-type DeleteSPGroupResponse = {
+export type DeleteSPGroupResponse = {
   data: {
     sellingPlanGroupDelete: {
       deletedSellingPlanGroupId: string;

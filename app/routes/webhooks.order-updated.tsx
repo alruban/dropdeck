@@ -2,7 +2,7 @@ import { data } from "@remix-run/node";
 import type { ActionFunctionArgs } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 
-type OrderCreate = {
+type OrderUpdated = {
   id: number;
   admin_graphql_api_id: string;
   app_id: number;
@@ -10,11 +10,11 @@ type OrderCreate = {
   buyer_accepts_marketing: boolean;
   cancel_reason: string | null;
   cancelled_at: string | null;
-  cart_token: string | null;
+  cart_token: string;
   checkout_id: number;
   checkout_token: string;
   client_details: {
-    accept_language: string | null;
+    accept_language: string;
     browser_height: number | null;
     browser_ip: string;
     browser_width: number | null;
@@ -25,7 +25,7 @@ type OrderCreate = {
   company: string | null;
   confirmation_number: string;
   confirmed: boolean;
-  contact_email: string | null;
+  contact_email: string;
   created_at: string;
   currency: string;
   current_shipping_price_set: {
@@ -62,9 +62,9 @@ type OrderCreate = {
   estimated_taxes: boolean;
   financial_status: string;
   fulfillment_status: string | null;
-  landing_site: string | null;
+  landing_site: string;
   landing_site_ref: string | null;
-  location_id: number;
+  location_id: string | null;
   merchant_business_entity_id: string;
   merchant_of_record_app_id: string | null;
   name: string;
@@ -79,7 +79,7 @@ type OrderCreate = {
   presentment_currency: string;
   processed_at: string;
   reference: string | null;
-  referring_site: string | null;
+  referring_site: string;
   source_identifier: string | null;
   source_name: string;
   source_url: string | null;
@@ -130,13 +130,13 @@ type OrderCreate = {
   total_tip_received: string;
   total_weight: number;
   updated_at: string;
-  user_id: number;
+  user_id: string | null;
   billing_address: {
     province: string;
     country: string;
     country_code: string;
     province_code: string;
-  } | null;
+  };
   customer: {
     id: number;
     email: string;
@@ -161,7 +161,7 @@ type OrderCreate = {
       country_name: string;
       default: boolean;
     };
-  } | null;
+  };
   discount_applications: any[];
   fulfillments: any[];
   line_items: Array<{
@@ -197,13 +197,27 @@ type OrderCreate = {
     discount_allocations: any[];
   }>;
   payment_terms: any | null;
-  refunds: any[];
+  refunds: Array<{
+    id: number;
+    admin_graphql_api_id: string;
+    created_at: string;
+    note: string | null;
+    order_id: number;
+    processed_at: string;
+    restock: boolean;
+    total_duties_set: any;
+    user_id: number;
+    order_adjustments: any[];
+    transactions: any[];
+    refund_line_items: any[];
+    duties: any[];
+  }>;
   shipping_address: {
     province: string;
     country: string;
     country_code: string;
     province_code: string;
-  } | null;
+  };
   shipping_lines: Array<{
     id: number;
     carrier_identifier: string | null;
@@ -224,32 +238,16 @@ type OrderCreate = {
   returns: any[];
 };
 
-type CheckIfProductIsDropdeckPreorderResponse = {
+type OrderSellingGroupPlanIdMetafieldResponse = {
   data: {
-    product: {
-      sellingPlanGroups: {
-        edges: [
-          {
-            node: {
-              appId: string;
-            }
-          }
-        ]
-      }
-    }
-  },
-  extensions: {
-    cost: {
-      requestedQueryCost: 7;
-      actualQueryCost: 4;
-      throttleStatus: {
-        maximumAvailable: 2000;
-        currentlyAvailable: 1996;
-        restoreRate: 100;
-      }
-    }
-  }
-}
+    order: {
+      metafield: {
+        key: string;
+        value: string;
+      } | null;
+    };
+  };
+};
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const { shop, topic, payload, session, admin } = await authenticate.webhook(request);
@@ -257,49 +255,41 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   if (!session) return data({ success: true });
 
-  // Parse the order line items and check if any line items are preorders
-  const promises = [];
+  const orderId = (payload as OrderUpdated).id;
 
-  for (const lineItem of (payload as OrderCreate).line_items) {
-    const productId = lineItem.product_id;
-
-    promises.push(
-      admin?.graphql(
-        `
-        #graphql
-        query checkIfProductIsDropdeckPreorder($id: ID!) {
-          product(id: $id) {
-            sellingPlanGroups(first: 10) {
-              edges {
-                node {
-                  appId
-                }
-              }
-            }
+  // Check to see if the order has a preorder metafield
+  const orderSellingGroupPlanIdMetafieldRequest = await admin?.graphql(
+    `
+    #graphql
+      query orderSellingGroupPlanId($id: ID!) {
+        order(id: $id) {
+          metafield(namespace: "dropdeck", key: "selling_plan_group_id") {
+            key
+            value
           }
         }
-        `,
-        {
-          variables: {
-            id: `gid://shopify/Product/${productId}`,
-          },
-        },
-      ),
-    );
+      }
+    `,
+    {
+      variables: {
+        id: `gid://shopify/Order/${orderId}`,
+      },
+    },
+  );
+
+  const orderSellingGroupPlanIdMetafield = await orderSellingGroupPlanIdMetafieldRequest.json() as OrderSellingGroupPlanIdMetafieldResponse;
+
+  // Has no preorder metafield, means it doesn't contain a preorder item, or that someone removed it.
+  if (!orderSellingGroupPlanIdMetafield.data.order.metafield) {
+    return data({ success: true });
   }
 
-  const responses = await Promise.all(promises);
+  // Parse the order data
+  // Check if any line items are preorders
+  const alreadyTagged = (payload as OrderUpdated).tags.includes("Dropdeck Preorder");
+  console.log("ALREADY TAGGED?", payload.tags);
 
-  // Parse and check each response
-  const isPreorder = (await Promise.all(responses.map(async (response) => {
-    if (!response) return false;
-    const json = await response.json() as CheckIfProductIsDropdeckPreorderResponse;
-    return json.data?.product?.sellingPlanGroups?.edges?.some((edge) => {
-      return edge.node.appId === "DROPDECK_PREORDER";
-    }) ?? false;
-  }))).some(Boolean);
-
-  if (isPreorder) {
+  if (!alreadyTagged) {
     const response = await admin.graphql(
       `
         mutation orderUpdate($input: OrderInput!) {
@@ -318,8 +308,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       {
         variables: {
           input: {
-            id: `gid://shopify/Order/${payload.id}`,
-            tags: [...(payload.tags || []), "Dropdeck Preorder"],
+            id: `gid://shopify/Order/${orderId}`,
+            tags: [...((payload as OrderUpdated).tags || []), "Dropdeck Preorder"],
           },
         },
       },
