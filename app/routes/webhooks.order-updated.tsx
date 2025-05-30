@@ -263,7 +263,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     #graphql
       query orderSellingGroupPlanId($id: ID!) {
         order(id: $id) {
-          metafield(namespace: "dropdeck", key: "selling_plan_group_id") {
+          metafield(namespace: "dropdeck", key: "is_preorder") {
             key
             value
           }
@@ -287,7 +287,6 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   // Parse the order data
   // Check if any line items are preorders
   const alreadyTagged = (payload as OrderUpdated).tags.includes("Dropdeck Preorder");
-  console.log("ALREADY TAGGED?", payload.tags);
 
   if (!alreadyTagged) {
     const response = await admin.graphql(

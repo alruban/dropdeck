@@ -320,6 +320,14 @@ export const action = async ({ request }: ActionFunctionArgs) => {
           input: {
             id: `gid://shopify/Order/${payload.id}`,
             tags: [...(payload.tags || []), "Dropdeck Preorder"],
+            metafields: [
+              {
+                type: "single_line_text_field",
+                namespace: "dropdeck",
+                key: "is_preorder",
+                value: "true"
+              }
+            ]
           },
         },
       },
