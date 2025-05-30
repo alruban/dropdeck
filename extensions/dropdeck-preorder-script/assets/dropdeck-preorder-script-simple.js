@@ -67,6 +67,18 @@
                     },
                 };
             };
+            this.handleMessaging = (unitsPerCustomer, releaseDate) => {
+                const { display_unit_restriction, display_release_date } = window.dropdeck.settings;
+                if (display_unit_restriction || display_release_date) {
+                    const elMessageContainer = document.createElement("div");
+                    elMessageContainer.className = "dropdeck-preorder-script-message-container";
+                    if (display_unit_restriction)
+                        this.createUnitsPerCustomerMessage(unitsPerCustomer, elMessageContainer);
+                    if (display_release_date)
+                        this.createReleaseDateMessage(releaseDate, elMessageContainer);
+                    this.elForm.prepend(elMessageContainer);
+                }
+            };
             this.handleVariantIdChanges = () => {
                 const observer = new MutationObserver((mutations) => {
                     for (const mutation of mutations) {
@@ -87,6 +99,23 @@
                     });
                 }
             };
+            this.parseISOStringIntoFormalDate = (isoString) => {
+                const dateObj = new Date(isoString);
+                const day = dateObj.getDate();
+                const month = dateObj.toLocaleString('default', { month: 'long' });
+                const year = dateObj.getFullYear();
+                const ordinal = (day) => {
+                    if (day > 3 && day < 21)
+                        return 'th';
+                    switch (day % 10) {
+                        case 1: return 'st';
+                        case 2: return 'nd';
+                        case 3: return 'rd';
+                        default: return 'th';
+                    }
+                };
+                return `${day}${ordinal(day)} ${month} ${year}`;
+            };
             this.getVariant = () => {
                 return this.vData?.productVariant.product.variants.edges.find((variant) => {
                     const vId = variant.node.id.replace("gid://shopify/ProductVariant/", "");
@@ -99,14 +128,23 @@
                 this.elQuantityInput.max = unitsPerCustomer.toString();
                 this.elQuantityInput.value = "1";
             };
-            this.createUnitsPerCustomerMessage = (unitsPerCustomer) => {
-                if (unitsPerCustomer === 0)
+            this.createReleaseDateMessage = (releaseDate, elMessageContainer) => {
+                if (!window.dropdeck.settings.display_release_date)
+                    return;
+                const elReleaseDateMessage = document.createElement("small");
+                elReleaseDateMessage.textContent = `Release date: ${releaseDate}`;
+                elReleaseDateMessage.style.display = "block";
+                elReleaseDateMessage.style.marginBottom = "6px";
+                elMessageContainer.prepend(elReleaseDateMessage);
+            };
+            this.createUnitsPerCustomerMessage = (unitsPerCustomer, elMessageContainer) => {
+                if (unitsPerCustomer === 0 || !window.dropdeck.settings.display_unit_restriction)
                     return;
                 const elUnitsPerCustomerMessage = document.createElement("small");
                 elUnitsPerCustomerMessage.textContent = `Limit per customer: ${unitsPerCustomer} unit(s)`;
                 elUnitsPerCustomerMessage.style.display = "block";
                 elUnitsPerCustomerMessage.style.marginBottom = "6px";
-                this.elForm.prepend(elUnitsPerCustomerMessage);
+                elMessageContainer.prepend(elUnitsPerCustomerMessage);
             };
             this.createPreorderSubmitButton = () => {
                 const button = this.elOriginalBtn;
@@ -222,8 +260,9 @@
                     this.elForm.prepend(sellingPlanInput);
                 }
                 const unitsPerCustomer = Number(sellingPlan.node.metafields.edges[0].node.value);
+                const releaseDate = this.parseISOStringIntoFormalDate(sellingPlan.node.deliveryPolicy.fulfillmentExactTime);
                 this.handleVariantIdChanges();
-                this.createUnitsPerCustomerMessage(unitsPerCustomer);
+                this.handleMessaging(unitsPerCustomer, releaseDate);
                 this.createPreorderSubmitButton();
                 this.enforceUnitsPerCustomerLimit(unitsPerCustomer);
                 this.elForm.addEventListener("change", () => {
@@ -444,7 +483,12 @@
     document.addEventListener("DOMContentLoaded", loadScript);
     document.addEventListener("shopify:section:load", loadScript);
     document.addEventListener("dropdeck:reload", loadScript);
+    const elSettings = get(".js-dropdeck-script-simple-settings", document);
     window.dropdeck = {
+        settings: {
+            display_release_date: elSettings.dataset.displayReleaseDate === "true",
+            display_unit_restriction: elSettings.dataset.displayUnitRestriction === "true",
+        },
         refresh: function () {
             return loadScript();
         }

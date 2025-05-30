@@ -172,9 +172,11 @@
           }
 
           const unitsPerCustomer = Number(sellingPlan.node.metafields.edges[0].node.value);
+          const releaseDate = this.parseISOStringIntoFormalDate(sellingPlan.node.deliveryPolicy.fulfillmentExactTime);
 
           this.handleVariantIdChanges();
-          this.createUnitsPerCustomerMessage(unitsPerCustomer)
+          this.handleMessaging(unitsPerCustomer, releaseDate);
+
           this.createPreorderSubmitButton();
           this.enforceUnitsPerCustomerLimit(unitsPerCustomer);
 
@@ -203,6 +205,20 @@
         .finally(() => {
           this.loader?.hide();
         });
+    }
+
+    private handleMessaging = (unitsPerCustomer: number, releaseDate: string) => {
+      const { display_unit_restriction, display_release_date } = (window as unknown as DropdeckWindow).dropdeck.settings;
+
+      if (display_unit_restriction || display_release_date) {
+        const elMessageContainer = document.createElement("div");
+        elMessageContainer.className = "dropdeck-preorder-script-message-container";
+
+        if (display_unit_restriction) this.createUnitsPerCustomerMessage(unitsPerCustomer, elMessageContainer);
+        if (display_release_date) this.createReleaseDateMessage(releaseDate, elMessageContainer);
+
+        this.elForm.prepend(elMessageContainer);
+      }
     }
 
     private handleVariantIdChanges = () => {
@@ -234,6 +250,26 @@
       }
     };
 
+    private parseISOStringIntoFormalDate = (isoString: string): string => {
+      const dateObj = new Date(isoString);
+      const day = dateObj.getDate();
+      const month = dateObj.toLocaleString('default', { month: 'long' });
+      const year = dateObj.getFullYear();
+
+      // Add ordinal suffix to day
+      const ordinal = (day: number) => {
+        if (day > 3 && day < 21) return 'th';
+        switch (day % 10) {
+          case 1: return 'st';
+          case 2: return 'nd';
+          case 3: return 'rd';
+          default: return 'th';
+        }
+      };
+
+      return `${day}${ordinal(day)} ${month} ${year}`;
+    };
+
     private getVariant = () => {
       return this.vData?.productVariant.product.variants.edges.find(
         (variant) => {
@@ -252,13 +288,22 @@
       this.elQuantityInput.value = "1";
     };
 
-    private createUnitsPerCustomerMessage = (unitsPerCustomer: number) => {
-      if (unitsPerCustomer === 0) return;
+    private createReleaseDateMessage = (releaseDate: string, elMessageContainer: HTMLElement) => {
+      if (!((window as unknown) as DropdeckWindow).dropdeck.settings.display_release_date) return;
+      const elReleaseDateMessage = document.createElement("small");
+      elReleaseDateMessage.textContent = `Release date: ${releaseDate}`;
+      elReleaseDateMessage.style.display = "block";
+      elReleaseDateMessage.style.marginBottom = "6px";
+      elMessageContainer.prepend(elReleaseDateMessage);
+    };
+
+    private createUnitsPerCustomerMessage = (unitsPerCustomer: number, elMessageContainer: HTMLElement) => {
+      if (unitsPerCustomer === 0 || !((window as unknown) as DropdeckWindow).dropdeck.settings.display_unit_restriction) return;
       const elUnitsPerCustomerMessage = document.createElement("small");
       elUnitsPerCustomerMessage.textContent = `Limit per customer: ${unitsPerCustomer} unit(s)`;
       elUnitsPerCustomerMessage.style.display = "block";
       elUnitsPerCustomerMessage.style.marginBottom = "6px";
-      this.elForm.prepend(elUnitsPerCustomerMessage);
+      elMessageContainer.prepend(elUnitsPerCustomerMessage);
     };
 
     private createPreorderSubmitButton = () => {
@@ -607,12 +652,22 @@
   // Define window.dropdeck type at file level
   type DropdeckWindow = Window & {
     dropdeck: {
+      settings: {
+        display_release_date: boolean;
+        display_unit_restriction: boolean;
+      };
       refresh?: () => void;
     }
   }
 
+  const elSettings = get<HTMLElement>(".js-dropdeck-script-simple-settings", document) as HTMLElement;
+
   // Initialize dropdeck object
   ((window as unknown) as DropdeckWindow).dropdeck = {
+    settings: {
+      display_release_date: elSettings.dataset.displayReleaseDate === "true",
+      display_unit_restriction: elSettings.dataset.displayUnitRestriction === "true",
+    },
     refresh: function() {
       return loadScript();
     }

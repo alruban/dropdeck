@@ -22,6 +22,24 @@
         }
       ],
       "default": "simple"
+    },
+    {
+      "type": "header",
+      "content": "Simple Setup Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "display_release_date",
+      "label": "Display Release Date",
+      "info": "This will display the release date for a product with a preorder selling plan.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "display_unit_restriction",
+      "label": "Display Unit Restriction",
+      "info": "This will display the unit restriction for a product with a preorder selling plan. This should be added to all of the quantity selectors on the theme as the value of the max attribute on the input",
+      "default": true
     }
   ]
 }
@@ -29,7 +47,11 @@
 
 {%- case block.settings.setup_choice -%}
   {%- when "simple" -%}
+    <div
+      class="js-dropdeck-script-simple-settings"
+      data-display-release-date="{{ block.settings.display_release_date }}"
+      data-display-unit-restriction="{{ block.settings.display_unit_restriction }}"
+    ></div>
+
     <script src="{{ 'dropdeck-preorder-script-simple.js' | asset_url }}" defer></script>
-  {%- when "advanced" -%}
-    <script src="{{ 'dropdeck-preorder-script-advanced.js' | asset_url }}" defer></script>
 {%- endcase -%}
