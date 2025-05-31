@@ -1,0 +1,17 @@
+{
+  "name": "Dropdeck Pré-venda",
+  "heading_create_preorder": "Criar plano de pré-venda",
+  "heading_update_preorder": "Atualizar plano de pré-venda",
+  "description": "Este plano de venda é utilizado para criar uma pré-venda para um produto ou variante de produto. Introduza uma data e hora de lançamento para agendar uma pré-venda e clique em guardar para criar o plano de pré-venda.",
+  "cancel": "Cancelar",
+  "shipping_date": "Data de lançamento",
+  "enable_unit_restriction": "Ativar restrição de unidades",
+  "units_per_customer": "Unidades por cliente",
+  "affected_products": "A edição do plano de venda acima também afetará os seguintes produtos:",
+  "submit_create_preorder": "Criar pré-venda",
+  "submit_creating_preorder": "A criar plano de pré-venda...",
+  "submit_update_preorder": "Atualizar pré-venda",
+  "submit_updating_preorder": "A atualizar plano de pré-venda...",
+  "error_date_must_be_future": "A data tem de ser no futuro.",
+  "notice_selling_plan_requirement": "Qualquer produto adicionado a um plano de venda exigirá automaticamente um. Isto remove o produto dos canais de venda que não suportam pré-vendas do Shopify e impede que seja vendido nesses canais. Desmarcar a opção 'Vender este produto apenas como subscrição' nas páginas de administração do produto removerá este requisito, o que não recomendamos, pois pode fazer com que as suas pré-vendas sejam processadas como encomendas padrão."
+}
