@@ -145,7 +145,7 @@
         },
         "1": {
           "title": "Step 1: Creating a preorder selling plan",
-          "description": "What is a selling plan? A selling plan is Shopify's way of scheduling products so they can be fulfilled at a later date, so- to create a preorder you need to create a preorder selling plan. You can two this in two ways with Dropdeck:",
+          "description": "What is a selling plan? A selling plan is Shopify's way of scheduling products so they can be fulfilled at a later date, so- to create a preorder you need to create a preorder selling plan. You can do this in two ways with Dropdeck:",
           "steps": {
             "1": "Create or add a pre-existing preorder selling plan on the product admin page under 'Purchase options', which will assign that product alone to the plan.",
             "2": "Create a preorder selling plan for a selection of products or even just a product on Dropdeck's preorder plans page."
@@ -168,7 +168,7 @@
         },
         "3": {
           "title": "Step 3: Installing code snippets for the advanced setup",
-          "description": "It is best to leave this work to a developer who is familliar with Shopify's infrastructure as only someone with experience will be able to ascertain how each of these snippets will need to be integrated into your theme. Start off by clicking the button below to download the zipped code snippets. Once downloaded, these snippets will need to be added into your theme's codebase in the snippets folder.",
+          "description": "It is best to leave this work to a developer who is familiar with Shopify's infrastructure as only someone with experience will be able to ascertain how each of these snippets will need to be integrated into your theme. Start off by clicking the button below to download the zipped code snippets. Once downloaded, these snippets will need to be added into your theme's codebase in the snippets folder.",
           "snippets": {
             "1": {
               "title": "dropdeck-get-sp.liquid",
@@ -209,7 +209,7 @@
             },
             "3": {
               "question": "What is a unit restriction?",
-              "answer": "A unit restriction is a way to limit the number of units a customer can purchase of a preorder product. This is useful for preorder products that you want to facilitate a fair and equitable preorder experience for all customers. If you're a Shopify Plus user, you can add the Unit Restriction Checkout Extension to your store's checkout to ensure that customers cannot exceed a purchase restriction on a preorder product. This applies the unit restriction not only to their current cart which is available to all Shopify users, but across all of their previous orders, this functionality which checks a customers previous orders is only available to Shopify Plus customers."
+              "answer": "A unit restriction is a way to limit the number of units a customer can purchase of a preorder product. This is useful for preorder products that you want to facilitate a fair and equitable preorder experience for all customers. If you're a Shopify Plus user, you can add the Unit Restriction Checkout Extension to your store's checkout to ensure that customers cannot exceed a purchase restriction on a preorder product. This applies the unit restriction not only to their current cart which is available to all Shopify users, but across all of their previous orders, this functionality which checks a customer's previous orders is only available to Shopify Plus customers."
             },
             "4": {
               "question": "What happens if I have a preorder selling plan setup and I uninstall the app?",
