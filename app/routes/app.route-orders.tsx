@@ -33,25 +33,23 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
   if (!admin) return new Response();
 
-  const body = await request.json();
+  const formData = await request.formData();
+  const target = formData.get('target');
 
-  const { target } = body;
-
-  console.log("BODY",body);
-  let response
+  let response;
 
   switch (target) {
     case "before":
-      const { before } = body;
+      const before = formData.get('before');
       response = await admin.graphql(GET_DROPDECK_PREORDER_ORDERS_QUERY_BEFORE, {
-        variables: getDropdeckPreorderOrdersVariables(before)
+        variables: getDropdeckPreorderOrdersVariables(before as string)
       });
       break;
 
     case "after":
-      const { after } = body;
+      const after = formData.get('after');
       response = await admin.graphql(GET_DROPDECK_PREORDER_ORDERS_QUERY_AFTER, {
-        variables: getDropdeckPreorderOrdersVariables(null,after)
+        variables: getDropdeckPreorderOrdersVariables(null, after as string)
       });
       break;
   }

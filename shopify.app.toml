@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://affordable-you-beijing-programme.trycloudflare.com"
+application_url = "https://suggestion-guild-carried-lonely.trycloudflare.com"
 embedded = true
 
 [build]
@@ -35,13 +35,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://affordable-you-beijing-programme.trycloudflare.com/auth/callback",
-  "https://affordable-you-beijing-programme.trycloudflare.com/auth/shopify/callback",
-  "https://affordable-you-beijing-programme.trycloudflare.com/api/auth/callback"
+  "https://suggestion-guild-carried-lonely.trycloudflare.com/auth/callback",
+  "https://suggestion-guild-carried-lonely.trycloudflare.com/auth/shopify/callback",
+  "https://suggestion-guild-carried-lonely.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://affordable-you-beijing-programme.trycloudflare.com/app/api-proxy"
+url = "https://suggestion-guild-carried-lonely.trycloudflare.com/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 
