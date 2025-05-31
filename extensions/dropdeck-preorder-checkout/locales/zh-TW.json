@@ -1,0 +1,17 @@
+{
+  "page": {
+    "error_preorder_limit_exceeded": {
+      "message_reduce_units": "您已超出預購限制。請從訂單中移除 {{units}} 件商品。",
+      "message_remove_all_units": "您已超出預購限制。請從購物車中移除產品 '{{product_name}}'。"
+    }
+  },
+  "line_item": {
+    "ships_on_or_after": "{{date}} 或之後發貨",
+    "units_per_customer": "每位客戶 {{ total_units }} 件",
+    "error_preorder_limit_exceeded": {
+      "message": "您已超出預購限制。",
+      "units_bought_in_previous_orders": "之前訂單購買數量：{{units}}",
+      "units_in_this_order": "本次訂單數量：{{units}}"
+    }
+  }
+}

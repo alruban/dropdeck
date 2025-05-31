@@ -1,0 +1,17 @@
+{
+  "name": "Dropdeck 預購",
+  "heading_create_preorder": "建立預購銷售計劃",
+  "heading_update_preorder": "更新預購銷售計劃",
+  "description": "此銷售計劃用於為產品或產品變體建立預購。輸入發布日期和時間以安排預購，然後點擊儲存以建立預購銷售計劃。",
+  "cancel": "取消",
+  "shipping_date": "發布日期",
+  "enable_unit_restriction": "啟用單位限制",
+  "units_per_customer": "每位客戶的單位數",
+  "affected_products": "編輯上述銷售計劃也會影響以下產品：",
+  "submit_create_preorder": "建立預購",
+  "submit_creating_preorder": "正在建立預購銷售計劃...",
+  "submit_update_preorder": "更新預購",
+  "submit_updating_preorder": "正在更新預購銷售計劃...",
+  "error_date_must_be_future": "日期必須是將來的日期。",
+  "notice_selling_plan_requirement": "添加到銷售計劃中的任何產品都將自動需要一個銷售計劃。這會將產品從不支持 Shopify 預購的銷售渠道中移除，並防止其在這些渠道中銷售。在產品管理頁面取消選中「僅將此產品作為訂閱銷售」選項將刪除此要求，我們不建議這樣做，因為這可能導致您的預購作為標準訂單處理。"
+}
