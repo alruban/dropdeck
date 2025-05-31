@@ -1,0 +1,17 @@
+{
+  "name": "Dropdeck Pre-order",
+  "heading_create_preorder": "Pre-order verkoopplan aanmaken",
+  "heading_update_preorder": "Pre-order verkoopplan bijwerken",
+  "description": "Dit verkoopplan wordt gebruikt om een pre-order te maken voor een product of productvariant. Voer een releasedatum en -tijd in om een pre-order te plannen en klik vervolgens op opslaan om het pre-order verkoopplan aan te maken.",
+  "cancel": "Annuleren",
+  "shipping_date": "Releasedatum",
+  "enable_unit_restriction": "Eenheidsbeperking inschakelen",
+  "units_per_customer": "Eenheden per klant",
+  "affected_products": "Het bewerken van het bovenstaande verkoopplan heeft ook invloed op de volgende producten:",
+  "submit_create_preorder": "Pre-order aanmaken",
+  "submit_creating_preorder": "Pre-order verkoopplan wordt aangemaakt...",
+  "submit_update_preorder": "Pre-order bijwerken",
+  "submit_updating_preorder": "Pre-order verkoopplan wordt bijgewerkt...",
+  "error_date_must_be_future": "De datum moet in de toekomst liggen.",
+  "notice_selling_plan_requirement": "Elk product dat aan een verkoopplan wordt toegevoegd, vereist automatisch een verkoopplan. Dit verwijdert het product uit verkoopkanalen die geen Shopify pre-orders ondersteunen en voorkomt dat het daar wordt verkocht. Het uitschakelen van de optie 'Dit product alleen als abonnement verkopen' op de productbeheerpagina's verwijdert deze vereiste, wat we afraden omdat dit ertoe kan leiden dat uw pre-orders als standaardbestellingen binnenkomen."
+}

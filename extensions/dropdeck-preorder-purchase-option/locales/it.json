@@ -1,0 +1,17 @@
+{
+  "name": "Dropdeck Preordine",
+  "heading_create_preorder": "Crea piano di preordine",
+  "heading_update_preorder": "Aggiorna piano di preordine",
+  "description": "Questo piano di vendita viene utilizzato per creare un preordine per un prodotto o una variante di prodotto. Inserisci una data e un orario di rilascio per programmare un preordine, quindi fai clic su salva per creare il piano di preordine.",
+  "cancel": "Annulla",
+  "shipping_date": "Data di rilascio",
+  "enable_unit_restriction": "Abilita restrizione unità",
+  "units_per_customer": "Unità per cliente",
+  "affected_products": "La modifica del piano di vendita sopra influenzerà anche i seguenti prodotti:",
+  "submit_create_preorder": "Crea preordine",
+  "submit_creating_preorder": "Creazione del piano di preordine...",
+  "submit_update_preorder": "Aggiorna preordine",
+  "submit_updating_preorder": "Aggiornamento del piano di preordine...",
+  "error_date_must_be_future": "La data deve essere futura.",
+  "notice_selling_plan_requirement": "Qualsiasi prodotto aggiunto a un piano di vendita ne richiederà automaticamente uno. Questo rimuove il prodotto dai canali di vendita che non supportano i preordini Shopify e ne impedisce la vendita lì. Deselezionare l'opzione 'Vendi questo prodotto solo come abbonamento' nelle pagine di amministrazione del prodotto rimuoverà questo requisito, cosa che sconsigliamo in quanto potrebbe far arrivare i tuoi preordini come ordini standard."
+}
