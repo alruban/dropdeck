@@ -1,0 +1,17 @@
+{
+  "page": {
+    "error_preorder_limit_exceeded": {
+      "message_reduce_units": "Ön sipariş sınırını aştınız. Lütfen siparişinizden {{units}} birim çıkarın.",
+      "message_remove_all_units": "Ön sipariş sınırını aştınız. Lütfen '{{product_name}}' ürününü sepetinizden çıkarın."
+    }
+  },
+  "line_item": {
+    "ships_on_or_after": "{{date}} veya sonrasında gönderilir",
+    "units_per_customer": "Müşteri başına {{ total_units }} birim",
+    "error_preorder_limit_exceeded": {
+      "message": "Ön sipariş sınırını aştınız.",
+      "units_bought_in_previous_orders": "Önceki siparişlerde alınan birimler: {{units}}",
+      "units_in_this_order": "Bu siparişteki birimler: {{units}}"
+    }
+  }
+}

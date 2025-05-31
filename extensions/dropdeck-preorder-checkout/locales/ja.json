@@ -1,0 +1,17 @@
+{
+  "page": {
+    "error_preorder_limit_exceeded": {
+      "message_reduce_units": "予約注文の上限を超えました。ご注文から{{units}}個を削除してください。",
+      "message_remove_all_units": "予約注文の上限を超えました。カートから商品「{{product_name}}」を削除してください。"
+    }
+  },
+  "line_item": {
+    "ships_on_or_after": "{{date}}以降に発送",
+    "units_per_customer": "お客様ごとに{{ total_units }}個まで",
+    "error_preorder_limit_exceeded": {
+      "message": "予約注文の上限を超えました。",
+      "units_bought_in_previous_orders": "過去の注文で購入した個数：{{units}}",
+      "units_in_this_order": "この注文での個数：{{units}}"
+    }
+  }
+}

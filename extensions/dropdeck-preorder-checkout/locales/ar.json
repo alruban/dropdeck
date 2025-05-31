@@ -1,0 +1,17 @@
+{
+  "page": {
+    "error_preorder_limit_exceeded": {
+      "message_reduce_units": "لقد تجاوزت حد الطلب المسبق. يرجى إزالة {{units}} وحدة من طلبك.",
+      "message_remove_all_units": "لقد تجاوزت حد الطلب المسبق. يرجى إزالة المنتج '{{product_name}}' من سلة التسوق."
+    }
+  },
+  "line_item": {
+    "ships_on_or_after": "يتم الشحن في أو بعد {{date}}",
+    "units_per_customer": "{{ total_units }} وحدة لكل عميل",
+    "error_preorder_limit_exceeded": {
+      "message": "لقد تجاوزت حد الطلب المسبق.",
+      "units_bought_in_previous_orders": "الوحدات المشتراة في الطلبات السابقة: {{units}}",
+      "units_in_this_order": "الوحدات في هذا الطلب: {{units}}"
+    }
+  }
+}

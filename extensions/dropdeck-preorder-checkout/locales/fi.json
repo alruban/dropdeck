@@ -1,0 +1,17 @@
+{
+  "page": {
+    "error_preorder_limit_exceeded": {
+      "message_reduce_units": "Olet ylittänyt ennakkotilausrajan. Poista {{units}} yksikköä tilauksestasi.",
+      "message_remove_all_units": "Olet ylittänyt ennakkotilausrajan. Poista tuote '{{product_name}}' ostoskoristasi."
+    }
+  },
+  "line_item": {
+    "ships_on_or_after": "Lähetetään {{date}} tai sen jälkeen",
+    "units_per_customer": "{{ total_units }} yksikköä per asiakas",
+    "error_preorder_limit_exceeded": {
+      "message": "Olet ylittänyt ennakkotilausrajan.",
+      "units_bought_in_previous_orders": "Aiemmissa tilauksissa ostetut yksiköt: {{units}}",
+      "units_in_this_order": "Tämän tilauksen yksiköt: {{units}}"
+    }
+  }
+}

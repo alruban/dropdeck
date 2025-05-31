@@ -1,0 +1,17 @@
+{
+  "page": {
+    "error_preorder_limit_exceeded": {
+      "message_reduce_units": "선주문 한도를 초과했습니다. 주문에서 {{units}}개를 제거해 주세요.",
+      "message_remove_all_units": "선주문 한도를 초과했습니다. 장바구니에서 '{{product_name}}' 상품을 제거해 주세요."
+    }
+  },
+  "line_item": {
+    "ships_on_or_after": "{{date}} 이후에 배송",
+    "units_per_customer": "고객당 {{ total_units }}개",
+    "error_preorder_limit_exceeded": {
+      "message": "선주문 한도를 초과했습니다.",
+      "units_bought_in_previous_orders": "이전 주문에서 구매한 수량: {{units}}",
+      "units_in_this_order": "이번 주문의 수량: {{units}}"
+    }
+  }
+}

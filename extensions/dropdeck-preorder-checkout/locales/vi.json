@@ -1,0 +1,17 @@
+{
+  "page": {
+    "error_preorder_limit_exceeded": {
+      "message_reduce_units": "Bạn đã vượt quá giới hạn đặt trước. Vui lòng xóa {{units}} đơn vị khỏi đơn hàng của bạn.",
+      "message_remove_all_units": "Bạn đã vượt quá giới hạn đặt trước. Vui lòng xóa sản phẩm '{{product_name}}' khỏi giỏ hàng của bạn."
+    }
+  },
+  "line_item": {
+    "ships_on_or_after": "Giao hàng vào hoặc sau {{date}}",
+    "units_per_customer": "{{ total_units }} đơn vị cho mỗi khách hàng",
+    "error_preorder_limit_exceeded": {
+      "message": "Bạn đã vượt quá giới hạn đặt trước.",
+      "units_bought_in_previous_orders": "Đơn vị đã mua trong các đơn hàng trước: {{units}}",
+      "units_in_this_order": "Đơn vị trong đơn hàng này: {{units}}"
+    }
+  }
+}

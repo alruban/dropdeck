@@ -1,0 +1,17 @@
+{
+  "page": {
+    "error_preorder_limit_exceeded": {
+      "message_reduce_units": "आपने प्री-ऑर्डर सीमा पार कर ली है। कृपया अपने ऑर्डर से {{units}} इकाइयाँ हटा दें।",
+      "message_remove_all_units": "आपने प्री-ऑर्डर सीमा पार कर ली है। कृपया अपने कार्ट से '{{product_name}}' उत्पाद हटा दें।"
+    }
+  },
+  "line_item": {
+    "ships_on_or_after": "{{date}} या उसके बाद भेजा जाएगा",
+    "units_per_customer": "प्रत्येक ग्राहक के लिए {{ total_units }} इकाइयाँ",
+    "error_preorder_limit_exceeded": {
+      "message": "आपने प्री-ऑर्डर सीमा पार कर ली है।",
+      "units_bought_in_previous_orders": "पिछले ऑर्डरों में खरीदी गई इकाइयाँ: {{units}}",
+      "units_in_this_order": "इस ऑर्डर में इकाइयाँ: {{units}}"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "page": {
+    "error_preorder_limit_exceeded": {
+      "message_reduce_units": "Du har overskredet forhåndsbestillingsgrensen. Vennligst fjern {{units}} enheter fra bestillingen din.",
+      "message_remove_all_units": "Du har overskredet forhåndsbestillingsgrensen. Vennligst fjern produktet '{{product_name}}' fra handlekurven din."
+    }
+  },
+  "line_item": {
+    "ships_on_or_after": "Sendes på eller etter {{date}}",
+    "units_per_customer": "{{ total_units }} enheter per kunde",
+    "error_preorder_limit_exceeded": {
+      "message": "Du har overskredet forhåndsbestillingsgrensen.",
+      "units_bought_in_previous_orders": "Enheter kjøpt i tidligere bestillinger: {{units}}",
+      "units_in_this_order": "Enheter i denne bestillingen: {{units}}"
+    }
+  }
+}
