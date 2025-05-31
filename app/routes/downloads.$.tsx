@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
+import { type LoaderFunctionArgs } from "@remix-run/node";
 import path from "path";
 
 export async function loader({ params }: LoaderFunctionArgs) {

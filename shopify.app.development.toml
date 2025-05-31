@@ -3,7 +3,7 @@
 client_id = "e42a64a0fc2480cc7eec789e0caed811"
 name = "Dropdeck (Development)"
 handle = "dropdeck-development"
-application_url = "https://alternatively-bandwidth-lonely-personalized.trycloudflare.com"
+application_url = "https://generators-scuba-ix-seal.trycloudflare.com"
 embedded = true
 
 [build]
@@ -35,13 +35,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://alternatively-bandwidth-lonely-personalized.trycloudflare.com/auth/callback",
-  "https://alternatively-bandwidth-lonely-personalized.trycloudflare.com/auth/shopify/callback",
-  "https://alternatively-bandwidth-lonely-personalized.trycloudflare.com/api/auth/callback"
+  "https://generators-scuba-ix-seal.trycloudflare.com/auth/callback",
+  "https://generators-scuba-ix-seal.trycloudflare.com/auth/shopify/callback",
+  "https://generators-scuba-ix-seal.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://alternatively-bandwidth-lonely-personalized.trycloudflare.com/app/api-proxy"
+url = "https://generators-scuba-ix-seal.trycloudflare.com/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 
