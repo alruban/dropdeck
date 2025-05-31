@@ -4,7 +4,7 @@ const GET_DROPDECK_PREORDER_ORDERS_QUERY =
     shop {
       myshopifyDomain
     }
-    orders(first: 3, query: $query) {
+    orders(first: 50, query: $query) {
       pageInfo {
         hasNextPage
         hasPreviousPage
@@ -71,7 +71,7 @@ const GET_DROPDECK_PREORDER_ORDERS_QUERY_AFTER =
     shop {
       myshopifyDomain
     }
-    orders(first: 3, query: $query, after: $after) {
+    orders(first: 50, query: $query, after: $after) {
       pageInfo {
         hasNextPage
         hasPreviousPage
@@ -138,7 +138,7 @@ const GET_DROPDECK_PREORDER_ORDERS_QUERY_BEFORE =
     shop {
       myshopifyDomain
     }
-    orders(first: 3, query: $query, before: $before) {
+    orders(last: 50, query: $query, before: $before) {
       pageInfo {
         hasNextPage
         hasPreviousPage

@@ -1,5 +1,5 @@
 import { type ActionFunctionArgs, data, type LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData, useNavigation, useSubmit, useSearchParams } from "@remix-run/react";
+import { useLoaderData, useNavigation, useSubmit, useSearchParams, useActionData } from "@remix-run/react";
 import {
   Page,
   Layout,
@@ -58,14 +58,23 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 };
 
 export default function Index() {
-  const { data } = useLoaderData<typeof loader>();
+  const { data: loaderData } = useLoaderData<typeof loader>();
+  const actionData = useActionData<typeof action>();
   const submit = useSubmit();
   const navigation = useNavigation();
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedResources, setSelectedResources] = useState<string[]>([]);
+  const [data, setData] = useState(loaderData as OrderTableRawData);
 
-  const orders = data as OrderTableRawData;
+  // Update data when loader data or action data changes
+  useEffect(() => {
+    if (actionData) {
+      setData(actionData.data as OrderTableRawData);
+    } else {
+      setData(loaderData as OrderTableRawData);
+    }
+  }, [loaderData, actionData]);
 
   // Set default values on first load
   useEffect(() => {
@@ -97,7 +106,7 @@ export default function Index() {
   // Extract unique products from orders
   const productOptions = useMemo(() => {
     const products = new Set<string>();
-    orders.data.orders.edges.forEach(( order ) => {
+    data.data.orders.edges.forEach(( order ) => {
       order.node.lineItems.edges.forEach((lineItem) => {
         // Check if this line item has preorder data
         const hasPreorderData = lineItem.node.product.sellingPlanGroups.edges.some(
@@ -219,16 +228,14 @@ export default function Index() {
               onPrevious={() => {
                 const formData = new FormData();
                 formData.set("target", "before");
-                formData.set("before", data.data.orders.pageInfo.startCursor);
-
+                formData.set("before", String(data.data.orders.pageInfo.startCursor));
                 submit(formData, { method: "POST" });
               }}
               hasNext={data.data.orders.pageInfo.hasNextPage}
               onNext={() => {
                 const formData = new FormData();
                 formData.set("target", "after");
-                formData.set("after", data.data.orders.pageInfo.endCursor);
-
+                formData.set("after", String(data.data.orders.pageInfo.endCursor));
                 submit(formData, { method: "POST" });
               }}
             />
