@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm prisma generate && pnpm run build",
+  "buildCommand": "pnpm prisma generate && pnpm prisma migrate deploy && pnpm run build",
   "devCommand": "pnpm run dev",
   "installCommand": "pnpm install",
   "framework": "remix",
