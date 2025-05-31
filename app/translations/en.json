@@ -94,7 +94,15 @@
     "settings": {
       "title": "Settings",
       "filters": {
-        "hide_cancelled_orders": "Hide cancelled orders"
+        "preorder_products": {
+          "title": "Filter by preorder product",
+          "options": {
+            "all_products": "All products"
+          }
+        },
+        "hide_cancelled_orders": "Hide cancelled orders",
+        "hide_fulfilled_orders": "Hide fulfilled orders",
+        "show_row_colors": "Show row colors"
       }
     },
     "table": {

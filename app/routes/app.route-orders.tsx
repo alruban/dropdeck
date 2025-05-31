@@ -118,7 +118,7 @@ export default function Index() {
       });
     });
     return [
-      { label: "All products", value: "" },
+      { label: t("orders.settings.filters.preorder_products.options.all_products"), value: "" },
       ...Array.from(products).map(title => ({ label: title, value: title }))
     ];
   }, [data]);
@@ -181,23 +181,23 @@ export default function Index() {
               </InlineStack>
               <BlockStack gap="200">
                 <Select
-                  label="Filter by preorder product"
+                  label={t("orders.settings.filters.preorder_products.title")}
                   options={productOptions}
                   value={settings.selectedProduct}
                   onChange={(value) => updateSetting("product", value)}
                 />
                 <Checkbox
-                  label="Hide cancelled orders"
+                  label={t("orders.settings.filters.hide_cancelled_orders")}
                   checked={settings.hideCancelled}
                   onChange={(checked) => updateSetting("hideCancelled", checked)}
                 />
                 <Checkbox
-                  label="Hide fulfilled orders"
+                  label={t("orders.settings.filters.hide_fulfilled_orders")}
                   checked={settings.hideFulfilled}
                   onChange={(checked) => updateSetting("hideFulfilled", checked)}
                 />
                 <Checkbox
-                  label="Show row colors"
+                  label={t("orders.settings.filters.show_row_colors")}
                   checked={settings.showRowColors}
                   onChange={(checked) => updateSetting("showRowColors", checked)}
                 />
