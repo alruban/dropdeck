@@ -3,7 +3,7 @@
 client_id = "7335e14a94732885ca09f94e73497e98"
 name = "Dropdeck"
 handle = "dropdeck"
-application_url = "https://suggestion-guild-carried-lonely.trycloudflare.com"
+application_url = "https://dropdeck-five.vercel.app"
 embedded = true
 
 [build]
@@ -15,19 +15,19 @@ api_version = "2025-04"
 
   [[webhooks.subscriptions]]
   topics = [ "app/scopes_update" ]
-  uri = "https://suggestion-guild-carried-lonely.trycloudflare.com/webhooks/app/scopes_update"
+  uri = "https://dropdeck-five.vercel.app/webhooks/app/scopes_update"
 
   [[webhooks.subscriptions]]
   topics = [ "app/uninstalled" ]
-  uri = "https://suggestion-guild-carried-lonely.trycloudflare.com/webhooks/app/uninstalled"
+  uri = "https://dropdeck-five.vercel.app/webhooks/app/uninstalled"
 
   [[webhooks.subscriptions]]
   topics = [ "orders/create" ]
-  uri = "https://suggestion-guild-carried-lonely.trycloudflare.com/webhooks/order-create"
+  uri = "https://dropdeck-five.vercel.app/webhooks/order-create"
 
   [[webhooks.subscriptions]]
   topics = [ "orders/updated" ]
-  uri = "https://suggestion-guild-carried-lonely.trycloudflare.com/webhooks/order-updated"
+  uri = "https://dropdeck-five.vercel.app/webhooks/order-updated"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
@@ -35,13 +35,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://suggestion-guild-carried-lonely.trycloudflare.com/auth/callback",
-  "https://suggestion-guild-carried-lonely.trycloudflare.com/auth/shopify/callback",
-  "https://suggestion-guild-carried-lonely.trycloudflare.com/api/auth/callback"
+  "https://dropdeck-five.vercel.app/auth/callback",
+  "https://dropdeck-five.vercel.app/auth/shopify/callback",
+  "https://dropdeck-five.vercel.app/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://suggestion-guild-carried-lonely.trycloudflare.com/app/api-proxy"
+url = "https://dropdeck-five.vercel.app/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 
