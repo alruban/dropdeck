@@ -130,7 +130,19 @@
     "card": {
       "title": "🚀 Quick Start Guide for Dropdeck",
       "description": "Dropdeck helps you set up powerful preorder experiences in Shopify with flexible control over availability and purchase limits.",
-      "steps": {
+      "return_to_contents": "Return to contents",
+      "pages": {
+        "contents": {
+          "title": "Contents",
+          "description": "This guide will walk you through the process of setting up Dropdeck in your Shopify store. It will cover the basics of creating a preorder selling plan, and then how to set up your theme to use Dropdeck.",
+          "items": {
+            "1": "Creating a preorder selling plan",
+            "2": "Setting up your theme to use Dropdeck",
+            "3": "Installing code snippets for the advanced setup",
+            "4": "Adding the Unit Restriction Checkout Extension (Plus only)",
+            "5": "Frequently asked questions"
+          }
+        },
         "1": {
           "title": "Step 1: Creating a preorder selling plan",
           "description": "What is a selling plan? A selling plan is Shopify's way of scheduling products so they can be fulfilled at a later date, so- to create a preorder you need to create a preorder selling plan. You can two this in two ways with Dropdeck:",
@@ -150,14 +162,13 @@
             },
             "2": {
               "title": "Advanced Setup:",
-              "description": "This is the recommended way to setup Dropdeck, but it requires technical knowledge of your theme's codebase. Once 'Setup Choice' is set to 'Advanced Setup' you will need to add the following code snippets into your theme's codebase. This will allow you to control the placement of the preorder selling plan on your site, and also allows you to add additional functionality to the preorder selling plan. Continue to step 3 for more information on how to add the code snippets into your theme's codebase."
+              "description": "This step requires technical knowledge of your theme's codebase, it is best to leave this to a developer. Once the 'Setup Choice' is set to 'Advanced Setup' you will need to add the following code snippets into your theme's codebase. This will allow you to control the placement of the preorder selling plan on your site, and also allows you to add additional functionality to the preorder selling plan. Continue to step 3 for more information on how to add the code snippets into your theme's codebase."
             }
           }
         },
         "3": {
           "title": "Step 3: Installing code snippets for the advanced setup",
-          "description": "Start off by clicking the button below to download the zipped code snippets. Once downloaded, these snippets will need to be added into your theme's codebase in the snippets folder.",
-          "download": "Download Snippets",
+          "description": "It is best to leave this work to a developer who is familliar with Shopify's infrastructure as only someone with experience will be able to ascertain how each of these snippets will need to be integrated into your theme. Start off by clicking the button below to download the zipped code snippets. Once downloaded, these snippets will need to be added into your theme's codebase in the snippets folder.",
           "snippets": {
             "1": {
               "title": "dropdeck-get-sp.liquid",
@@ -173,7 +184,28 @@
             },
             "4": {
               "title": "dropdeck-unit-restriction.liquid",
-              "description": "This snippet is used to display the unit restriction for a product with a preorder selling plan. This should be added to all of the quantity selectors on the theme as the value of the max attribute on the input"
+              "description": "This snippet is used to display the unit restriction for a product with a preorder selling plan. This should be added to all of the quantity selectors on the theme as the value of the max attribute on the input. This will likely also need integrating with your themes javascript to ensure that the quantity is updated correctly on variant changes."
+            }
+          },
+          "download": "Download Snippets"
+        },
+        "4": {
+          "title": "Step 4: Adding the Unit Restriction Checkout Extension (Plus only)",
+          "description": {
+            "1": "If you are a Shopify Plus user, you can add the Unit Restriction Checkout Extension to your store's checkout to ensure that customers cannot exceed a purchase restriction on a preorder product. This applies the unit restriction not only to their current cart, but across all of their previous order, this functionality which checks a customers previous orders is only available to Shopify Plus customers.",
+            "2": " To add the extension, go to your admin dashboard and visit: Settings > Checkout. Here you will see your 'Configurations', you'll want to 'Customize' the 'Live' configuration. In the customizer for your checkout, under 'Order summary' you should have the option to 'Add app block'. Here you can add the 'Unit Restriction' app block to your checkout. Once added, this extension will automatically apply unit restrictions to any preorder products that have them and that pass through the checkout. If a user exceeds the unit restriction, they will be unable to checkout and will be shown an error message informing them about the restriction."
+          }
+        },
+        "faqs": {
+          "title": "Frequently asked questions",
+          "questions": {
+            "1": {
+              "question": "What is a preorder selling plan?",
+              "answer": "A preorder selling plan is a way to schedule a product to be fulfilled at a later date. This is useful for products that are not yet available for sale, but are expected to be released in the future. You can create a preorder selling plan by visiting the preorder selling plans page and clicking the 'Create Preorder Selling Plan' button."
+            },
+            "2": {
+              "question": "What is a unit restriction?",
+              "answer": "A unit restriction is a way to limit the number of units a customer can purchase of a product. This is useful for products that are limited in stock, or for products that are expected to be in high demand. You can create a unit restriction by visiting the preorder selling plans page and clicking the 'Create Preorder Selling Plan' button."
             }
           }
         }
