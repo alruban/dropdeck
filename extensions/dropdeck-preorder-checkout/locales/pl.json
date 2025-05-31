@@ -1,0 +1,17 @@
+{
+  "page": {
+    "error_preorder_limit_exceeded": {
+      "message_reduce_units": "Przekroczyłeś limit przedsprzedaży. Usuń {{units}} sztuk ze swojego zamówienia.",
+      "message_remove_all_units": "Przekroczyłeś limit przedsprzedaży. Usuń produkt '{{product_name}}' z koszyka."
+    }
+  },
+  "line_item": {
+    "ships_on_or_after": "Wysyłka w dniu lub po {{date}}",
+    "units_per_customer": "{{ total_units }} sztuk na klienta",
+    "error_preorder_limit_exceeded": {
+      "message": "Przekroczyłeś limit przedsprzedaży.",
+      "units_bought_in_previous_orders": "Sztuk kupionych w poprzednich zamówieniach: {{units}}",
+      "units_in_this_order": "Sztuk w tym zamówieniu: {{units}}"
+    }
+  }
+}

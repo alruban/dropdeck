@@ -1,0 +1,17 @@
+{
+  "page": {
+    "error_preorder_limit_exceeded": {
+      "message_reduce_units": "Sie haben das Vorbestellungslimit überschritten. Bitte entfernen Sie {{units}} Einheiten aus Ihrer Bestellung.",
+      "message_remove_all_units": "Sie haben das Vorbestellungslimit überschritten. Bitte entfernen Sie das Produkt '{{product_name}}' aus Ihrem Warenkorb."
+    }
+  },
+  "line_item": {
+    "ships_on_or_after": "Versand am oder nach {{date}}",
+    "units_per_customer": "{{ total_units }} Einheiten pro Kunde",
+    "error_preorder_limit_exceeded": {
+      "message": "Sie haben das Vorbestellungslimit überschritten.",
+      "units_bought_in_previous_orders": "In vorherigen Bestellungen gekaufte Einheiten: {{units}}",
+      "units_in_this_order": "Einheiten in dieser Bestellung: {{units}}"
+    }
+  }
+}
