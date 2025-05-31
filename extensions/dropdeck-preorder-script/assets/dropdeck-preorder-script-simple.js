@@ -452,7 +452,6 @@
                     releaseDate: sellingPlan.node.deliveryPolicy.fulfillmentExactTime,
                     unitsPerCustomer: Number(sellingPlan.node.metafields.edges[0].node.value),
                 };
-                console.log(dropdeckPreorderData);
                 const { unitsPerCustomer } = dropdeckPreorderData;
                 this.enforceUnitsPerCustomerLimit(elInput, unitsPerCustomer);
                 this.elForm.classList.add("js-dropdeck-script-injected");

@@ -1,4 +1,4 @@
-import { data, type LoaderFunctionArgs } from "@remix-run/node";
+import { type ActionFunctionArgs, data, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData, useNavigation, useSubmit, useSearchParams } from "@remix-run/react";
 import {
   Page,
@@ -10,21 +10,53 @@ import {
   Checkbox,
   BlockStack,
   Select,
+  Pagination,
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import { useTranslation } from "../hooks/useTranslation";
 import OrderTable from "./components/order-table";
 import { authenticate } from "../shopify.server";
-import { getDropdeckPreorderOrdersVariables, GET_DROPDECK_PREORDER_ORDERS_QUERY } from "@shared/queries/get-dropdeck-preorder-orders";
+import { getDropdeckPreorderOrdersVariables, GET_DROPDECK_PREORDER_ORDERS_QUERY, GET_DROPDECK_PREORDER_ORDERS_QUERY_BEFORE, GET_DROPDECK_PREORDER_ORDERS_QUERY_AFTER } from "@shared/queries/get-dropdeck-preorder-orders";
 import { useCallback, useMemo, useEffect, useState } from "react";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
+
   const response = await admin.graphql(GET_DROPDECK_PREORDER_ORDERS_QUERY, {
     variables: getDropdeckPreorderOrdersVariables(),
   });
 
   return data(await response.json());
+}
+
+export const action = async ({ request }: ActionFunctionArgs) => {
+  const { admin } = await authenticate.admin(request);
+  if (!admin) return new Response();
+
+  const body = await request.json();
+
+  const { target } = body;
+
+  console.log("BODY",body);
+  let response
+
+  switch (target) {
+    case "before":
+      const { before } = body;
+      response = await admin.graphql(GET_DROPDECK_PREORDER_ORDERS_QUERY_BEFORE, {
+        variables: getDropdeckPreorderOrdersVariables(before)
+      });
+      break;
+
+    case "after":
+      const { after } = body;
+      response = await admin.graphql(GET_DROPDECK_PREORDER_ORDERS_QUERY_AFTER, {
+        variables: getDropdeckPreorderOrdersVariables(null,after)
+      });
+      break;
+  }
+
+  return data(await response?.json());
 };
 
 export default function Index() {
@@ -176,6 +208,33 @@ export default function Index() {
             selectedProduct={settings.selectedProduct}
             onSelectionChange={setSelectedResources}
           />
+
+          <div style={{
+            marginTop: "auto",
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            paddingBlockStart: "36px",
+          }}>
+            <Pagination
+              hasPrevious={data.data.orders.pageInfo.hasPreviousPage}
+              onPrevious={() => {
+                const formData = new FormData();
+                formData.set("target", "before");
+                formData.set("before", data.data.orders.pageInfo.startCursor);
+
+                submit(formData, { method: "POST" });
+              }}
+              hasNext={data.data.orders.pageInfo.hasNextPage}
+              onNext={() => {
+                const formData = new FormData();
+                formData.set("target", "after");
+                formData.set("after", data.data.orders.pageInfo.endCursor);
+
+                submit(formData, { method: "POST" });
+              }}
+            />
+          </div>
         </Layout.Section>
       </Layout>
     </Page>

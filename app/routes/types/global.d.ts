@@ -69,8 +69,15 @@ type OrderTableRawData = {
       myshopifyDomain: string;
     };
     orders: {
+      pageInfo: {
+        hasNextPage: boolean;
+        hasPreviousPage: boolean;
+        startCursor: string | null;
+        endCursor: string | null;
+      };
       edges: [
         {
+          cursor: string | null;
           node: {
             id: string;
             name: string;
