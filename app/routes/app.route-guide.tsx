@@ -209,6 +209,30 @@ export default function Index() {
                 {t("guide.card.pages.faqs.questions.1.answer")}
               </Text>
             </List.Item>
+            <List.Item>
+              <Text as="h4" variant="headingSm" fontWeight="medium">
+                {t("guide.card.pages.faqs.questions.2.question")}
+              </Text>
+              <Text as="p" variant="bodyMd">
+                {t("guide.card.pages.faqs.questions.2.answer")}
+              </Text>
+            </List.Item>
+            <List.Item>
+              <Text as="h4" variant="headingSm" fontWeight="medium">
+                {t("guide.card.pages.faqs.questions.3.question")}
+              </Text>
+              <Text as="p" variant="bodyMd">
+                {t("guide.card.pages.faqs.questions.3.answer")}
+              </Text>
+            </List.Item>
+            <List.Item>
+              <Text as="h4" variant="headingSm" fontWeight="medium">
+                {t("guide.card.pages.faqs.questions.4.question")}
+              </Text>
+              <Text as="p" variant="bodyMd">
+                {t("guide.card.pages.faqs.questions.4.answer")}
+              </Text>
+            </List.Item>
           </List>
         </BlockStack>
       </div>

@@ -200,12 +200,20 @@
           "title": "Frequently asked questions",
           "questions": {
             "1": {
+              "question": "The simple setup doesn't work for my theme, what should I do?",
+              "answer": "If the simple setup doesn't work with your theme in that it breaks it or doesn't work as expected, you will need to use the advanced setup. Reach out to us at dropdeck-preorders@proton.me and we'll be happy to help you with setting it up."
+            },
+            "2": {
               "question": "What is a preorder selling plan?",
               "answer": "A preorder selling plan is a way to schedule a product to be fulfilled at a later date. This is useful for products that are not yet available for sale, but are expected to be released in the future. You can create a preorder selling plan by visiting the preorder selling plans page and clicking the 'Create Preorder Selling Plan' button."
             },
-            "2": {
+            "3": {
               "question": "What is a unit restriction?",
-              "answer": "A unit restriction is a way to limit the number of units a customer can purchase of a product. This is useful for products that are limited in stock, or for products that are expected to be in high demand. You can create a unit restriction by visiting the preorder selling plans page and clicking the 'Create Preorder Selling Plan' button."
+              "answer": "A unit restriction is a way to limit the number of units a customer can purchase of a preorder product. This is useful for preorder products that you want to facilitate a fair and equitable preorder experience for all customers. If you're a Shopify Plus user, you can add the Unit Restriction Checkout Extension to your store's checkout to ensure that customers cannot exceed a purchase restriction on a preorder product. This applies the unit restriction not only to their current cart which is available to all Shopify users, but across all of their previous orders, this functionality which checks a customers previous orders is only available to Shopify Plus customers."
+            },
+            "4": {
+              "question": "What happens if I have a preorder selling plan setup and I uninstall the app?",
+              "answer": "If you uninstall the app while you have active preorder selling plans they will be removed on uninstall."
             }
           }
         }
