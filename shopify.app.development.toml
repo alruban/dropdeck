@@ -3,7 +3,7 @@
 client_id = "e42a64a0fc2480cc7eec789e0caed811"
 name = "Dropdeck (Development)"
 handle = "dropdeck-development"
-application_url = "https://epa-points-fees-outreach.trycloudflare.com"
+application_url = "https://chocolate-famous-southwest-nigeria.trycloudflare.com"
 embedded = true
 
 [build]
@@ -35,13 +35,13 @@ scopes = "read_own_subscription_contracts,read_products,read_purchase_options,wr
 
 [auth]
 redirect_urls = [
-  "https://epa-points-fees-outreach.trycloudflare.com/auth/callback",
-  "https://epa-points-fees-outreach.trycloudflare.com/auth/shopify/callback",
-  "https://epa-points-fees-outreach.trycloudflare.com/api/auth/callback"
+  "https://chocolate-famous-southwest-nigeria.trycloudflare.com/auth/callback",
+  "https://chocolate-famous-southwest-nigeria.trycloudflare.com/auth/shopify/callback",
+  "https://chocolate-famous-southwest-nigeria.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://epa-points-fees-outreach.trycloudflare.com/app/api-proxy"
+url = "https://chocolate-famous-southwest-nigeria.trycloudflare.com/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 

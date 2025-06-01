@@ -34,11 +34,10 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   const createSellingPlanGroup = async () => {
     const expectedFulfillmentDate = formData.get("expectedFulfillmentDate");
-    if (!expectedFulfillmentDate) return data({ error: "No expected fulfillment date provided" }, { status: 400 });
     const unitsPerCustomer = formData.get("unitsPerCustomer");
-    if (!unitsPerCustomer) return data({ error: "No units per customer provided" }, { status: 400 });
     const productIds = formData.get("productIds");
-    if (!productIds) return data({ error: "No product id(s) provided" }, { status: 400 });
+    const descriptionForPlanWithNoUnitRestriction = String(formData.get("descriptionForPlanWithNoUnitRestriction"));
+    const descriptionForPlanWithUnitRestriction = String(formData.get("descriptionForPlanWithUnitRestriction"));
 
     const productIdsArray = String(productIds).split(",");
     const promises = [];
@@ -48,7 +47,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       createSPGroupVariables(
         String(productIds).split(","),
         String(expectedFulfillmentDate),
-        Number(unitsPerCustomer)
+        Number(unitsPerCustomer),
+        descriptionForPlanWithNoUnitRestriction,
+        descriptionForPlanWithUnitRestriction
       )
     ));
 
@@ -102,6 +103,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const unitsPerCustomer = formData.get("unitsPerCustomer");
     const originalProductIds = formData.get("originalProductIds");
     const newProductIds = formData.get("newProductIds");
+    const descriptionForPlanWithNoUnitRestriction = String(formData.get("descriptionForPlanWithNoUnitRestriction"));
+    const descriptionForPlanWithUnitRestriction = String(formData.get("descriptionForPlanWithUnitRestriction"));
 
     // Convert string arrays to actual arrays
     const originalProducts = String(originalProductIds).split(",").filter(id => id !== "");
@@ -124,7 +127,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         String(sellingPlanGroupId),
         String(sellingPlanId),
         String(expectedFulfillmentDate),
-        Number(unitsPerCustomer)
+        Number(unitsPerCustomer),
+        descriptionForPlanWithNoUnitRestriction,
+        descriptionForPlanWithUnitRestriction
       )
     );
 

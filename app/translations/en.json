@@ -41,6 +41,10 @@
       "create": "Create New Preorder Plan"
     }
   },
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Expected to ship on or after {{date}}",
+    "description_for_plan_with_unit_restriction": "Expected to ship on or after {{date}}, {{units}} units per customer"
+  },
   "create_selling_plan_group_modal": {
     "title": "Create Preorder Selling Plan",
     "description": "You can use this form to create a new selling plan for a specific product or even a selection of products.",

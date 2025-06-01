@@ -17,7 +17,7 @@ import {
 
 import { useEffect, useState } from 'react';
 
-import { createISOString, getOneMonthAhead, parseISOString } from '../../../shared/tools/date-tools';
+import { createISOString, getOneMonthAhead, parseISOString, parseISOStringIntoFormalDate } from '../../../shared/tools/date-tools';
 import { type RenderExtensionTarget } from '@shopify/ui-extensions/admin';
 import { CREATE_SP_GROUP_MUTATION, createSPGroupVariables } from '../../../shared/mutations/create-sp-group';
 import { UPDATE_SP_GROUP_MUTATION, updateSPGroupVariables } from '../../../shared/mutations/update-sp-group.js';
@@ -121,13 +121,24 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
 
     const promises = [];
 
+    const descriptionForPlanWithNoUnitRestriction = i18n.translate("sp_group.description_for_plan_with_no_unit_restriction", {
+      date: parseISOStringIntoFormalDate(expectedFulfillmentDate)
+    });
+
+    const descriptionForPlanWithUnitRestriction = i18n.translate("sp_group.description_for_plan_with_unit_restriction", {
+      date: parseISOStringIntoFormalDate(expectedFulfillmentDate),
+      units: unitsPerCustomer
+    });
+
     // Create the selling plan group.
     promises.push(query(
       CREATE_SP_GROUP_MUTATION,
       createSPGroupVariables(
         [productId],
         isoString,
-        unitsPerCustomer
+        unitsPerCustomer,
+        descriptionForPlanWithNoUnitRestriction,
+        descriptionForPlanWithUnitRestriction
       )
     ));
 
@@ -160,6 +171,15 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
 
     const promises = [];
 
+    const descriptionForPlanWithNoUnitRestriction = i18n.translate("sp_group.description_for_plan_with_no_unit_restriction", {
+      date: parseISOStringIntoFormalDate(expectedFulfillmentDate)
+    });
+
+    const descriptionForPlanWithUnitRestriction = i18n.translate("sp_group.description_for_plan_with_unit_restriction", {
+      date: parseISOStringIntoFormalDate(expectedFulfillmentDate),
+      units: unitsPerCustomer
+    });
+
     // Update the selling plan group.
     promises.push(query(
       UPDATE_SP_GROUP_MUTATION,
@@ -167,7 +187,9 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
         sellingPlanGroupId,
         sellingPlanId,
         createISOString(expectedFulfillmentDate),
-        unitsPerCustomer
+        unitsPerCustomer,
+        descriptionForPlanWithNoUnitRestriction,
+        descriptionForPlanWithUnitRestriction
       )
     ));
 

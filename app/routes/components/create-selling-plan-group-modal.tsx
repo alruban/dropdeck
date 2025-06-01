@@ -7,7 +7,7 @@ import {
 } from "@shopify/polaris";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useState } from "react";
-import { getOneMonthAhead } from "@shared/tools/date-tools";
+import { getOneMonthAhead, parseISOStringIntoFormalDate } from "@shared/tools/date-tools";
 import SellingPlanGroupForm from "./selling-plan-group-form";
 
 export default function CreateSellingPlanGroupModal({
@@ -35,6 +35,18 @@ export default function CreateSellingPlanGroupModal({
       "productIds",
       selectedProducts.map((p) => p.id).join(",")
     );
+
+    const descriptionForPlanWithNoUnitRestriction = t("sp_group.description_for_plan_with_no_unit_restriction", {
+      date: parseISOStringIntoFormalDate(expectedFulfillmentDate?.toISOString())
+    });
+
+    const descriptionForPlanWithUnitRestriction = t("sp_group.description_for_plan_with_unit_restriction", {
+      date: parseISOStringIntoFormalDate(expectedFulfillmentDate?.toISOString()),
+      units: unitsPerCustomer
+    });
+
+    formData.set("descriptionForPlanWithNoUnitRestriction", descriptionForPlanWithNoUnitRestriction);
+    formData.set("descriptionForPlanWithUnitRestriction", descriptionForPlanWithUnitRestriction);
 
     submit(formData, { method: "POST" });
     setCreatePlanModalOpen(false);

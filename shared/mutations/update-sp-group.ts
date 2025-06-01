@@ -87,13 +87,9 @@ const updateSPGroupVariables = (
   sellingPlanId: string,
   expectedFulfillmentDate: string, // Format: "2025-06-01T00:00:00Z"
   unitsPerCustomer: number,
+  descriptionForPlanWithNoUnitRestriction: string,
+  descriptionForPlanWithUnitRestriction: string
 ) => {
-  const descriptionForPlanWithNoUnitRestriction = `Expected to ship on or after ${parseISOStringIntoFormalDate(expectedFulfillmentDate)}`;
-  const descriptionForPlanWithUnitRestriction =
-    descriptionForPlanWithNoUnitRestriction.concat(
-      `, ${unitsPerCustomer} units per customer`,
-    );
-
   // Storing the preorder details in the option fields so they can be used on the front end without fetching...
   const option = `${expectedFulfillmentDate}|${unitsPerCustomer}`;
 
@@ -135,7 +131,7 @@ const updateSPGroupVariables = (
             description: descriptionForPlanWithNoUnitRestriction, // Buyer Facing
             id: sellingPlanId,
             inventoryPolicy: {
-              reserve: "ON_SALE", // Fulfills when the item is sold, rather than fulfilled (ON_FULFILLMENT)
+              reserve: "ON_SALE", // Reduces inventory when the item is sold, rather than fulfilled (ON_FULFILLMENT)
             },
             metafields: [
               {
