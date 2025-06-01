@@ -127,6 +127,34 @@
                     return;
                 this.elQuantityInput.max = unitsPerCustomer.toString();
                 this.elQuantityInput.value = "1";
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'value' && this.elQuantityInput) {
+                            const newValue = parseInt(this.elQuantityInput.value);
+                            if (newValue > unitsPerCustomer) {
+                                this.elQuantityInput.value = unitsPerCustomer.toString();
+                            }
+                        }
+                    });
+                });
+                observer.observe(this.elQuantityInput, {
+                    attributes: true,
+                    attributeFilter: ['value']
+                });
+                this.elQuantityInput.addEventListener('input', (e) => {
+                    const target = e.target;
+                    const value = parseInt(target.value);
+                    if (value > unitsPerCustomer) {
+                        target.value = unitsPerCustomer.toString();
+                    }
+                });
+                this.elQuantityInput.addEventListener('change', (e) => {
+                    const target = e.target;
+                    const value = parseInt(target.value);
+                    if (value > unitsPerCustomer) {
+                        target.value = unitsPerCustomer.toString();
+                    }
+                });
             };
             this.createReleaseDateMessage = (releaseDate, elMessageContainer) => {
                 if (!window.dropdeck.settings.display_release_date)
@@ -265,11 +293,6 @@
                 this.handleMessaging(unitsPerCustomer, releaseDate);
                 this.createPreorderSubmitButton();
                 this.enforceUnitsPerCustomerLimit(unitsPerCustomer);
-                this.elForm.addEventListener("change", () => {
-                    setTimeout(() => {
-                        this.enforceUnitsPerCustomerLimit(unitsPerCustomer);
-                    }, 300);
-                });
                 this.elForm.addEventListener("submit", () => {
                     const formData = new FormData(this.elForm);
                     const currentQuantity = parseInt(String(formData.get("quantity")));
@@ -278,9 +301,6 @@
                         if (this.elQuantityInput)
                             this.elQuantityInput.value = unitsPerCustomer.toString();
                     }
-                    setTimeout(() => {
-                        this.enforceUnitsPerCustomerLimit(unitsPerCustomer);
-                    }, 300);
                 });
                 this.elForm.classList.add("js-dropdeck-script-injected");
             })

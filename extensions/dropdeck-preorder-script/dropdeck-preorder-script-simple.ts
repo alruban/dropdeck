@@ -180,12 +180,6 @@
           this.createPreorderSubmitButton();
           this.enforceUnitsPerCustomerLimit(unitsPerCustomer);
 
-          this.elForm.addEventListener("change", () => {
-            setTimeout(() => {
-              this.enforceUnitsPerCustomerLimit(unitsPerCustomer);
-            }, 300);
-          });
-
           this.elForm.addEventListener("submit", () => {
             const formData = new FormData(this.elForm);
             const currentQuantity = parseInt(String(formData.get("quantity")));
@@ -194,10 +188,6 @@
               formData.set("quantity", unitsPerCustomer.toString());
               if (this.elQuantityInput) this.elQuantityInput.value = unitsPerCustomer.toString();
             }
-
-            setTimeout(() => {
-              this.enforceUnitsPerCustomerLimit(unitsPerCustomer);
-            }, 300);
           });
 
           // Cement that the script has run
@@ -288,8 +278,46 @@
 
     private enforceUnitsPerCustomerLimit = (unitsPerCustomer: number) => {
       if (!this.elQuantityInput || unitsPerCustomer === 0) return;
+
+      // Set initial max and value
       this.elQuantityInput.max = unitsPerCustomer.toString();
       this.elQuantityInput.value = "1";
+
+      // Create a mutation observer to watch for changes to the input
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'value' && this.elQuantityInput) {
+            const newValue = parseInt(this.elQuantityInput.value);
+            if (newValue > unitsPerCustomer) {
+              this.elQuantityInput.value = unitsPerCustomer.toString();
+            }
+          }
+        });
+      });
+
+      // Start observing the input for value changes
+      observer.observe(this.elQuantityInput, {
+        attributes: true,
+        attributeFilter: ['value']
+      });
+
+      // Also add an input event listener to catch direct user input
+      this.elQuantityInput.addEventListener('input', (e: Event) => {
+        const target = e.target as HTMLInputElement;
+        const value = parseInt(target.value);
+        if (value > unitsPerCustomer) {
+          target.value = unitsPerCustomer.toString();
+        }
+      });
+
+      // Add a change event listener to catch programmatic changes
+      this.elQuantityInput.addEventListener('change', (e: Event) => {
+        const target = e.target as HTMLInputElement;
+        const value = parseInt(target.value);
+        if (value > unitsPerCustomer) {
+          target.value = unitsPerCustomer.toString();
+        }
+      });
     };
 
     private createReleaseDateMessage = (releaseDate: string, elMessageContainer: HTMLElement) => {
