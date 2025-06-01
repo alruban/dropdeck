@@ -17,7 +17,7 @@
       },
       "display_unit_restriction": {
         "label": "Display Unit Restriction",
-        "info": "This will display the unit restriction for a product with a preorder selling plan. This should be added to all of the quantity selectors on the theme as the value of the max attribute on the input"
+        "info": "This will display the unit restriction for a product with a preorder selling plan."
       }
     }
   }
