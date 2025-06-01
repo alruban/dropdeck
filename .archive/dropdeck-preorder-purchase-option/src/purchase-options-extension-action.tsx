@@ -137,7 +137,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
         isoString,
         unitsPerCustomer,
         descriptionForPlanWithNoUnitRestriction,
-        descriptionForPlanWithUnitRestriction
+        descriptionForPlanWithUnitRestriction,
         [productId],
         undefined
       )

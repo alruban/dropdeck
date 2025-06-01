@@ -45,11 +45,12 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     promises.push(admin.graphql(
       CREATE_SP_GROUP_MUTATION,
       createSPGroupVariables(
-        String(productIds).split(","),
         String(expectedFulfillmentDate),
         Number(unitsPerCustomer),
         descriptionForPlanWithNoUnitRestriction,
-        descriptionForPlanWithUnitRestriction
+        descriptionForPlanWithUnitRestriction,
+        String(productIds).split(","),
+        undefined
       )
     ));
 

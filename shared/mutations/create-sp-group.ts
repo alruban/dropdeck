@@ -47,14 +47,24 @@ const CREATE_SP_GROUP_MUTATION = `#graphql
 `;
 
 const createSPGroupVariables = (
-  productIds: string[],
   expectedFulfillmentDate: string, // Format: "2025-06-01T00:00:00Z"
   unitsPerCustomer: number,
   descriptionForPlanWithNoUnitRestriction: string,
-  descriptionForPlanWithUnitRestriction: string
+  descriptionForPlanWithUnitRestriction: string,
+  productIds?: string[],
+  productVariantIds?: string[]
 ) => {
   // Storing the preorder details in the option fields so they can be used on the front end without fetching...
   const option = `${expectedFulfillmentDate}|${unitsPerCustomer}`;
+
+  // Build resources object conditionally
+  const resources: Record<string, string[]> = {};
+  if (productIds && productIds.length > 0) {
+    resources.productIds = productIds;
+  }
+  if (productVariantIds && productVariantIds.length > 0) {
+    resources.productVariantIds = productVariantIds;
+  }
 
   return {
     variables: {
@@ -64,8 +74,8 @@ const createSPGroupVariables = (
           unitsPerCustomer === 0
             ? descriptionForPlanWithNoUnitRestriction
             : descriptionForPlanWithUnitRestriction,
-        merchantCode: "Dropdeck Preorder", // Merchant Facing
-        name: "Preorder", // Buyer Facing
+        merchantCode: "Dropdeck Preorder",
+        name: "Preorder",
         // position: X,
         options: [option],
         sellingPlansToCreate: [
@@ -110,9 +120,8 @@ const createSPGroupVariables = (
         // sellingPlansToDelete: X
         // sellingPlansToUpdate: X
       },
-      resources: {
-        productIds: productIds,
-      },
+      // Only include resources if at least one of the arrays is non-empty
+      ...(Object.keys(resources).length > 0 ? { resources } : {}),
     },
   };
 };
