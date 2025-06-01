@@ -1,5 +1,3 @@
-import { parseISOStringIntoFormalDate } from "../tools/date-tools";
-
 type CreateSPGroupResponse = {
   data: {
     sellingPlanGroupCreate: {

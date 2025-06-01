@@ -15,7 +15,7 @@ import {
   type CustomerOrder,
   type GetCustomerOrdersResponse,
   type GetCustomerResponse,
-  CustomerOrderLineItem,
+  type CustomerOrderLineItem,
 } from "../../../app/routes/app.api-checkout";
 import { useEffect, useState } from "react";
 
@@ -208,7 +208,7 @@ function Extension() {
 
       return {
         behavior: "block",
-        reason: "Preorder limit exceeded.",
+        reason: translate("page.error_preorder_limit_exceeded.reason"),
         errors: [
           {
             // In addition, show an error at the page level
