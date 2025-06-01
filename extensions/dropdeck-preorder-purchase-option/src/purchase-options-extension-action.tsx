@@ -18,7 +18,7 @@ import {
 import { useEffect, useState } from 'react';
 
 import { createISOString, getOneMonthAhead, parseISOString, parseISOStringIntoFormalDate } from '../../../shared/tools/date-tools';
-import { type RenderExtensionTarget } from '@shopify/ui-extensions/admin';
+import { ActionExtensionApi, type RenderExtensionTarget } from '@shopify/ui-extensions/admin';
 import { CREATE_SP_GROUP_MUTATION, createSPGroupVariables } from '../../../shared/mutations/create-sp-group';
 import { UPDATE_SP_GROUP_MUTATION, updateSPGroupVariables } from '../../../shared/mutations/update-sp-group.js';
 import { type GetSPGroupResponse, GET_SP_GROUP_QUERY, getSPGroupVariables } from '../../../shared/queries/get-sp-group.js';
@@ -34,11 +34,14 @@ type Props = {
 
 export default function PurchaseOptionsActionExtension({ extension, context }: Props) {
   // The useApi hook provides access to several useful APIs like i18n, close, and data.
-  const { i18n, close, data, query } = useApi(extension);
-  const ids = data.selected?.[0];
+  const { i18n, close, data, query } = useApi(extension) as ActionExtensionApi<"admin.product-variant-purchase-option.action.render">;
+  const ids = data.selected?.[0] as {
+    id: string;
+    sellingPlanId: string;
+  }; // sellingPlanId isn't in the docs, but it is returned and we need it when we update a selling plan.
 
   // States
-  const productId = ids.id;
+  const targetId = ids.id;
   const sellingPlanGroupId = ids.sellingPlanId;
 
   const [intent, setIntent] = useState<"creating" | "updating">("creating");
@@ -87,7 +90,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
         const sellingPlanId = sellingPlanGroup.sellingPlans.edges[0].node.id;
         const expectedFulfillmentDate = parseISOString(sellingPlanGroup.sellingPlans.edges[0].node.deliveryPolicy.fulfillmentExactTime).date;
         const unitsPerCustomer = Number(sellingPlanGroup.sellingPlans.edges[0].node.metafields.edges.find((metafield) => metafield.node.key === "units_per_customer")?.node.value);
-        const affectedProducts = sellingPlanGroup.products.edges.map((product) => (productId !== product.node.id ? {
+        const affectedProducts = sellingPlanGroup.products.edges.map((product) => (targetId !== product.node.id ? {
           id: product.node.id,
           title: product.node.title
         } : null)).filter((product) => product !== null)
@@ -114,7 +117,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
   }, [query, sellingPlanGroupId]);
 
   const create = () => {
-    if (productId.length === 0) return;
+    if (targetId.length === 0) return;
     if (!validateDate(expectedFulfillmentDate)) return;
     setIsLoading(true);
     const isoString = createISOString(expectedFulfillmentDate);
@@ -130,6 +133,8 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
       units: unitsPerCustomer
     });
 
+    console.log("TARGET ID", targetId);
+
     // Create the selling plan group.
     promises.push(query(
       CREATE_SP_GROUP_MUTATION,
@@ -138,8 +143,8 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
         unitsPerCustomer,
         descriptionForPlanWithNoUnitRestriction,
         descriptionForPlanWithUnitRestriction
-        [productId],
-        undefined
+        [targetId],
+        []
       )
     ));
 
@@ -147,7 +152,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
     promises.push(query(
       UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION,
       updateProductSPRequirementVariables(
-        productId,
+        targetId,
         true
       )
     ))
@@ -198,7 +203,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
     promises.push(query(
       UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION,
       updateProductSPRequirementVariables(
-        productId,
+        targetId,
         true
       )
     ))

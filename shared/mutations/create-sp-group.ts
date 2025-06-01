@@ -51,8 +51,8 @@ const createSPGroupVariables = (
   unitsPerCustomer: number,
   descriptionForPlanWithNoUnitRestriction: string,
   descriptionForPlanWithUnitRestriction: string,
-  productIds?: string[],
-  productVariantIds?: string[]
+  productIds: string[] = [],
+  productVariantIds: string[] = []
 ) => {
   // Storing the preorder details in the option fields so they can be used on the front end without fetching...
   const option = `${expectedFulfillmentDate}|${unitsPerCustomer}`;
@@ -121,7 +121,10 @@ const createSPGroupVariables = (
         // sellingPlansToUpdate: X
       },
       // Only include resources if at least one of the arrays is non-empty
-      ...(Object.keys(resources).length > 0 ? { resources } : {}),
+      resources: {
+        productIds: productIds,
+        productVariantIds: productVariantIds,
+      }
     },
   };
 };
