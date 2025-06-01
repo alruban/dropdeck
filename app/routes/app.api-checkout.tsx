@@ -61,6 +61,12 @@ export type CustomerOrderLineItem = {
       name: string;
       sellingPlanId: string;
     };
+    product: {
+      id: string;
+      sellingPlanGroups: {
+        edges: SellingPlanGroupEdge[];
+      };
+    };
   };
 };
 

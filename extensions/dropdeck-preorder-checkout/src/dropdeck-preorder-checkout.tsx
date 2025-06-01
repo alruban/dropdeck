@@ -15,6 +15,7 @@ import {
   type CustomerOrder,
   type GetCustomerOrdersResponse,
   type GetCustomerResponse,
+  CustomerOrderLineItem,
 } from "../../../app/routes/app.api-checkout";
 import { useEffect, useState } from "react";
 
@@ -51,9 +52,9 @@ function Extension() {
     customerOrders: CustomerOrder[],
   ) {
     const _unitsBoughtInPreviousOrders = customerOrders.reduce(
-      (total, order) =>
+      (total, order: CustomerOrder) =>
         total +
-        order.node.lineItems.edges.reduce((orderTotal, lineItem) => {
+        order.node.lineItems.edges.reduce((orderTotal, lineItem: CustomerOrderLineItem) => {
           const isDropdeckPreorder = lineItem.node.product.sellingPlanGroups.edges.some(
             (sellingPlanGroup) => sellingPlanGroup.node.appId === "DROPDECK_PREORDER"
           );
