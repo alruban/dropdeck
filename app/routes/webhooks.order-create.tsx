@@ -237,17 +237,6 @@ type CheckIfProductIsDropdeckPreorderResponse = {
         ]
       }
     }
-  },
-  extensions: {
-    cost: {
-      requestedQueryCost: 7;
-      actualQueryCost: 4;
-      throttleStatus: {
-        maximumAvailable: 2000;
-        currentlyAvailable: 1996;
-        restoreRate: 100;
-      }
-    }
   }
 }
 

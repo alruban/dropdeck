@@ -61,17 +61,6 @@ type PSProductVariantData = {
 interface PSPreorderResponse {
   data: {
     data: PSProductVariantData;
-    extensions: {
-      cost: {
-        requestedQueryCost: number;
-        actualQueryCost: number;
-        throttleStatus: {
-          maximumAvailable: number;
-          currentlyAvailable: number;
-          restoreRate: number;
-        };
-      };
-    };
   };
   init: ResponseInit | null;
   type: string;

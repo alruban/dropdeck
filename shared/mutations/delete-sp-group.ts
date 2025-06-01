@@ -5,17 +5,6 @@ export type DeleteSPGroupResponse = {
       userErrors: [];
     };
   };
-  extensions: {
-    cost: {
-      requestedQueryCost: 10;
-      actualQueryCost: 10;
-      throttleStatus: {
-        maximumAvailable: number;
-        currentlyAvailable: number;
-        restoreRate: number;
-      };
-    };
-  };
 };
 
 const DELETE_SP_GROUP_MUTATION = `#graphql

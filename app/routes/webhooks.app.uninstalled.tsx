@@ -12,33 +12,6 @@ type DropdeckSellingPlanGroupsResponse = {
       }[];
     };
   };
-  extensions: {
-    cost: {
-      requestedQueryCost: number;
-      actualQueryCost: number;
-      throttleStatus: {
-        maximumAvailable: number;
-        currentlyAvailable: number;
-        restoreRate: number;
-      };
-    };
-    search: [
-      {
-        path: string[];
-        query: string;
-        parsed: {
-          field: string;
-          match_all: string;
-        };
-        warnings: [
-          {
-            field: string;
-            message: string;
-          },
-        ];
-      },
-    ];
-  };
 };
 
 export const action = async ({ request }: ActionFunctionArgs) => {

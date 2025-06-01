@@ -135,17 +135,6 @@ type OrderTableRawData = {
       ];
     };
   };
-  extensions: {
-    cost: {
-      requestedQueryCost: 863;
-      actualQueryCost: 17;
-      throttleStatus: {
-        maximumAvailable: 2000;
-        currentlyAvailable: 1983;
-        restoreRate: 100;
-      };
-    };
-  };
 };
 
 type OrderProgress = "incomplete" | "partiallyComplete" | "complete";

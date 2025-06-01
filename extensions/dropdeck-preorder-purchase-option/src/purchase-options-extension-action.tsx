@@ -18,7 +18,7 @@ import {
 import { useEffect, useState } from 'react';
 
 import { createISOString, getOneMonthAhead, parseISOString, parseISOStringIntoFormalDate } from '../../../shared/tools/date-tools';
-import { ActionExtensionApi, type RenderExtensionTarget } from '@shopify/ui-extensions/admin';
+import { type ActionExtensionApi } from '@shopify/ui-extensions/admin';
 import { CREATE_SP_GROUP_MUTATION, createSPGroupVariables } from '../../../shared/mutations/create-sp-group';
 import { UPDATE_SP_GROUP_MUTATION, updateSPGroupVariables } from '../../../shared/mutations/update-sp-group.js';
 import { type GetSPGroupResponse, GET_SP_GROUP_QUERY, getSPGroupVariables } from '../../../shared/queries/get-sp-group.js';
@@ -28,20 +28,20 @@ import { UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION, updateProductSPRequirementVaria
 import { isDevelopment } from '../../../shared/tools/is-development';
 
 type Props = {
-  extension: RenderExtensionTarget;
+  extension: "admin.product-purchase-option.action.render" | "admin.product-variant-purchase-option.action.render";
   context: "product" | "product-variant";
 }
 
 export default function PurchaseOptionsActionExtension({ extension, context }: Props) {
   // The useApi hook provides access to several useful APIs like i18n, close, and data.
-  const { i18n, close, data, query } = useApi(extension) as ActionExtensionApi<"admin.product-variant-purchase-option.action.render">;
+  const { i18n, close, data, query } = useApi(extension) as ActionExtensionApi<typeof extension>;
   const ids = data.selected?.[0] as {
     id: string;
     sellingPlanId: string;
   }; // sellingPlanId isn't in the docs, but it is returned and we need it when we update a selling plan.
 
   // States
-  const targetId = ids.id;
+  const targetId = ids.id; // Could be a product or a product variant
   const sellingPlanGroupId = ids.sellingPlanId;
 
   const [intent, setIntent] = useState<"creating" | "updating">("creating");
@@ -144,7 +144,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
         descriptionForPlanWithNoUnitRestriction,
         descriptionForPlanWithUnitRestriction
         [targetId],
-        []
+        undefined
       )
     ));
 

@@ -36,17 +36,6 @@ export type GetPreorderDataResponse = {
         };
       };
     };
-    extensions: {
-      cost: {
-        requestedQueryCost: 19;
-        actualQueryCost: 11;
-        throttleStatus: {
-          maximumAvailable: 2000;
-          currentlyAvailable: 1989;
-          restoreRate: 100;
-        };
-      };
-    };
   };
   init: ResponseInit | null;
   type: string;
