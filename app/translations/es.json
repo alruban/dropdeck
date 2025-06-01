@@ -1,0 +1,231 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Panel de Control",
+    "guide": "Guía de Inicio",
+    "orders": "Pedidos",
+    "plans": "Planes de Preventa"
+  },
+  "quick_actions": {
+    "title": "Acciones Rápidas",
+    "create_preorder_plan": "Crear nuevo plan de preventa"
+  },
+  "statistics": {
+    "title": "Estadísticas",
+    "active_plans": "Planes Activos",
+    "products_with_preorders": "Productos con Preventas"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Productos Asignados",
+      "expected_fulfillment_date": "Fecha de Entrega Esperada",
+      "actions": "Acciones"
+    },
+    "assigned_products_title": {
+      "none": "No hay productos asignados",
+      "multiple": "{{count}} productos asignados"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Eliminar"
+    },
+    "selling_plan_groups_found": {
+      "title": "Planes de Preventa",
+      "description": "Gestiona los planes de preventa y sus configuraciones.",
+      "refresh": "Actualizar"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Parece que aún no has creado planes de preventa. Para crear un plan de preventa, haz clic en el botón de abajo.",
+      "create": "Crear nuevo plan de preventa"
+    }
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Crear Plan de Preventa",
+    "description": "Puedes usar este formulario para crear un nuevo plan de venta para un producto específico o incluso un grupo de productos.",
+    "create": "Crear",
+    "cancel": "Cancelar"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Editar Plan de Preventa",
+    "description": "Puedes usar este formulario para editar un plan de venta existente para un producto específico o incluso un grupo de productos.",
+    "edit": "Editar",
+    "cancel": "Cancelar"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Eliminar Plan de Preventa",
+    "description": {
+      "applied_to_products": "¿Estás seguro de que quieres eliminar el plan de preventa para los siguientes productos:",
+      "applied_to_all_products": "¿Estás seguro de que quieres eliminar este plan de preventa?"
+    },
+    "warning": "Esta acción no se puede deshacer.",
+    "delete": "Eliminar",
+    "cancel": "Cancelar"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Fecha de Entrega Esperada",
+    "enable_unit_restriction": "Habilitar Restricción de Unidades",
+    "units_per_customer": "Unidades por Cliente",
+    "select_products": "El plan de preventa se aplicará a los siguientes productos:",
+    "no_selected_products": "No hay productos seleccionados, haz clic en el botón para añadir productos.",
+    "add_products": "Añadir Productos",
+    "add_or_remove_products": "Añadir o Eliminar Productos",
+    "notice_selling_plan_requirement": "Cada producto que se añade a un plan de venta requerirá automáticamente un plan de venta. Esto elimina el producto de los canales de venta que no admiten preventas en Shopify y evita que se venda allí. Si eliminas la opción 'Vender este producto solo como suscripción' en las páginas de administración de productos, este requisito se eliminará, lo cual no recomendamos ya que podría resultar en que tus preventas se traten como pedidos normales."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Controla el lanzamiento de tus productos",
+      "description": "Dropdeck es la forma más inteligente de gestionar preventas en Shopify. Establece límites, controla ventanas de entrega y crea expectación - sin esfuerzo. Diseñado para comerciantes que buscan flexibilidad, información y herramientas centradas en la conversión que simplemente funcionan.",
+      "primary_action": "Comenzar",
+      "secondary_action": "Tus Preventas"
+    }
+  },
+  "plans": {
+    "title": "Planes de Preventa"
+  },
+  "orders": {
+    "title": "Tus Preventas",
+    "bar": {
+      "title": "Preventas Próximas",
+      "refresh": "Actualizar"
+    },
+    "settings": {
+      "title": "Configuración",
+      "filters": {
+        "preorder_products": {
+          "title": "Filtrar por Producto de Preventa",
+          "options": {
+            "all_products": "Todos los Productos"
+          }
+        },
+        "hide_cancelled_orders": "Ocultar Pedidos Cancelados",
+        "hide_fulfilled_orders": "Ocultar Pedidos Entregados",
+        "show_row_colors": "Mostrar Colores de Filas"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Pedido",
+        "line_items": "Artículos del Pedido",
+        "payment_status": "Estado del Pago",
+        "fulfillment_status": "Estado de Entrega"
+      },
+      "resource_name": {
+        "singular": "pedido",
+        "plural": "pedidos"
+      },
+      "row": {
+        "select_all": "Seleccionar todos los pedidos con fecha de lanzamiento {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Pedido",
+          "line_items": "Artículos del Pedido",
+          "payment_status": "Estado del Pago",
+          "fulfillment_status": "Estado de Entrega"
+        },
+        "title": "Lista de Selección de Preventas",
+        "generated_on": "Generado el: {{date}}",
+        "file_name": "lista-seleccion-preventas",
+        "button_text": "Exportar Lista de Selección"
+      }
+    }
+  },
+  "guide": {
+    "title": "Guía de Inicio",
+    "card": {
+      "title": "🚀 Guía de Inicio de Dropdeck",
+      "description": "Dropdeck te ayuda a crear potentes experiencias de preventa en Shopify con control flexible de disponibilidad y límites de compra.",
+      "return_to_contents": "Volver al Contenido",
+      "pages": {
+        "contents": {
+          "title": "Contenido",
+          "description": "Esta guía te llevará a través del proceso de configuración de Dropdeck en tu tienda Shopify. Cubrirá la creación básica de un plan de preventa y luego cómo configurar tu tema para usar Dropdeck.",
+          "items": {
+            "1": "Crear un plan de preventa",
+            "2": "Configurar tu tema para usar Dropdeck",
+            "3": "Instalar fragmentos de código para configuración avanzada",
+            "4": "Añadir extensión de restricción de unidades al checkout (solo para usuarios premium)",
+            "5": "Preguntas Frecuentes"
+          }
+        },
+        "1": {
+          "title": "Paso 1: Crear un plan de preventa",
+          "description": "¿Qué es un plan de venta? Un plan de venta es la forma de Shopify de programar productos para que se entreguen más tarde, así que para crear una preventa, necesitas crear un plan de preventa. Puedes hacer esto de dos maneras con Dropdeck:",
+          "steps": {
+            "1": "Crea o añade un plan de preventa existente en la página de administración del producto bajo 'Opciones de Compra', que se asignará solo a ese producto.",
+            "2": "Crea un plan de preventa para un grupo de productos o incluso un producto individual en la página de planes de preventa en Dropdeck."
+          },
+          "conclusion": "En ambos casos, todo lo que necesitas dar a Dropdeck es la 'fecha de lanzamiento' de tu producto de preventa y opcionalmente el número de unidades para la restricción de clientes."
+        },
+        "2": {
+          "title": "Paso 2: Configurar tu tema para usar Dropdeck",
+          "description": "Hay dos formas de usar Dropdeck en tu tema, y ambas requieren ir al personalizador de temas y habilitar la 'incrustación de la aplicación' de Dropdeck. Puedes habilitar la incrustación de la aplicación en tu tema visitando las secciones de incrustación de aplicaciones en el panel izquierdo del personalizador. Verás dos opciones bajo 'Selección de configuración':",
+          "choices": {
+            "1": {
+              "title": "Configuración simple (recomendada):",
+              "description": "Esta es la forma más fácil de configurar Dropdeck, cuando hayas establecido 'Selección de configuración' en 'Configuración simple', no necesitas hacer nada más. El plan de venta se insertará automáticamente en cada formulario de compra en tu sitio web. La advertencia es que existe la posibilidad de que esto afecte algunas funcionalidades de tu tema si tu tema ha sido muy personalizado o si es un tema que no ha sido desarrollado por Shopify. Puedes omitir el paso 3 ya que solo se refiere a la configuración avanzada."
+            },
+            "2": {
+              "title": "Configuración avanzada:",
+              "description": "Este paso requiere conocimientos técnicos del código base de tu tema, es mejor dejarlo en manos de un desarrollador. Cuando hayas establecido 'Selección de configuración' en 'Configuración avanzada', necesitas añadir los siguientes fragmentos de código al código base de tu tema. Esto te permitirá controlar la colocación del plan de venta en tu sitio web y también añadir funcionalidades adicionales al plan de venta. Ve al paso 3 para más información sobre cómo añadir fragmentos de código al código base de tu tema."
+            }
+          }
+        },
+        "3": {
+          "title": "Paso 3: Instalar fragmentos de código para configuración avanzada",
+          "description": "Esta tarea es mejor asignarla a un desarrollador que esté familiarizado con la estructura de Shopify, ya que solo una persona experimentada podrá determinar cómo se debe integrar cada uno de estos fragmentos en tu tema. Comienza haciendo clic en el botón de abajo para descargar los fragmentos de código comprimidos. Después de la descarga, estos fragmentos deben añadirse al código base de tu tema en la carpeta de fragmentos.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Este fragmento se usa para devolver fácilmente varias partes de los datos sobre el plan de venta."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Esto debe incluirse dentro de todos los formularios con la acción '/cart/add' en tu tema. Esto aplica el plan de venta que has creado al producto."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Este fragmento se usa para mostrar la fecha de lanzamiento de un producto con un plan de venta."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Este fragmento se usa para mostrar la restricción de unidades para un producto con un plan de venta. Esto debe añadirse a todos los selectores de cantidad en tu tema como el valor para el atributo max en el input. Esto probablemente también requerirá integración con el JavaScript de tu tema para asegurar que la cantidad se actualice correctamente durante los cambios de variante."
+            }
+          },
+          "download": "Descargar Fragmentos"
+        },
+        "4": {
+          "title": "Paso 4: Añadir extensión de restricción de unidades al checkout (solo para usuarios premium)",
+          "description": {
+            "1": "Si eres un usuario de Shopify Plus, puedes añadir la extensión de restricción de unidades al checkout de tu tienda para asegurarte de que los clientes no puedan exceder el límite de compra para un producto de preventa. Esto aplica la restricción de unidades no solo al carrito de compra actual disponible para todos los usuarios de Shopify, sino también a todos sus pedidos anteriores, esta función que verifica los pedidos anteriores del cliente solo está disponible para usuarios de Shopify Plus.",
+            "2": "Para añadir la extensión, ve a tu panel de control y haz clic en: Configuración > Checkout. Aquí verás tus 'Configuraciones', querrás 'Personalizar' la configuración 'En vivo'. En la personalización del checkout, bajo 'Resumen del Pedido' deberías tener la opción de 'Añadir bloque de aplicación'. Aquí puedes añadir el bloque de aplicación 'Restricción de Unidades' al checkout. Después de añadirlo, esta extensión aplicará automáticamente restricciones de unidades a cualquier producto de preventa que tenga restricciones y pase por el checkout. Si un usuario excede la restricción de unidades, no podrá proceder con el pago y se mostrará un mensaje de error informándoles sobre la restricción."
+          }
+        },
+        "faqs": {
+          "title": "Preguntas Frecuentes",
+          "questions": {
+            "1": {
+              "question": "La configuración simple no funciona con nuestro tema, ¿qué debo hacer?",
+              "answer": "Si la configuración simple no funciona con tu tema de una manera que lo rompe o no funciona como se espera, deberías usar la configuración avanzada. Contáctanos en dropdeck-preorders@proton.me y te ayudaremos a configurarlo."
+            },
+            "2": {
+              "question": "¿Qué es un plan de preventa?",
+              "answer": "Un plan de preventa es una forma de programar un producto para que se entregue más tarde. Esto es útil para productos que aún no están disponibles para la venta pero se espera que se lancen en el futuro. Puedes crear un plan de preventa visitando la página de planes de preventa y haciendo clic en el botón 'Crear plan de preventa'."
+            },
+            "3": {
+              "question": "¿Qué es una restricción de unidades?",
+              "answer": "Una restricción de unidades es una forma de limitar el número de unidades que un cliente puede comprar de un producto de preventa. Esto es útil para productos de preventa donde quieres facilitar una experiencia de preventa justa e igualitaria para todos los clientes. Si eres un usuario de Shopify Plus, puedes añadir la extensión de restricción de unidades al checkout de tu tienda para asegurarte de que los clientes no puedan exceder el límite de compra para un producto de preventa. Esto aplica la restricción de unidades no solo al carrito de compra actual disponible para todos los usuarios de Shopify, sino también a todos sus pedidos anteriores, esta función que verifica los pedidos anteriores del cliente solo está disponible para usuarios de Shopify Plus."
+            },
+            "4": {
+              "question": "¿Qué sucede si he configurado un plan de preventa y desinstalo la aplicación?",
+              "answer": "Si desinstalas la aplicación mientras tienes planes de preventa activos, se eliminarán durante la desinstalación."
+            }
+          }
+        }
+      }
+    }
+  }
+}

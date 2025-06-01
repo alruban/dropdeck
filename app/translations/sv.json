@@ -1,0 +1,231 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Instrumentpanel",
+    "guide": "Snabbstartsguide",
+    "orders": "Ordrar",
+    "plans": "Förbeställningsplaner"
+  },
+  "quick_actions": {
+    "title": "Snabbåtgärder",
+    "create_preorder_plan": "Skapa Ny Förbeställningsplan"
+  },
+  "statistics": {
+    "title": "Statistik",
+    "active_plans": "Aktiva Planer",
+    "products_with_preorders": "Produkter med Förbeställning"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Tilldelade Produkter",
+      "expected_fulfillment_date": "Förväntat Leveransdatum",
+      "actions": "Åtgärder"
+    },
+    "assigned_products_title": {
+      "none": "Inga Tilldelade Produkter",
+      "multiple": "{{count}} Tilldelade Produkter"
+    },
+    "actions": {
+      "edit": "Redigera",
+      "delete": "Radera"
+    },
+    "selling_plan_groups_found": {
+      "title": "Förbeställningsplaner",
+      "description": "Hantera dina förbeställningsplaner och deras inställningar.",
+      "refresh": "Uppdatera"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Det verkar som att du ännu inte har skapat någon förbeställningsplan. Du kan skapa en förbeställningsplan genom att klicka på knappen nedan.",
+      "create": "Skapa Ny Förbeställningsplan"
+    }
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Skapa Förbeställningsplan",
+    "description": "Du kan använda detta formulär för att skapa en ny försäljningsplan för en specifik produkt eller till och med en grupp produkter.",
+    "create": "Skapa",
+    "cancel": "Avbryt"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Redigera Förbeställningsplan",
+    "description": "Du kan använda detta formulär för att redigera en befintlig försäljningsplan för en specifik produkt eller till och med en grupp produkter.",
+    "edit": "Redigera",
+    "cancel": "Avbryt"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Radera Förbeställningsplan",
+    "description": {
+      "applied_to_products": "Är du säker på att du vill radera förbeställningsplanen för följande produkter:",
+      "applied_to_all_products": "Är du säker på att du vill radera denna förbeställningsplan?"
+    },
+    "warning": "Denna åtgärd kan inte ångras.",
+    "delete": "Radera",
+    "cancel": "Avbryt"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Förväntat Leveransdatum",
+    "enable_unit_restriction": "Aktivera Köpbegränsning",
+    "units_per_customer": "Enheter per Kund",
+    "select_products": "Förbeställningsplanen tillämpas på följande produkter:",
+    "no_selected_products": "Inga produkter valda, klicka på knappen för att lägga till produkter.",
+    "add_products": "Lägg till Produkter",
+    "add_or_remove_products": "Lägg till eller Ta bort Produkter",
+    "notice_selling_plan_requirement": "Varje produkt som läggs till i en försäljningsplan kräver automatiskt en försäljningsplan. Detta tar bort produkten från försäljningskanaler som inte stöder förbeställning i Shopify och stoppar försäljningen där. Om du tar bort alternativet 'Sälj denna produkt endast som förbeställning' i produktinställningarna kommer detta krav att tas bort, vilket vi inte rekommenderar eftersom det kan leda till att din förbeställning behandlas som en vanlig order."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Hantera Lanseringen av Dina Produkter",
+      "description": "Dropdeck är det smartaste sättet att hantera förbeställningar i Shopify. Sätt begränsningar, hantera leveransfönster och skapa engagemang - utan ansträngning. Utformad för säljare som vill ha flexibilitet, transparens och konverteringsinriktade verktyg som bara fungerar.",
+      "primary_action": "Kom Igång",
+      "secondary_action": "Din Förbeställning"
+    }
+  },
+  "plans": {
+    "title": "Förbeställningsplaner"
+  },
+  "orders": {
+    "title": "Din Förbeställning",
+    "bar": {
+      "title": "Kommande Förbeställningar",
+      "refresh": "Uppdatera"
+    },
+    "settings": {
+      "title": "Inställningar",
+      "filters": {
+        "preorder_products": {
+          "title": "Filtrera efter Förbeställningsprodukt",
+          "options": {
+            "all_products": "Alla Produkter"
+          }
+        },
+        "hide_cancelled_orders": "Dölj Avbrutna Ordrar",
+        "hide_fulfilled_orders": "Dölj Levererade Ordrar",
+        "show_row_colors": "Visa Radfärger"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Order",
+        "line_items": "Produkter",
+        "payment_status": "Betalningsstatus",
+        "fulfillment_status": "Leveransstatus"
+      },
+      "resource_name": {
+        "singular": "Order",
+        "plural": "Ordrar"
+      },
+      "row": {
+        "select_all": "Välj alla ordrar med förväntat leveransdatum {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Order",
+          "line_items": "Produkter",
+          "payment_status": "Betalningsstatus",
+          "fulfillment_status": "Leveransstatus"
+        },
+        "title": "Förbeställningsplocklista",
+        "generated_on": "Genererad: {{date}}",
+        "file_name": "forbestallningsplocklista",
+        "button_text": "Exportera Plocklista"
+      }
+    }
+  },
+  "guide": {
+    "title": "Snabbstartsguide",
+    "card": {
+      "title": "🚀 Dropdeck Snabbstartsguide",
+      "description": "Dropdeck hjälper dig att skapa kraftfulla förbeställningar i Shopify med flexibel lagerhantering och köpbegränsningar.",
+      "return_to_contents": "Tillbaka till Innehåll",
+      "pages": {
+        "contents": {
+          "title": "Innehåll",
+          "description": "Denna guide tar dig genom processen att installera Dropdeck i din Shopify-butik. Den täcker skapandet av en grundläggande förbeställningsplan och sedan konfigurationen av ditt tema för att använda Dropdeck.",
+          "items": {
+            "1": "Skapa en Förbeställningsplan",
+            "2": "Konfigurera Ditt Tema för att Använda Dropdeck",
+            "3": "Installera Kodavsnitt för Avancerad Konfiguration",
+            "4": "Lägg till Köpbegränsningsutökning i Kassan (Endast för Premium-användare)",
+            "5": "Vanliga Frågor"
+          }
+        },
+        "1": {
+          "title": "Steg 1: Skapa en Förbeställningsplan",
+          "description": "Vad är en försäljningsplan? En försäljningsplan är ett sätt för Shopify att planera produkter för framtida leverans, så för att skapa en förbeställning behöver du skapa en förbeställningsplan. Du kan göra detta med Dropdeck på två sätt:",
+          "steps": {
+            "1": "Skapa eller lägg till en befintlig förbeställningsplan i avsnittet 'Köpalternativ' på produkthanteringssidan, som endast är inställd för den specifika produkten.",
+            "2": "Skapa en förbeställningsplan för en grupp produkter eller till och med en enskild produkt på Dropdecks Förbeställningsplaner-sida."
+          },
+          "conclusion": "I båda fallen är det enda du behöver tillhandahålla Dropdeck 'förväntat leveransdatum' för din förbeställningsprodukt och eventuellt antalet enheter för kundbegränsning."
+        },
+        "2": {
+          "title": "Steg 2: Konfigurera Ditt Tema för att Använda Dropdeck",
+          "description": "Det finns två sätt att använda Dropdeck i ditt tema, och båda kräver att du går till temaredigeraren för att aktivera appinbäddning. Du kan aktivera appinbäddning i ditt tema genom att gå till appinbäddningsavsnittet i den vänstra sidofältet i temaredigeraren. Du kommer att se två alternativ under 'Konfigurationsalternativ':",
+          "choices": {
+            "1": {
+              "title": "Enkel Konfiguration (Rekommenderas):",
+              "description": "Detta är det enklaste sättet att konfigurera Dropdeck, så fort du ställer in alternativet 'Konfiguration' till 'Enkel' behöver du inte göra något mer. Försäljningsplanen kommer automatiskt att läggas till i alla köpmoduler på din webbplats. Varningen är att detta kan påverka vissa funktioner i ditt tema om ditt tema är kraftigt anpassat eller om det inte är ett Shopify-utvecklat tema. Du kan hoppa över steg 3 eftersom det endast är relevant för avancerad konfiguration."
+            },
+            "2": {
+              "title": "Avancerad Konfiguration:",
+              "description": "Detta steg kräver teknisk kunskap om din temakodbas, det är bäst att lämna detta till en utvecklare. Efter att ha ställt in alternativet 'Konfiguration' till 'Avancerad' behöver du lägga till följande kodavsnitt i din temakodbas. Detta ger dig möjlighet att definiera var försäljningsplanen visas på din webbplats, samt möjlighet att lägga till ytterligare funktionalitet till försäljningsplanen. För mer information om att lägga till kodavsnitt i din temakodbas, gå till steg 3."
+            }
+          }
+        },
+        "3": {
+          "title": "Steg 3: Installera Kodavsnitt för Avancerad Konfiguration",
+          "description": "Denna uppgift är bäst att lämna till en utvecklare som känner till Shopify-strukturen, eftersom endast någon med erfarenhet bör avgöra hur var och en av dessa kodavsnitt ska integreras i ditt tema. Börja med att ladda ner de komprimerade kodavsnitten genom att klicka på knappen nedan. Efter nedladdning ska dessa kodavsnitt läggas till i snippets-mappen i din temakodbas.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Detta avsnitt används för att enkelt hämta olika delar av information om försäljningsplanen."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Detta ska inkluderas i alla formulär i ditt tema som har en '/cart/add'-åtgärd. Tillämpar den skapade försäljningsplanen på produkten."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Detta avsnitt används för att visa det förväntade leveransdatumet för en produkt med en försäljningsplan."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Detta avsnitt används för att visa köpbegränsningen för en produkt med en försäljningsplan. Ska läggas till som ett max-attributvärde för input-elementet i alla kvantitetsväljare i ditt tema. Kräver troligen också integration med ditt temas JavaScript för att säkerställa att kvantiteten uppdateras korrekt när varianter ändras."
+            }
+          },
+          "download": "Ladda ner Kodavsnitt"
+        },
+        "4": {
+          "title": "Steg 4: Lägg till Köpbegränsningsutökning i Kassan (Endast för Premium-användare)",
+          "description": {
+            "1": "Om du använder Shopify Plus kan du lägga till en köpbegränsningsutökning i din butiks kassa för att säkerställa att kunder inte överskrider köpbegränsningen för förbeställningsprodukter. Detta tillämpar köpbegränsningen inte bara på den aktuella varukorgen, vilket är tillgängligt för alla Shopify-användare, utan också på alla deras tidigare ordrar, funktionen för att kontrollera kundens tidigare ordrar är endast tillgänglig för Shopify Plus-användare.",
+            "2": "För att lägga till utökningen, gå till instrumentpanelen och klicka på: Inställningar > Kassan. Här kommer du att se dina 'Inställningar', du vill 'Konfigurera' inställningen 'Live'. I kassainställningen, under avsnittet 'Ordersammanfattning', bör du ha alternativet 'Lägg till Appblock'. Här kan du lägga till appblocket 'Köpbegränsning' i kassan. Efter tillägg kommer denna utökning automatiskt att tillämpa köpbegränsningen på alla förbeställningsprodukter som har begränsningar och går genom kassan. Om en användare överskrider köpbegränsningen kommer de inte att kunna fortsätta med betalningen och kommer att se ett felmeddelande som informerar om begränsningen."
+          }
+        },
+        "faqs": {
+          "title": "Vanliga Frågor",
+          "questions": {
+            "1": {
+              "question": "Enkel konfiguration fungerar inte i vårt tema, vad ska jag göra?",
+              "answer": "Om enkel konfiguration inte fungerar i ditt tema på ett sätt som bryter eller inte fungerar som förväntat, behöver du använda avancerad konfiguration. Kontakta oss på dropdeck-preorders@proton.me, så hjälper vi dig med konfigurationen."
+            },
+            "2": {
+              "question": "Vad är en förbeställningsplan?",
+              "answer": "En förbeställningsplan är ett sätt att planera en produkt för framtida leverans. Den är användbar för produkter som ännu inte är tillgängliga för försäljning men förväntas släppas i framtiden. Du kan skapa en förbeställningsplan genom att gå till Förbeställningsplaner-sidan och klicka på knappen 'Skapa Ny Förbeställningsplan'."
+            },
+            "3": {
+              "question": "Vad är köpbegränsning?",
+              "answer": "Köpbegränsning är ett sätt att begränsa antalet förbeställningsprodukter som en kund kan köpa. Det är användbart för förbeställningsprodukter där du vill säkerställa en rättvis och lika förbeställningsupplevelse för alla kunder. Om du använder Shopify Plus kan du lägga till en köpbegränsningsutökning i din butiks kassa för att säkerställa att kunder inte överskrider köpbegränsningen för förbeställningsprodukter. Detta tillämpar köpbegränsningen inte bara på den aktuella varukorgen, vilket är tillgängligt för alla Shopify-användare, utan också på alla deras tidigare ordrar, funktionen för att kontrollera kundens tidigare ordrar är endast tillgänglig för Shopify Plus-användare."
+            },
+            "4": {
+              "question": "Vad händer om jag har en konfigurerad förbeställningsplan och tar bort appen?",
+              "answer": "Om du tar bort appen när du har aktiva förbeställningsplaner kommer de att raderas vid borttagning."
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "대시보드",
+    "guide": "빠른 시작 가이드",
+    "orders": "주문",
+    "plans": "사전 주문 플랜"
+  },
+  "quick_actions": {
+    "title": "빠른 작업",
+    "create_preorder_plan": "새 사전 주문 플랜 만들기"
+  },
+  "statistics": {
+    "title": "통계",
+    "active_plans": "활성 플랜",
+    "products_with_preorders": "사전 주문 상품"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "할당된 상품",
+      "expected_fulfillment_date": "예상 출고일",
+      "actions": "작업"
+    },
+    "assigned_products_title": {
+      "none": "할당된 상품 없음",
+      "multiple": "{{count}}개의 상품이 할당됨"
+    },
+    "actions": {
+      "edit": "편집",
+      "delete": "삭제"
+    },
+    "selling_plan_groups_found": {
+      "title": "사전 주문 플랜",
+      "description": "사전 주문 플랜과 설정을 관리합니다.",
+      "refresh": "새로고침"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "아직 사전 주문 플랜을 만들지 않았습니다. 아래 버튼을 클릭하여 사전 주문 플랜을 만들 수 있습니다.",
+      "create": "새 사전 주문 플랜 만들기"
+    }
+  },
+  "create_selling_plan_group_modal": {
+    "title": "사전 주문 플랜 만들기",
+    "description": "이 양식을 사용하여 특정 상품이나 상품 그룹의 새로운 판매 플랜을 만들 수 있습니다.",
+    "create": "만들기",
+    "cancel": "취소"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "사전 주문 플랜 편집",
+    "description": "이 양식을 사용하여 특정 상품이나 상품 그룹의 기존 판매 플랜을 편집할 수 있습니다.",
+    "edit": "편집",
+    "cancel": "취소"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "사전 주문 플랜 삭제",
+    "description": {
+      "applied_to_products": "다음 상품의 사전 주문 플랜을 삭제하시겠습니까:",
+      "applied_to_all_products": "이 사전 주문 플랜을 삭제하시겠습니까?"
+    },
+    "warning": "이 작업은 취소할 수 없습니다.",
+    "delete": "삭제",
+    "cancel": "취소"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "예상 출고일",
+    "enable_unit_restriction": "구매 제한 활성화",
+    "units_per_customer": "고객당 구매 가능 수량",
+    "select_products": "사전 주문 플랜이 적용되는 상품:",
+    "no_selected_products": "선택된 상품이 없습니다. 버튼을 클릭하여 상품을 추가하세요.",
+    "add_products": "상품 추가",
+    "add_or_remove_products": "상품 추가 또는 제거",
+    "notice_selling_plan_requirement": "판매 플랜에 추가된 각 상품에는 자동으로 판매 플랜이 필요합니다. 이로 인해 Shopify에서 사전 주문을 지원하지 않는 판매 채널에서 상품이 제거되고 해당 채널에서 판매가 중단됩니다. 상품 설정에서 '이 상품을 사전 주문으로만 판매' 옵션을 제거하면 이 요구 사항이 제거되지만, 사전 주문이 일반 주문으로 처리될 수 있으므로 권장하지 않습니다."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "상품 출시 관리",
+      "description": "Dropdeck는 Shopify에서 사전 주문을 관리하는 가장 스마트한 방법입니다. 제한 설정, 출고 기간 관리, 참여 유도를 쉽게 할 수 있습니다. 유연성, 인사이트, 그리고 확실히 작동하는 전환 중심 도구를 원하는 판매자를 위해 설계되었습니다.",
+      "primary_action": "시작하기",
+      "secondary_action": "사전 주문 관리"
+    }
+  },
+  "plans": {
+    "title": "사전 주문 플랜"
+  },
+  "orders": {
+    "title": "사전 주문",
+    "bar": {
+      "title": "곧 출시될 사전 주문",
+      "refresh": "새로고침"
+    },
+    "settings": {
+      "title": "설정",
+      "filters": {
+        "preorder_products": {
+          "title": "사전 주문 상품으로 필터링",
+          "options": {
+            "all_products": "모든 상품"
+          }
+        },
+        "hide_cancelled_orders": "취소된 주문 숨기기",
+        "hide_fulfilled_orders": "출고 완료된 주문 숨기기",
+        "show_row_colors": "행 색상 표시"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "주문 번호",
+        "line_items": "상품",
+        "payment_status": "결제 상태",
+        "fulfillment_status": "출고 상태"
+      },
+      "resource_name": {
+        "singular": "주문",
+        "plural": "주문"
+      },
+      "row": {
+        "select_all": "{{date}} 출고 예정의 모든 주문 선택"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "주문 번호",
+          "line_items": "상품",
+          "payment_status": "결제 상태",
+          "fulfillment_status": "출고 상태"
+        },
+        "title": "사전 주문 피킹 리스트",
+        "generated_on": "생성일: {{date}}",
+        "file_name": "사전-주문-피킹-리스트",
+        "button_text": "피킹 리스트 내보내기"
+      }
+    }
+  },
+  "guide": {
+    "title": "빠른 시작 가이드",
+    "card": {
+      "title": "🚀 Dropdeck 빠른 시작 가이드",
+      "description": "Dropdeck는 Shopify에서 강력한 사전 주문 경험을 만드는 데 도움이 됩니다. 유연한 재고 관리와 구매 제한을 갖추고 있습니다.",
+      "return_to_contents": "목차로 돌아가기",
+      "pages": {
+        "contents": {
+          "title": "목차",
+          "description": "이 가이드는 Shopify 스토어에 Dropdeck를 설치하는 과정을 안내합니다. 기본적인 사전 주문 플랜 생성부터 테마 설정까지 다룹니다.",
+          "items": {
+            "1": "사전 주문 플랜 만들기",
+            "2": "테마 설정하여 Dropdeck 사용하기",
+            "3": "고급 설정을 위한 코드 스니펫 설치",
+            "4": "결제 페이지에 구매 제한 확장 기능 추가 (프리미엄 사용자만 해당)",
+            "5": "자주 묻는 질문"
+          }
+        },
+        "1": {
+          "title": "1단계: 사전 주문 플랜 만들기",
+          "description": "판매 플랜이란 무엇인가요? 판매 플랜은 Shopify가 상품을 미래 출고용으로 예약하는 방법입니다. 사전 주문을 만들려면 사전 주문 플랜을 만들어야 합니다. Dropdeck에서는 두 가지 방법으로 할 수 있습니다:",
+          "steps": {
+            "1": "상품 관리 페이지의 '구매 옵션' 섹션에서 기존 사전 주문 플랜을 만들거나 추가합니다. 이는 해당 상품에만 설정됩니다.",
+            "2": "Dropdeck의 사전 주문 플랜 페이지에서 상품 그룹이나 단일 상품의 사전 주문 플랜을 만듭니다."
+          },
+          "conclusion": "두 경우 모두 Dropdeck에 제공해야 하는 것은 사전 주문 상품의 '출고 예정일'과 선택적으로 고객의 구매 제한 수량뿐입니다."
+        },
+        "2": {
+          "title": "2단계: 테마 설정하여 Dropdeck 사용하기",
+          "description": "테마에서 Dropdeck를 사용하는 방법은 두 가지가 있으며, 둘 다 테마 편집기에서 앱 임베딩을 활성화해야 합니다. 테마 편집기의 왼쪽 사이드바의 앱 임베딩 섹션에서 앱 임베딩을 활성화할 수 있습니다. '설정 옵션' 아래에 두 가지 옵션이 표시됩니다:",
+          "choices": {
+            "1": {
+              "title": "간단한 설정 (권장):",
+              "description": "이것은 Dropdeck를 설정하는 가장 쉬운 방법입니다. '설정' 옵션을 '간단함'으로 설정하면 더 이상 할 일이 없습니다. 판매 플랜이 자동으로 사이트의 모든 구매 모듈에 추가됩니다. 단, 테마가 많이 커스터마이즈되어 있거나 Shopify가 개발한 테마가 아닌 경우 일부 기능에 영향을 줄 수 있습니다. 고급 설정과 관련된 3단계는 건너뛸 수 있습니다."
+            },
+            "2": {
+              "title": "고급 설정:",
+              "description": "이 단계는 테마의 코드베이스에 대한 기술적 지식이 필요합니다. 개발자에게 맡기는 것이 좋습니다. '설정' 옵션을 '고급'으로 설정한 후에는 다음 코드 스니펫을 테마의 코드베이스에 추가해야 합니다. 이를 통해 판매 플랜이 사이트의 어디에 표시되는지 제어할 수 있으며, 판매 플랜에 추가 기능을 추가할 수도 있습니다. 테마의 코드베이스에 코드 스니펫을 추가하는 방법에 대한 자세한 내용은 3단계를 참조하세요."
+            }
+          }
+        },
+        "3": {
+          "title": "3단계: 고급 설정을 위한 코드 스니펫 설치",
+          "description": "이 작업은 Shopify의 구조에 익숙한 개발자에게 맡기는 것이 좋습니다. 이러한 코드 스니펫을 테마에 통합하는 방법을 결정할 수 있는 것은 경험이 풍부한 사람뿐입니다. 아래 버튼을 클릭하여 압축된 코드 스니펫을 다운로드하는 것부터 시작하세요. 다운로드 후에는 이러한 코드 스니펫을 테마의 코드베이스의 스니펫 폴더에 추가해야 합니다.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "이 스니펫은 판매 플랜의 다양한 정보를 쉽게 가져오는 데 사용됩니다."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "이는 '/cart/add' 액션이 있는 테마의 모든 양식에 포함되어야 합니다. 만든 판매 플랜을 상품에 적용합니다."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "이 스니펫은 판매 플랜이 있는 상품의 출고 예정일을 표시하는 데 사용됩니다."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "이 스니펫은 판매 플랜이 있는 상품의 구매 제한을 표시하는 데 사용됩니다. 테마의 모든 수량 선택기의 input 요소의 max 속성 값으로 추가해야 합니다. 변형이 변경될 때 수량이 올바르게 업데이트되도록 테마의 JavaScript와의 통합도 필요할 수 있습니다."
+            }
+          },
+          "download": "코드 스니펫 다운로드"
+        },
+        "4": {
+          "title": "4단계: 결제 페이지에 구매 제한 확장 기능 추가 (프리미엄 사용자만 해당)",
+          "description": {
+            "1": "Shopify Plus를 사용하는 경우, 스토어의 결제 페이지에 구매 제한 확장 기능을 추가하여 고객이 사전 주문 상품의 구매 제한을 초과하지 않도록 할 수 있습니다. 이는 현재 장바구니뿐만 아니라 고객의 이전 주문에도 구매 제한을 적용합니다. 고객의 이전 주문을 확인하는 기능은 Shopify Plus 사용자만 사용할 수 있습니다.",
+            "2": "확장 기능을 추가하려면 대시보드에서 '설정 > 결제'를 클릭하세요. 여기서 '설정'이 표시되며, '라이브' 설정을 '사용자 정의'합니다. 결제 사용자 정의에서 '주문 요약' 섹션 아래에 '앱 블록 추가' 옵션이 있습니다. 여기서 '구매 제한' 앱 블록을 결제 페이지에 추가할 수 있습니다. 추가 후, 이 확장 기능은 자동으로 구매 제한이 있는 모든 사전 주문 상품에 적용되며 결제를 통과합니다. 사용자가 구매 제한을 초과하면 결제를 진행할 수 없으며 제한에 대해 알리는 오류 메시지가 표시됩니다."
+          }
+        },
+        "faqs": {
+          "title": "자주 묻는 질문",
+          "questions": {
+            "1": {
+              "question": "간단한 설정이 테마에서 작동하지 않습니다. 어떻게 해야 하나요?",
+              "answer": "간단한 설정이 테마에서 제대로 작동하지 않거나 예상대로 작동하지 않는 경우, 고급 설정을 사용해야 합니다. dropdeck-preorders@proton.me로 연락하시면 설정을 도와드리겠습니다."
+            },
+            "2": {
+              "question": "사전 주문 플랜이란 무엇인가요?",
+              "answer": "사전 주문 플랜은 상품을 미래 출고용으로 예약하는 방법입니다. 아직 판매 가능하지 않지만 미래에 출시될 예정인 상품에 유용합니다. 사전 주문 플랜 페이지로 이동하여 '새 사전 주문 플랜 만들기' 버튼을 클릭하여 사전 주문 플랜을 만들 수 있습니다."
+            },
+            "3": {
+              "question": "구매 제한이란 무엇인가요?",
+              "answer": "구매 제한은 고객이 사전 주문 상품을 구매할 수 있는 수량을 제한하는 방법입니다. 모든 고객에게 공정하고 동등한 사전 주문 경험을 제공하고 싶을 때 유용합니다. Shopify Plus를 사용하는 경우, 스토어의 결제 페이지에 구매 제한 확장 기능을 추가하여 고객이 사전 주문 상품의 구매 제한을 초과하지 않도록 할 수 있습니다. 이는 현재 장바구니뿐만 아니라 고객의 이전 주문에도 구매 제한을 적용합니다. 고객의 이전 주문을 확인하는 기능은 Shopify Plus 사용자만 사용할 수 있습니다."
+            },
+            "4": {
+              "question": "사전 주문 플랜을 설정한 후 앱을 제거하면 어떻게 되나요?",
+              "answer": "활성 사전 주문 플랜이 있는 상태에서 앱을 제거하면 제거 시 삭제됩니다."
+            }
+          }
+        }
+      }
+    }
+  }
+}

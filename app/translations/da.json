@@ -1,0 +1,231 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "guide": "Kom i gang",
+    "orders": "Ordrer",
+    "plans": "Forudbestillingsplaner"
+  },
+  "quick_actions": {
+    "title": "Hurtige handlinger",
+    "create_preorder_plan": "Opret ny forudbestillingsplan"
+  },
+  "statistics": {
+    "title": "Statistik",
+    "active_plans": "Aktive planer",
+    "products_with_preorders": "Produkter med forudbestillinger"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Tildelte produkter",
+      "expected_fulfillment_date": "Forventet udgivelsesdato",
+      "actions": "Handlinger"
+    },
+    "assigned_products_title": {
+      "none": "Ingen tildelte produkter",
+      "multiple": "{{count}} tildelte produkter"
+    },
+    "actions": {
+      "edit": "Rediger",
+      "delete": "Slet"
+    },
+    "selling_plan_groups_found": {
+      "title": "Forudbestillingsplaner",
+      "description": "Administrer forudbestillingsplaner og deres indstillinger.",
+      "refresh": "Opdater"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Det ser ud til, at du ikke har nogen oprettede forudbestillingsplaner. For at oprette en forudbestillingsplan, klik på knappen nedenfor.",
+      "create": "Opret ny forudbestillingsplan"
+    }
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Opret forudbestillingsplan",
+    "description": "Du kan bruge denne formular til at oprette en ny salgsplan for et bestemt produkt eller endda en gruppe af produkter.",
+    "create": "Opret",
+    "cancel": "Annuller"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Rediger forudbestillingsplan",
+    "description": "Du kan bruge denne formular til at redigere en eksisterende salgsplan for et bestemt produkt eller endda en gruppe af produkter.",
+    "edit": "Rediger",
+    "cancel": "Annuller"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Slet forudbestillingsplan",
+    "description": {
+      "applied_to_products": "Er du sikker på, at du vil slette forudbestillingsplanen for følgende produkter:",
+      "applied_to_all_products": "Er du sikker på, at du vil slette denne forudbestillingsplan?"
+    },
+    "warning": "Denne handling kan ikke fortrydes.",
+    "delete": "Slet",
+    "cancel": "Annuller"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Forventet udgivelsesdato",
+    "enable_unit_restriction": "Aktiver enhedsbegrænsning",
+    "units_per_customer": "Enheder per kunde",
+    "select_products": "Forudbestillingsplanen vil blive anvendt på følgende produkter:",
+    "no_selected_products": "Ingen produkter er valgt, klik på knappen for at tilføje produkter.",
+    "add_products": "Tilføj produkter",
+    "add_or_remove_products": "Tilføj eller fjern produkter",
+    "notice_selling_plan_requirement": "Ethvert produkt, der tilføjes til en salgsplan, vil automatisk kræve en salgsplan. Dette fjerner produktet fra salgskanaler, der ikke understøtter forudbestillinger i Shopify, og forhindrer det i at blive solgt der. Hvis du fjerner markeringen af 'Sælg dette produkt kun som abonnement' på produktadministrationssiderne, fjernes dette krav, hvilket vi ikke anbefaler, da det kan føre til, at dine forudbestillinger bliver behandlet som standardordrer."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Kontroller udgivelsen af dine produkter",
+      "description": "Dropdeck er den smarteste måde at administrere forudbestillinger på Shopify. Sæt grænser, kontroller opfyldelsesvinduer og byg spænding - uden besvær. Designet til handlende, der ønsker fleksibilitet, indsigt og konverteringsfokuserede værktøjer, der bare virker.",
+      "primary_action": "Kom i gang",
+      "secondary_action": "Dine forudbestillinger"
+    }
+  },
+  "plans": {
+    "title": "Forudbestillingsplaner"
+  },
+  "orders": {
+    "title": "Dine forudbestillinger",
+    "bar": {
+      "title": "Kommende forudbestillinger",
+      "refresh": "Opdater"
+    },
+    "settings": {
+      "title": "Indstillinger",
+      "filters": {
+        "preorder_products": {
+          "title": "Filtrer efter forudbestillingsprodukt",
+          "options": {
+            "all_products": "Alle produkter"
+          }
+        },
+        "hide_cancelled_orders": "Skjul annullerede ordrer",
+        "hide_fulfilled_orders": "Skjul opfyldte ordrer",
+        "show_row_colors": "Vis rækkefarver"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Ordre",
+        "line_items": "Ordrelinjer",
+        "payment_status": "Betalingsstatus",
+        "fulfillment_status": "Opfyldelsesstatus"
+      },
+      "resource_name": {
+        "singular": "ordre",
+        "plural": "ordrer"
+      },
+      "row": {
+        "select_all": "Vælg alle ordrer med udgivelsesdato {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Ordre",
+          "line_items": "Ordrelinjer",
+          "payment_status": "Betalingsstatus",
+          "fulfillment_status": "Opfyldelsesstatus"
+        },
+        "title": "Forudbestillingsplukliste",
+        "generated_on": "Genereret den: {{date}}",
+        "file_name": "forudbestillingsplukliste",
+        "button_text": "Eksporter plukliste"
+      }
+    }
+  },
+  "guide": {
+    "title": "Kom i gang",
+    "card": {
+      "title": "🚀 Dropdeck Kom i gang",
+      "description": "Dropdeck hjælper dig med at opsætte stærke forudbestillingsoplevelser i Shopify med fleksibel kontrol over tilgængelighed og købsgrænser.",
+      "return_to_contents": "Tilbage til indhold",
+      "pages": {
+        "contents": {
+          "title": "Indhold",
+          "description": "Denne guide vil guide dig gennem processen med at opsætte Dropdeck i din Shopify butik. Den vil dække grundlæggende oprettelse af en forudbestillingsplan og derefter, hvordan du opsætter dit tema til at bruge Dropdeck.",
+          "items": {
+            "1": "Opret en forudbestillingsplan",
+            "2": "Opsæt dit tema til at bruge Dropdeck",
+            "3": "Installer kodeudsnit til avanceret opsætning",
+            "4": "Tilføj enhedsbegrænsningsudvidelse til checkout (kun for premium-brugere)",
+            "5": "Ofte stillede spørgsmål"
+          }
+        },
+        "1": {
+          "title": "Trin 1: Opret en forudbestillingsplan",
+          "description": "Hvad er en salgsplan? En salgsplan er Shopifys måde at planlægge produkter, så de kan opfyldes senere, så for at oprette en forudbestilling skal du oprette en forudbestillingsplan. Du kan gøre dette på to måder med Dropdeck:",
+          "steps": {
+            "1": "Opret eller tilføj en eksisterende forudbestillingsplan på produktadministrationssiden under 'Købsmuligheder', som kun vil blive tildelt dette produkt.",
+            "2": "Opret en forudbestillingsplan for en gruppe af produkter eller endda et enkelt produkt på forudbestillingsplaner-siden i Dropdeck."
+          },
+          "conclusion": "I begge tilfælde er alt, hvad du skal give Dropdeck her, 'udgivelsesdatoen' for dit forudbestillingsprodukt og valgfrit antal enheder til kundebegrænsning."
+        },
+        "2": {
+          "title": "Trin 2: Opsæt dit tema til at bruge Dropdeck",
+          "description": "Der er to måder at bruge Dropdeck i dit tema på, begge kræver, at du går til tematilpasning og aktiverer Dropdecks 'app-indlejring'. Du kan aktivere app-indlejring i dit tema ved at besøge app-indlejringsområderne i venstre sidepanel i tilpasningen. Du vil se to muligheder under 'Vælg opsætning':",
+          "choices": {
+            "1": {
+              "title": "Simpel opsætning (anbefalet):",
+              "description": "Dette er den nemmeste måde at opsætte Dropdeck på, når du har sat 'Vælg opsætning' til 'Simpel opsætning', er der ikke andet, du skal gøre. Salgsplanen vil automatisk blive injiceret i enhver købsformular på dit websted. Advarslen er, at der er en chance for, at dette kan ødelægge nogle funktioner i dit tema, hvis dit tema har været underlagt mange tilpasninger, eller hvis det er et tema, der ikke er udviklet af Shopify. Du kan springe trin 3 over, da det kun vedrører avanceret opsætning."
+            },
+            "2": {
+              "title": "Avanceret opsætning:",
+              "description": "Dette trin kræver teknisk viden om din temas grundlæggende kode, det er bedst at overlade dette til en udvikler. Når du har sat 'Vælg opsætning' til 'Avanceret opsætning', skal du tilføje følgende kodeudsnit i din temas grundlæggende kode. Dette vil give dig mulighed for at kontrollere placeringen af salgsplanen på dit websted og også give dig mulighed for at tilføje yderligere funktioner til salgsplanen. Gå til trin 3 for mere information om, hvordan du tilføjer kodeudsnit i din temas grundlæggende kode."
+            }
+          }
+        },
+        "3": {
+          "title": "Trin 3: Installer kodeudsnit til avanceret opsætning",
+          "description": "Dette arbejde er bedst overladt til en udvikler, der er bekendt med Shopifys struktur, da kun en erfaren person vil være i stand til at bestemme, hvordan hvert af disse udsnit skal integreres i dit tema. Start med at klikke på knappen nedenfor for at downloade de komprimerede kodeudsnit. Efter download skal disse udsnit tilføjes i din temas grundlæggende kode i udsnitsmappen.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Dette udsnit bruges til nemt at returnere forskellige dele af data om salgsplanen."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Dette skal inkluderes inde i alle formularer med handlingen '/cart/add' i dit tema. Dette anvender den salgsplan, du har oprettet, på produktet."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Dette udsnit bruges til at vise udgivelsesdatoen for et produkt med en salgsplan."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Dette udsnit bruges til at vise enhedsbegrænsningen for et produkt med en salgsplan. Dette skal tilføjes til alle kvantitetsvælgere i dit tema som værdien for max-attributten i input. Dette vil sandsynligvis også kræve integration med dit temas JavaScript for at sikre, at kvantiteten opdateres korrekt ved variantændringer."
+            }
+          },
+          "download": "Download udsnit"
+        },
+        "4": {
+          "title": "Trin 4: Tilføj enhedsbegrænsningsudvidelse til checkout (kun for premium-brugere)",
+          "description": {
+            "1": "Hvis du er en Shopify Plus-bruger, kan du tilføje enhedsbegrænsningsudvidelsen til din butiks checkout for at sikre, at kunder ikke kan overskride købsgrænsen på et forudbestillingsprodukt. Dette anvender enhedsbegrænsningen ikke kun på den aktuelle indkøbskurv, men på tværs af alle deres tidligere ordrer, denne funktion, der tjekker kundens tidligere ordrer, er kun tilgængelig for Shopify Plus-kunder.",
+            "2": "For at tilføje udvidelsen, gå til dit dashboard og klik på: Indstillinger > Checkout. Her vil du se dine 'Konfigurationer', du vil gerne 'Tilpasse' 'Live'-konfigurationen. I checkout-tilpasningen, under 'Ordresammendrag' bør du have muligheden for at 'Tilføj app-blok'. Her kan du tilføje 'Enhedsbegrænsning'-app-blokken til checkout. Efter tilføjelse vil denne udvidelse automatisk anvende enhedsbegrænsninger på eventuelle forudbestillingsprodukter, der har begrænsninger og går gennem checkout. Hvis en bruger overskrider enhedsbegrænsningen, vil de ikke kunne fortsætte med betalingen, og en fejlmeddelelse vil blive vist, der informerer dem om begrænsningen."
+          }
+        },
+        "faqs": {
+          "title": "Ofte stillede spørgsmål",
+          "questions": {
+            "1": {
+              "question": "Simpel opsætning virker ikke med vores tema, hvad skal jeg gøre?",
+              "answer": "Hvis simpel opsætning ikke virker med dit tema på en måde, der ødelægger det eller ikke fungerer som forventet, skal du bruge avanceret opsætning. Kontakt os på dropdeck-preorders@proton.me, og vi vil hjælpe dig med at opsætte det."
+            },
+            "2": {
+              "question": "Hvad er en forudbestillingsplan?",
+              "answer": "En forudbestillingsplan er en måde at planlægge et produkt til at blive opfyldt senere. Dette er nyttigt for produkter, der endnu ikke er tilgængelige til salg, men forventes at blive udgivet i fremtiden. Du kan oprette en forudbestillingsplan ved at besøge forudbestillingsplaner-siden og klikke på 'Opret forudbestillingsplan'-knappen."
+            },
+            "3": {
+              "question": "Hvad er enhedsbegrænsning?",
+              "answer": "Enhedsbegrænsning er en måde at begrænse antallet af enheder, en kunde kan købe af et forudbestillingsprodukt. Dette er nyttigt for forudbestillingsprodukter, hvor du ønsker at lette en retfærdig og lige forudbestillingsoplevelse for alle kunder. Hvis du er en Shopify Plus-bruger, kan du tilføje enhedsbegrænsningsudvidelsen til din butiks checkout for at sikre, at kunder ikke kan overskride købsgrænsen på et forudbestillingsprodukt. Dette anvender enhedsbegrænsningen ikke kun på den aktuelle indkøbskurv tilgængelig for alle Shopify-brugere, men på tværs af alle deres tidligere ordrer, denne funktion, der tjekker kundens tidligere ordrer, er kun tilgængelig for Shopify Plus-kunder."
+            },
+            "4": {
+              "question": "Hvad sker der, hvis jeg har en forudbestillingsplan opsat og afinstallerer appen?",
+              "answer": "Hvis du afinstallerer appen, mens du har aktive forudbestillingsplaner, vil de blive fjernet ved afinstallation."
+            }
+          }
+        }
+      }
+    }
+  }
+}

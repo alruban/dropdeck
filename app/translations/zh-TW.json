@@ -1,0 +1,231 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "儀表板",
+    "guide": "入門指南",
+    "orders": "訂單",
+    "plans": "預購計劃"
+  },
+  "quick_actions": {
+    "title": "快速操作",
+    "create_preorder_plan": "建立新的預購計劃"
+  },
+  "statistics": {
+    "title": "統計",
+    "active_plans": "有效計劃",
+    "products_with_preorders": "預購商品"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "已分配商品",
+      "expected_fulfillment_date": "預計完成日期",
+      "actions": "操作"
+    },
+    "assigned_products_title": {
+      "none": "沒有已分配商品",
+      "multiple": "已分配 {{count}} 個商品"
+    },
+    "actions": {
+      "edit": "編輯",
+      "delete": "刪除"
+    },
+    "selling_plan_groups_found": {
+      "title": "預購計劃",
+      "description": "管理預購計劃與設定",
+      "refresh": "重新整理"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "看起來您還沒有建立預購計劃。您可以點擊下方按鈕建立預購計劃",
+      "create": "建立新的預購計劃"
+    }
+  },
+  "create_selling_plan_group_modal": {
+    "title": "建立預購計劃",
+    "description": "您可以使用此表單為特定商品或商品組建立新的銷售計劃",
+    "create": "建立",
+    "cancel": "取消"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "編輯預購計劃",
+    "description": "您可以使用此表單編輯特定商品或商品組的現有銷售計劃",
+    "edit": "編輯",
+    "cancel": "取消"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "刪除預購計劃",
+    "description": {
+      "applied_to_products": "您確定要刪除下列商品的預購計劃嗎：",
+      "applied_to_all_products": "您確定要刪除此預購計劃嗎？"
+    },
+    "warning": "此操作無法復原",
+    "delete": "刪除",
+    "cancel": "取消"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "預計完成日期",
+    "enable_unit_restriction": "啟用購買限制",
+    "units_per_customer": "每位顧客的數量",
+    "select_products": "預購計劃將套用於下列商品：",
+    "no_selected_products": "尚未選擇商品。點擊按鈕新增商品",
+    "add_products": "新增商品",
+    "add_or_remove_products": "新增或移除商品",
+    "notice_selling_plan_requirement": "加入銷售計劃的每個商品都必須自動擁有銷售計劃。這會將商品從 Shopify 中不支援預購的銷售渠道移除，並在那裡停止銷售。如果您在商品設定中移除「僅將此商品作為預購銷售」選項，此要求將被移除，我們不建議這麼做，因為這可能導致您的預購訂單被當作一般訂單處理"
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "管理您的商品發佈",
+      "description": "Dropdeck 是在 Shopify 中管理預購的最聰明方式。設定限制、管理完成時程，並使用真正有效的轉換工具建立互動－無需費力。專為需要彈性、透明度與真正有效轉換工具的零售商設計",
+      "primary_action": "開始",
+      "secondary_action": "您的預購訂單"
+    }
+  },
+  "plans": {
+    "title": "預購計劃"
+  },
+  "orders": {
+    "title": "您的預購訂單",
+    "bar": {
+      "title": "即將到來的預購訂單",
+      "refresh": "重新整理"
+    },
+    "settings": {
+      "title": "設定",
+      "filters": {
+        "preorder_products": {
+          "title": "依預購商品篩選",
+          "options": {
+            "all_products": "所有商品"
+          }
+        },
+        "hide_cancelled_orders": "隱藏已取消訂單",
+        "hide_fulfilled_orders": "隱藏已完成訂單",
+        "show_row_colors": "顯示列顏色"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "訂單",
+        "line_items": "商品",
+        "payment_status": "付款狀態",
+        "fulfillment_status": "完成狀態"
+      },
+      "resource_name": {
+        "singular": "訂單",
+        "plural": "訂單"
+      },
+      "row": {
+        "select_all": "選取所有預計完成日期為 {{date}} 的訂單"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "訂單",
+          "line_items": "商品",
+          "payment_status": "付款狀態",
+          "fulfillment_status": "完成狀態"
+        },
+        "title": "預購完成清單",
+        "generated_on": "產生於：{{date}}",
+        "file_name": "預購完成清單",
+        "button_text": "匯出完成清單"
+      }
+    }
+  },
+  "guide": {
+    "title": "入門指南",
+    "card": {
+      "title": "🚀 Dropdeck 入門指南",
+      "description": "Dropdeck 協助您在 Shopify 中建立有效的預購，具備彈性的庫存管理與購買限制",
+      "return_to_contents": "返回目錄",
+      "pages": {
+        "contents": {
+          "title": "目錄",
+          "description": "本指南將引導您完成在 Shopify 商店中安裝 Dropdeck 的過程，包括建立基本預購計劃與設定您的主題以使用 Dropdeck",
+          "items": {
+            "1": "建立預購計劃",
+            "2": "設定您的主題以使用 Dropdeck",
+            "3": "為進階設定安裝程式碼片段",
+            "4": "將購買限制擴充功能新增至結帳頁面（僅限進階用戶）",
+            "5": "常見問題"
+          }
+        },
+        "1": {
+          "title": "步驟1：建立預購計劃",
+          "description": "什麼是銷售計劃？銷售計劃是 Shopify 規劃商品未來完成的方式。因此，要建立預購，您需要建立預購計劃。您可以透過兩種方式使用 Dropdeck：",
+          "steps": {
+            "1": "在商品管理頁面的「購買選項」部分建立或新增現有預購計劃，專門為該商品設定",
+            "2": "在 Dropdeck 主題頁面上為商品組或單一商品建立預購計劃"
+          },
+          "conclusion": "在這兩種情況下，您需要提供給 Dropdeck 的唯一內容是您的預購商品的「預計完成日期」與顧客限制的數量（如有）"
+        },
+        "2": {
+          "title": "步驟2：設定您的主題以使用 Dropdeck",
+          "description": "有兩種方式在您的主題中使用 Dropdeck，兩者都需要前往主題編輯器以安裝應用程式嵌入。您可以透過前往主題編輯器左側邊欄的應用程式嵌入區塊來在主題中安裝應用程式嵌入。您會在「設定選項」下看到兩個選項：",
+          "choices": {
+            "1": {
+              "title": "基本設定（推薦）：",
+              "description": "這是設定 Dropdeck 最簡單的方式。一旦您將「設定」選項設為「基本」，您就不需要做任何其他事。銷售計劃會自動新增至您網站上的所有購買模組。警告：如果您的主題經過大量自訂或不是 Shopify 開發的主題，這可能會影響主題的某些功能。您可以略過步驟3，因為它只涉及進階設定"
+            },
+            "2": {
+              "title": "進階設定：",
+              "description": "此步驟需要有關您主題程式碼的技術知識，應交由開發人員處理。將「設定」選項設為「進階」後，您需要將下列程式碼片段新增至您的主題程式碼。這可讓您定義銷售計劃在網站上的顯示位置，並協助您為銷售計劃新增額外功能。更多有關新增程式碼片段至主題程式碼的資訊，請前往步驟3"
+            }
+          }
+        },
+        "3": {
+          "title": "步驟3：為進階設定安裝程式碼片段",
+          "description": "這項工作應交由熟悉 Shopify 架構的開發人員處理，只有有經驗的人才應該決定如何將每個片段整合至您的主題。請先點擊下方按鈕下載壓縮的程式碼片段。下載後，這些片段應新增至主題程式碼的 snippets 資料夾中",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "此片段用於輕鬆取得有關銷售計劃的各種資訊"
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "必須包含在主題中所有具有 '/cart/add' 操作的表單中。將建立的銷售計劃套用於商品"
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "此片段用於顯示具有銷售計劃商品的預計完成日期"
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "此片段用於顯示具有銷售計劃商品的購買限制。必須作為 max 屬性值新增至主題中所有數量選項的 input 元素。可能需要與主題的 JavaScript 整合，以確保在變數變更時正確更新數量"
+            }
+          },
+          "download": "下載程式碼片段"
+        },
+        "4": {
+          "title": "步驟4：將購買限制擴充功能新增至結帳頁面（僅限進階用戶）",
+          "description": {
+            "1": "如果您使用 Shopify Plus，您可以將購買限制擴充功能新增至商店的結帳頁面，以確保顧客不會超過預購商品的購買限制。這不僅適用於他們目前的購物車（所有 Shopify 用戶皆可用），還適用於他們所有的預購訂單。顧客預購訂單檢查功能僅適用於 Shopify Plus 用戶",
+            "2": "要新增擴充功能，請前往儀表板並點擊：設定 > 結帳頁面。在這裡，您會看到您的「設定」。您想要「設定」結帳頁面中的「即時」設定。在「訂單摘要」區塊下，您應該有「新增應用程式區塊」選項。在這裡，您可以將「購買限制」應用程式區塊新增至結帳頁面。新增後，此擴充功能會自動將購買限制套用於所有具有限制並經由結帳頁面的預購商品。如果用戶超過購買限制，他們將無法繼續付款，並會看到通知限制的錯誤訊息"
+          }
+        },
+        "faqs": {
+          "title": "常見問題",
+          "questions": {
+            "1": {
+              "question": "基本設定在我們的主題中無法運作。我該怎麼辦？",
+              "answer": "如果基本設定在您的主題中導致損壞或無法如預期運作，您需要使用進階設定。請透過 dropdeck-preorders@proton.me 聯繫我們，我們會協助您設定"
+            },
+            "2": {
+              "question": "什麼是預購計劃？",
+              "answer": "預購計劃是規劃商品未來完成的方式。這對於尚未準備好銷售但預計未來推出的商品很有用。您可以前往主題頁面並點擊「建立新的預購計劃」按鈕來建立預購計劃"
+            },
+            "3": {
+              "question": "什麼是購買限制？",
+              "answer": "購買限制是限制顧客可購買預購商品數量的方式。這對於您希望確保所有顧客公平且平等預購體驗的預購商品很有用。如果您使用 Shopify Plus，您可以將購買限制擴充功能新增至商店的結帳頁面，以確保顧客不會超過預購商品的購買限制。這不僅適用於他們目前的購物車（所有 Shopify 用戶皆可用），還適用於他們所有的預購訂單。顧客預購訂單檢查功能僅適用於 Shopify Plus 用戶"
+            },
+            "4": {
+              "question": "如果我有有效的預購計劃並刪除應用程式會發生什麼事？",
+              "answer": "如果您在有有效的預購計劃時刪除應用程式，這些計劃會在刪除應用程式時一併刪除"
+            }
+          }
+        }
+      }
+    }
+  }
+}

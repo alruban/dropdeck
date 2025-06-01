@@ -1,0 +1,231 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Gösterge Paneli",
+    "guide": "Başlangıç Kılavuzu",
+    "orders": "Siparişler",
+    "plans": "Ön Sipariş Planları"
+  },
+  "quick_actions": {
+    "title": "Hızlı İşlemler",
+    "create_preorder_plan": "Yeni Ön Sipariş Planı Oluştur"
+  },
+  "statistics": {
+    "title": "İstatistikler",
+    "active_plans": "Aktif Planlar",
+    "products_with_preorders": "Ön Siparişli Ürünler"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Atanan Ürünler",
+      "expected_fulfillment_date": "Tahmini Teslimat Tarihi",
+      "actions": "İşlemler"
+    },
+    "assigned_products_title": {
+      "none": "Atanan ürün yok",
+      "multiple": "{{count}} ürün atanmış"
+    },
+    "actions": {
+      "edit": "Düzenle",
+      "delete": "Sil"
+    },
+    "selling_plan_groups_found": {
+      "title": "Ön Sipariş Planları",
+      "description": "Ön sipariş planlarınızı ve ayarlarınızı yönetin",
+      "refresh": "Yenile"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Henüz bir ön sipariş planı oluşturmamışsınız. Aşağıdaki düğmeye tıklayarak bir ön sipariş planı oluşturabilirsiniz",
+      "create": "Yeni Ön Sipariş Planı Oluştur"
+    }
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Ön Sipariş Planı Oluştur",
+    "description": "Bu formu kullanarak belirli bir ürün veya hatta ürün grubu için yeni bir satış planı oluşturabilirsiniz",
+    "create": "Oluştur",
+    "cancel": "İptal"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Ön Sipariş Planını Düzenle",
+    "description": "Bu formu kullanarak belirli bir ürün veya hatta ürün grubu için mevcut bir satış planını düzenleyebilirsiniz",
+    "edit": "Düzenle",
+    "cancel": "İptal"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Ön Sipariş Planını Sil",
+    "description": {
+      "applied_to_products": "Bu ürünler için ön sipariş planını silmek istediğinizden emin misiniz:",
+      "applied_to_all_products": "Bu ön sipariş planını silmek istediğinizden emin misiniz?"
+    },
+    "warning": "Bu işlem geri alınamaz",
+    "delete": "Sil",
+    "cancel": "İptal"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Tahmini Teslimat Tarihi",
+    "enable_unit_restriction": "Satın Alma Limiti Etkinleştir",
+    "units_per_customer": "Müşteri Başına Birim",
+    "select_products": "Ön sipariş planı aşağıdaki ürünlere uygulanacak:",
+    "no_selected_products": "Henüz ürün seçilmedi. Ürün eklemek için düğmeye tıklayın",
+    "add_products": "Ürün Ekle",
+    "add_or_remove_products": "Ürün Ekle veya Kaldır",
+    "notice_selling_plan_requirement": "Satış planına eklenen her ürün otomatik olarak bir satış planına sahip olmalıdır. Bu, ürünleri Shopify'da ön siparişi desteklemeyen satış kanallarından kaldıracak ve orada satışı durduracaktır. Ürün ayarlarında 'Bu ürünü sadece ön sipariş olarak sat' seçeneğini kaldırırsanız, bu gereklilik kaldırılacaktır, ancak bunu önermiyoruz çünkü ön siparişlerinizin normal siparişler olarak işlenmesine neden olabilir"
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Ürün Lansmanlarınızı Yönetin",
+      "description": "Dropdeck, Shopify'da ön siparişleri yönetmenin en akıllı yoludur. Limitleri ayarlayın, teslimat pencerelerini yönetin ve dönüşüm odaklı, gerçekten çalışan araçlarla etkileşim oluşturun - hiç çaba harcamadan. Özelleştirilebilirlik, şeffaflık ve gerçekten çalışan dönüşüm odaklı araçlar isteyen satıcılar için tasarlanmıştır",
+      "primary_action": "Başla",
+      "secondary_action": "Ön Siparişleriniz"
+    }
+  },
+  "plans": {
+    "title": "Ön Sipariş Planları"
+  },
+  "orders": {
+    "title": "Ön Siparişleriniz",
+    "bar": {
+      "title": "Yaklaşan Ön Siparişler",
+      "refresh": "Yenile"
+    },
+    "settings": {
+      "title": "Ayarlar",
+      "filters": {
+        "preorder_products": {
+          "title": "Ön Siparişli Ürünlere Göre Filtrele",
+          "options": {
+            "all_products": "Tüm Ürünler"
+          }
+        },
+        "hide_cancelled_orders": "İptal Edilen Siparişleri Gizle",
+        "hide_fulfilled_orders": "Tamamlanan Siparişleri Gizle",
+        "show_row_colors": "Satır Renklerini Göster"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Sipariş",
+        "line_items": "Ürünler",
+        "payment_status": "Ödeme Durumu",
+        "fulfillment_status": "Teslimat Durumu"
+      },
+      "resource_name": {
+        "singular": "sipariş",
+        "plural": "sipariş"
+      },
+      "row": {
+        "select_all": "{{date}} tarihli tüm siparişleri seç"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Sipariş",
+          "line_items": "Ürünler",
+          "payment_status": "Ödeme Durumu",
+          "fulfillment_status": "Teslimat Durumu"
+        },
+        "title": "Ön Sipariş Hazırlama Listesi",
+        "generated_on": "Oluşturulma Tarihi: {{date}}",
+        "file_name": "Ön Sipariş Hazırlama Listesi",
+        "button_text": "Hazırlama Listesini Dışa Aktar"
+      }
+    }
+  },
+  "guide": {
+    "title": "Başlangıç Kılavuzu",
+    "card": {
+      "title": "🚀 Dropdeck Başlangıç Kılavuzu",
+      "description": "Dropdeck, esnek stok yönetimi ve satın alma limitleriyle Shopify'da etkili ön siparişler oluşturmanıza yardımcı olur",
+      "return_to_contents": "İçindekiler'e Dön",
+      "pages": {
+        "contents": {
+          "title": "İçindekiler",
+          "description": "Bu kılavuz, Shopify mağazanızda Dropdeck'i kurma sürecinde size rehberlik edecek, temel ön sipariş planı oluşturma ve temanızı Dropdeck'i kullanacak şekilde ayarlama konularını kapsar",
+          "items": {
+            "1": "Ön Sipariş Planı Oluştur",
+            "2": "Temanızı Dropdeck'i Kullanacak Şekilde Ayarlayın",
+            "3": "Gelişmiş Ayarlar İçin Kod Parçacıklarını Yükleyin",
+            "4": "Ödeme Kanalına Satın Alma Limiti Uzantısını Ekleyin (Sadece Premium Kullanıcılar İçin)",
+            "5": "Sık Sorulan Sorular"
+          }
+        },
+        "1": {
+          "title": "Adım 1: Ön Sipariş Planı Oluştur",
+          "description": "Satış planı nedir? Satış planı, Shopify'ın ürünleri gelecekteki teslimat için planlama yöntemidir. Bu nedenle, ön sipariş oluşturmak için bir ön sipariş planı oluşturmanız gerekir. Bunu Dropdeck ile iki şekilde yapabilirsiniz:",
+          "steps": {
+            "1": "Ürün yönetimi sayfasındaki 'Satın Alma Seçenekleri' bölümünde mevcut bir ön sipariş planı oluşturun veya ekleyin, bu sadece o ürün için ayarlanır",
+            "2": "Dropdeck tema sayfasında bir ürün grubu veya hatta tek bir ürün için bir ön sipariş planı oluşturun"
+          },
+          "conclusion": "Her iki durumda da, Dropdeck'e vermeniz gereken tek şey, ön sipariş ürününüzün 'tahmini teslimat tarihi' ve müşteri limiti için birim sayısıdır (varsa)"
+        },
+        "2": {
+          "title": "Adım 2: Temanızı Dropdeck'i Kullanacak Şekilde Ayarlayın",
+          "description": "Temanızda Dropdeck'i kullanmanın iki yolu vardır ve her ikisi de uygulama gömme özelliğini etkinleştirmek için tema düzenleyiciye gitmeyi gerektirir. Tema düzenleyicinin sol kenar çubuğundaki uygulama gömme bölümüne giderek temanızda uygulama gömme özelliğini etkinleştirebilirsiniz. 'Ayarlar Seçenekleri' altında iki seçenek göreceksiniz:",
+          "choices": {
+            "1": {
+              "title": "Temel Ayarlar (Önerilen):",
+              "description": "Bu, Dropdeck'i ayarlamanın en kolay yoludur. 'Ayarlar' seçeneğini 'temel' olarak ayarladığınızda, başka bir şey yapmanıza gerek kalmaz. Satış planları otomatik olarak web sitenizdeki tüm satın alma modüllerine eklenecektir. Uyarı: Temanız büyük ölçüde özelleştirilmişse veya Shopify tarafından geliştirilmemiş bir temaysa, temanızın bazı işlevlerini etkileyebilir. Adım 3'ü atlayabilirsiniz çünkü sadece gelişmiş ayarlarla ilgilidir"
+            },
+            "2": {
+              "title": "Gelişmiş Ayarlar:",
+              "description": "Bu adım, tema kodunuz hakkında teknik bilgi gerektirir ve bir geliştiriciye bırakılmalıdır. 'Ayarlar' seçeneğini 'gelişmiş' olarak ayarladıktan sonra, tema kodunuza aşağıdaki kod parçacıklarını eklemeniz gerekir. Bu, satış planlarının web sitenizde nerede görüneceğini belirlemenize olanak tanır ve ayrıca satış planlarına ek işlevler eklemenize yardımcı olur. Tema kodunuza kod parçacıklarını ekleme hakkında daha fazla bilgi için Adım 3'e gidin"
+            }
+          }
+        },
+        "3": {
+          "title": "Adım 3: Gelişmiş Ayarlar İçin Kod Parçacıklarını Yükleyin",
+          "description": "Bu iş, Shopify yapısına aşina olan bir geliştiriciye bırakılmalıdır, çünkü her bir kod parçacığının temanıza nasıl entegre edileceğini belirlemek sadece deneyimli biri tarafından yapılmalıdır. Aşağıdaki düğmeye tıklayarak sıkıştırılmış kod parçacıklarını indirerek başlayın. İndirdikten sonra, bu kod parçacıkları tema kodunuzun snippets klasörüne eklenmelidir",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Bu parçacık, satış planı hakkında çeşitli bilgileri kolayca almak için kullanılır"
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Temanızdaki '/cart/add' eylemi olan tüm formlara dahil edilmelidir. Oluşturulan satış planını ürüne uygular"
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Bu parçacık, satış planı olan ürünlerin tahmini teslimat tarihini göstermek için kullanılır"
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Bu parçacık, satış planı olan ürünlerin satın alma limitini göstermek için kullanılır. Temanızdaki tüm miktar seçeneklerinin input öğesinin max özelliğine eklenmelidir. Değişkenler değiştiğinde miktarın doğru şekilde güncellendiğinden emin olmak için temanızın JavaScript'i ile entegre edilmesi gerekebilir"
+            }
+          },
+          "download": "Kod Parçacıklarını İndir"
+        },
+        "4": {
+          "title": "Adım 4: Ödeme Kanalına Satın Alma Limiti Uzantısını Ekleyin (Sadece Premium Kullanıcılar İçin)",
+          "description": {
+            "1": "Shopify Plus kullanıyorsanız, müşterilerinizin ön siparişli ürünler için satın alma limitini aşmadığından emin olmak için mağazanızın ödeme kanalına satın alma limiti uzantısı ekleyebilirsiniz. Bu, satın alma limitini sadece mevcut sepetlerine değil, aynı zamanda önceki tüm siparişlerine de uygular. Müşteri önceki siparişlerini kontrol etme işlevi sadece Shopify Plus kullanıcıları için mevcuttur",
+            "2": "Uzantıyı eklemek için, gösterge paneline gidin ve şunu tıklayın: Ayarlar > Ödeme Kanalı. Burada 'Ayarlarınızı' göreceksiniz. Ödeme kanalında 'canlı' ayarı 'ayarlamak' istiyorsunuz. 'Sipariş Özeti' bölümü altında 'Uygulama Bloğu Ekle' seçeneğiniz olmalıdır. Burada ödeme kanalına 'Satın Alma Limiti' uygulama bloğunu ekleyebilirsiniz. Eklendikten sonra, bu uzantı otomatik olarak bir limiti olan ve ödeme kanalından geçen tüm ön siparişli ürünlere satın alma limitini uygulayacaktır. Bir kullanıcı satın alma limitini aşarsa, ödemeye devam edemeyecek ve limit hakkında bilgilendiren bir hata mesajı görecektir"
+          }
+        },
+        "faqs": {
+          "title": "Sık Sorulan Sorular",
+          "questions": {
+            "1": {
+              "question": "Temel ayarlar temamızda çalışmıyor. Ne yapmalıyım?",
+              "answer": "Temel ayarlar temanızda hasara neden olacak veya beklenen şekilde çalışmayacak şekilde çalışmıyorsa, gelişmiş ayarları kullanmanız gerekir. Bize dropdeck-preorders@proton.me adresinden ulaşın ve size kurulum konusunda yardımcı olacağız"
+            },
+            "2": {
+              "question": "Ön sipariş planı nedir?",
+              "answer": "Ön sipariş planı, ürünleri gelecekteki teslimat için planlamanın bir yoludur. Henüz satışa hazır olmayan ancak gelecekte piyasaya sürülmesi beklenen ürünler için faydalıdır. Tema sayfasına gidip 'Yeni Ön Sipariş Planı Oluştur' düğmesine tıklayarak bir ön sipariş planı oluşturabilirsiniz"
+            },
+            "3": {
+              "question": "Satın alma limiti nedir?",
+              "answer": "Satın alma limiti, bir müşterinin satın alabileceği ön siparişli ürün miktarını sınırlamanın bir yoludur. Tüm müşteriler için adil ve eşit bir ön sipariş deneyimi sağlamak istediğiniz ön siparişli ürünler için faydalıdır. Shopify Plus kullanıyorsanız, müşterilerinizin ön siparişli ürünler için satın alma limitini aşmadığından emin olmak için mağazanızın ödeme kanalına satın alma limiti uzantısı ekleyebilirsiniz. Bu, satın alma limitini sadece mevcut sepetlerine değil, aynı zamanda önceki tüm siparişlerine de uygular. Müşteri önceki siparişlerini kontrol etme işlevi sadece Shopify Plus kullanıcıları için mevcuttur"
+            },
+            "4": {
+              "question": "Aktif ön sipariş planlarım varken uygulamayı silersem ne olur?",
+              "answer": "Aktif ön sipariş planlarınız varken uygulamayı silerseniz, uygulama silindiğinde onlar da silinecektir"
+            }
+          }
+        }
+      }
+    }
+  }
+}

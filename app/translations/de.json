@@ -1,0 +1,231 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "guide": "Erste Schritte",
+    "orders": "Bestellungen",
+    "plans": "Vorbestellungspläne"
+  },
+  "quick_actions": {
+    "title": "Schnellaktionen",
+    "create_preorder_plan": "Neuen Vorbestellungsplan erstellen"
+  },
+  "statistics": {
+    "title": "Statistiken",
+    "active_plans": "Aktive Pläne",
+    "products_with_preorders": "Produkte mit Vorbestellungen"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Zugewiesene Produkte",
+      "expected_fulfillment_date": "Erwartetes Erscheinungsdatum",
+      "actions": "Aktionen"
+    },
+    "assigned_products_title": {
+      "none": "Keine zugewiesenen Produkte",
+      "multiple": "{{count}} zugewiesene Produkte"
+    },
+    "actions": {
+      "edit": "Bearbeiten",
+      "delete": "Löschen"
+    },
+    "selling_plan_groups_found": {
+      "title": "Vorbestellungspläne",
+      "description": "Verwalten Sie Vorbestellungspläne und deren Einstellungen.",
+      "refresh": "Aktualisieren"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Es scheint, dass Sie noch keine Vorbestellungspläne erstellt haben. Um einen Vorbestellungsplan zu erstellen, klicken Sie auf die Schaltfläche unten.",
+      "create": "Neuen Vorbestellungsplan erstellen"
+    }
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Vorbestellungsplan erstellen",
+    "description": "Mit diesem Formular können Sie einen neuen Verkaufsplan für ein bestimmtes Produkt oder sogar eine Gruppe von Produkten erstellen.",
+    "create": "Erstellen",
+    "cancel": "Abbrechen"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Vorbestellungsplan bearbeiten",
+    "description": "Mit diesem Formular können Sie einen bestehenden Verkaufsplan für ein bestimmtes Produkt oder sogar eine Gruppe von Produkten bearbeiten.",
+    "edit": "Bearbeiten",
+    "cancel": "Abbrechen"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Vorbestellungsplan löschen",
+    "description": {
+      "applied_to_products": "Sind Sie sicher, dass Sie den Vorbestellungsplan für folgende Produkte löschen möchten:",
+      "applied_to_all_products": "Sind Sie sicher, dass Sie diesen Vorbestellungsplan löschen möchten?"
+    },
+    "warning": "Diese Aktion kann nicht rückgängig gemacht werden.",
+    "delete": "Löschen",
+    "cancel": "Abbrechen"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Erwartetes Erscheinungsdatum",
+    "enable_unit_restriction": "Einheitenbeschränkung aktivieren",
+    "units_per_customer": "Einheiten pro Kunde",
+    "select_products": "Der Vorbestellungsplan wird auf folgende Produkte angewendet:",
+    "no_selected_products": "Keine Produkte ausgewählt, klicken Sie auf die Schaltfläche, um Produkte hinzuzufügen.",
+    "add_products": "Produkte hinzufügen",
+    "add_or_remove_products": "Produkte hinzufügen oder entfernen",
+    "notice_selling_plan_requirement": "Jedes Produkt, das einem Verkaufsplan hinzugefügt wird, erfordert automatisch einen Verkaufsplan. Dies entfernt das Produkt aus Verkaufskanälen, die Vorbestellungen in Shopify nicht unterstützen, und verhindert den Verkauf dort. Wenn Sie die Option 'Dieses Produkt nur als Abonnement verkaufen' auf den Produktverwaltungsseiten deaktivieren, wird diese Anforderung entfernt, was wir nicht empfehlen, da dies dazu führen kann, dass Ihre Vorbestellungen als Standardbestellungen behandelt werden."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Kontrollieren Sie die Veröffentlichung Ihrer Produkte",
+      "description": "Dropdeck ist der intelligenteste Weg, Vorbestellungen in Shopify zu verwalten. Setzen Sie Grenzen, kontrollieren Sie Erfüllungsfenster und bauen Sie Spannung auf - ohne Aufwand. Entwickelt für Händler, die Flexibilität, Einblicke und konversionsorientierte Tools wünschen, die einfach funktionieren.",
+      "primary_action": "Erste Schritte",
+      "secondary_action": "Ihre Vorbestellungen"
+    }
+  },
+  "plans": {
+    "title": "Vorbestellungspläne"
+  },
+  "orders": {
+    "title": "Ihre Vorbestellungen",
+    "bar": {
+      "title": "Kommende Vorbestellungen",
+      "refresh": "Aktualisieren"
+    },
+    "settings": {
+      "title": "Einstellungen",
+      "filters": {
+        "preorder_products": {
+          "title": "Nach Vorbestellungsprodukt filtern",
+          "options": {
+            "all_products": "Alle Produkte"
+          }
+        },
+        "hide_cancelled_orders": "Stornierte Bestellungen ausblenden",
+        "hide_fulfilled_orders": "Erfüllte Bestellungen ausblenden",
+        "show_row_colors": "Zeilenfarben anzeigen"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Bestellung",
+        "line_items": "Bestellpositionen",
+        "payment_status": "Zahlungsstatus",
+        "fulfillment_status": "Erfüllungsstatus"
+      },
+      "resource_name": {
+        "singular": "Bestellung",
+        "plural": "Bestellungen"
+      },
+      "row": {
+        "select_all": "Alle Bestellungen mit Erscheinungsdatum {{date}} auswählen"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Bestellung",
+          "line_items": "Bestellpositionen",
+          "payment_status": "Zahlungsstatus",
+          "fulfillment_status": "Erfüllungsstatus"
+        },
+        "title": "Vorbestellungs-Pickliste",
+        "generated_on": "Erstellt am: {{date}}",
+        "file_name": "vorbestellungs-pickliste",
+        "button_text": "Pickliste exportieren"
+      }
+    }
+  },
+  "guide": {
+    "title": "Erste Schritte",
+    "card": {
+      "title": "🚀 Dropdeck Erste Schritte",
+      "description": "Dropdeck hilft Ihnen, starke Vorbestellungserlebnisse in Shopify mit flexibler Kontrolle über Verfügbarkeit und Kaufgrenzen einzurichten.",
+      "return_to_contents": "Zurück zum Inhaltsverzeichnis",
+      "pages": {
+        "contents": {
+          "title": "Inhaltsverzeichnis",
+          "description": "Dieser Leitfaden führt Sie durch den Prozess der Einrichtung von Dropdeck in Ihrem Shopify-Shop. Er behandelt die grundlegende Erstellung eines Vorbestellungsplans und dann, wie Sie Ihr Theme für die Verwendung von Dropdeck einrichten.",
+          "items": {
+            "1": "Einen Vorbestellungsplan erstellen",
+            "2": "Ihr Theme für die Verwendung von Dropdeck einrichten",
+            "3": "Code-Snippets für erweiterte Einrichtung installieren",
+            "4": "Einheitenbeschränkungs-Erweiterung zum Checkout hinzufügen (nur für Premium-Benutzer)",
+            "5": "Häufig gestellte Fragen"
+          }
+        },
+        "1": {
+          "title": "Schritt 1: Einen Vorbestellungsplan erstellen",
+          "description": "Was ist ein Verkaufsplan? Ein Verkaufsplan ist Shopifys Methode, Produkte so zu planen, dass sie später erfüllt werden können. Um eine Vorbestellung zu erstellen, müssen Sie also einen Vorbestellungsplan erstellen. Mit Dropdeck können Sie dies auf zwei Arten tun:",
+          "steps": {
+            "1": "Erstellen oder fügen Sie einen bestehenden Vorbestellungsplan auf der Produktverwaltungsseite unter 'Kaufoptionen' hinzu, der nur diesem Produkt zugewiesen wird.",
+            "2": "Erstellen Sie einen Vorbestellungsplan für eine Gruppe von Produkten oder sogar ein einzelnes Produkt auf der Vorbestellungspläne-Seite in Dropdeck."
+          },
+          "conclusion": "In beiden Fällen müssen Sie Dropdeck nur das 'Erscheinungsdatum' Ihres Vorbestellungsprodukts und optional die Anzahl der Einheiten für die Kundenbeschränkung mitteilen."
+        },
+        "2": {
+          "title": "Schritt 2: Ihr Theme für die Verwendung von Dropdeck einrichten",
+          "description": "Es gibt zwei Möglichkeiten, Dropdeck in Ihrem Theme zu verwenden. Beide erfordern, dass Sie zur Theme-Anpassung gehen und die 'App-Einbettung' von Dropdeck aktivieren. Sie können die App-Einbettung in Ihrem Theme aktivieren, indem Sie die App-Einbettungsbereiche im linken Seitenbereich der Anpassung besuchen. Sie werden zwei Optionen unter 'Einrichtung wählen' sehen:",
+          "choices": {
+            "1": {
+              "title": "Einfache Einrichtung (empfohlen):",
+              "description": "Dies ist der einfachste Weg, Dropdeck einzurichten. Wenn Sie 'Einrichtung wählen' auf 'Einfache Einrichtung' gesetzt haben, müssen Sie nichts weiter tun. Der Verkaufsplan wird automatisch in jedes Kaufformular auf Ihrer Website eingefügt. Die Warnung ist, dass dies möglicherweise einige Funktionen Ihres Themes beeinträchtigen könnte, wenn Ihr Theme vielen Anpassungen unterzogen wurde oder wenn es ein Theme ist, das nicht von Shopify entwickelt wurde. Sie können Schritt 3 überspringen, da er sich nur auf die erweiterte Einrichtung bezieht."
+            },
+            "2": {
+              "title": "Erweiterte Einrichtung:",
+              "description": "Dieser Schritt erfordert technisches Wissen über den grundlegenden Code Ihres Themes. Es ist am besten, dies einem Entwickler zu überlassen. Wenn Sie 'Einrichtung wählen' auf 'Erweiterte Einrichtung' gesetzt haben, müssen Sie die folgenden Code-Snippets in den grundlegenden Code Ihres Themes einfügen. Dies ermöglicht es Ihnen, die Platzierung des Verkaufsplans auf Ihrer Website zu kontrollieren und auch zusätzliche Funktionen zum Verkaufsplan hinzuzufügen. Gehen Sie zu Schritt 3 für weitere Informationen darüber, wie Sie Code-Snippets in den grundlegenden Code Ihres Themes einfügen."
+            }
+          }
+        },
+        "3": {
+          "title": "Schritt 3: Code-Snippets für erweiterte Einrichtung installieren",
+          "description": "Diese Arbeit ist am besten einem Entwickler überlassen, der mit der Struktur von Shopify vertraut ist, da nur eine erfahrene Person bestimmen kann, wie jedes dieser Snippets in Ihr Theme integriert werden soll. Beginnen Sie, indem Sie auf die Schaltfläche unten klicken, um die komprimierten Code-Snippets herunterzuladen. Nach dem Download müssen diese Snippets in den grundlegenden Code Ihres Themes im Snippets-Ordner hinzugefügt werden.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Dieses Snippet wird verwendet, um verschiedene Teile der Daten über den Verkaufsplan einfach zurückzugeben."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Dies muss in alle Formulare mit der Aktion '/cart/add' in Ihrem Theme eingefügt werden. Dies wendet den von Ihnen erstellten Verkaufsplan auf das Produkt an."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Dieses Snippet wird verwendet, um das Erscheinungsdatum eines Produkts mit einem Verkaufsplan anzuzeigen."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Dieses Snippet wird verwendet, um die Einheitenbeschränkung für ein Produkt mit einem Verkaufsplan anzuzeigen. Dies muss zu allen Mengenauswählern in Ihrem Theme als Wert für das max-Attribut im Input hinzugefügt werden. Dies wird wahrscheinlich auch eine Integration mit dem JavaScript Ihres Themes erfordern, um sicherzustellen, dass die Menge bei Variantenänderungen korrekt aktualisiert wird."
+            }
+          },
+          "download": "Snippets herunterladen"
+        },
+        "4": {
+          "title": "Schritt 4: Einheitenbeschränkungs-Erweiterung zum Checkout hinzufügen (nur für Premium-Benutzer)",
+          "description": {
+            "1": "Wenn Sie ein Shopify Plus-Benutzer sind, können Sie die Einheitenbeschränkungs-Erweiterung zum Checkout Ihres Shops hinzufügen, um sicherzustellen, dass Kunden die Kaufgrenze für ein Vorbestellungsprodukt nicht überschreiten können. Dies wendet die Einheitenbeschränkung nicht nur auf den aktuellen Warenkorb an, sondern auch auf alle ihre früheren Bestellungen. Diese Funktion, die die früheren Bestellungen des Kunden überprüft, ist nur für Shopify Plus-Benutzer verfügbar.",
+            "2": "Um die Erweiterung hinzuzufügen, gehen Sie zu Ihrem Dashboard und klicken Sie auf: Einstellungen > Checkout. Hier sehen Sie Ihre 'Konfigurationen'. Sie möchten die 'Live'-Konfiguration 'Anpassen'. In der Checkout-Anpassung, unter 'Bestellübersicht', sollten Sie die Möglichkeit haben, 'App-Block hinzufügen' zu klicken. Hier können Sie den 'Einheitenbeschränkung'-App-Block zum Checkout hinzufügen. Nach dem Hinzufügen wird diese Erweiterung automatisch Einheitenbeschränkungen auf alle Vorbestellungsprodukte anwenden, die Beschränkungen haben und durch den Checkout gehen. Wenn ein Benutzer die Einheitenbeschränkung überschreitet, kann er nicht mit der Zahlung fortfahren, und eine Fehlermeldung wird angezeigt, die ihn über die Beschränkung informiert."
+          }
+        },
+        "faqs": {
+          "title": "Häufig gestellte Fragen",
+          "questions": {
+            "1": {
+              "question": "Die einfache Einrichtung funktioniert nicht mit unserem Theme, was soll ich tun?",
+              "answer": "Wenn die einfache Einrichtung mit Ihrem Theme auf eine Weise nicht funktioniert, die es beschädigt oder nicht wie erwartet funktioniert, müssen Sie die erweiterte Einrichtung verwenden. Kontaktieren Sie uns unter dropdeck-preorders@proton.me, und wir helfen Ihnen bei der Einrichtung."
+            },
+            "2": {
+              "question": "Was ist ein Vorbestellungsplan?",
+              "answer": "Ein Vorbestellungsplan ist eine Möglichkeit, ein Produkt so zu planen, dass es später erfüllt wird. Dies ist nützlich für Produkte, die noch nicht zum Verkauf verfügbar sind, aber in Zukunft veröffentlicht werden sollen. Sie können einen Vorbestellungsplan erstellen, indem Sie die Vorbestellungspläne-Seite besuchen und auf die Schaltfläche 'Vorbestellungsplan erstellen' klicken."
+            },
+            "3": {
+              "question": "Was ist eine Einheitenbeschränkung?",
+              "answer": "Eine Einheitenbeschränkung ist eine Möglichkeit, die Anzahl der Einheiten zu begrenzen, die ein Kunde von einem Vorbestellungsprodukt kaufen kann. Dies ist nützlich für Vorbestellungsprodukte, bei denen Sie ein faires und gleichberechtigtes Vorbestellungserlebnis für alle Kunden ermöglichen möchten. Wenn Sie ein Shopify Plus-Benutzer sind, können Sie die Einheitenbeschränkungs-Erweiterung zum Checkout Ihres Shops hinzufügen, um sicherzustellen, dass Kunden die Kaufgrenze für ein Vorbestellungsprodukt nicht überschreiten können. Dies wendet die Einheitenbeschränkung nicht nur auf den aktuellen Warenkorb an, der für alle Shopify-Benutzer verfügbar ist, sondern auch auf alle ihre früheren Bestellungen. Diese Funktion, die die früheren Bestellungen des Kunden überprüft, ist nur für Shopify Plus-Benutzer verfügbar."
+            },
+            "4": {
+              "question": "Was passiert, wenn ich einen Vorbestellungsplan eingerichtet habe und die App deinstalliere?",
+              "answer": "Wenn Sie die App deinstallieren, während Sie aktive Vorbestellungspläne haben, werden diese bei der Deinstallation entfernt."
+            }
+          }
+        }
+      }
+    }
+  }
+}

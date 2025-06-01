@@ -1,0 +1,231 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Tableau de bord",
+    "guide": "Guide de démarrage",
+    "orders": "Commandes",
+    "plans": "Plans de précommande"
+  },
+  "quick_actions": {
+    "title": "Actions rapides",
+    "create_preorder_plan": "Créer un nouveau plan de précommande"
+  },
+  "statistics": {
+    "title": "Statistiques",
+    "active_plans": "Plans Actifs",
+    "products_with_preorders": "Produits en Précommande"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Produits Assignés",
+      "expected_fulfillment_date": "Date de Livraison Prévue",
+      "actions": "Actions"
+    },
+    "assigned_products_title": {
+      "none": "Aucun produit assigné",
+      "multiple": "{{count}} produits assignés"
+    },
+    "actions": {
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    },
+    "selling_plan_groups_found": {
+      "title": "Plans de Précommande",
+      "description": "Gérez vos plans de précommande et leurs paramètres.",
+      "refresh": "Actualiser"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Il semble que vous n'ayez pas encore créé de plans de précommande. Vous pouvez créer un plan de précommande en cliquant sur le bouton ci-dessous.",
+      "create": "Créer un nouveau plan de précommande"
+    }
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Créer un Plan de Précommande",
+    "description": "Vous pouvez utiliser ce formulaire pour créer un nouveau plan de vente pour un produit spécifique ou même un groupe de produits.",
+    "create": "Créer",
+    "cancel": "Annuler"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Modifier le Plan de Précommande",
+    "description": "Vous pouvez utiliser ce formulaire pour modifier un plan de vente existant pour un produit spécifique ou même un groupe de produits.",
+    "edit": "Modifier",
+    "cancel": "Annuler"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Supprimer le Plan de Précommande",
+    "description": {
+      "applied_to_products": "Êtes-vous sûr de vouloir supprimer le plan de précommande pour les produits suivants :",
+      "applied_to_all_products": "Êtes-vous sûr de vouloir supprimer ce plan de précommande ?"
+    },
+    "warning": "Cette action ne peut pas être annulée.",
+    "delete": "Supprimer",
+    "cancel": "Annuler"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Date de Livraison Prévue",
+    "enable_unit_restriction": "Activer la Restriction d'Unités",
+    "units_per_customer": "Unités par Client",
+    "select_products": "Le plan de précommande s'applique aux produits suivants :",
+    "no_selected_products": "Aucun produit sélectionné, cliquez sur le bouton pour ajouter des produits.",
+    "add_products": "Ajouter des Produits",
+    "add_or_remove_products": "Ajouter ou Supprimer des Produits",
+    "notice_selling_plan_requirement": "Chaque produit ajouté au plan de vente nécessite automatiquement un plan de vente. Cela supprimera le produit des canaux de vente qui ne prennent pas en charge les précommandes dans Shopify et empêchera sa vente là-bas. Si vous supprimez l'option 'Vendre ce produit uniquement en précommande' dans les paramètres du produit, cette exigence sera supprimée, ce que nous ne recommandons pas car cela pourrait entraîner le traitement de vos précommandes comme des commandes normales."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Gérez le lancement de vos produits",
+      "description": "Dropdeck est la façon la plus intelligente de gérer les précommandes sur Shopify. Définissez des limites, gérez les fenêtres de livraison et créez de l'excitation - sans effort. Conçu pour les commerçants qui veulent de la flexibilité, des informations et des outils axés sur la conversion qui fonctionnent simplement.",
+      "primary_action": "Commencer",
+      "secondary_action": "Vos Précommandes"
+    }
+  },
+  "plans": {
+    "title": "Plans de Précommande"
+  },
+  "orders": {
+    "title": "Vos Précommandes",
+    "bar": {
+      "title": "Précommandes à Venir",
+      "refresh": "Actualiser"
+    },
+    "settings": {
+      "title": "Paramètres",
+      "filters": {
+        "preorder_products": {
+          "title": "Filtrer par Produit en Précommande",
+          "options": {
+            "all_products": "Tous les Produits"
+          }
+        },
+        "hide_cancelled_orders": "Masquer les Commandes Annulées",
+        "hide_fulfilled_orders": "Masquer les Commandes Livrées",
+        "show_row_colors": "Afficher les Couleurs des Lignes"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Commande",
+        "line_items": "Articles",
+        "payment_status": "Statut du Paiement",
+        "fulfillment_status": "Statut de Livraison"
+      },
+      "resource_name": {
+        "singular": "commande",
+        "plural": "commandes"
+      },
+      "row": {
+        "select_all": "Sélectionner toutes les commandes avec date de sortie {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Commande",
+          "line_items": "Articles",
+          "payment_status": "Statut du Paiement",
+          "fulfillment_status": "Statut de Livraison"
+        },
+        "title": "Liste de Sélection des Précommandes",
+        "generated_on": "Généré le : {{date}}",
+        "file_name": "liste-selection-precommandes",
+        "button_text": "Exporter la Liste de Sélection"
+      }
+    }
+  },
+  "guide": {
+    "title": "Guide de Démarrage",
+    "card": {
+      "title": "🚀 Guide de Démarrage Dropdeck",
+      "description": "Dropdeck vous aide à créer des expériences de précommande puissantes sur Shopify avec une gestion flexible de la disponibilité et des limites d'achat.",
+      "return_to_contents": "Retour au Sommaire",
+      "pages": {
+        "contents": {
+          "title": "Sommaire",
+          "description": "Ce guide vous guidera à travers le processus d'installation de Dropdeck dans votre boutique Shopify. Il couvre la création d'un plan de précommande de base et ensuite comment configurer votre thème pour utiliser Dropdeck.",
+          "items": {
+            "1": "Créer un plan de précommande",
+            "2": "Configurer votre thème pour utiliser Dropdeck",
+            "3": "Installer les extraits de code pour la configuration avancée",
+            "4": "Ajouter l'extension de restriction d'unités à la caisse (premium uniquement)",
+            "5": "Questions Fréquemment Posées"
+          }
+        },
+        "1": {
+          "title": "Étape 1 : Créer un plan de précommande",
+          "description": "Qu'est-ce qu'un plan de vente ? Un plan de vente est la façon dont Shopify programme les produits pour être livrés plus tard, donc pour créer une précommande, vous devez créer un plan de précommande. Vous pouvez le faire de deux façons avec Dropdeck :",
+          "steps": {
+            "1": "Créer ou ajouter un plan de précommande existant dans la page de gestion du produit sous la section 'Options d'achat', qui sera défini uniquement pour ce produit.",
+            "2": "Créer un plan de précommande pour un groupe de produits ou même un produit individuel sur la page des plans de précommande de Dropdeck."
+          },
+          "conclusion": "Dans les deux cas, la seule chose que vous devez fournir à Dropdeck est la 'date de sortie' de votre produit en précommande et optionnellement un nombre d'unités pour la restriction client."
+        },
+        "2": {
+          "title": "Étape 2 : Configurer votre thème pour utiliser Dropdeck",
+          "description": "Il y a deux façons d'utiliser Dropdeck dans votre thème, et les deux nécessitent de passer au personnalisateur et d'activer l' 'intégration de l'application'. Vous pouvez activer l'intégration de l'application dans votre thème en visitant les sections d'intégration de l'application dans le panneau de gauche du personnalisateur. Vous verrez deux options sous 'Option de configuration' :",
+          "choices": {
+            "1": {
+              "title": "Configuration simple (recommandée) :",
+              "description": "C'est la façon la plus simple de configurer Dropdeck, une fois que vous avez défini 'Option de configuration' sur 'Configuration simple', vous n'avez rien d'autre à faire. Le plan de vente sera automatiquement ajouté à chaque formulaire d'achat sur votre site web. L'avertissement est que cela peut affecter certaines fonctionnalités de votre thème si votre thème a été fortement personnalisé ou s'il s'agit d'un thème qui n'a pas été développé par Shopify. Vous pouvez sauter l'étape 3 car elle concerne uniquement la configuration avancée."
+            },
+            "2": {
+              "title": "Configuration avancée :",
+              "description": "Cette étape nécessite une expertise technique du code de base de votre thème, il est préférable de la laisser à un développeur. Une fois que vous avez défini 'Option de configuration' sur 'Configuration avancée', vous devez ajouter les extraits de code suivants au code de base de votre thème. Cela vous donne la possibilité de contrôler le placement du plan de vente sur votre site web et également d'ajouter des fonctionnalités supplémentaires au plan de vente. Passez à l'étape 3 pour plus d'informations sur la façon d'ajouter des extraits de code au code de base de votre thème."
+            }
+          }
+        },
+        "3": {
+          "title": "Étape 3 : Installer les extraits de code pour la configuration avancée",
+          "description": "Cette tâche est préférable de la confier à un développeur qui est familier avec la structure de Shopify, car seul quelqu'un d'expérimenté devrait déterminer comment chacun de ces extraits de code devrait être intégré dans votre thème. Commencez par cliquer sur le bouton ci-dessous pour télécharger les extraits de code compressés. Après le téléchargement, ces extraits de code doivent être ajoutés au code de base de votre thème dans le dossier des extraits de code.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Cet extrait de code est utilisé pour récupérer facilement différentes parties des informations du plan de vente."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Celui-ci doit être inclus dans tous les formulaires qui ont une action '/cart/add' dans votre thème. Cela applique le plan de vente que vous avez créé au produit."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Cet extrait de code est utilisé pour afficher la date de sortie du produit qui a un plan de vente."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Cet extrait de code est utilisé pour afficher la restriction d'unités du produit qui a un plan de vente. Celui-ci doit être ajouté à tous les sélecteurs de quantité dans votre thème comme valeur de l'attribut max dans l'élément input. Cela nécessitera probablement également une intégration avec le JavaScript de votre thème pour s'assurer que la quantité est mise à jour correctement lorsque les variantes changent."
+            }
+          },
+          "download": "Télécharger les Extraits de Code"
+        },
+        "4": {
+          "title": "Étape 4 : Ajouter l'extension de restriction d'unités à la caisse (premium uniquement)",
+          "description": {
+            "1": "Si vous êtes un utilisateur Shopify Plus, vous pouvez ajouter l'extension de restriction d'unités à la caisse de votre boutique pour vous assurer que les clients ne peuvent pas dépasser la limite d'achat pour un produit en précommande. Cela applique la restriction d'unités non seulement au panier actuel, qui est disponible pour tous les utilisateurs Shopify, mais aussi à toutes leurs commandes précédentes, cette fonctionnalité qui vérifie les commandes précédentes du client n'est disponible que pour les utilisateurs Shopify Plus.",
+            "2": "Pour ajouter l'extension, accédez au tableau de bord et cliquez sur : Paramètres > Caisse. Ici, vous verrez votre 'Configuration', vous voulez 'Personnaliser' la configuration 'Live'. Dans la personnalisation de la caisse, sous la section 'Résumé de la commande', vous devriez avoir une option 'Ajouter un bloc d'application'. Ici, vous pouvez ajouter le bloc d'application 'Restriction d'unités' à la caisse. Une fois ajouté, cette extension appliquera automatiquement les restrictions d'unités à tous les produits en précommande qui ont des restrictions et qui passent par la caisse. Si un utilisateur dépasse la restriction d'unités, il ne pourra pas continuer à payer et un message d'erreur s'affichera pour l'informer de la restriction."
+          }
+        },
+        "faqs": {
+          "title": "Questions Fréquemment Posées",
+          "questions": {
+            "1": {
+              "question": "La configuration simple ne fonctionne pas dans notre thème, que devrais-je faire ?",
+              "answer": "Si la configuration simple ne fonctionne pas dans votre thème d'une manière qui le casse ou ne fonctionne pas comme prévu, vous devriez utiliser la configuration avancée. Contactez-nous à dropdeck-preorders@proton.me et nous vous aiderons à le configurer."
+            },
+            "2": {
+              "question": "Qu'est-ce qu'un plan de précommande ?",
+              "answer": "Un plan de précommande est un moyen de programmer un produit pour être livré plus tard. C'est utile pour les produits qui ne sont pas encore en vente mais qui devraient être lancés à l'avenir. Vous pouvez créer un plan de précommande en visitant la page des plans de précommande et en cliquant sur le bouton 'Créer un plan de précommande'."
+            },
+            "3": {
+              "question": "Qu'est-ce qu'une restriction d'unités ?",
+              "answer": "Une restriction d'unités est un moyen de limiter la quantité qu'un client peut acheter d'un produit en précommande. C'est utile pour les produits en précommande où vous voulez faciliter une expérience de précommande équitable et égale pour tous les clients. Si vous êtes un utilisateur Shopify Plus, vous pouvez ajouter l'extension de restriction d'unités à la caisse de votre boutique pour vous assurer que les clients ne peuvent pas dépasser la limite d'achat pour un produit en précommande. Cela applique la restriction d'unités non seulement au panier actuel, qui est disponible pour tous les utilisateurs Shopify, mais aussi à toutes leurs commandes précédentes, cette fonctionnalité qui vérifie les commandes précédentes du client n'est disponible que pour les utilisateurs Shopify Plus."
+            },
+            "4": {
+              "question": "Que se passe-t-il si j'ai configuré un plan de précommande et que je désinstalle l'application ?",
+              "answer": "Si vous désinstallez l'application alors que vous avez des plans de précommande actifs, ils seront supprimés lors de la désinstallation."
+            }
+          }
+        }
+      }
+    }
+  }
+}
