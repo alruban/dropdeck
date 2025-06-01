@@ -1,10 +1,9 @@
-import { verifyShopifyWebhook } from "@shared/tools/verify-shopify-webhook";
+import { authenticate } from "app/shopify.server";
 
 export const action = async ({ request }: { request: Request }) => {
-  const isValid = await verifyShopifyWebhook(request);
-  if (!isValid) {
-    return new Response("Invalid webhook signature", { status: 401 });
-  }
+  const { shop, topic } = await authenticate.webhook(request);
+  console.log(`Received ${topic} webhook for ${shop}`);
+
   // No customer data is stored by this app. Nothing to delete.
   return new Response("OK", { status: 200 });
 };

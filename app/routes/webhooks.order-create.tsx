@@ -242,11 +242,6 @@ type CheckIfProductIsDropdeckPreorderResponse = {
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const isValid = await verifyShopifyWebhook(request);
-  if (!isValid) {
-    return new Response("Invalid webhook signature", { status: 401 });
-  }
-
   const { shop, topic, payload, session, admin } = await authenticate.webhook(request);
   console.log(`Received ${topic} webhook for ${shop}`);
 

@@ -1,7 +1,6 @@
 import { data } from "@remix-run/node";
 import type { ActionFunctionArgs } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
-import { verifyShopifyWebhook } from "@shared/tools/verify-shopify-webhook";
 
 type OrderUpdated = {
   id: number;
@@ -251,11 +250,6 @@ type OrderSellingGroupPlanIdMetafieldResponse = {
 };
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const isValid = await verifyShopifyWebhook(request);
-  if (!isValid) {
-    return new Response("Invalid webhook signature", { status: 401 });
-  }
-
   const { shop, topic, payload, session, admin } = await authenticate.webhook(request);
   console.log(`Received ${topic} webhook for ${shop}`);
 
