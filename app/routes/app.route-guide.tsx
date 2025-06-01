@@ -292,15 +292,17 @@ export default function Index() {
                     paddingBlockStart: "36px",
                   }}>
                     <Box>
-                      <Button
-                        variant="secondary"
-                        fullWidth={false}
-                        onClick={() => {
-                          setPage(0);
-                        }}
-                      >
-                        {t("guide.card.return_to_contents")}
-                      </Button>
+                      {page > 0 && (
+                        <Button
+                          variant="secondary"
+                          fullWidth={false}
+                          onClick={() => {
+                            setPage(0);
+                          }}
+                        >
+                          {t("guide.card.return_to_contents")}
+                        </Button>
+                      )}
                     </Box>
 
                     <Pagination
