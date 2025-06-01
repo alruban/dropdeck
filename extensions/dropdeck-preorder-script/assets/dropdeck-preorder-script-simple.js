@@ -1,5 +1,32 @@
 "use strict";
 (function () {
+    if (!document.getElementById('dropdeck-preorder-script-styles')) {
+        const style = document.createElement('style');
+        style.id = 'dropdeck-preorder-script-styles';
+        style.textContent = `
+      .dropdeck-preorder__message-container {
+        margin-bottom: 12px;
+        padding: 8px 12px;
+        background: #f8f8f8;
+        border-radius: 6px;
+        border: 1px solid #e5e5e5;
+        display: flex;
+        flex-direction: column;
+      }
+      .dropdeck-preorder__message {
+        display: block;
+        font-size: 13px;
+        color: #333;
+      }
+      .dropdeck-preorder__message--release-date {
+        font-weight: 500;
+      }
+      .dropdeck-preorder__message--unit-restriction {
+        color: #b15b00;
+      }
+    `;
+        document.head.appendChild(style);
+    }
     function get(selector, node = document) {
         return node.querySelector(selector) ?? undefined;
     }
@@ -161,8 +188,7 @@
                     return;
                 const elReleaseDateMessage = document.createElement("small");
                 elReleaseDateMessage.textContent = `Release date: ${releaseDate}`;
-                elReleaseDateMessage.style.display = "block";
-                elReleaseDateMessage.style.marginBottom = "6px";
+                elReleaseDateMessage.className = "dropdeck-preorder__message dropdeck-preorder__message--release-date";
                 elMessageContainer.prepend(elReleaseDateMessage);
             };
             this.createUnitsPerCustomerMessage = (unitsPerCustomer, elMessageContainer) => {
@@ -170,8 +196,7 @@
                     return;
                 const elUnitsPerCustomerMessage = document.createElement("small");
                 elUnitsPerCustomerMessage.textContent = `Limit per customer: ${unitsPerCustomer} unit(s)`;
-                elUnitsPerCustomerMessage.style.display = "block";
-                elUnitsPerCustomerMessage.style.marginBottom = "6px";
+                elUnitsPerCustomerMessage.className = "dropdeck-preorder__message dropdeck-preorder__message--unit-restriction";
                 elMessageContainer.prepend(elUnitsPerCustomerMessage);
             };
             this.createPreorderSubmitButton = () => {
