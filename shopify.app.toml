@@ -11,19 +11,19 @@ api_version = "2025-04"
 
   [[webhooks.subscriptions]]
   topics = [ "app/scopes_update" ]
-  uri = "/webhooks/app/scopes_update"
+  uri = "https://dropdeck-five.vercel.app/webhooks/app/scopes_update"
 
   [[webhooks.subscriptions]]
   topics = [ "app/uninstalled" ]
-  uri = "/webhooks/app/uninstalled"
+  uri = "https://dropdeck-five.vercel.app/webhooks/app/uninstalled"
 
   [[webhooks.subscriptions]]
   topics = [ "orders/create" ]
-  uri = "/webhooks/order-create"
+  uri = "https://dropdeck-five.vercel.app/webhooks/order-create"
 
   [[webhooks.subscriptions]]
   topics = [ "orders/updated" ]
-  uri = "/webhooks/order-updated"
+  uri = "https://dropdeck-five.vercel.app/webhooks/order-updated"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
