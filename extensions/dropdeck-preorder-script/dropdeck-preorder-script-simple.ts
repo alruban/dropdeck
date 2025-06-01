@@ -206,7 +206,7 @@
 
       if (display_unit_restriction || display_release_date) {
         const elMessageContainer = document.createElement("div");
-        elMessageContainer.className = "dropdeck-preorder-script-message-container";
+        elMessageContainer.className = "dropdeck-preorder__message-container";
 
         if (display_unit_restriction) this.createUnitsPerCustomerMessage(unitsPerCustomer, elMessageContainer);
         if (display_release_date) this.createReleaseDateMessage(releaseDate, elMessageContainer);
@@ -447,6 +447,9 @@
     vData: PSProductVariantData | undefined;
     loaders: Map<HTMLInputElement, ReturnType<typeof this.handleLoadingStyling>> = new Map();
 
+    // Store cleanup references for each input
+    private inputLimitCleanupMap: WeakMap<HTMLInputElement, { inputHandler: EventListener, observer: MutationObserver }> = new WeakMap();
+
     constructor(form: HTMLFormElement) {
       this.elSection = form.closest(".shopify-section") as HTMLElement;
       this.elForm = form;
@@ -657,6 +660,14 @@
       if (unitsPerCustomer === 0) return;
       elInput.max = unitsPerCustomer.toString();
 
+      // --- Cleanup previous listeners/observers if present ---
+      const prev = this.inputLimitCleanupMap.get(elInput);
+      if (prev) {
+        elInput.removeEventListener('input', prev.inputHandler);
+        elInput.removeEventListener('change', prev.inputHandler);
+        prev.observer.disconnect();
+      }
+
       // Clamp value on input
       const inputHandler = (e: Event) => {
         const target = e.target as HTMLInputElement;
@@ -676,6 +687,9 @@
         }
       });
       observer.observe(elInput, { attributes: true, attributeFilter: ['value'] });
+
+      // Store cleanup references
+      this.inputLimitCleanupMap.set(elInput, { inputHandler, observer });
     };
   }
 

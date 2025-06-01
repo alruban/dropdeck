@@ -71,7 +71,7 @@
                 const { display_unit_restriction, display_release_date } = window.dropdeck.settings;
                 if (display_unit_restriction || display_release_date) {
                     const elMessageContainer = document.createElement("div");
-                    elMessageContainer.className = "dropdeck-preorder-script-message-container";
+                    elMessageContainer.className = "dropdeck-preorder__message-container";
                     if (display_unit_restriction)
                         this.createUnitsPerCustomerMessage(unitsPerCustomer, elMessageContainer);
                     if (display_release_date)
@@ -315,6 +315,7 @@
     class ApplyDropdeckToCartForm {
         constructor(form) {
             this.loaders = new Map();
+            this.inputLimitCleanupMap = new WeakMap();
             this.init = () => {
                 if (this.elInputs.length === 0) {
                     console.error(this.elForm, "Fatal dropdeck error: please contact dropdeck-preorders@proton.me with your store address and details.");
@@ -405,6 +406,12 @@
                 if (unitsPerCustomer === 0)
                     return;
                 elInput.max = unitsPerCustomer.toString();
+                const prev = this.inputLimitCleanupMap.get(elInput);
+                if (prev) {
+                    elInput.removeEventListener('input', prev.inputHandler);
+                    elInput.removeEventListener('change', prev.inputHandler);
+                    prev.observer.disconnect();
+                }
                 const inputHandler = (e) => {
                     const target = e.target;
                     const value = parseInt(target.value);
@@ -421,6 +428,7 @@
                     }
                 });
                 observer.observe(elInput, { attributes: true, attributeFilter: ['value'] });
+                this.inputLimitCleanupMap.set(elInput, { inputHandler, observer });
             };
             this.elSection = form.closest(".shopify-section");
             this.elForm = form;
