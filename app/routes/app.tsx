@@ -29,11 +29,11 @@ export default function App() {
         <Link to="/app/route-guide">
           {t("navigation.guide")}
         </Link>
-        <Link to="/app/route-orders">
-          {t("navigation.orders")}
-        </Link>
         <Link to="/app/route-plans">
           {t("navigation.plans")}
+        </Link>
+        <Link to="/app/route-orders">
+          {t("navigation.orders")}
         </Link>
       </NavMenu>
       <Outlet />

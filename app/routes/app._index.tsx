@@ -79,7 +79,7 @@ export default function Index() {
                             {t("index.card.primary_action")}
                           </Button>
                         </Link>
-                        <Link url="/app/route-orders">
+                        <Link url="/app/route-plans">
                           <Button
                             variant="secondary"
                             size="large"
