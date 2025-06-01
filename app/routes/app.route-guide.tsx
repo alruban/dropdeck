@@ -76,8 +76,8 @@ export default function Index() {
             {t("guide.card.pages.1.description")}
           </Text>
           <List>
-            <List.Item>{t("guide.card.pages.1.pages.1")}</List.Item>
-            <List.Item>{t("guide.card.pages.1.pages.2")}</List.Item>
+            <List.Item>{t("guide.card.pages.1.steps.1")}</List.Item>
+            <List.Item>{t("guide.card.pages.1.steps.2")}</List.Item>
           </List>
           <Text as="p" variant="bodyMd">
             {t("guide.card.pages.1.conclusion")}
