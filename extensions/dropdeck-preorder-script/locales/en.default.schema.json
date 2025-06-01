@@ -1,0 +1,24 @@
+{
+  "script": {
+    "name": "Dropdeck Script",
+    "description": "Dropdeck offers two setup methods: there's the simple setup, and the advanced setup. The simple setup requires no further setup other than enabling it, but it may have compatability issues with certain themes as it attempts to inject code into your theme, while the advanced setup requires some technical knowledge - please see the quick start guide for more information.",
+    "setup_choice": {
+      "label": "Setup Choice",
+      "options": {
+        "simple": "Simple Setup",
+        "advanced": "Advanced Setup"
+      }
+    },
+    "simple_setup": {
+      "header": "Simple Setup Settings",
+      "display_release_date": {
+        "label": "Display Release Date",
+        "info": "This will display the release date for a product with a preorder selling plan."
+      },
+      "display_unit_restriction": {
+        "label": "Display Unit Restriction",
+        "info": "This will display the unit restriction for a product with a preorder selling plan. This should be added to all of the quantity selectors on the theme as the value of the max attribute on the input"
+      }
+    }
+  }
+}

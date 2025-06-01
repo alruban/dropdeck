@@ -1,44 +1,44 @@
 {% schema %}
 {
-  "name": "Dropdeck Script",
+  "name": "t:script.name",
   "target": "head",
   "settings": [
     {
       "type": "paragraph",
-      "content": "Dropdeck offers two setup methods: there's the simple setup, and the advanced setup. The simple setup requires no further setup other than enabling it, but it may have compatability issues with certain themes as it attempts to inject code into your theme, while the advanced setup requires some technical knowledge - please see the quick start guide for more information."
+      "content": "t:script.description"
     },
     {
       "type": "select",
       "id": "setup_choice",
-      "label": "Setup Choice",
+      "label": "t:script.setup_choice.label",
       "options": [
         {
           "value": "simple",
-          "label": "Simple Setup"
+          "label": "t:script.setup_choice.options.simple"
         },
         {
           "value": "advanced",
-          "label": "Advanced Setup"
+          "label": "t:script.setup_choice.options.advanced"
         }
       ],
       "default": "simple"
     },
     {
       "type": "header",
-      "content": "Simple Setup Settings"
+      "content": "t:script.simple_setup.header"
     },
     {
       "type": "checkbox",
       "id": "display_release_date",
-      "label": "Display Release Date",
-      "info": "This will display the release date for a product with a preorder selling plan.",
+      "label": "t:script.simple_setup.display_release_date.label",
+      "info": "t:script.simple_setup.display_release_date.info",
       "default": true
     },
     {
       "type": "checkbox",
       "id": "display_unit_restriction",
-      "label": "Display Unit Restriction",
-      "info": "This will display the unit restriction for a product with a preorder selling plan. This should be added to all of the quantity selectors on the theme as the value of the max attribute on the input",
+      "label": "t:script.simple_setup.display_unit_restriction.label",
+      "info": "t:script.simple_setup.display_unit_restriction.info",
       "default": true
     }
   ]
