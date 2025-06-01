@@ -34,7 +34,7 @@
                 return false;
             };
             this.createFatalErrorElement = () => {
-                const errorMessage = "Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details.";
+                const errorMessage = "Fatal dropdeck error: please contact dropdeck-preorders@proton.me with your store address and details.";
                 const elError = document.createElement("span");
                 elError.textContent = errorMessage;
                 this.elForm.prepend(elError);
@@ -278,6 +278,9 @@
                         if (this.elQuantityInput)
                             this.elQuantityInput.value = unitsPerCustomer.toString();
                     }
+                    setTimeout(() => {
+                        this.enforceUnitsPerCustomerLimit(unitsPerCustomer);
+                    }, 300);
                 });
                 this.elForm.classList.add("js-dropdeck-script-injected");
             })
@@ -294,7 +297,7 @@
             this.loaders = new Map();
             this.init = () => {
                 if (this.elInputs.length === 0) {
-                    console.error(this.elForm, "Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details.");
+                    console.error(this.elForm, "Fatal dropdeck error: please contact dropdeck-preorders@proton.me with your store address and details.");
                     return;
                 }
                 for (const elInput of this.elInputs) {

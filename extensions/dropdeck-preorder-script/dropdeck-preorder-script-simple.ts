@@ -79,7 +79,7 @@
     };
 
     private createFatalErrorElement = () => {
-      const errorMessage = "Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details."
+      const errorMessage = "Fatal dropdeck error: please contact dropdeck-preorders@proton.me with your store address and details."
       const elError = document.createElement("span");
       elError.textContent = errorMessage;
       this.elForm.prepend(elError);
@@ -194,6 +194,10 @@
               formData.set("quantity", unitsPerCustomer.toString());
               if (this.elQuantityInput) this.elQuantityInput.value = unitsPerCustomer.toString();
             }
+
+            setTimeout(() => {
+              this.enforceUnitsPerCustomerLimit(unitsPerCustomer);
+            }, 300);
           });
 
           // Cement that the script has run
@@ -425,7 +429,7 @@
 
     private init = () => {
       if (this.elInputs.length === 0) {
-        console.error(this.elForm, "Fatal dropdeck error: please contact samclarkeweb@protonmail.com with your store address and details.")
+        console.error(this.elForm, "Fatal dropdeck error: please contact dropdeck-preorders@proton.me with your store address and details.")
         return;
       }
 
