@@ -657,9 +657,6 @@
       if (unitsPerCustomer === 0) return;
       elInput.max = unitsPerCustomer.toString();
 
-      // Remove any previous listeners/observers if needed
-      // (Optional: you could store a WeakMap of listeners/observers if you want to support cleanup)
-
       // Clamp value on input
       const inputHandler = (e: Event) => {
         const target = e.target as HTMLInputElement;
