@@ -1,8 +1,7 @@
-import { verifyShopifyWebhook } from "@shared/verifyShopifyWebhook";
+import { verifyShopifyWebhook } from "@shared/tools/verify-shopify-webhook";
 
 export const action = async ({ request }: { request: Request }) => {
-  const shopifySecret = process.env.SHOPIFY_API_SECRET || "";
-  const isValid = await verifyShopifyWebhook(request, shopifySecret);
+  const isValid = await verifyShopifyWebhook(request);
   if (!isValid) {
     return new Response("Invalid webhook signature", { status: 401 });
   }

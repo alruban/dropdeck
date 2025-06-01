@@ -1,7 +1,7 @@
 import type { ActionFunctionArgs } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 import db from "../db.server";
-import { verifyShopifyWebhook } from "@shared/verifyShopifyWebhook";
+import { verifyShopifyWebhook } from "@shared/tools/verify-shopify-webhook";
 
 type DropdeckSellingPlanGroupsResponse = {
   data: {
@@ -16,8 +16,7 @@ type DropdeckSellingPlanGroupsResponse = {
 };
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const shopifySecret = process.env.SHOPIFY_API_SECRET || "";
-  const isValid = await verifyShopifyWebhook(request, shopifySecret);
+  const isValid = await verifyShopifyWebhook(request);
   if (!isValid) {
     return new Response("Invalid webhook signature", { status: 401 });
   }

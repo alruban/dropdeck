@@ -6,32 +6,28 @@ handle = "dropdeck"
 application_url = "https://dropdeck-five.vercel.app"
 embedded = true
 
-[build]
-automatically_update_urls_on_dev = true
-include_config_on_deploy = true
-
 [webhooks]
 api_version = "2025-04"
 
   [[webhooks.subscriptions]]
   topics = [ "app/scopes_update" ]
-  uri = "https://dropdeck-five.vercel.app/webhooks/app/scopes_update"
+  uri = "/webhooks/app/scopes_update"
 
   [[webhooks.subscriptions]]
   topics = [ "app/uninstalled" ]
-  uri = "https://dropdeck-five.vercel.app/webhooks/app/uninstalled"
+  uri = "/webhooks/app/uninstalled"
 
   [[webhooks.subscriptions]]
   topics = [ "orders/create" ]
-  uri = "https://dropdeck-five.vercel.app/webhooks/order-create"
+  uri = "/webhooks/order-create"
 
   [[webhooks.subscriptions]]
   topics = [ "orders/updated" ]
-  uri = "https://dropdeck-five.vercel.app/webhooks/order-updated"
+  uri = "/webhooks/order-updated"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_own_subscription_contracts,read_products,read_purchase_options,write_app_proxy,write_own_subscription_contracts,write_products,write_purchase_options,read_orders,write_orders,read_customers"
+scopes = "read_customers,read_orders,read_own_subscription_contracts,read_products,read_purchase_options,write_app_proxy,write_orders,write_own_subscription_contracts,write_products,write_purchase_options"
 
 [auth]
 redirect_urls = [
@@ -47,3 +43,6 @@ prefix = "apps"
 
 [pos]
 embedded = false
+
+[build]
+include_config_on_deploy = false
