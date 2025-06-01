@@ -656,6 +656,29 @@
     private enforceUnitsPerCustomerLimit = (elInput: HTMLInputElement, unitsPerCustomer: number) => {
       if (unitsPerCustomer === 0) return;
       elInput.max = unitsPerCustomer.toString();
+
+      // Remove any previous listeners/observers if needed
+      // (Optional: you could store a WeakMap of listeners/observers if you want to support cleanup)
+
+      // Clamp value on input
+      const inputHandler = (e: Event) => {
+        const target = e.target as HTMLInputElement;
+        const value = parseInt(target.value);
+        if (value > unitsPerCustomer) {
+          target.value = unitsPerCustomer.toString();
+        }
+      };
+      elInput.addEventListener('input', inputHandler);
+      elInput.addEventListener('change', inputHandler);
+
+      // Clamp value on attribute change (programmatic changes)
+      const observer = new MutationObserver(() => {
+        const value = parseInt(elInput.value);
+        if (value > unitsPerCustomer) {
+          elInput.value = unitsPerCustomer.toString();
+        }
+      });
+      observer.observe(elInput, { attributes: true, attributeFilter: ['value'] });
     };
   }
 

@@ -405,6 +405,22 @@
                 if (unitsPerCustomer === 0)
                     return;
                 elInput.max = unitsPerCustomer.toString();
+                const inputHandler = (e) => {
+                    const target = e.target;
+                    const value = parseInt(target.value);
+                    if (value > unitsPerCustomer) {
+                        target.value = unitsPerCustomer.toString();
+                    }
+                };
+                elInput.addEventListener('input', inputHandler);
+                elInput.addEventListener('change', inputHandler);
+                const observer = new MutationObserver(() => {
+                    const value = parseInt(elInput.value);
+                    if (value > unitsPerCustomer) {
+                        elInput.value = unitsPerCustomer.toString();
+                    }
+                });
+                observer.observe(elInput, { attributes: true, attributeFilter: ['value'] });
             };
             this.elSection = form.closest(".shopify-section");
             this.elForm = form;
