@@ -17,5 +17,8 @@
   "sp_group": {
     "description_for_plan_with_no_unit_restriction": "Expected to ship on or after {{date}}",
     "description_for_plan_with_unit_restriction": "Expected to ship on or after {{date}}, {{units}} units per customer"
+  },
+  "product_variant_extension": {
+    "description": "Dropdeck does not currently support preorders created on the variant-level, this form will create a preorder purchase option on the product-level, which will be applied to all variants of the product."
   }
 }

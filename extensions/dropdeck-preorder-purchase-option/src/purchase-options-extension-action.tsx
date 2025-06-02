@@ -11,8 +11,7 @@ import {
   Badge,
   Link,
   Checkbox,
-  Banner,
-  Box
+  Banner
 } from '@shopify/ui-extensions-react/admin';
 
 import { useEffect, useState } from 'react';
@@ -332,9 +331,10 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
             </BlockStack>
           )}
 
-          <Box paddingBlockStart="small">
+          <BlockStack gap="base">
+            {context === "product-variant" && <Banner tone="critical" title={i18n.translate("product_variant_extension.description")} />}
             <Banner tone="info" title={i18n.translate("notice_selling_plan_requirement")} />
-          </Box>
+          </BlockStack>
         </BlockStack>
       </BlockStack>
     </AdminAction>
