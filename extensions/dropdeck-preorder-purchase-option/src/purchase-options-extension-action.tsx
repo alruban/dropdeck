@@ -22,6 +22,7 @@ import { CREATE_SP_GROUP_MUTATION, createSPGroupVariables } from '../../../share
 import { UPDATE_SP_GROUP_MUTATION, updateSPGroupVariables } from '../../../shared/mutations/update-sp-group.js';
 import { type GetSPGroupResponse, GET_SP_GROUP_QUERY, getSPGroupVariables } from '../../../shared/queries/get-sp-group.js';
 import { GET_SHOP_QUERY, type GetShopResponse } from '../../../shared/queries/get-shop';
+import { GET_PRODUCT_ID_FROM_VARIANT_QUERY, type GetProductIdFromVariantResponse } from '../../../shared/queries/get-product-id-from-variant';
 import { UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION, updateProductSPRequirementVariables } from '../../../shared/mutations/update-product-sp-requirement';
 
 import { isDevelopment } from '../../../shared/tools/is-development';
@@ -40,9 +41,8 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
   }; // sellingPlanId isn't in the docs, but it is returned and we need it when we update a selling plan.
 
   // States
-  const targetId = ids.id; // Could be a product or a product variant
+  const [targetId, setTargetId] = useState<string | undefined>(ids.id);
   const sellingPlanGroupId = ids.sellingPlanId;
-
   const [intent, setIntent] = useState<"creating" | "updating">("creating");
   const [isLoading, setIsLoading] = useState(false);
   const [dateError, setDateError] = useState<string | undefined>(undefined);
@@ -71,6 +71,25 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
       console.error(error);
     });
   }, [query]);
+
+  //  If the user has opened a product-varaint modal, get the variant's product id.
+  useEffect(() => {
+    if (context === "product-variant") {
+      query(GET_PRODUCT_ID_FROM_VARIANT_QUERY, {
+        variables: {
+          id: targetId
+        }
+      })
+      .then((res: GetProductIdFromVariantResponse) => {
+        isDevelopment && console.log("Retrieved the product id of the variant:", res);
+        setTargetId(res.data.productVariant.product.id);
+      })
+      .catch((error) => {
+        isDevelopment && console.log("Failed to retrieve the product id of the variant:", error);
+        console.error(error);
+      });
+    }
+  }, []);
 
   //  Get the selling plan group
   useEffect(() => {

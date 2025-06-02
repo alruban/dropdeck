@@ -38,13 +38,12 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     const productIds = formData.get("productIds");
     const descriptionForPlanWithNoUnitRestriction = String(formData.get("descriptionForPlanWithNoUnitRestriction"));
     const descriptionForPlanWithUnitRestriction = String(formData.get("descriptionForPlanWithUnitRestriction"));
-
     const productIdsArray = String(productIds)
       .split(",")
       .map(id => id.trim())
       .filter(Boolean);
-    const promises = [];
 
+    const promises = [];
     promises.push(admin.graphql(
       CREATE_SP_GROUP_MUTATION,
       createSPGroupVariables(
@@ -52,7 +51,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         Number(unitsPerCustomer),
         descriptionForPlanWithNoUnitRestriction,
         descriptionForPlanWithUnitRestriction,
-        String(productIds).split(","),
+        productIdsArray,
         undefined
       )
     ));

@@ -55,62 +55,13 @@ const createSPGroupVariables = (
     resources.productVariantIds = productVariantIds;
   }
 
-  console.log("CREATE", {
-    input: {
-      appId: "DROPDECK_PREORDER",
-      description:
-        unitsPerCustomer === 0
-          ? descriptionForPlanWithNoUnitRestriction
-          : descriptionForPlanWithUnitRestriction,
-      merchantCode: "Dropdeck Preorder",
-      name: "Preorder",
-      // position: X,
-      options: [option],
-      sellingPlansToCreate: [
-        {
-          billingPolicy: {
-            fixed: {
-              checkoutCharge: {
-                type: "PERCENTAGE",
-                value: {
-                  percentage: 100,
-                },
-              },
-              remainingBalanceChargeTrigger: "NO_REMAINING_BALANCE",
-            },
-          },
-          category: "PRE_ORDER",
-          deliveryPolicy: {
-            fixed: {
-              fulfillmentExactTime: expectedFulfillmentDate, // When fulfillment is expected
-              fulfillmentTrigger: "EXACT_TIME",
-            },
-          },
-          description: descriptionForPlanWithNoUnitRestriction, // Buyer Facing
-          // id: X
-          inventoryPolicy: {
-            reserve: "ON_SALE", // Reduces inventory when the item is sold, rather than fulfilled (ON_FULFILLMENT)
-          },
-          metafields: [
-            {
-              value: String(unitsPerCustomer),
-              type: "number_integer",
-              namespace: "dropdeck_preorder",
-              key: "units_per_customer",
-            },
-          ],
-          name: "Preorder", // Buyer Facing
-          options: [option],
-          // position: X
-          // pricingPolicies: X
-        },
-      ],
-      // sellingPlansToDelete: X
-      // sellingPlansToUpdate: X
-    },
-    // Only include resources if at least one of the arrays is non-empty
-    ...(Object.keys(resources).length > 0 ? { resources } : {}),
-  })
+  console.log("productIds:", productIds);
+  console.log("productVariantIds:", productVariantIds);
+  console.log("resources before conditional spread:", resources);
+
+  console.log("RESURCES", {
+    ...(Object.keys(resources).length > 0 ? { resources } : {})
+  });
 
   return {
     variables: {
