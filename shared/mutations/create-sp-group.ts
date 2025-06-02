@@ -55,14 +55,6 @@ const createSPGroupVariables = (
     resources.productVariantIds = productVariantIds;
   }
 
-  console.log("productIds:", productIds);
-  console.log("productVariantIds:", productVariantIds);
-  console.log("resources before conditional spread:", resources);
-
-  console.log("RESURCES", {
-    ...(Object.keys(resources).length > 0 ? { resources } : {})
-  });
-
   return {
     variables: {
       input: {

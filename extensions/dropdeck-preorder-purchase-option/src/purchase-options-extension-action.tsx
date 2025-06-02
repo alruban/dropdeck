@@ -151,8 +151,6 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
       units: unitsPerCustomer
     });
 
-    console.log("TARGET ID", targetId);
-
     // Create the selling plan group.
     promises.push(query(
       CREATE_SP_GROUP_MUTATION,
@@ -160,7 +158,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
         isoString,
         unitsPerCustomer,
         descriptionForPlanWithNoUnitRestriction,
-        descriptionForPlanWithUnitRestriction
+        descriptionForPlanWithUnitRestriction,
         [targetId],
         undefined
       )
