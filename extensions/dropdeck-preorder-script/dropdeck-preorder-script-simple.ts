@@ -741,12 +741,34 @@
         elInput.max = unitsPerCustomer.toString();
         if (value > unitsPerCustomer) {
           elInput.value = unitsPerCustomer.toString();
+          this.elForm.submit();
+        }
+
+        // Attempt to control button availability.
+        const lineItem = elInput.closest("tr") || elInput.closest("li");
+        if (!lineItem) return;
+
+        const plusButton = get<HTMLButtonElement>("[name=plus]", lineItem);
+        if (!plusButton) return;
+
+        if (value > unitsPerCustomer) {
+          plusButton.disabled = true;
+        } else {
+          plusButton.disabled = false;
         }
       });
+
       observer.observe(elInput, { attributes: true, attributeFilter: ['value'] });
 
       // Store cleanup references
       this.inputLimitCleanupMap.set(elInput, { inputHandler, observer });
+
+      // Attempt to control button availability.
+      const lineItem = elInput.closest("tr") || elInput.closest("li");
+      if (!lineItem) return;
+
+      const plusButton = get("[name=plus]", lineItem);
+      if (!plusButton) return;
     };
   }
 

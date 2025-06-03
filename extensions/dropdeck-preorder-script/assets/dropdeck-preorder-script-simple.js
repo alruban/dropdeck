@@ -454,10 +454,29 @@
                     elInput.max = unitsPerCustomer.toString();
                     if (value > unitsPerCustomer) {
                         elInput.value = unitsPerCustomer.toString();
+                        this.elForm.submit();
+                    }
+                    const lineItem = elInput.closest("tr") || elInput.closest("li");
+                    if (!lineItem)
+                        return;
+                    const plusButton = get("[name=plus]", lineItem);
+                    if (!plusButton)
+                        return;
+                    if (value > unitsPerCustomer) {
+                        plusButton.disabled = true;
+                    }
+                    else {
+                        plusButton.disabled = false;
                     }
                 });
                 observer.observe(elInput, { attributes: true, attributeFilter: ['value'] });
                 this.inputLimitCleanupMap.set(elInput, { inputHandler, observer });
+                const lineItem = elInput.closest("tr") || elInput.closest("li");
+                if (!lineItem)
+                    return;
+                const plusButton = get("[name=plus]", lineItem);
+                if (!plusButton)
+                    return;
             };
             this.elSection = form.closest(".shopify-section");
             this.elForm = form;
