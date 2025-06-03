@@ -3,7 +3,7 @@
 client_id = "e42a64a0fc2480cc7eec789e0caed811"
 name = "Dropdeck (Development)"
 handle = "dropdeck-development"
-application_url = "https://uni-reuters-knitting-covered.trycloudflare.com"
+application_url = "https://ccd-yarn-retrieval-caught.trycloudflare.com"
 embedded = true
 
 [webhooks]
@@ -31,13 +31,13 @@ scopes = "read_customers,read_orders,read_own_subscription_contracts,read_produc
 
 [auth]
 redirect_urls = [
-  "https://uni-reuters-knitting-covered.trycloudflare.com/auth/callback",
-  "https://uni-reuters-knitting-covered.trycloudflare.com/auth/shopify/callback",
-  "https://uni-reuters-knitting-covered.trycloudflare.com/api/auth/callback"
+  "https://ccd-yarn-retrieval-caught.trycloudflare.com/auth/callback",
+  "https://ccd-yarn-retrieval-caught.trycloudflare.com/auth/shopify/callback",
+  "https://ccd-yarn-retrieval-caught.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://uni-reuters-knitting-covered.trycloudflare.com/app/api-proxy"
+url = "https://ccd-yarn-retrieval-caught.trycloudflare.com/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 

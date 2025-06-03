@@ -227,10 +227,14 @@
         })
         .finally(() => {
           this.loader?.hide();
+          this.stopRejectingFormSubmissions();
         });
     }
 
     private handleMessaging = (unitsPerCustomer: number, releaseDate: string) => {
+      // Only show messaging on the PDP.
+      if (!location.pathname.includes("/products/")) return;
+
       const { display_unit_restriction, display_release_date } = (window as unknown as DropdeckWindow).dropdeck.settings;
 
       if (display_unit_restriction || display_release_date) {
@@ -601,10 +605,12 @@
         { dataset: 'id', selector: 'id' }
       ];
 
+      let variantId: string | undefined;
+
       // First check the element itself
       for (const attr of dataAttributes) {
         const value = el.dataset[attr.dataset];
-        if (value) return value;
+        if (value) variantId = value;
       }
 
       // Then check all parents using closest
@@ -612,11 +618,31 @@
         const selector = `[data-${attr.selector}]`;
         const element = el.closest(selector);
         if (element) {
-          return (element as HTMLElement).dataset[attr.dataset];
+          variantId = (element as HTMLElement).dataset[attr.dataset];
         }
       }
 
-      return undefined;
+      if (!variantId) {
+        // If no variantId is found, look for a href.
+        const lineItem = el.closest("tr") || el.closest("li");
+
+        if (lineItem) {
+          const href = lineItem.querySelector("a")?.href;
+          if (href) {
+            let url;
+
+            if (href.includes("www.")) {
+              url = new URL(href);
+            } else {
+              url = new URL(href, window.location.origin);
+            }
+
+            variantId = url.searchParams.get("variant") ?? undefined;
+          }
+        }
+      }
+
+      return variantId;
     }
 
     private injectSellingPlan(elInput: HTMLInputElement) {
@@ -624,8 +650,10 @@
       if (!vId) return;
 
       this.startRejectingFormSubmissions()
+
       const loader = this.handleLoadingStyling(elInput);
       this.loaders.set(elInput, loader);
+
       loader.setup();
       loader.show();
 
@@ -703,12 +731,14 @@
           target.value = unitsPerCustomer.toString();
         }
       };
+
       elInput.addEventListener('input', inputHandler);
       elInput.addEventListener('change', inputHandler);
 
       // Clamp value on attribute change (programmatic changes)
       const observer = new MutationObserver(() => {
         const value = parseInt(elInput.value);
+        elInput.max = unitsPerCustomer.toString();
         if (value > unitsPerCustomer) {
           elInput.value = unitsPerCustomer.toString();
         }

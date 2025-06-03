@@ -95,6 +95,8 @@
                 };
             };
             this.handleMessaging = (unitsPerCustomer, releaseDate) => {
+                if (!location.pathname.includes("/products/"))
+                    return;
                 const { display_unit_restriction, display_release_date } = window.dropdeck.settings;
                 if (display_unit_restriction || display_release_date) {
                     const elMessageContainer = document.createElement("div");
@@ -334,6 +336,7 @@
             })
                 .finally(() => {
                 this.loader?.hide();
+                this.stopRejectingFormSubmissions();
             });
         }
     }
@@ -448,6 +451,7 @@
                 elInput.addEventListener('change', inputHandler);
                 const observer = new MutationObserver(() => {
                     const value = parseInt(elInput.value);
+                    elInput.max = unitsPerCustomer.toString();
                     if (value > unitsPerCustomer) {
                         elInput.value = unitsPerCustomer.toString();
                     }
@@ -470,19 +474,36 @@
                 { dataset: 'itemId', selector: 'item-id' },
                 { dataset: 'id', selector: 'id' }
             ];
+            let variantId;
             for (const attr of dataAttributes) {
                 const value = el.dataset[attr.dataset];
                 if (value)
-                    return value;
+                    variantId = value;
             }
             for (const attr of dataAttributes) {
                 const selector = `[data-${attr.selector}]`;
                 const element = el.closest(selector);
                 if (element) {
-                    return element.dataset[attr.dataset];
+                    variantId = element.dataset[attr.dataset];
                 }
             }
-            return undefined;
+            if (!variantId) {
+                const lineItem = el.closest("tr") || el.closest("li");
+                if (lineItem) {
+                    const href = lineItem.querySelector("a")?.href;
+                    if (href) {
+                        let url;
+                        if (href.includes("www.")) {
+                            url = new URL(href);
+                        }
+                        else {
+                            url = new URL(href, window.location.origin);
+                        }
+                        variantId = url.searchParams.get("variant") ?? undefined;
+                    }
+                }
+            }
+            return variantId;
         }
         injectSellingPlan(elInput) {
             const vId = this.findVariantId(elInput);

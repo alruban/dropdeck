@@ -13,11 +13,11 @@
       "header": "Simple Setup Settings",
       "display_release_date": {
         "label": "Display Release Date",
-        "info": "This will display the release date for a product with a preorder selling plan."
+        "info": "This will display the release date for a product with a preorder selling plan. This only displays on the main product page."
       },
       "display_unit_restriction": {
         "label": "Display Unit Restriction",
-        "info": "This will display the unit restriction for a product with a preorder selling plan."
+        "info": "This will display the unit restriction for a product with a preorder selling plan. This only displays on the main product page."
       }
     }
   }
