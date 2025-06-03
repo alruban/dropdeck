@@ -253,8 +253,8 @@
                         this.elPreorderBtn?.removeAttribute("disabled");
                     });
                     const preorderItemInCart = cartItems.find((item) => item.id === Number(this.vId));
-                    console.log(Number(this.elQuantityInput?.value) + preorderItemInCart.quantity);
-                    if (!preorderItemInCart || preorderItemInCart && (Number(this.elQuantityInput?.value) + preorderItemInCart.quantity) < unitsPerCustomer) {
+                    const units = (Number(this.elQuantityInput?.value) + preorderItemInCart ? preorderItemInCart.quantity : 0);
+                    if (!preorderItemInCart || preorderItemInCart && units < unitsPerCustomer) {
                         this.stopRejectingFormSubmissions();
                         this.elOriginalBtn?.click();
                         this.startRejectingFormSubmissions();
