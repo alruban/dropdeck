@@ -88,6 +88,7 @@
     };
 
     private startRejectingFormSubmissions = () => {
+      console.log("startRejectingFormSubmissions")
       // Prevent form submission immediately
       this.elForm.addEventListener("submit", this.rejectFormSubmission, {
         capture: true,
@@ -95,6 +96,7 @@
     };
 
     private stopRejectingFormSubmissions = () => {
+      console.log("stopRejectingFormSubmissions")
       // Prevent form submission immediately
       this.elForm.removeEventListener("submit", this.rejectFormSubmission, {
         capture: true,
@@ -206,7 +208,7 @@
           this.handleVariantIdChanges();
           this.handleMessaging(unitsPerCustomer, releaseDate);
 
-          this.createPreorderSubmitButton();
+          this.createPreorderSubmitButton(unitsPerCustomer);
           this.enforceUnitsPerCustomerLimit(unitsPerCustomer);
 
           this.elForm.addEventListener("submit", () => {
@@ -224,10 +226,10 @@
         })
         .catch((error: unknown) => {
           console.error(error);
+          this.stopRejectingFormSubmissions();
         })
         .finally(() => {
           this.loader?.hide();
-          this.stopRejectingFormSubmissions();
         });
     }
 
@@ -369,7 +371,7 @@
       elMessageContainer.prepend(elUnitsPerCustomerMessage);
     };
 
-    private createPreorderSubmitButton = () => {
+    private createPreorderSubmitButton = (unitsPerCustomer: number) => {
       const button = this.elOriginalBtn as HTMLButtonElement;
       const buttonContainer = button.parentElement;
       if (!buttonContainer) return this.stopRejectingFormSubmissions();
@@ -408,13 +410,11 @@
             mutation.type === "childList"
           ) {
 
-            let originalButtonText = button.textContent?.trim();
+            let originalButtonText = String(button.textContent?.trim());
             // Shopify theme specific fix for added text removal:
             if (originalButtonText?.toLowerCase().includes("added")) {
               originalButtonText = originalButtonText.replace(" Added", "").replace(" added", "");
             }
-
-            if (!originalButtonText) return this.stopRejectingFormSubmissions();
 
             const newVariant = this.getVariant();
             if (!newVariant) return this.stopRejectingFormSubmissions();
@@ -439,10 +439,31 @@
         subtree: true,
       });
 
-      this.elPreorderBtn?.addEventListener("click", () => {
-        this.stopRejectingFormSubmissions();
-        this.elOriginalBtn?.click();
-        this.startRejectingFormSubmissions();
+      this.elPreorderBtn?.addEventListener("click", async (e: Event) => {
+        this.elPreorderBtn?.setAttribute("disabled", "");
+
+        // Prevent successive add to cart requests exceeding the units per customer limit.
+        const cartItems = await await fetch("/cart.js")
+          .then((res) => res.json())
+          .then((res) => {
+            return res.items;
+          })
+          .finally(() => {
+            this.elPreorderBtn?.removeAttribute("disabled");
+          });
+
+        const preorderItemInCart = cartItems.find((item: {
+          id: number;
+          quantity: number;
+        }) => item.id === Number(this.vId));
+
+
+        console.log(Number(this.elQuantityInput?.value) + preorderItemInCart.quantity)
+        if (!preorderItemInCart || preorderItemInCart && (Number(this.elQuantityInput?.value) + preorderItemInCart.quantity) < unitsPerCustomer) {
+          this.stopRejectingFormSubmissions();
+          this.elOriginalBtn?.click();
+          this.startRejectingFormSubmissions();
+        }
       });
     };
 

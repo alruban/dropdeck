@@ -46,11 +46,13 @@
                 this.injectSellingPlan();
             };
             this.startRejectingFormSubmissions = () => {
+                console.log("startRejectingFormSubmissions");
                 this.elForm.addEventListener("submit", this.rejectFormSubmission, {
                     capture: true,
                 });
             };
             this.stopRejectingFormSubmissions = () => {
+                console.log("stopRejectingFormSubmissions");
                 this.elForm.removeEventListener("submit", this.rejectFormSubmission, {
                     capture: true,
                 });
@@ -201,7 +203,7 @@
                 elUnitsPerCustomerMessage.className = "dropdeck-preorder__message dropdeck-preorder__message--unit-restriction";
                 elMessageContainer.prepend(elUnitsPerCustomerMessage);
             };
-            this.createPreorderSubmitButton = () => {
+            this.createPreorderSubmitButton = (unitsPerCustomer) => {
                 const button = this.elOriginalBtn;
                 const buttonContainer = button.parentElement;
                 if (!buttonContainer)
@@ -223,12 +225,10 @@
                     for (const mutation of mutations) {
                         if (mutation.type === "characterData" ||
                             mutation.type === "childList") {
-                            let originalButtonText = button.textContent?.trim();
+                            let originalButtonText = String(button.textContent?.trim());
                             if (originalButtonText?.toLowerCase().includes("added")) {
                                 originalButtonText = originalButtonText.replace(" Added", "").replace(" added", "");
                             }
-                            if (!originalButtonText)
-                                return this.stopRejectingFormSubmissions();
                             const newVariant = this.getVariant();
                             if (!newVariant)
                                 return this.stopRejectingFormSubmissions();
@@ -242,10 +242,23 @@
                     childList: true,
                     subtree: true,
                 });
-                this.elPreorderBtn?.addEventListener("click", () => {
-                    this.stopRejectingFormSubmissions();
-                    this.elOriginalBtn?.click();
-                    this.startRejectingFormSubmissions();
+                this.elPreorderBtn?.addEventListener("click", async (e) => {
+                    this.elPreorderBtn?.setAttribute("disabled", "");
+                    const cartItems = await await fetch("/cart.js")
+                        .then((res) => res.json())
+                        .then((res) => {
+                        return res.items;
+                    })
+                        .finally(() => {
+                        this.elPreorderBtn?.removeAttribute("disabled");
+                    });
+                    const preorderItemInCart = cartItems.find((item) => item.id === Number(this.vId));
+                    console.log(Number(this.elQuantityInput?.value) + preorderItemInCart.quantity);
+                    if (!preorderItemInCart || preorderItemInCart && (Number(this.elQuantityInput?.value) + preorderItemInCart.quantity) < unitsPerCustomer) {
+                        this.stopRejectingFormSubmissions();
+                        this.elOriginalBtn?.click();
+                        this.startRejectingFormSubmissions();
+                    }
                 });
             };
             this.updatePreorderButton = (availableForSale, inventoryPolicy, inventoryQuantity, targetButton, originalButtonText) => {
@@ -318,7 +331,7 @@
                 const releaseDate = this.parseISOStringIntoFormalDate(sellingPlan.node.deliveryPolicy.fulfillmentExactTime);
                 this.handleVariantIdChanges();
                 this.handleMessaging(unitsPerCustomer, releaseDate);
-                this.createPreorderSubmitButton();
+                this.createPreorderSubmitButton(unitsPerCustomer);
                 this.enforceUnitsPerCustomerLimit(unitsPerCustomer);
                 this.elForm.addEventListener("submit", () => {
                     const formData = new FormData(this.elForm);
@@ -333,10 +346,10 @@
             })
                 .catch((error) => {
                 console.error(error);
+                this.stopRejectingFormSubmissions();
             })
                 .finally(() => {
                 this.loader?.hide();
-                this.stopRejectingFormSubmissions();
             });
         }
     }
