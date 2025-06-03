@@ -204,7 +204,7 @@
         "4": {
           "title": "Step 4: Adding the Unit Restriction Checkout Extension (Plus only)",
           "description": {
-            "1": "If you are a Shopify Plus user, you can add the Unit Restriction Checkout Extension to your store's checkout to ensure that customers cannot exceed a purchase restriction on a preorder product. This applies the unit restriction not only to their current cart, but across all of their previous order, this functionality which checks a customers previous orders is only available to Shopify Plus customers.",
+            "1": "If you are a Shopify Plus user, you can add the Unit Restriction Checkout Extension to your store's checkout to ensure that customers cannot exceed a purchase restriction on a preorder product. This applies the unit restriction not only to their current cart, but across all of their previous order, this functionality which checks a customers previous orders is only available to Shopify Plus customers. If your store makes use of alternate checkout that direct the user to a third party checkout (like Paypal), you will need to disable those alternate checkout methods to ensure that customers cannot exceed a purchase restriction on a preorder product.",
             "2": " To add the extension, go to your admin dashboard and visit: Settings > Checkout. Here you will see your 'Configurations', you'll want to 'Customize' the 'Live' configuration. In the customizer for your checkout, under 'Order summary' you should have the option to 'Add app block'. Here you can add the 'Unit Restriction' app block to your checkout. Once added, this extension will automatically apply unit restrictions to any preorder products that have them and that pass through the checkout. If a user exceeds the unit restriction, they will be unable to checkout and will be shown an error message informing them about the restriction."
           }
         },
@@ -226,6 +226,10 @@
             "4": {
               "question": "What happens if I have a preorder selling plan setup and I uninstall the app?",
               "answer": "If you uninstall the app while you have active preorder selling plans they will be removed on uninstall."
+            },
+            "5": {
+              "question": "Why aren't unit restrictions working when I checkout with Paypal?",
+              "answer": "Unit restrictions are implemented in the Shopify Checkout, any alternate checkout methods such as Paypal will not have access to this functionality."
             }
           }
         }
