@@ -509,14 +509,22 @@
             let variantId;
             for (const attr of dataAttributes) {
                 const value = el.dataset[attr.dataset];
-                if (value)
+                if (value && !isNaN(Number(value))) {
                     variantId = value;
+                    break;
+                }
             }
-            for (const attr of dataAttributes) {
-                const selector = `[data-${attr.selector}]`;
-                const element = el.closest(selector);
-                if (element) {
-                    variantId = element.dataset[attr.dataset];
+            if (!variantId) {
+                for (const attr of dataAttributes) {
+                    const selector = `[data-${attr.selector}]`;
+                    const element = el.closest(selector);
+                    if (element) {
+                        const value = element.dataset[attr.dataset];
+                        if (value && !isNaN(Number(value))) {
+                            variantId = value;
+                            break;
+                        }
+                    }
                 }
             }
             if (!variantId) {
@@ -531,7 +539,10 @@
                         else {
                             url = new URL(href, window.location.origin);
                         }
-                        variantId = url.searchParams.get("variant") ?? undefined;
+                        const value = url.searchParams.get("variant") ?? undefined;
+                        if (value && !isNaN(Number(value))) {
+                            variantId = value;
+                        }
                     }
                 }
             }

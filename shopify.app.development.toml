@@ -3,7 +3,7 @@
 client_id = "e42a64a0fc2480cc7eec789e0caed811"
 name = "Dropdeck (Development)"
 handle = "dropdeck-development"
-application_url = "https://partial-streams-uh-libs.trycloudflare.com"
+application_url = "https://pens-jet-mud-checked.trycloudflare.com"
 embedded = true
 
 [webhooks]
@@ -31,13 +31,13 @@ scopes = "read_customers,read_orders,read_own_subscription_contracts,read_produc
 
 [auth]
 redirect_urls = [
-  "https://partial-streams-uh-libs.trycloudflare.com/auth/callback",
-  "https://partial-streams-uh-libs.trycloudflare.com/auth/shopify/callback",
-  "https://partial-streams-uh-libs.trycloudflare.com/api/auth/callback"
+  "https://pens-jet-mud-checked.trycloudflare.com/auth/callback",
+  "https://pens-jet-mud-checked.trycloudflare.com/auth/shopify/callback",
+  "https://pens-jet-mud-checked.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://partial-streams-uh-libs.trycloudflare.com/app/api-proxy"
+url = "https://pens-jet-mud-checked.trycloudflare.com/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 

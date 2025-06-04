@@ -630,15 +630,24 @@
       // First check the element itself
       for (const attr of dataAttributes) {
         const value = el.dataset[attr.dataset];
-        if (value) variantId = value;
+        if (value && !isNaN(Number(value))) {
+          variantId = value;
+          break;
+        }
       }
 
       // Then check all parents using closest
-      for (const attr of dataAttributes) {
-        const selector = `[data-${attr.selector}]`;
-        const element = el.closest(selector);
-        if (element) {
-          variantId = (element as HTMLElement).dataset[attr.dataset];
+      if (!variantId) {
+        for (const attr of dataAttributes) {
+          const selector = `[data-${attr.selector}]`;
+          const element = el.closest(selector);
+          if (element) {
+            const value = (element as HTMLElement).dataset[attr.dataset];
+            if (value && !isNaN(Number(value))) {
+              variantId = value;
+              break;
+            }
+          }
         }
       }
 
@@ -650,14 +659,15 @@
           const href = lineItem.querySelector("a")?.href;
           if (href) {
             let url;
-
             if (href.includes("www.")) {
               url = new URL(href);
             } else {
               url = new URL(href, window.location.origin);
             }
-
-            variantId = url.searchParams.get("variant") ?? undefined;
+            const value = url.searchParams.get("variant") ?? undefined;
+            if (value && !isNaN(Number(value))) {
+              variantId = value;
+            }
           }
         }
       }
