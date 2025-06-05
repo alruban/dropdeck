@@ -755,8 +755,10 @@
       if (Number(elInput.value) > unitsPerCustomer) {
         elInput.value = unitsPerCustomer.toString();
         this.stopRejectingFormSubmissions();
-        this.elForm.submit();
-        this.startRejectingFormSubmissions();
+        setTimeout(() => {
+          this.elForm.submit();
+          this.startRejectingFormSubmissions();
+        }, 300);
       }
 
       const inputHandler = (e: Event) => {

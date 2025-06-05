@@ -18,7 +18,11 @@ type GetSPGroupResponse = {
           node: {
             id: string,
             deliveryPolicy: {
-              fulfillmentExactTime: string
+              fulfillmentExactTime: string;
+              fulfillmentTrigger: "ASAP" | "EXACT_TIME";
+            },
+            inventoryPolicy: {
+              reserve: "ON_SALE" | "ON_FULFILLMENT";
             },
             metafields: {
               edges: {
@@ -58,6 +62,12 @@ const GET_SP_GROUP_QUERY =
             deliveryPolicy {
               ... on SellingPlanFixedDeliveryPolicy {
                 fulfillmentExactTime
+                fulfillmentTrigger
+              }
+            }
+            inventoryPolicy {
+              ... on SellingPlanInventoryPolicy {
+                reserve
               }
             }
             metafields(first: 1, namespace: "dropdeck_preorder") {

@@ -21,6 +21,10 @@ type UpdateSPGroupResponse = {
               id: string;
               deliveryPolicy: {
                 fulfillmentExactTime: string;
+                fulfillmentTrigger: "ASAP" | "EXACT_TIME";
+              };
+              inventoryPolicy: {
+                reserve: "ON_SALE" | "ON_FULFILLMENT";
               };
             };
           }[];
@@ -55,6 +59,12 @@ const UPDATE_SP_GROUP_MUTATION = `#graphql
               deliveryPolicy {
                 ... on SellingPlanFixedDeliveryPolicy {
                   fulfillmentExactTime
+                  fulfillmentTrigger
+                }
+              }
+              inventoryPolicy {
+                ... on SellingPlanInventoryPolicy {
+                  reserve
                 }
               }
             }

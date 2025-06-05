@@ -46,13 +46,11 @@
                 this.injectSellingPlan();
             };
             this.startRejectingFormSubmissions = () => {
-                console.log("startRejectingFormSubmissions");
                 this.elForm.addEventListener("submit", this.rejectFormSubmission, {
                     capture: true,
                 });
             };
             this.stopRejectingFormSubmissions = () => {
-                console.log("stopRejectingFormSubmissions");
                 this.elForm.removeEventListener("submit", this.rejectFormSubmission, {
                     capture: true,
                 });
@@ -455,6 +453,11 @@
                 }
                 if (Number(elInput.value) > unitsPerCustomer) {
                     elInput.value = unitsPerCustomer.toString();
+                    this.stopRejectingFormSubmissions();
+                    setTimeout(() => {
+                        this.elForm.submit();
+                        this.startRejectingFormSubmissions();
+                    }, 300);
                 }
                 const inputHandler = (e) => {
                     const target = e.target;

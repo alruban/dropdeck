@@ -27,6 +27,12 @@ const GET_SP_GROUPS_QUERY =
                 deliveryPolicy {
                   ... on SellingPlanFixedDeliveryPolicy {
                     fulfillmentExactTime
+                    fulfillmentTrigger
+                  }
+                }
+                inventoryPolicy {
+                  ... on SellingPlanInventoryPolicy {
+                    reserve
                   }
                 }
                 metafields(first: 1, namespace: "dropdeck_preorder") {
