@@ -32,7 +32,7 @@ export default function Index() {
           >
             <BlockStack align="center">
               <Card padding="0">
-                <InlineGrid columns={2}>
+                <InlineGrid columns={{ md: 2 }}>
                   <Box>
                     <img
                       alt=""
