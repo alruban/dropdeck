@@ -3,7 +3,7 @@
 client_id = "e42a64a0fc2480cc7eec789e0caed811"
 name = "Dropdeck (Development)"
 handle = "dropdeck-development"
-application_url = "https://welcome-boc-attended-leon.trycloudflare.com"
+application_url = "https://industrial-progress-sv-trio.trycloudflare.com"
 embedded = true
 
 [build]
@@ -31,17 +31,17 @@ api_version = "2025-04"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_customers,read_orders,read_own_subscription_contracts,read_products,read_purchase_options,write_app_proxy,write_orders,write_own_subscription_contracts,write_products,write_purchase_options"
+scopes = "read_customers,read_orders,read_products,read_purchase_options,write_app_proxy,write_orders,write_products,write_purchase_options"
 
 [auth]
 redirect_urls = [
-  "https://welcome-boc-attended-leon.trycloudflare.com/auth/callback",
-  "https://welcome-boc-attended-leon.trycloudflare.com/auth/shopify/callback",
-  "https://welcome-boc-attended-leon.trycloudflare.com/api/auth/callback"
+  "https://industrial-progress-sv-trio.trycloudflare.com/auth/callback",
+  "https://industrial-progress-sv-trio.trycloudflare.com/auth/shopify/callback",
+  "https://industrial-progress-sv-trio.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://welcome-boc-attended-leon.trycloudflare.com/app/api-proxy"
+url = "https://industrial-progress-sv-trio.trycloudflare.com/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 
