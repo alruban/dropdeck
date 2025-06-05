@@ -75,7 +75,9 @@ const updateSPGroupVariables = (
   expectedFulfillmentDate: string, // Format: "2025-06-01T00:00:00Z"
   unitsPerCustomer: number,
   descriptionForPlanWithNoUnitRestriction: string,
-  descriptionForPlanWithUnitRestriction: string
+  descriptionForPlanWithUnitRestriction: string,
+  fulfillmentPolicy: "ASAP" | "EXACT_TIME",
+  reservationPolicy: "ON_SALE" | "ON_FULFILLMENT",
 ) => {
   // Storing the preorder details in the option fields so they can be used on the front end without fetching...
   const option = `${expectedFulfillmentDate}|${unitsPerCustomer}`;
@@ -112,13 +114,13 @@ const updateSPGroupVariables = (
             deliveryPolicy: {
               fixed: {
                 fulfillmentExactTime: expectedFulfillmentDate, // When fulfillment is expected
-                fulfillmentTrigger: "EXACT_TIME",
+                fulfillmentTrigger: fulfillmentPolicy, // Whether to fulfill the order immediately (ASAP) or wait for the expected fulfillment date (EXACT_TIME)
               },
             },
             description: descriptionForPlanWithNoUnitRestriction, // Buyer Facing
             id: sellingPlanId,
             inventoryPolicy: {
-              reserve: "ON_SALE", // Reduces inventory when the item is sold, rather than fulfilled (ON_FULFILLMENT)
+              reserve: reservationPolicy, // Reduces inventory when the item is sold (ON_SALE), rather than fulfilled (ON_FULFILLMENT)
             },
             metafields: [
               {

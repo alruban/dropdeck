@@ -159,6 +159,8 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
         unitsPerCustomer,
         descriptionForPlanWithNoUnitRestriction,
         descriptionForPlanWithUnitRestriction,
+        "EXACT_TIME",
+        "ON_SALE",
         [targetId],
         undefined
       )
@@ -211,7 +213,9 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
         createISOString(expectedFulfillmentDate),
         unitsPerCustomer,
         descriptionForPlanWithNoUnitRestriction,
-        descriptionForPlanWithUnitRestriction
+        descriptionForPlanWithUnitRestriction,
+        "EXACT_TIME",
+        "ON_SALE",
       )
     ));
 

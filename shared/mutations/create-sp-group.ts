@@ -40,6 +40,8 @@ const createSPGroupVariables = (
   unitsPerCustomer: number,
   descriptionForPlanWithNoUnitRestriction: string,
   descriptionForPlanWithUnitRestriction: string,
+  fulfillmentPolicy: "ASAP" | "EXACT_TIME",
+  reservationPolicy: "ON_SALE" | "ON_FULFILLMENT",
   productIds?: string[],
   productVariantIds?: string[]
 ) => {
@@ -84,13 +86,13 @@ const createSPGroupVariables = (
             deliveryPolicy: {
               fixed: {
                 fulfillmentExactTime: expectedFulfillmentDate, // When fulfillment is expected
-                fulfillmentTrigger: "EXACT_TIME",
+                fulfillmentTrigger: fulfillmentPolicy, // Whether to fulfill the order immediately (ASAP) or wait for the expected fulfillment date (EXACT_TIME)
               },
             },
             description: descriptionForPlanWithNoUnitRestriction, // Buyer Facing
             // id: X
             inventoryPolicy: {
-              reserve: "ON_SALE", // Reduces inventory when the item is sold, rather than fulfilled (ON_FULFILLMENT)
+              reserve: reservationPolicy, // Reduces inventory when the item is sold (ON_SALE), rather than fulfilled (ON_FULFILLMENT)
             },
             metafields: [
               {

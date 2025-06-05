@@ -88,7 +88,6 @@
     };
 
     private startRejectingFormSubmissions = () => {
-      console.log("startRejectingFormSubmissions")
       // Prevent form submission immediately
       this.elForm.addEventListener("submit", this.rejectFormSubmission, {
         capture: true,
@@ -96,7 +95,6 @@
     };
 
     private stopRejectingFormSubmissions = () => {
-      console.log("stopRejectingFormSubmissions")
       // Prevent form submission immediately
       this.elForm.removeEventListener("submit", this.rejectFormSubmission, {
         capture: true,
@@ -754,13 +752,20 @@
       }
 
       // Clamp value on input
+      if (Number(elInput.value) > unitsPerCustomer) {
+        elInput.value = unitsPerCustomer.toString();
+        this.stopRejectingFormSubmissions();
+        this.elForm.submit();
+        this.startRejectingFormSubmissions();
+      }
+
       const inputHandler = (e: Event) => {
         const target = e.target as HTMLInputElement;
         const value = parseInt(target.value);
         if (value > unitsPerCustomer) {
           target.value = unitsPerCustomer.toString();
         }
-      };
+      }
 
       elInput.addEventListener('input', inputHandler);
       elInput.addEventListener('change', inputHandler);

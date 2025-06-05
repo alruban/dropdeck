@@ -453,6 +453,9 @@
                     elInput.removeEventListener('change', prev.inputHandler);
                     prev.observer.disconnect();
                 }
+                if (Number(elInput.value) > unitsPerCustomer) {
+                    elInput.value = unitsPerCustomer.toString();
+                }
                 const inputHandler = (e) => {
                     const target = e.target;
                     const value = parseInt(target.value);

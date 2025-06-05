@@ -51,6 +51,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         Number(unitsPerCustomer),
         descriptionForPlanWithNoUnitRestriction,
         descriptionForPlanWithUnitRestriction,
+        "EXACT_TIME",
+        "ON_SALE",
         productIdsArray,
         undefined
       )
@@ -132,7 +134,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
         String(expectedFulfillmentDate),
         Number(unitsPerCustomer),
         descriptionForPlanWithNoUnitRestriction,
-        descriptionForPlanWithUnitRestriction
+        descriptionForPlanWithUnitRestriction,
+        "EXACT_TIME",
+        "ON_SALE",
       )
     );
 
