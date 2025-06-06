@@ -51,6 +51,7 @@ function Extension() {
   function determineIfLimitExceeded(
     customerOrders: CustomerOrder[],
   ) {
+    console.log("customerOrders", customerOrders)
     const _unitsBoughtInPreviousOrders = customerOrders.reduce(
       (total, order: CustomerOrder) =>
         total +
@@ -60,6 +61,9 @@ function Extension() {
           );
           const isMatchingProduct =
             lineItem.node.product.id === preorderProductId;
+          console.log("isDropdeckPreorder", isDropdeckPreorder)
+          console.log("isMatchingProduct", lineItem.node.product.id, preorderProductId)
+
           return isDropdeckPreorder && isMatchingProduct
             ? orderTotal + lineItem.node.quantity
             : orderTotal;
@@ -171,21 +175,21 @@ function Extension() {
     getPreorderData(preorderProductId, (sellingPlanGroups) => {
       setPreorderData(sellingPlanGroups);
 
-      if (preorderData) {
-        if (!customerId) {
-          getCustomer(email, (newCustomerId) => {
-            if (newCustomerId !== customerId) {
-              setCustomerId(newCustomerId);
-              getCustomerOrders(newCustomerId, (newCustomerOrders) => {
-                determineIfLimitExceeded(newCustomerOrders);
-              });
-            }
-          });
-        } else {
-          getCustomerOrders(customerId, (newCustomerOrders) => {
-            determineIfLimitExceeded(newCustomerOrders);
-          });
-        }
+      console.log("preorderData", preorderData)
+
+      if (!customerId) {
+        getCustomer(email, (newCustomerId) => {
+          if (newCustomerId !== customerId) {
+            setCustomerId(newCustomerId);
+            getCustomerOrders(newCustomerId, (newCustomerOrders) => {
+              determineIfLimitExceeded(newCustomerOrders);
+            });
+          }
+        });
+      } else {
+        getCustomerOrders(customerId, (newCustomerOrders) => {
+          determineIfLimitExceeded(newCustomerOrders);
+        });
       }
     });
   }, [customerId]);
@@ -195,7 +199,7 @@ function Extension() {
 
       let pageError;
 
-      if (unitsInPreviousOrders > preorderData.unitsPerCustomer) {
+      if (unitsInPreviousOrders > preorderData.unitsPerCustomer || unitsInThisOrder === preorderData.unitsPerCustomer) {
         pageError = translate("page.error_preorder_limit_exceeded.message_remove_all_units", {
           product_name: cartLine.merchandise.title,
         });
@@ -205,6 +209,8 @@ function Extension() {
           units: unitsToRemove,
         });
       }
+
+      console.log("pageError", unitsInPreviousOrders, preorderData.unitsPerCustomer)
 
       return {
         behavior: "block",

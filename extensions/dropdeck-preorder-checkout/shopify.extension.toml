@@ -6,7 +6,7 @@
 api_version = "2025-04"
 
 [[extensions]]
-name = "Dropdeck Preorder (Checkout)"
+name = "t:name"
 handle = "dropdeck-preorder-checkout"
 type = "ui_extension"
 

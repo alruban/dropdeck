@@ -177,6 +177,7 @@ async function getCustomerOrders(
                   node {
                     quantity
                     product {
+                      id
                       sellingPlanGroups(first: 3) {
                         edges {
                           node {
