@@ -1,5 +1,6 @@
 "use strict";
 (function () {
+    const fatalErrorMessage = "Fatal dropdeck error: please contact dropdeck-preorders@proton.me with your store address and details.";
     if (!document.getElementById('dropdeck-preorder-script-styles')) {
         const style = document.createElement('style');
         style.id = 'dropdeck-preorder-script-styles';
@@ -24,6 +25,18 @@
       .dropdeck-preorder__message--unit-restriction {
         color: #b15b00;
       }
+      .dropdeck-preorder__error {
+        color: #b15b00;
+        font-size: 13px;
+        margin-bottom: 12px;
+        padding: 8px 12px;
+        background: #fff;
+        border-radius: 6px;
+        border: 1px solid #b15b00;
+      }
+      .dropdeck-preorder__error:empty {
+        display: none;
+      }
     `;
         document.head.appendChild(style);
     }
@@ -37,6 +50,7 @@
         constructor(form) {
             this.buttonPreorderText = "Preorder";
             this.init = () => {
+                this.createErrorMessageContainer();
                 if (!this.elOriginalBtn)
                     return;
                 if (!this.vId) {
@@ -60,12 +74,19 @@
                 e.stopPropagation();
                 return false;
             };
+            this.createErrorMessageContainer = () => {
+                this.elErrorMessage = document.createElement("div");
+                this.elErrorMessage.className = "dropdeck-preorder__error";
+                this.elErrorMessage.setAttribute("role", "alert");
+                this.elErrorMessage.setAttribute("aria-live", "polite");
+                this.elErrorMessage.setAttribute("aria-atomic", "true");
+                this.elErrorMessage.setAttribute("tabindex", "0");
+                this.elForm.prepend(this.elErrorMessage);
+            };
             this.createFatalErrorElement = () => {
-                const errorMessage = "Fatal dropdeck error: please contact dropdeck-preorders@proton.me with your store address and details.";
-                const elError = document.createElement("span");
-                elError.textContent = errorMessage;
-                this.elForm.prepend(elError);
-                console.error(this.elForm, errorMessage);
+                if (this.elErrorMessage)
+                    this.elErrorMessage.textContent = fatalErrorMessage;
+                console.error(this.elForm, fatalErrorMessage);
             };
             this.handleLoadingStyling = () => {
                 this.elShopifyAlternatePayment = get(".shopify-payment-button[data-shopify=payment-button]", this.elForm);
@@ -257,6 +278,10 @@
                         this.elOriginalBtn?.click();
                         this.startRejectingFormSubmissions();
                     }
+                    else {
+                        if (this.elErrorMessage)
+                            this.elErrorMessage.textContent = `You've exceeded the units per customer limit. There are already ${unitsPerCustomer} units in your cart.`;
+                    }
                 });
             };
             this.updatePreorderButton = (availableForSale, inventoryPolicy, inventoryQuantity, targetButton, originalButtonText) => {
@@ -356,8 +381,10 @@
             this.loaders = new Map();
             this.inputLimitCleanupMap = new WeakMap();
             this.init = () => {
+                if (this.elForm.id.includes("notification"))
+                    return;
                 if (this.elInputs.length === 0) {
-                    console.error(this.elForm, "Fatal dropdeck error: please contact dropdeck-preorders@proton.me with your store address and details.");
+                    console.error(this.elForm, fatalErrorMessage);
                     return;
                 }
                 for (const elInput of this.elInputs) {

@@ -3,12 +3,8 @@
 client_id = "e42a64a0fc2480cc7eec789e0caed811"
 name = "Dropdeck (Development)"
 handle = "dropdeck-development"
-application_url = "https://industrial-progress-sv-trio.trycloudflare.com"
+application_url = "https://magnificent-someone-trading-licensing.trycloudflare.com"
 embedded = true
-
-[build]
-automatically_update_urls_on_dev = true
-include_config_on_deploy = true
 
 [webhooks]
 api_version = "2025-04"
@@ -35,15 +31,18 @@ scopes = "read_customers,read_orders,read_products,read_purchase_options,write_a
 
 [auth]
 redirect_urls = [
-  "https://industrial-progress-sv-trio.trycloudflare.com/auth/callback",
-  "https://industrial-progress-sv-trio.trycloudflare.com/auth/shopify/callback",
-  "https://industrial-progress-sv-trio.trycloudflare.com/api/auth/callback"
+  "https://magnificent-someone-trading-licensing.trycloudflare.com/auth/callback",
+  "https://magnificent-someone-trading-licensing.trycloudflare.com/auth/shopify/callback",
+  "https://magnificent-someone-trading-licensing.trycloudflare.com/api/auth/callback"
 ]
 
 [app_proxy]
-url = "https://industrial-progress-sv-trio.trycloudflare.com/app/api-proxy"
+url = "https://magnificent-someone-trading-licensing.trycloudflare.com/app/api-proxy"
 subpath = "px"
 prefix = "apps"
 
 [pos]
 embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
