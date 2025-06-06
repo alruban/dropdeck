@@ -26,16 +26,26 @@
         color: #b15b00;
       }
       .dropdeck-preorder__error {
+        position: fixed;
+        top: 20px;
+        right: 20px;
         color: #b15b00;
         font-size: 13px;
-        margin-bottom: 12px;
-        padding: 8px 12px;
+        padding: 12px 16px;
         background: #fff;
         border-radius: 6px;
         border: 1px solid #b15b00;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 9999;
+        transform: translateX(120%);
+        transition: transform 0.3s ease-in-out;
+        max-width: 300px;
       }
       .dropdeck-preorder__error:empty {
         display: none;
+      }
+      .dropdeck-preorder__error.show {
+        transform: translateX(0);
       }
     `;
         document.head.appendChild(style);
@@ -81,11 +91,23 @@
                 this.elErrorMessage.setAttribute("aria-live", "polite");
                 this.elErrorMessage.setAttribute("aria-atomic", "true");
                 this.elErrorMessage.setAttribute("tabindex", "0");
-                this.elForm.prepend(this.elErrorMessage);
+                document.body.appendChild(this.elErrorMessage);
+            };
+            this.showErrorMessage = (message) => {
+                if (!this.elErrorMessage)
+                    return;
+                this.elErrorMessage.textContent = message;
+                this.elErrorMessage.classList.add("show");
+                setTimeout(() => {
+                    this.elErrorMessage?.classList.remove("show");
+                    setTimeout(() => {
+                        if (this.elErrorMessage)
+                            this.elErrorMessage.textContent = "";
+                    }, 300);
+                }, 5000);
             };
             this.createFatalErrorElement = () => {
-                if (this.elErrorMessage)
-                    this.elErrorMessage.textContent = fatalErrorMessage;
+                this.showErrorMessage(fatalErrorMessage);
                 console.error(this.elForm, fatalErrorMessage);
             };
             this.handleLoadingStyling = () => {
@@ -279,8 +301,7 @@
                         this.startRejectingFormSubmissions();
                     }
                     else {
-                        if (this.elErrorMessage)
-                            this.elErrorMessage.textContent = `You've exceeded the units per customer limit. There are already ${unitsPerCustomer} units in your cart.`;
+                        this.showErrorMessage(`You've exceeded the units per customer limit. There are already ${unitsPerCustomer} units in your cart.`);
                     }
                 });
             };
@@ -407,11 +428,13 @@
                 });
             };
             this.startRejectingFormSubmissions = () => {
+                console.log("startRejectingFormSubmissions");
                 this.elForm.addEventListener("submit", this.rejectFormSubmission, {
                     capture: true,
                 });
             };
             this.stopRejectingFormSubmissions = () => {
+                console.log("stopRejectingFormSubmissions");
                 this.elForm.removeEventListener("submit", this.rejectFormSubmission, {
                     capture: true,
                 });
@@ -468,52 +491,59 @@
                     },
                 };
             };
+            this.disablePlusButton = (elInput, quantity, unitsPerCustomer) => {
+                const lineItem = elInput.closest("tr") || elInput.closest("li");
+                if (!lineItem)
+                    return;
+                const plusButton = get("[name=plus]", lineItem);
+                if (!plusButton)
+                    return;
+                setTimeout(() => {
+                    if (quantity === unitsPerCustomer) {
+                        plusButton.setAttribute("disabled", "");
+                    }
+                    else {
+                        plusButton.removeAttribute("disabled");
+                    }
+                }, 300);
+            };
             this.enforceUnitsPerCustomerLimit = (elInput, unitsPerCustomer) => {
                 if (unitsPerCustomer === 0)
                     return;
-                elInput.max = unitsPerCustomer.toString();
                 const prev = this.inputLimitCleanupMap.get(elInput);
                 if (prev) {
                     elInput.removeEventListener('input', prev.inputHandler);
                     elInput.removeEventListener('change', prev.inputHandler);
                     prev.observer.disconnect();
                 }
-                if (Number(elInput.value) > unitsPerCustomer) {
+                elInput.max = unitsPerCustomer.toString();
+                const quantity = Number(elInput.value);
+                if (quantity > unitsPerCustomer) {
                     elInput.value = unitsPerCustomer.toString();
-                    this.stopRejectingFormSubmissions();
                     setTimeout(() => {
                         this.elForm.submit();
-                        this.startRejectingFormSubmissions();
                     }, 300);
                 }
+                this.disablePlusButton(elInput, quantity, unitsPerCustomer);
                 const inputHandler = (e) => {
                     const target = e.target;
-                    const value = parseInt(target.value);
-                    if (value > unitsPerCustomer) {
+                    elInput.max = unitsPerCustomer.toString();
+                    const quantity = parseInt(target.value);
+                    if (quantity > unitsPerCustomer) {
                         target.value = unitsPerCustomer.toString();
                     }
+                    this.disablePlusButton(elInput, quantity, unitsPerCustomer);
                 };
                 elInput.addEventListener('input', inputHandler);
                 elInput.addEventListener('change', inputHandler);
                 const observer = new MutationObserver(() => {
-                    const value = parseInt(elInput.value);
                     elInput.max = unitsPerCustomer.toString();
-                    if (value > unitsPerCustomer) {
+                    const quantity = parseInt(elInput.value);
+                    if (quantity > unitsPerCustomer) {
                         elInput.value = unitsPerCustomer.toString();
                         this.elForm.submit();
                     }
-                    const lineItem = elInput.closest("tr") || elInput.closest("li");
-                    if (!lineItem)
-                        return;
-                    const plusButton = get("[name=plus]", lineItem);
-                    if (!plusButton)
-                        return;
-                    if (value > unitsPerCustomer) {
-                        plusButton.disabled = true;
-                    }
-                    else {
-                        plusButton.disabled = false;
-                    }
+                    this.disablePlusButton(elInput, quantity, unitsPerCustomer);
                 });
                 observer.observe(elInput, { attributes: true, attributeFilter: ['value'] });
                 this.inputLimitCleanupMap.set(elInput, { inputHandler, observer });
