@@ -1,0 +1,24 @@
+{
+  "name": "Dropdeck 預購",
+  "heading_create_preorder": "創建預購銷售計劃",
+  "heading_update_preorder": "更新預購銷售計劃",
+  "description": "此銷售計劃用於創建產品預購。輸入發布日期和發布時間來安排預購，然後點擊保存以創建預購銷售計劃。",
+  "cancel": "取消",
+  "shipping_date": "發布日期",
+  "enable_unit_restriction": "啟用數量限制",
+  "units_per_customer": "每位客戶可購買數量",
+  "affected_products": "編輯上述銷售計劃也將影響以下產品：",
+  "submit_create_preorder": "創建預購",
+  "submit_creating_preorder": "正在創建預購銷售計劃...",
+  "submit_update_preorder": "更新預購",
+  "submit_updating_preorder": "正在更新預購銷售計劃...",
+  "error_date_must_be_future": "日期必須在未來。",
+  "notice_selling_plan_requirement": "添加到銷售計劃的任何產品都將自動需要一個。這會將產品從不支持 Shopify 預購的銷售渠道中移除，並防止在這些渠道銷售。在產品管理頁面上取消勾選「僅作為訂閱銷售此產品」選項將移除此要求，但我們不建議這樣做，因為這可能導致您的預購變成標準訂單。",
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "預計在 {{date}} 或之後發貨",
+    "description_for_plan_with_unit_restriction": "預計在 {{date}} 或之後發貨，每位客戶限購 {{units}} 件"
+  },
+  "product_variant_extension": {
+    "description": "Dropdeck 目前不支持在變體級別創建的預購，此表單將在產品級別創建預購購買選項，這將應用於該產品的所有變體。"
+  }
+}
