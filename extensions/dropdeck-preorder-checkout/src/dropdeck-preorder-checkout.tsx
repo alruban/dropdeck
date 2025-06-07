@@ -50,7 +50,7 @@ function Extension() {
     ) {
       const token = await sessionToken.get();
 
-      fetch(`${process.env.APP_URL}/app/api-checkout`, {
+      fetch("https://dropdeck-five.vercel.app/app/api-checkout", {
         method: "POST",
         body: JSON.stringify({
           productId,
@@ -115,7 +115,7 @@ function Extension() {
     ) {
       const token = await sessionToken.get();
 
-      fetch(`${process.env.APP_URL}/app/api-checkout`, {
+      fetch("https://dropdeck-five.vercel.app/app/api-checkout", {
         method: "POST",
         body: JSON.stringify({
           customerEmail,
@@ -143,7 +143,7 @@ function Extension() {
     ) {
       const token = await sessionToken.get();
 
-      fetch(`${process.env.APP_URL}/app/api-checkout`, {
+      fetch("https://dropdeck-five.vercel.app/app/api-checkout", {
         method: "POST",
         body: JSON.stringify({
           customerId,
