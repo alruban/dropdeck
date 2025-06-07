@@ -104,6 +104,10 @@ type CheckoutRequestBody = {
   productId?: string;
 };
 
+export async function loader() {
+  return new Response("Not found", { status: 404 });
+}
+
 export async function action({ request }: ActionFunctionArgs) {
   const body = await request.json();
   const { target } = body;
