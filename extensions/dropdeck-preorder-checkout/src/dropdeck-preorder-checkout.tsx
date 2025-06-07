@@ -226,6 +226,7 @@ function Extension() {
                   _unitsBoughtInPreviousOrders + cartLine.quantity >
                   lineItemPreorderData.unitsPerCustomer,
               });
+              setLoading(false);
             },
             () => {
               setLoading(false);
@@ -236,6 +237,8 @@ function Extension() {
           setLoading(false);
         },
       );
+    } else {
+      setLoading(false);
     }
   }, [
     lineItemPreorderData,
