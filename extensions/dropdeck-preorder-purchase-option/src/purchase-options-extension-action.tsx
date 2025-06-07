@@ -7,7 +7,6 @@ import {
   DateField,
   Divider,
   NumberField,
-  InlineStack,
   Badge,
   Link,
   Checkbox,
@@ -330,7 +329,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
           {intent === "updating" && affectedProducts.length > 0 && (
             <BlockStack gap="base">
               <Text>{i18n.translate("affected_products")}</Text>
-              <InlineStack gap="base">
+              <BlockStack gap="base">
                 {affectedProducts.map((product) => {
                   // Get Product URL
                   const permanentStoreName = shopifyDomain.replace(".myshopify.com", "");
@@ -348,7 +347,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
                     </Badge>
                   )
                 })}
-              </InlineStack>
+              </BlockStack>
             </BlockStack>
           )}
 
