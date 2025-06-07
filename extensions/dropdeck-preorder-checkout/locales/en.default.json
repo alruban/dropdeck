@@ -3,8 +3,7 @@
   "page": {
     "error_preorder_limit_exceeded": {
       "reason": "Preorder limit exceeded.",
-      "message_reduce_units": "You have exceeded the preorder limit. Please remove {{units}} units from your order.",
-      "message_remove_all_units": "You have exceeded the preorder limit. Please remove the product '{{product_name}}' from your cart."
+      "message_reduce_units": "You have exceeded the preorder unit restriction limit for {{ title }]. Please reduce the number of units in your order."
     }
   },
   "line_item": {
