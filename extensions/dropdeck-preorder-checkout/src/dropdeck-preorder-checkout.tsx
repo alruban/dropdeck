@@ -41,6 +41,7 @@ function Extension() {
     unitsPerCustomer: number;
     hasExceededLimit: boolean;
     unitsInPreviousOrders: number;
+    isLoading: boolean;
   } | null>(null);
 
   useEffect(() => {
@@ -95,6 +96,7 @@ function Extension() {
           unitsPerCustomer: lineItemPreorderData.unitsPerCustomer,
           hasExceededLimit: false,
           unitsInPreviousOrders: 0,
+          isLoading: true,
         })
       }
     );
@@ -188,6 +190,7 @@ function Extension() {
             ...lineItemPreorderData,
             unitsInPreviousOrders: _unitsBoughtInPreviousOrders,
             hasExceededLimit: (_unitsBoughtInPreviousOrders + cartLine.quantity) > lineItemPreorderData.unitsPerCustomer,
+            isLoading: false,
           });
         });
       });
@@ -195,6 +198,13 @@ function Extension() {
   }, [lineItemPreorderData, email, cartLine.quantity, cartLine.merchandise.product.id, sessionToken]);
 
   useBuyerJourneyIntercept(({ canBlockProgress }) => {
+    if (lineItemPreorderData && lineItemPreorderData.isLoading) {
+      return {
+        behavior: "block",
+        reason: "loading",
+      };
+    }
+
     // Block if the user has exceeded the preorder limit for this product.
     if (canBlockProgress && lineItemPreorderData && lineItemPreorderData.hasExceededLimit) {
       return {
