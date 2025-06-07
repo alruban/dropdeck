@@ -1,0 +1,239 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Panel de control",
+    "guide": "Guía de inicio rápido",
+    "orders": "Pedidos",
+    "plans": "Planes de venta de preordenes"
+  },
+  "quick_actions": {
+    "title": "Acciones rápidas",
+    "create_preorder_plan": "Crear nuevo plan de preorden"
+  },
+  "statistics": {
+    "title": "Estadísticas",
+    "active_plans": "Planes activos",
+    "products_with_preorders": "Productos de preorden"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Productos asignados",
+      "expected_fulfillment_date": "Fecha de lanzamiento",
+      "actions": "Acciones"
+    },
+    "assigned_products_title": {
+      "none": "No hay productos asignados",
+      "multiple": "{{count}} productos asignados"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Eliminar"
+    },
+    "selling_plan_groups_found": {
+      "title": "Planes de venta de preordenes",
+      "description": "Administre sus planes de venta de preordenes y sus configuraciones.",
+      "refresh": "Actualizar"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Parece que no tiene ningún plan de venta de preordenes configurado. Para configurar un plan de venta de preordenes, haga clic en el botón de abajo.",
+      "create": "Crear nuevo plan de preorden"
+    }
+  },
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Se espera el envío en o después de {{date}}",
+    "description_for_plan_with_unit_restriction": "Se espera el envío en o después de {{date}}, {{units}} unidades por cliente"
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Crear plan de venta de preorden",
+    "description": "Puede usar este formulario para crear un nuevo plan de venta para un producto específico o incluso una selección de productos.",
+    "create": "Crear",
+    "cancel": "Cancelar"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Editar plan de venta de preorden",
+    "description": "Puede usar este formulario para editar un plan de venta existente para un producto específico o incluso una selección de productos.",
+    "edit": "Editar",
+    "cancel": "Cancelar"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Eliminar plan de venta de preorden",
+    "description": {
+      "applied_to_products": "¿Está seguro de que desea eliminar el plan de venta de preorden para los siguientes productos:",
+      "applied_to_all_products": "¿Está seguro de que desea eliminar este plan de venta de preorden?"
+    },
+    "warning": "Esta acción no se puede deshacer.",
+    "delete": "Eliminar",
+    "cancel": "Cancelar"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Fecha de lanzamiento",
+    "enable_unit_restriction": "Habilitar restricción de unidades",
+    "units_per_customer": "Unidades por cliente",
+    "select_products": "Su plan de preorden se aplicará a los siguientes productos:",
+    "no_selected_products": "No hay productos seleccionados, haga clic en el botón para agregar productos.",
+    "add_products": "Agregar productos",
+    "add_or_remove_products": "Agregar o eliminar productos",
+    "notice_selling_plan_requirement": "Cualquier producto agregado a un plan de venta requerirá automáticamente uno. Esto elimina el producto de los canales de venta que no admiten preordenes de Shopify y evita que se venda allí. Desmarcar la opción 'Vender este producto solo como suscripción' en las páginas de administración de productos eliminará este requisito, lo cual no recomendamos ya que puede hacer que sus preordenes se procesen como pedidos estándar."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Tome el control de sus lanzamientos de productos",
+      "description": "Dropdeck es la forma más inteligente de administrar preordenes en Shopify. Establezca límites, controle las ventanas de cumplimiento y genere expectativas—sin dolores de cabeza. Diseñado para comerciantes que desean flexibilidad, información y herramientas centradas en la conversión que simplemente funcionan.",
+      "primary_action": "Guía de inicio rápido",
+      "secondary_action": "Crear una preorden"
+    }
+  },
+  "plans": {
+    "title": "Planes de venta de preordenes"
+  },
+  "orders": {
+    "title": "Sus preordenes",
+    "bar": {
+      "title": "Preordenes próximas",
+      "refresh": "Actualizar"
+    },
+    "settings": {
+      "title": "Configuración",
+      "filters": {
+        "preorder_products": {
+          "title": "Filtrar por producto de preorden",
+          "options": {
+            "all_products": "Todos los productos"
+          }
+        },
+        "hide_cancelled_orders": "Ocultar pedidos cancelados",
+        "hide_fulfilled_orders": "Ocultar pedidos cumplidos",
+        "show_row_colors": "Mostrar colores de fila"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Pedido",
+        "line_items": "Elementos de línea",
+        "payment_status": "Estado de pago",
+        "fulfillment_status": "Estado de cumplimiento"
+      },
+      "resource_name": {
+        "singular": "pedido",
+        "plural": "pedidos"
+      },
+      "row": {
+        "select_all": "Seleccionar todos los pedidos con fecha de lanzamiento {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Pedido",
+          "line_items": "Elementos de línea",
+          "payment_status": "Estado de pago",
+          "fulfillment_status": "Estado de cumplimiento"
+        },
+        "title": "Lista de recogida de preordenes",
+        "generated_on": "Generado el: {{date}}",
+        "file_name": "lista-de-recogida-de-preordenes",
+        "button_text": "Exportar lista de recogida"
+      }
+    }
+  },
+  "guide": {
+    "title": "Guía de inicio rápido",
+    "card": {
+      "title": "🚀 Guía de inicio rápido para Dropdeck",
+      "description": "Dropdeck le ayuda a configurar experiencias de preordenes potentes en Shopify con control flexible sobre la disponibilidad y los límites de compra.",
+      "return_to_contents": "Volver al contenido",
+      "pages": {
+        "contents": {
+          "title": "Contenido",
+          "description": "Esta guía le llevará a través del proceso de configuración de Dropdeck en su tienda Shopify. Cubrirá los conceptos básicos de la creación de un plan de venta de preordenes y luego cómo configurar su tema para usar Dropdeck.",
+          "items": {
+            "1": "Crear un plan de venta de preordenes",
+            "2": "Configurar su tema para usar Dropdeck",
+            "3": "Instalar fragmentos de código para la configuración avanzada",
+            "4": "Agregar la extensión de restricción de unidades en el checkout (solo Plus)",
+            "5": "Preguntas frecuentes"
+          }
+        },
+        "1": {
+          "title": "Paso 1: Crear un plan de venta de preordenes",
+          "description": "¿Qué es un plan de venta? Un plan de venta es la forma de Shopify de programar productos para que se cumplan en una fecha posterior, por lo que para crear una preorden, necesita crear un plan de venta de preordenes. Puede hacerlo de dos maneras con Dropdeck:",
+          "steps": {
+            "1": "Cree o agregue un plan de venta de preordenes existente en la página de administración del producto bajo 'Opciones de compra', lo que asignará ese producto solo al plan.",
+            "2": "Cree un plan de venta de preordenes para una selección de productos o incluso solo un producto en la página de planes de preordenes de Dropdeck."
+          },
+          "conclusion": "De cualquier manera, todo lo que necesita proporcionar a Dropdeck aquí es la 'Fecha de lanzamiento' para su producto de preorden y opcionalmente el número de unidades para restringir a un cliente."
+        },
+        "2": {
+          "title": "Paso 2: Configurar su tema para usar Dropdeck",
+          "description": "Hay dos formas de utilizar Dropdeck en su tema, ambas requieren que vaya al personalizador de su tema para habilitar la 'incrustación de la aplicación' de Dropdeck. Puede habilitar incrustaciones de aplicaciones en su tema visitando las áreas de incrustación de aplicaciones en la barra de herramientas del lado izquierdo del personalizador. Esto le ofrecerá dos opciones bajo la opción 'Elección de configuración':",
+          "choices": {
+            "1": {
+              "title": "Configuración simple (recomendada):",
+              "description": "Esta es la forma más fácil de configurar Dropdeck, una vez que 'Elección de configuración' está configurada en 'Configuración simple', no hay nada más que necesite hacer. El plan de venta se inyectará automáticamente en cualquier formulario de compra en su sitio. La desventaja es que existe la posibilidad de que esto rompa algunas funcionalidades en su tema si su tema ha sido muy personalizado, o si es un tema que no fue desarrollado por Shopify. Puede omitir el paso 3 ya que solo se relaciona con la configuración avanzada."
+            },
+            "2": {
+              "title": "Configuración avanzada:",
+              "description": "Este paso requiere conocimiento técnico de la base de código de su tema, es mejor dejarlo a un desarrollador. Una vez que 'Elección de configuración' está configurada en 'Configuración avanzada', necesitará agregar los siguientes fragmentos de código en la base de código de su tema. Esto le permitirá controlar la ubicación del plan de venta de preordenes en su sitio y también le permitirá agregar funcionalidad adicional al plan de venta de preordenes. Continúe con el paso 3 para obtener más información sobre cómo agregar fragmentos de código en la base de código de su tema."
+            }
+          }
+        },
+        "3": {
+          "title": "Paso 3: Instalar fragmentos de código para la configuración avanzada",
+          "description": "Es mejor dejar este trabajo a un desarrollador que esté familiarizado con la infraestructura de Shopify, ya que solo alguien con experiencia podrá determinar cómo cada uno de estos fragmentos debe integrarse en su tema. Comience haciendo clic en el botón de abajo para descargar los fragmentos de código comprimidos. Una vez descargados, estos fragmentos deberán agregarse a la base de código de su tema en la carpeta de fragmentos.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Este fragmento se utiliza para devolver fácilmente varios datos sobre el plan de venta de preordenes."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Este debe incluirse dentro de todos los formularios con la acción '/cart/add' en su tema. Esto aplica el plan de venta de preordenes que creó al producto."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Este fragmento se utiliza para mostrar la fecha de lanzamiento de un producto con un plan de venta de preordenes."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Este fragmento se utiliza para mostrar la restricción de unidades para un producto con un plan de venta de preordenes. Esto debe agregarse a todos los selectores de cantidad en el tema como el valor del atributo max en la entrada. Esto probablemente también requerirá integración con el JavaScript de su tema para asegurar que la cantidad se actualice correctamente en los cambios de variante."
+            }
+          },
+          "download": "Descargar fragmentos"
+        },
+        "4": {
+          "title": "Paso 4: Agregar la extensión de restricción de unidades en el checkout (solo Plus)",
+          "description": {
+            "1": "Si es un usuario de Shopify Plus, puede agregar la extensión de restricción de unidades en el checkout de su tienda para asegurarse de que los clientes no puedan exceder una restricción de compra en un producto de preorden. Esto aplica la restricción de unidades no solo a su carrito actual, sino a todos sus pedidos anteriores, esta funcionalidad que verifica los pedidos anteriores de un cliente solo está disponible para los clientes de Shopify Plus. Si su tienda utiliza un checkout alternativo que dirige al usuario a un checkout de terceros (como Paypal), deberá deshabilitar esos métodos de checkout alternativos para asegurarse de que los clientes no puedan exceder una restricción de compra en un producto de preorden.",
+            "2": "Para agregar la extensión, vaya a su panel de administración y visite: Configuración > Checkout. Aquí verá sus 'Configuraciones', querrá 'Personalizar' la configuración 'Activa'. En el personalizador para su checkout, bajo 'Resumen del pedido', debería tener la opción de 'Agregar bloque de aplicación'. Aquí puede agregar el bloque de aplicación 'Restricción de unidades' a su checkout. Una vez agregado, esta extensión aplicará automáticamente restricciones de unidades a cualquier producto de preorden que las tenga y que pase por el checkout. Si un usuario excede la restricción de unidades, no podrá realizar el checkout y se le mostrará un mensaje de error informándole sobre la restricción."
+          }
+        },
+        "faqs": {
+          "title": "Preguntas frecuentes",
+          "questions": {
+            "1": {
+              "question": "La configuración simple no funciona para mi tema, ¿qué debo hacer?",
+              "answer": "Si la configuración simple no funciona con su tema, ya sea que lo rompa o no funcione como se espera, necesitará usar la configuración avanzada. Contáctenos en dropdeck-preorders@proton.me y estaremos encantados de ayudarle a configurarlo."
+            },
+            "2": {
+              "question": "¿Qué es un plan de venta de preordenes?",
+              "answer": "Un plan de venta de preordenes es una forma de programar un producto para que se cumpla en una fecha posterior. Esto es útil para productos que aún no están disponibles para la venta, pero se espera que se lancen en el futuro. Puede crear un plan de venta de preordenes visitando la página de planes de venta de preordenes y haciendo clic en el botón 'Crear plan de venta de preordenes'."
+            },
+            "3": {
+              "question": "¿Qué es una restricción de unidades?",
+              "answer": "Una restricción de unidades es una forma de limitar la cantidad de unidades que un cliente puede comprar de un producto de preorden. Esto es útil para productos de preordenes donde desea facilitar una experiencia de preordenes justa y equitativa para todos los clientes. Si es un usuario de Shopify Plus, puede agregar la extensión de restricción de unidades en el checkout de su tienda para asegurarse de que los clientes no puedan exceder una restricción de compra en un producto de preorden. Esto aplica la restricción de unidades no solo a su carrito actual, que está disponible para todos los usuarios de Shopify, sino a todos sus pedidos anteriores, esta funcionalidad que verifica los pedidos anteriores de un cliente solo está disponible para los clientes de Shopify Plus."
+            },
+            "4": {
+              "question": "¿Qué sucede si tengo un plan de venta de preordenes configurado y desinstalo la aplicación?",
+              "answer": "Si desinstala la aplicación mientras tiene planes de venta de preordenes activos, se eliminarán al desinstalar."
+            },
+            "5": {
+              "question": "¿Por qué no funcionan las restricciones de unidades cuando realizo el checkout con Paypal?",
+              "answer": "Las restricciones de unidades están implementadas en el Checkout de Shopify, cualquier método de checkout alternativo como Paypal no tendrá acceso a esta funcionalidad."
+            }
+          }
+        }
+      }
+    }
+  }
+}

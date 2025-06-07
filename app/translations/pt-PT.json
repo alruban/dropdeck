@@ -1,0 +1,239 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Painel",
+    "guide": "Guia de início rápido",
+    "orders": "Encomendas",
+    "plans": "Planos de pré-venda"
+  },
+  "quick_actions": {
+    "title": "Ações rápidas",
+    "create_preorder_plan": "Criar novo plano de pré-venda"
+  },
+  "statistics": {
+    "title": "Estatísticas",
+    "active_plans": "Planos ativos",
+    "products_with_preorders": "Produtos em pré-venda"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Produtos atribuídos",
+      "expected_fulfillment_date": "Data de lançamento",
+      "actions": "Ações"
+    },
+    "assigned_products_title": {
+      "none": "Nenhum produto atribuído",
+      "multiple": "{{count}} produtos atribuídos"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Eliminar"
+    },
+    "selling_plan_groups_found": {
+      "title": "Planos de pré-venda",
+      "description": "Gerir os seus planos de pré-venda e as suas configurações.",
+      "refresh": "Atualizar"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Parece que não tem planos de pré-venda configurados. Para configurar um plano de pré-venda, clique no botão abaixo.",
+      "create": "Criar novo plano de pré-venda"
+    }
+  },
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Previsão de envio em ou após {{date}}",
+    "description_for_plan_with_unit_restriction": "Previsão de envio em ou após {{date}}, {{units}} unidades por cliente"
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Criar plano de pré-venda",
+    "description": "Pode utilizar este formulário para criar um novo plano de venda para um produto específico ou até mesmo um conjunto de produtos.",
+    "create": "Criar",
+    "cancel": "Cancelar"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Editar plano de pré-venda",
+    "description": "Pode utilizar este formulário para editar um plano de venda existente para um produto específico ou até mesmo um conjunto de produtos.",
+    "edit": "Editar",
+    "cancel": "Cancelar"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Eliminar plano de pré-venda",
+    "description": {
+      "applied_to_products": "Tem a certeza que pretende eliminar o plano de pré-venda para os seguintes produtos:",
+      "applied_to_all_products": "Tem a certeza que pretende eliminar este plano de pré-venda?"
+    },
+    "warning": "Esta ação não pode ser desfeita.",
+    "delete": "Eliminar",
+    "cancel": "Cancelar"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Data de lançamento",
+    "enable_unit_restriction": "Ativar restrição de unidades",
+    "units_per_customer": "Unidades por cliente",
+    "select_products": "O seu plano de pré-venda aplicará-se aos seguintes produtos:",
+    "no_selected_products": "Nenhum produto selecionado, clique no botão para adicionar produtos.",
+    "add_products": "Adicionar produtos",
+    "add_or_remove_products": "Adicionar ou remover produtos",
+    "notice_selling_plan_requirement": "Qualquer produto adicionado a um plano de venda irá automaticamente exigir um. Isto remove o produto dos canais de venda que não suportam pré-vendas do Shopify e impede que seja vendido nesses locais. Desmarcar a opção 'Vender apenas este produto como subscrição' nas páginas de administração do produto removerá este requisito, o que não recomendamos, pois pode fazer com que as suas pré-vendas cheguem como encomendas padrão."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Tome o controlo dos seus lançamentos de produtos",
+      "description": "Dropdeck é a forma mais inteligente de gerir pré-vendas no Shopify. Defina limites, controle janelas de entrega e crie hype—sem dores de cabeça. Concebido para comerciantes que querem flexibilidade, insights e ferramentas focadas em conversão que simplesmente funcionam.",
+      "primary_action": "Guia de início rápido",
+      "secondary_action": "Criar uma pré-venda"
+    }
+  },
+  "plans": {
+    "title": "Planos de pré-venda"
+  },
+  "orders": {
+    "title": "As suas pré-vendas",
+    "bar": {
+      "title": "Pré-vendas futuras",
+      "refresh": "Atualizar"
+    },
+    "settings": {
+      "title": "Definições",
+      "filters": {
+        "preorder_products": {
+          "title": "Filtrar por produto de pré-venda",
+          "options": {
+            "all_products": "Todos os produtos"
+          }
+        },
+        "hide_cancelled_orders": "Ocultar encomendas canceladas",
+        "hide_fulfilled_orders": "Ocultar encomendas entregues",
+        "show_row_colors": "Mostrar cores das linhas"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Encomenda",
+        "line_items": "Itens",
+        "payment_status": "Estado do pagamento",
+        "fulfillment_status": "Estado da entrega"
+      },
+      "resource_name": {
+        "singular": "encomenda",
+        "plural": "encomendas"
+      },
+      "row": {
+        "select_all": "Selecionar todas as encomendas com data de lançamento {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Encomenda",
+          "line_items": "Itens",
+          "payment_status": "Estado do pagamento",
+          "fulfillment_status": "Estado da entrega"
+        },
+        "title": "Lista de separação de pré-vendas",
+        "generated_on": "Gerado em: {{date}}",
+        "file_name": "lista-separacao-pre-vendas",
+        "button_text": "Exportar lista de separação"
+      }
+    }
+  },
+  "guide": {
+    "title": "Guia de início rápido",
+    "card": {
+      "title": "🚀 Guia de início rápido do Dropdeck",
+      "description": "Dropdeck ajuda a configurar experiências poderosas de pré-venda no Shopify com controlo flexível sobre disponibilidade e limites de compra.",
+      "return_to_contents": "Voltar ao conteúdo",
+      "pages": {
+        "contents": {
+          "title": "Conteúdo",
+          "description": "Este guia irá levá-lo pelo processo de configuração do Dropdeck na sua loja Shopify. Irá cobrir o básico sobre como criar um plano de pré-venda e, em seguida, como configurar o seu tema para utilizar o Dropdeck.",
+          "items": {
+            "1": "Criar um plano de pré-venda",
+            "2": "Configurar o seu tema para utilizar o Dropdeck",
+            "3": "Instalar snippets de código para configuração avançada",
+            "4": "Adicionar extensão de checkout com restrição de unidades (apenas Plus)",
+            "5": "Perguntas frequentes"
+          }
+        },
+        "1": {
+          "title": "Passo 1: Criar um plano de pré-venda",
+          "description": "O que é um plano de venda? Um plano de venda é a forma do Shopify de planear produtos para que possam ser entregues numa data posterior, então para criar uma pré-venda, precisa de criar um plano de pré-venda. Pode fazer isto de duas formas com o Dropdeck:",
+          "steps": {
+            "1": "Crie ou adicione um plano de pré-venda existente na página de administração do produto em 'Opções de compra', o que atribuirá apenas aquele produto ao plano.",
+            "2": "Crie um plano de pré-venda para um conjunto de produtos ou até mesmo um único produto nas páginas de planos de pré-venda do Dropdeck."
+          },
+          "conclusion": "Em ambos os casos, só precisa de fornecer a 'Data de lançamento' para o seu produto de pré-venda ao Dropdeck aqui, e opcionalmente o número de unidades para limitar um cliente."
+        },
+        "2": {
+          "title": "Passo 2: Configurar o seu tema para utilizar o Dropdeck",
+          "description": "Existem duas formas de utilizar o Dropdeck no seu tema, ambas requerem que entre no personalizador do tema para ativar a 'configuração da aplicação' do Dropdeck. Pode ativar as configurações da aplicação para o seu tema visitando as áreas de configurações da aplicação na barra de ferramentas esquerda do personalizador. Isto dar-lhe-á duas opções sob a opção 'Opção de configuração':",
+          "choices": {
+            "1": {
+              "title": "Configuração simples (Recomendada):",
+              "description": "Esta é a forma mais fácil de configurar o Dropdeck, quando a 'Opção de configuração' está definida como 'Configuração simples' não há mais nada a fazer. O plano de venda será automaticamente injetado em qualquer formulário de compra no seu site. Note que existe uma possibilidade de que isto quebre algumas funcionalidades do seu tema se o seu tema passou por muitas personalizações, ou se for um tema que não foi desenvolvido pelo Shopify. Pode saltar o passo 3, pois aplica-se apenas à configuração avançada."
+            },
+            "2": {
+              "title": "Configuração avançada:",
+              "description": "Este passo requer conhecimento técnico da base de código do tema, é melhor deixar isto para um desenvolvedor. Quando a 'Opção de configuração' está definida como 'Configuração avançada' precisa de adicionar os seguintes snippets de código à base de código do tema. Isto dar-lhe-á controlo sobre o posicionamento do plano de pré-venda no seu site e também permitirá adicionar funcionalidade extra ao plano de pré-venda. Continue para o passo 3 para mais informações sobre como adicionar os snippets de código à base de código do tema."
+            }
+          }
+        },
+        "3": {
+          "title": "Passo 3: Instalar snippets de código para configuração avançada",
+          "description": "É melhor deixar este trabalho para um desenvolvedor familiarizado com a infraestrutura do Shopify, pois apenas alguém com experiência poderá determinar como cada um destes snippets deve ser integrado no seu tema. Comece por clicar no botão abaixo para descarregar os snippets de código compactados. Depois de descarregados, estes snippets precisam de ser adicionados à base de código do tema na pasta de snippets.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Este snippet é utilizado para retornar facilmente vários dados sobre o plano de pré-venda."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Isto deve ser incluído dentro de todos os formulários com a ação '/cart/add' no seu tema. Isto utiliza o plano de pré-venda que criou no produto."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Este snippet é utilizado para exibir a data de lançamento para um produto com um plano de pré-venda."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Este snippet é utilizado para exibir a restrição de unidades para um produto com um plano de pré-venda. Isto deve ser adicionado a todos os seletores de quantidade no tema como o valor do atributo max no input. Isto provavelmente também precisará de ser integrado com o javascript do tema para garantir que a quantidade seja atualizada corretamente nas mudanças de variante."
+            }
+          },
+          "download": "Descarregar snippets"
+        },
+        "4": {
+          "title": "Passo 4: Adicionar extensão de checkout com restrição de unidades (apenas Plus)",
+          "description": {
+            "1": "Se é um utilizador Shopify Plus, pode adicionar a extensão de checkout com restrição de unidades ao checkout da loja para garantir que os clientes não possam exceder um limite de compra num produto de pré-venda. Isto utiliza a restrição de unidades não apenas no seu carrinho atual, mas também em todas as suas encomendas anteriores, esta funcionalidade que verifica as encomendas anteriores do cliente está disponível apenas para utilizadores Shopify Plus. Se a sua loja utiliza checkouts alternativos que redirecionam o utilizador para um checkout de terceiros (como Paypal), precisará de desativar estes métodos de checkout alternativos para garantir que os clientes não possam exceder um limite de compra num produto de pré-venda.",
+            "2": "Para adicionar a extensão, vá ao seu painel administrativo e visite: Definições > Checkout. Aqui verá as suas 'Configurações', vai 'Personalizar' a configuração 'Ao vivo'. No personalizador do checkout, sob 'Resumo da encomenda' deve ter a opção de 'Adicionar bloco de aplicação'. Aqui pode adicionar o bloco de aplicação 'Restrição de unidades' ao seu checkout. Uma vez adicionada, esta extensão aplicará automaticamente restrições de unidades a todos os produtos de pré-venda que as têm e passam pelo checkout. Se um utilizador exceder a restrição de unidades, não poderá fazer checkout e verá uma mensagem de erro informando-os sobre a restrição."
+          }
+        },
+        "faqs": {
+          "title": "Perguntas frequentes",
+          "questions": {
+            "1": {
+              "question": "A configuração simples não funciona para o meu tema, o que devo fazer?",
+              "answer": "Se a configuração simples não funcionar com o seu tema no sentido de o quebrar ou não funcionar conforme esperado, precisará de utilizar a configuração avançada. Contacte-nos em dropdeck-preorders@proton.me e ficaremos felizes em ajudá-lo a configurá-lo."
+            },
+            "2": {
+              "question": "O que é um plano de pré-venda?",
+              "answer": "Um plano de pré-venda é uma forma de planear um produto para ser entregue numa data posterior. Isto é útil para produtos que ainda não estão disponíveis para venda, mas espera-se que sejam lançados no futuro. Pode criar um plano de pré-venda visitando as páginas de planos de pré-venda e clicando no botão 'Criar plano de pré-venda'."
+            },
+            "3": {
+              "question": "O que é uma restrição de unidades?",
+              "answer": "Uma restrição de unidades é uma forma de limitar o número de unidades que um cliente pode comprar de um produto de pré-venda. Isto é útil para produtos de pré-venda que quer facilitar uma experiência justa e igual de pré-venda para todos os clientes. Se é um utilizador Shopify Plus, pode adicionar a extensão de checkout com restrição de unidades ao checkout da loja para garantir que os clientes não possam exceder um limite de compra num produto de pré-venda. Isto utiliza a restrição de unidades não apenas no seu carrinho atual que está disponível para todos os utilizadores Shopify, mas também em todas as suas encomendas anteriores, esta funcionalidade que verifica as encomendas anteriores do cliente está disponível apenas para utilizadores Shopify Plus."
+            },
+            "4": {
+              "question": "O que acontece se eu tiver um plano de pré-venda configurado e desinstalar a aplicação?",
+              "answer": "Se desinstalar a aplicação enquanto tiver planos de pré-venda ativos, eles serão removidos na desinstalação."
+            },
+            "5": {
+              "question": "Por que é que as restrições de unidades não funcionam quando faço checkout com Paypal?",
+              "answer": "As restrições de unidades são implementadas no checkout do Shopify, qualquer método de checkout alternativo como Paypal não terá acesso a esta funcionalidade."
+            }
+          }
+        }
+      }
+    }
+  }
+}

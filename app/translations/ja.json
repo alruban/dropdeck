@@ -1,0 +1,237 @@
+{
+  "app": { "title": "Dropdeck" },
+  "navigation": {
+    "dashboard": "ダッシュボード",
+    "guide": "クイックスタートガイド",
+    "orders": "注文",
+    "plans": "予約販売プラン"
+  },
+  "quick_actions": {
+    "title": "クイックアクション",
+    "create_preorder_plan": "新しい予約販売プランを作成"
+  },
+  "statistics": {
+    "title": "統計",
+    "active_plans": "有効なプラン",
+    "products_with_preorders": "予約販売中の商品"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "割り当てられた商品",
+      "expected_fulfillment_date": "発売日",
+      "actions": "操作"
+    },
+    "assigned_products_title": {
+      "none": "割り当てられた商品はありません",
+      "multiple": "{{count}}件の商品が割り当てられています"
+    },
+    "actions": {
+      "edit": "編集",
+      "delete": "削除"
+    },
+    "selling_plan_groups_found": {
+      "title": "予約販売プラン",
+      "description": "予約販売プランとその設定を管理します。",
+      "refresh": "更新"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "予約販売プランが設定されていないようです。下のボタンをクリックして新規作成してください。",
+      "create": "新しい予約販売プランを作成"
+    }
+  },
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "{{date}}以降に発送予定",
+    "description_for_plan_with_unit_restriction": "{{date}}以降に発送予定、1人あたり{{units}}個まで"
+  },
+  "create_selling_plan_group_modal": {
+    "title": "予約販売プランを作成",
+    "description": "このフォームを使って、特定の商品または複数の商品に対する新しい販売プランを作成します。",
+    "create": "作成",
+    "cancel": "キャンセル"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "予約販売プランを編集",
+    "description": "このフォームを使って、特定の商品または複数の商品に対する既存の販売プランを編集します。",
+    "edit": "編集",
+    "cancel": "キャンセル"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "予約販売プランを削除",
+    "description": {
+      "applied_to_products": "以下の商品に対する予約販売プランを削除してもよろしいですか：",
+      "applied_to_all_products": "この予約販売プランを削除してもよろしいですか？"
+    },
+    "warning": "この操作は元に戻せません。",
+    "delete": "削除",
+    "cancel": "キャンセル"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "発売日",
+    "enable_unit_restriction": "個数制限を有効にする",
+    "units_per_customer": "1人あたりの個数",
+    "select_products": "この予約販売プランは以下の商品に適用されます：",
+    "no_selected_products": "商品が選択されていません。ボタンをクリックして商品を追加してください。",
+    "add_products": "商品を追加",
+    "add_or_remove_products": "商品を追加または削除",
+    "notice_selling_plan_requirement": "販売プランに追加された商品は自動的に販売プランが必要になります。これにより、Shopifyの予約販売に対応していない販売チャネルから商品が削除され、そこでの販売ができなくなります。商品管理ページで「この商品をサブスクリプションのみで販売する」の選択を外すとこの要件が解除されますが、予約販売が通常注文として処理される可能性があるため推奨しません。"
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "商品のローンチをコントロールしよう",
+      "description": "DropdeckはShopifyで予約販売を管理する最もスマートな方法です。制限を設定し、出荷タイミングをコントロールし、期待感を演出—ストレスフリー。柔軟性・インサイト・コンバージョン重視のツールを求めるマーチャントのために設計されています。",
+      "primary_action": "クイックスタートガイド",
+      "secondary_action": "予約販売を作成"
+    }
+  },
+  "plans": {
+    "title": "予約販売プラン"
+  },
+  "orders": {
+    "title": "あなたの予約注文",
+    "bar": {
+      "title": "今後の予約注文",
+      "refresh": "更新"
+    },
+    "settings": {
+      "title": "設定",
+      "filters": {
+        "preorder_products": {
+          "title": "予約販売商品で絞り込む",
+          "options": {
+            "all_products": "すべての商品"
+          }
+        },
+        "hide_cancelled_orders": "キャンセル済み注文を非表示",
+        "hide_fulfilled_orders": "出荷済み注文を非表示",
+        "show_row_colors": "行の色を表示"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "注文番号",
+        "line_items": "商品",
+        "payment_status": "支払い状況",
+        "fulfillment_status": "出荷状況"
+      },
+      "resource_name": {
+        "singular": "注文",
+        "plural": "注文"
+      },
+      "row": {
+        "select_all": "発売日が{{date}}の注文をすべて選択"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "注文番号",
+          "line_items": "商品",
+          "payment_status": "支払い状況",
+          "fulfillment_status": "出荷状況"
+        },
+        "title": "予約注文ピッキングリスト",
+        "generated_on": "作成日: {{date}}",
+        "file_name": "yoyaku-chumon-picking-list",
+        "button_text": "ピッキングリストをエクスポート"
+      }
+    }
+  },
+  "guide": {
+    "title": "クイックスタートガイド",
+    "card": {
+      "title": "🚀 Dropdeckクイックスタートガイド",
+      "description": "DropdeckはShopifyで強力な予約販売体験を柔軟なコントロールで設定できます。",
+      "return_to_contents": "内容に戻る",
+      "pages": {
+        "contents": {
+          "title": "内容",
+          "description": "このガイドでは、ShopifyストアでDropdeckを設定する手順を説明します。予約販売プランの作成の基本と、テーマでDropdeckを使う方法をカバーします。",
+          "items": {
+            "1": "予約販売プランを作成",
+            "2": "テーマでDropdeckを使う設定",
+            "3": "高度な設定用コードスニペットのインストール",
+            "4": "チェックアウトに個数制限拡張を追加（Plusのみ）",
+            "5": "よくある質問"
+          }
+        },
+        "1": {
+          "title": "ステップ1：予約販売プランを作成",
+          "description": "販売プランとは？Shopifyが商品を後日出荷するための仕組みです。予約販売を作成するには、予約販売プランを作成する必要があります。Dropdeckでは2通りの方法があります：",
+          "steps": {
+            "1": "商品管理ページの「購入オプション」から既存の予約販売プランを作成または追加し、その商品をプランに割り当てます。",
+            "2": "Dropdeckの予約販売プランページで、複数の商品または1つの商品に対して予約販売プランを作成します。"
+          },
+          "conclusion": "いずれの場合も、ここでDropdeckに提供する必要があるのは予約販売商品の「発売日」と、必要に応じて1人あたりの個数制限のみです。"
+        },
+        "2": {
+          "title": "ステップ2：テーマでDropdeckを使う設定",
+          "description": "テーマでDropdeckを使うには2通りの方法があり、どちらもテーマカスタマイザーでDropdeckのアプリ埋め込みを有効にする必要があります。テーマの左サイドバーのアプリ埋め込みエリアで有効化できます。「設定選択」には2つのオプションがあります：",
+          "choices": {
+            "1": {
+              "title": "シンプル設定（推奨）：",
+              "description": "これが最も簡単な設定方法です。「設定選択」を「シンプル設定」にすると、他に何もする必要はありません。販売プランは自動的にすべての購入フォームに挿入されます。ただし、テーマが大きくカスタマイズされている場合やShopify以外のテーマの場合、一部の機能が壊れる可能性があります。ステップ3は高度な設定のみなのでスキップできます。"
+            },
+            "2": {
+              "title": "高度な設定：",
+              "description": "このステップはテーマのコードベースに関する技術的な知識が必要なので、開発者に任せるのがベストです。「設定選択」を「高度な設定」にした場合、以下のコードスニペットをテーマのコードベースに追加する必要があります。これにより、予約販売プランの表示位置や追加機能をコントロールできます。コードスニペットの追加方法はステップ3で説明します。"
+            }
+          }
+        },
+        "3": {
+          "title": "ステップ3：高度な設定用コードスニペットのインストール",
+          "description": "この作業はShopifyのインフラに詳しい開発者に任せるのがベストです。各スニペットの統合方法を判断できるのは経験者だけです。下のボタンをクリックして圧縮されたコードスニペットをダウンロードしてください。ダウンロード後、テーマのsnippetsフォルダに追加します。",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "このスニペットは予約販売プランのさまざまなデータを簡単に返すために使います。"
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "これはテーマ内の'/cart/add'アクションを持つすべてのフォームに含める必要があります。作成した予約販売プランを商品に適用します。"
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "このスニペットは予約販売プラン付き商品の発売日を表示するために使います。"
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "このスニペットは予約販売プラン付き商品の個数制限を表示するために使います。これはテーマ内のすべての数量セレクターのinputのmax属性値として追加する必要があります。バリアント変更時に数量が正しく更新されるよう、テーマのJavaScriptとの連携も必要になる場合があります。"
+            }
+          },
+          "download": "スニペットをダウンロード"
+        },
+        "4": {
+          "title": "ステップ4：チェックアウトに個数制限拡張を追加（Plusのみ）",
+          "description": {
+            "1": "Shopify Plusユーザーの場合、ストアのチェックアウトに個数制限拡張を追加して、予約販売商品の購入上限を超えられないようにできます。これは現在のカートだけでなく、過去の注文すべてにも適用されます。過去注文のチェックはShopify Plusユーザーのみ利用可能です。PayPalなどのサードパーティチェックアウトを使っている場合は、これらの代替チェックアウト方法を無効にしてください。",
+            "2": "拡張を追加するには、管理画面で「設定 > チェックアウト」に進みます。ここで「設定」を確認し、「有効」設定を「カスタマイズ」します。チェックアウトカスタマイザーの「注文概要」セクションで「アプリブロックを追加」オプションが表示されます。ここで「個数制限」アプリブロックを追加できます。追加後、この拡張は予約販売商品の個数制限を自動的に適用します。上限を超えた場合はエラーメッセージが表示され、購入できません。"
+          }
+        },
+        "faqs": {
+          "title": "よくある質問",
+          "questions": {
+            "1": {
+              "question": "シンプル設定がテーマで動作しません。どうすれば？",
+              "answer": "シンプル設定がテーマで動作しない場合や、テーマが壊れる場合、または期待通りに動作しない場合は、高度な設定を利用してください。dropdeck-preorders@proton.meまでご連絡いただければ、設定をお手伝いします。"
+            },
+            "2": {
+              "question": "予約販売プランとは？",
+              "answer": "予約販売プランは、商品を後日出荷するための仕組みです。まだ販売されていない商品や今後発売予定の商品に便利です。予約販売プランページで「新しい予約販売プランを作成」ボタンをクリックして作成できます。"
+            },
+            "3": {
+              "question": "個数制限とは？",
+              "answer": "個数制限は、予約販売商品を1人あたり何個まで購入できるかを制限する仕組みです。すべての顧客に公平な予約販売体験を提供したい場合に便利です。Shopify Plusユーザーの場合、チェックアウトに個数制限拡張を追加して、過去注文も含めて上限を超えられないようにできます。現在のカートへの制限はすべてのShopifyユーザーが利用できますが、過去注文のチェックはShopify Plusユーザーのみ利用可能です。"
+            },
+            "4": {
+              "question": "予約販売プランを設定したままアプリをアンインストールしたらどうなりますか？",
+              "answer": "アプリをアンインストールすると、アクティブな予約販売プランはアンインストール時に削除されます。"
+            },
+            "5": {
+              "question": "PayPalで決済すると個数制限が効かないのはなぜ？",
+              "answer": "個数制限はShopifyのチェックアウトで実装されています。PayPalなどの代替決済方法ではこの機能は利用できません。"
+            }
+          }
+        }
+      }
+    }
+  }
+}

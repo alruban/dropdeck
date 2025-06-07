@@ -1,0 +1,239 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Panel",
+    "guide": "Przewodnik szybkiego startu",
+    "orders": "Zamówienia",
+    "plans": "Plany przedsprzedaży"
+  },
+  "quick_actions": {
+    "title": "Szybkie akcje",
+    "create_preorder_plan": "Utwórz nowy plan przedsprzedaży"
+  },
+  "statistics": {
+    "title": "Statystyki",
+    "active_plans": "Aktywne plany",
+    "products_with_preorders": "Produkty przedsprzedaży"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Przypisane produkty",
+      "expected_fulfillment_date": "Data wydania",
+      "actions": "Akcje"
+    },
+    "assigned_products_title": {
+      "none": "Brak przypisanych produktów",
+      "multiple": "{{count}} przypisanych produktów"
+    },
+    "actions": {
+      "edit": "Edytuj",
+      "delete": "Usuń"
+    },
+    "selling_plan_groups_found": {
+      "title": "Plany przedsprzedaży",
+      "description": "Zarządzaj planami przedsprzedaży i ich konfiguracjami.",
+      "refresh": "Odśwież"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Wygląda na to, że nie masz skonfigurowanych planów przedsprzedaży. Aby skonfigurować plan przedsprzedaży, kliknij przycisk poniżej.",
+      "create": "Utwórz nowy plan przedsprzedaży"
+    }
+  },
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Oczekiwana wysyłka w dniu lub po {{date}}",
+    "description_for_plan_with_unit_restriction": "Oczekiwana wysyłka w dniu lub po {{date}}, {{units}} sztuk na klienta"
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Utwórz plan przedsprzedaży",
+    "description": "Możesz użyć tego formularza do utworzenia nowego planu sprzedaży dla konkretnego produktu lub nawet zestawu produktów.",
+    "create": "Utwórz",
+    "cancel": "Anuluj"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Edytuj plan przedsprzedaży",
+    "description": "Możesz użyć tego formularza do edycji istniejącego planu sprzedaży dla konkretnego produktu lub nawet zestawu produktów.",
+    "edit": "Edytuj",
+    "cancel": "Anuluj"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Usuń plan przedsprzedaży",
+    "description": {
+      "applied_to_products": "Czy na pewno chcesz usunąć plan przedsprzedaży dla następujących produktów:",
+      "applied_to_all_products": "Czy na pewno chcesz usunąć ten plan przedsprzedaży?"
+    },
+    "warning": "Tej akcji nie można cofnąć.",
+    "delete": "Usuń",
+    "cancel": "Anuluj"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Data wydania",
+    "enable_unit_restriction": "Włącz ograniczenie jednostkowe",
+    "units_per_customer": "Sztuki na klienta",
+    "select_products": "Twój plan przedsprzedaży będzie dotyczył następujących produktów:",
+    "no_selected_products": "Nie wybrano produktów, kliknij przycisk, aby dodać produkty.",
+    "add_products": "Dodaj produkty",
+    "add_or_remove_products": "Dodaj lub usuń produkty",
+    "notice_selling_plan_requirement": "Każdy produkt dodany do planu sprzedaży automatycznie będzie go wymagał. To usuwa produkt z kanałów sprzedaży, które nie obsługują przedsprzedaży Shopify i zapobiega jego sprzedaży w tych miejscach. Usunięcie zaznaczenia opcji 'Sprzedawaj tylko ten produkt jako subskrypcję' na stronach administracyjnych produktu usunie to wymaganie, czego nie zalecamy, ponieważ może to spowodować, że Twoje przedsprzedaże będą przychodzić jako standardowe zamówienia."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Przejmij kontrolę nad swoimi premierami produktów",
+      "description": "Dropdeck to inteligentniejszy sposób zarządzania przedsprzedażami w Shopify. Ustaw limity, kontroluj okna realizacji i buduj hype—bez bólu głowy. Zaprojektowany dla sprzedawców, którzy chcą elastyczności, wglądu i narzędzi skupionych na konwersji, które po prostu działają.",
+      "primary_action": "Przewodnik szybkiego startu",
+      "secondary_action": "Utwórz przedsprzedaż"
+    }
+  },
+  "plans": {
+    "title": "Plany przedsprzedaży"
+  },
+  "orders": {
+    "title": "Twoje przedsprzedaże",
+    "bar": {
+      "title": "Nadchodzące przedsprzedaże",
+      "refresh": "Odśwież"
+    },
+    "settings": {
+      "title": "Ustawienia",
+      "filters": {
+        "preorder_products": {
+          "title": "Filtruj według produktu przedsprzedaży",
+          "options": {
+            "all_products": "Wszystkie produkty"
+          }
+        },
+        "hide_cancelled_orders": "Ukryj anulowane zamówienia",
+        "hide_fulfilled_orders": "Ukryj zrealizowane zamówienia",
+        "show_row_colors": "Pokaż kolory wierszy"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Zamówienie",
+        "line_items": "Pozycje",
+        "payment_status": "Status płatności",
+        "fulfillment_status": "Status realizacji"
+      },
+      "resource_name": {
+        "singular": "zamówienie",
+        "plural": "zamówienia"
+      },
+      "row": {
+        "select_all": "Wybierz wszystkie zamówienia z datą wydania {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Zamówienie",
+          "line_items": "Pozycje",
+          "payment_status": "Status płatności",
+          "fulfillment_status": "Status realizacji"
+        },
+        "title": "Lista pobierania przedsprzedaży",
+        "generated_on": "Wygenerowano: {{date}}",
+        "file_name": "lista-pobierania-przedsprzedazy",
+        "button_text": "Eksportuj listę pobierania"
+      }
+    }
+  },
+  "guide": {
+    "title": "Przewodnik szybkiego startu",
+    "card": {
+      "title": "🚀 Przewodnik szybkiego startu Dropdeck",
+      "description": "Dropdeck pomaga skonfigurować potężne doświadczenia przedsprzedaży w Shopify z elastyczną kontrolą dostępności i limitów zakupów.",
+      "return_to_contents": "Powrót do spisu treści",
+      "pages": {
+        "contents": {
+          "title": "Spis treści",
+          "description": "Ten przewodnik przeprowadzi Cię przez proces konfiguracji Dropdeck w Twoim sklepie Shopify. Obejmie podstawy tworzenia planu przedsprzedaży, a następnie jak skonfigurować swój motyw do korzystania z Dropdeck.",
+          "items": {
+            "1": "Tworzenie planu przedsprzedaży",
+            "2": "Konfigurowanie motywu do korzystania z Dropdeck",
+            "3": "Instalowanie fragmentów kodu dla zaawansowanej konfiguracji",
+            "4": "Dodawanie rozszerzenia kasy z ograniczeniem jednostkowym (tylko Plus)",
+            "5": "Często zadawane pytania"
+          }
+        },
+        "1": {
+          "title": "Krok 1: Tworzenie planu przedsprzedaży",
+          "description": "Czym jest plan sprzedaży? Plan sprzedaży to sposób Shopify na planowanie produktów, aby mogły być realizowane w późniejszym terminie, więc aby utworzyć przedsprzedaż, musisz utworzyć plan przedsprzedaży. Możesz to zrobić na dwa sposoby z Dropdeck:",
+          "steps": {
+            "1": "Utwórz lub dodaj istniejący plan przedsprzedaży na stronie administracyjnej produktu pod 'Opcjami zakupu', co przypisze tylko ten produkt do planu.",
+            "2": "Utwórz plan przedsprzedaży dla zestawu produktów lub nawet pojedynczego produktu na stronach planów przedsprzedaży Dropdeck."
+          },
+          "conclusion": "W obu przypadkach wystarczy podać 'Datę wydania' dla produktu przedsprzedaży do Dropdeck tutaj i opcjonalnie liczbę jednostek, aby ograniczyć klienta."
+        },
+        "2": {
+          "title": "Krok 2: Konfigurowanie motywu do korzystania z Dropdeck",
+          "description": "Istnieją dwa sposoby korzystania z Dropdeck w swoim motywie, oba wymagają wejścia do dostosowywacza motywu, aby włączyć 'ustawienie aplikacji' Dropdeck. Możesz włączyć ustawienia aplikacji do swojego motywu, odwiedzając obszary ustawień aplikacji w lewym pasku narzędzi dostosowywacza. To da Ci dwie opcje pod opcją 'Opcja konfiguracji':",
+          "choices": {
+            "1": {
+              "title": "Prosta konfiguracja (Zalecana):",
+              "description": "To najprostszy sposób konfiguracji Dropdeck, gdy 'Opcja konfiguracji' jest ustawiona na 'Prosta konfiguracja' nie ma nic więcej do zrobienia. Plan sprzedaży zostanie automatycznie wstrzyknięty do każdego formularza zakupu na Twojej stronie. Pamiętaj, że istnieje szansa, że to zepsuje niektóre funkcje Twojego motywu, jeśli Twój motyw przeszedł wiele dostosowań, lub jeśli jest to motyw, który nie został opracowany przez Shopify. Możesz pominąć krok 3, ponieważ dotyczy on tylko zaawansowanej konfiguracji."
+            },
+            "2": {
+              "title": "Zaawansowana konfiguracja:",
+              "description": "Ten krok wymaga technicznej wiedzy o bazie kodu motywu, najlepiej zostawić to deweloperowi. Gdy 'Opcja konfiguracji' jest ustawiona na 'Zaawansowana konfiguracja' musisz dodać następujące fragmenty kodu do bazy kodu motywu. To da Ci kontrolę nad umiejscowieniem planu przedsprzedaży na Twojej stronie i pozwoli również dodać dodatkową funkcjonalność do planu przedsprzedaży. Przejdź do kroku 3, aby uzyskać więcej informacji o tym, jak dodać fragmenty kodu do bazy kodu motywu."
+            }
+          }
+        },
+        "3": {
+          "title": "Krok 3: Instalowanie fragmentów kodu dla zaawansowanej konfiguracji",
+          "description": "Najlepiej zostawić tę pracę deweloperowi znającemu infrastrukturę Shopify, ponieważ tylko ktoś z doświadczeniem będzie w stanie określić, jak każdy z tych fragmentów musi być zintegrowany z Twoim motywem. Zacznij od kliknięcia przycisku poniżej, aby pobrać spakowane fragmenty kodu. Po pobraniu, te fragmenty muszą zostać dodane do bazy kodu motywu w folderze fragmentów.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Ten fragment służy do łatwego zwracania różnych danych o planie przedsprzedaży."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "To powinno być zawarte we wszystkich formularzach z akcją '/cart/add' w Twoim motywie. To wykorzystuje plan przedsprzedaży, który utworzyłeś na produkcie."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Ten fragment służy do wyświetlania daty wydania dla produktu z planem przedsprzedaży."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Ten fragment służy do wyświetlania ograniczenia jednostkowego dla produktu z planem przedsprzedaży. To powinno być dodane do wszystkich selektorów ilości w motywie jako wartość atrybutu max na input. To prawdopodobnie będzie również wymagało integracji z javascriptem motywu, aby upewnić się, że ilość jest prawidłowo aktualizowana przy zmianach wariantów."
+            }
+          },
+          "download": "Pobierz fragmenty"
+        },
+        "4": {
+          "title": "Krok 4: Dodawanie rozszerzenia kasy z ograniczeniem jednostkowym (tylko Plus)",
+          "description": {
+            "1": "Jeśli jesteś użytkownikiem Shopify Plus, możesz dodać rozszerzenie kasy z ograniczeniem jednostkowym do kasy sklepu, aby upewnić się, że klienci nie mogą przekroczyć limitu zakupu na produkcie przedsprzedaży. To wykorzystuje ograniczenie jednostkowe nie tylko na ich obecnym koszyku, ale także na wszystkich ich poprzednich zamówieniach, ta funkcjonalność sprawdzająca poprzednie zamówienia klienta jest dostępna tylko dla użytkowników Shopify Plus. Jeśli Twój sklep używa alternatywnych kas, które przekierowują użytkownika do kasy strony trzeciej (takiej jak Paypal), musisz wyłączyć te alternatywne metody kasy, aby upewnić się, że klienci nie mogą przekroczyć limitu zakupu na produkcie przedsprzedaży.",
+            "2": "Aby dodać rozszerzenie, przejdź do swojego panelu administracyjnego i odwiedź: Ustawienia > Kasa. Tutaj zobaczysz swoje 'Konfiguracje', będziesz 'Dostosowywać' konfigurację 'Na żywo'. W dostosowywaczu kasy, pod 'Podsumowaniem zamówienia' powinieneś mieć opcję 'Dodaj blok aplikacji'. Tutaj możesz dodać blok aplikacji 'Ograniczenie jednostkowe' do swojej kasy. Po dodaniu, to rozszerzenie automatycznie zastosuje ograniczenia jednostkowe do wszystkich produktów przedsprzedaży, które je mają i przechodzą przez kasę. Jeśli użytkownik przekroczy ograniczenie jednostkowe, nie będzie mógł się wymeldować i zobaczy komunikat o błędzie informujący ich o ograniczeniu."
+          }
+        },
+        "faqs": {
+          "title": "Często zadawane pytania",
+          "questions": {
+            "1": {
+              "question": "Prosta konfiguracja nie działa dla mojego motywu, co powinienem zrobić?",
+              "answer": "Jeśli prosta konfiguracja nie działa z Twoim motywem w tym sensie, że go psuje lub nie działa zgodnie z oczekiwaniami, musisz użyć zaawansowanej konfiguracji. Skontaktuj się z nami pod adresem dropdeck-preorders@proton.me, a chętnie pomożemy Ci to skonfigurować."
+            },
+            "2": {
+              "question": "Czym jest plan przedsprzedaży?",
+              "answer": "Plan przedsprzedaży to sposób planowania produktu do realizacji w późniejszym terminie. Jest to przydatne dla produktów, które nie są jeszcze dostępne do sprzedaży, ale oczekuje się, że zostaną wydane w przyszłości. Możesz utworzyć plan przedsprzedaży, odwiedzając strony planów przedsprzedaży i klikając przycisk 'Utwórz plan przedsprzedaży'."
+            },
+            "3": {
+              "question": "Czym jest ograniczenie jednostkowe?",
+              "answer": "Ograniczenie jednostkowe to sposób ograniczenia liczby jednostek, które klient może kupić produktu przedsprzedaży. Jest to przydatne dla produktów przedsprzedaży, które chcesz ułatwić sprawiedliwe i równe doświadczenie przedsprzedaży dla wszystkich klientów. Jeśli jesteś użytkownikiem Shopify Plus, możesz dodać rozszerzenie kasy z ograniczeniem jednostkowym do kasy sklepu, aby upewnić się, że klienci nie mogą przekroczyć limitu zakupu na produkcie przedsprzedaży. To wykorzystuje ograniczenie jednostkowe nie tylko na ich obecnym koszyku, który jest dostępny dla wszystkich użytkowników Shopify, ale także na wszystkich ich poprzednich zamówieniach, ta funkcjonalność sprawdzająca poprzednie zamówienia klienta jest dostępna tylko dla użytkowników Shopify Plus."
+            },
+            "4": {
+              "question": "Co się stanie, jeśli mam skonfigurowany plan przedsprzedaży i odinstaluję aplikację?",
+              "answer": "Jeśli odinstalujesz aplikację podczas gdy masz aktywne plany przedsprzedaży, zostaną one usunięte przy odinstalowaniu."
+            },
+            "5": {
+              "question": "Dlaczego ograniczenia jednostkowe nie działają, gdy wymeldowuję się przez Paypal?",
+              "answer": "Ograniczenia jednostkowe są zaimplementowane w kasie Shopify, każda alternatywna metoda kasy taka jak Paypal nie będzie miała dostępu do tej funkcjonalności."
+            }
+          }
+        }
+      }
+    }
+  }
+}

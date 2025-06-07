@@ -1,0 +1,239 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "guide": "Guida rapida",
+    "orders": "Ordini",
+    "plans": "Piani di preordine"
+  },
+  "quick_actions": {
+    "title": "Azioni rapide",
+    "create_preorder_plan": "Crea nuovo piano di preordine"
+  },
+  "statistics": {
+    "title": "Statistiche",
+    "active_plans": "Piani attivi",
+    "products_with_preorders": "Prodotti in preordine"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Prodotti assegnati",
+      "expected_fulfillment_date": "Data di rilascio",
+      "actions": "Azioni"
+    },
+    "assigned_products_title": {
+      "none": "Nessun prodotto assegnato",
+      "multiple": "{{count}} prodotti assegnati"
+    },
+    "actions": {
+      "edit": "Modifica",
+      "delete": "Elimina"
+    },
+    "selling_plan_groups_found": {
+      "title": "Piani di preordine",
+      "description": "Gestisci i tuoi piani di preordine e le loro configurazioni.",
+      "refresh": "Aggiorna"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Sembra che tu non abbia alcun piano di preordine configurato. Per configurarne uno, clicca sul pulsante qui sotto.",
+      "create": "Crea nuovo piano di preordine"
+    }
+  },
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Spedizione prevista il o dopo {{date}}",
+    "description_for_plan_with_unit_restriction": "Spedizione prevista il o dopo {{date}}, {{units}} unità per cliente"
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Crea piano di preordine",
+    "description": "Usa questo modulo per creare un nuovo piano di vendita per un prodotto specifico o anche una selezione di prodotti.",
+    "create": "Crea",
+    "cancel": "Annulla"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Modifica piano di preordine",
+    "description": "Usa questo modulo per modificare un piano di vendita esistente per un prodotto specifico o una selezione di prodotti.",
+    "edit": "Modifica",
+    "cancel": "Annulla"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Elimina piano di preordine",
+    "description": {
+      "applied_to_products": "Sei sicuro di voler eliminare il piano di preordine per i seguenti prodotti:",
+      "applied_to_all_products": "Sei sicuro di voler eliminare questo piano di preordine?"
+    },
+    "warning": "Questa azione non può essere annullata.",
+    "delete": "Elimina",
+    "cancel": "Annulla"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Data di rilascio",
+    "enable_unit_restriction": "Abilita restrizione unità",
+    "units_per_customer": "Unità per cliente",
+    "select_products": "Il tuo piano di preordine si applicherà ai seguenti prodotti:",
+    "no_selected_products": "Nessun prodotto selezionato, clicca sul pulsante per aggiungere prodotti.",
+    "add_products": "Aggiungi prodotti",
+    "add_or_remove_products": "Aggiungi o rimuovi prodotti",
+    "notice_selling_plan_requirement": "Qualsiasi prodotto aggiunto a un piano di vendita ne richiederà automaticamente uno. Questo rimuove il prodotto dai canali di vendita che non supportano i preordini Shopify e impedisce che venga venduto lì. Deselezionare l'opzione 'Vendi questo prodotto solo come abbonamento' nelle pagine di amministrazione del prodotto rimuoverà questo requisito, cosa che sconsigliamo poiché potrebbe far sì che i tuoi preordini vengano elaborati come ordini standard."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Prendi il controllo dei tuoi lanci di prodotto",
+      "description": "Dropdeck è il modo più intelligente per gestire i preordini su Shopify. Imposta limiti, controlla le finestre di evasione e crea aspettativa—senza mal di testa. Progettato per commercianti che vogliono flessibilità, informazioni e strumenti orientati alla conversione che funzionano semplicemente.",
+      "primary_action": "Guida rapida",
+      "secondary_action": "Crea un preordine"
+    }
+  },
+  "plans": {
+    "title": "Piani di preordine"
+  },
+  "orders": {
+    "title": "I tuoi preordini",
+    "bar": {
+      "title": "Prossimi preordini",
+      "refresh": "Aggiorna"
+    },
+    "settings": {
+      "title": "Impostazioni",
+      "filters": {
+        "preorder_products": {
+          "title": "Filtra per prodotto in preordine",
+          "options": {
+            "all_products": "Tutti i prodotti"
+          }
+        },
+        "hide_cancelled_orders": "Nascondi ordini annullati",
+        "hide_fulfilled_orders": "Nascondi ordini evasi",
+        "show_row_colors": "Mostra colori riga"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Ordine",
+        "line_items": "Articoli",
+        "payment_status": "Stato pagamento",
+        "fulfillment_status": "Stato evasione"
+      },
+      "resource_name": {
+        "singular": "ordine",
+        "plural": "ordini"
+      },
+      "row": {
+        "select_all": "Seleziona tutti gli ordini con data di rilascio {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Ordine",
+          "line_items": "Articoli",
+          "payment_status": "Stato pagamento",
+          "fulfillment_status": "Stato evasione"
+        },
+        "title": "Lista di prelievo preordini",
+        "generated_on": "Generato il: {{date}}",
+        "file_name": "lista-prelievo-preordini",
+        "button_text": "Esporta lista di prelievo"
+      }
+    }
+  },
+  "guide": {
+    "title": "Guida rapida",
+    "card": {
+      "title": "🚀 Guida rapida per Dropdeck",
+      "description": "Dropdeck ti aiuta a configurare potenti esperienze di preordine su Shopify con controllo flessibile su disponibilità e limiti di acquisto.",
+      "return_to_contents": "Torna al contenuto",
+      "pages": {
+        "contents": {
+          "title": "Contenuto",
+          "description": "Questa guida ti accompagnerà nel processo di configurazione di Dropdeck nel tuo negozio Shopify. Coprirà le basi della creazione di un piano di preordine e poi come configurare il tuo tema per usare Dropdeck.",
+          "items": {
+            "1": "Crea un piano di preordine",
+            "2": "Configura il tuo tema per usare Dropdeck",
+            "3": "Installa snippet di codice per la configurazione avanzata",
+            "4": "Aggiungi l'estensione di restrizione unità al checkout (solo Plus)",
+            "5": "FAQ"
+          }
+        },
+        "1": {
+          "title": "Passo 1: Crea un piano di preordine",
+          "description": "Cos'è un piano di vendita? Un piano di vendita è il modo in cui Shopify programma i prodotti per essere evasi in una data successiva, quindi per creare un preordine, devi creare un piano di preordine. Puoi farlo in due modi con Dropdeck:",
+          "steps": {
+            "1": "Crea o aggiungi un piano di preordine esistente nella pagina di amministrazione del prodotto sotto 'Opzioni di acquisto', che assegnerà quel prodotto solo al piano.",
+            "2": "Crea un piano di preordine per una selezione di prodotti o anche solo un prodotto nella pagina dei piani di preordine di Dropdeck."
+          },
+          "conclusion": "In entrambi i casi, tutto ciò che devi fornire a Dropdeck qui è la 'Data di rilascio' per il tuo prodotto in preordine e opzionalmente il numero di unità per limitare un cliente."
+        },
+        "2": {
+          "title": "Passo 2: Configura il tuo tema per usare Dropdeck",
+          "description": "Ci sono due modi per utilizzare Dropdeck nel tuo tema, entrambi richiedono di andare nel personalizzatore del tema per abilitare l'embed dell'app di Dropdeck. Puoi abilitare gli embed delle app nel tuo tema visitando le aree di embed delle app nella barra laterale sinistra del personalizzatore. Questo ti offrirà due opzioni sotto 'Scelta configurazione':",
+          "choices": {
+            "1": {
+              "title": "Configurazione semplice (consigliata):",
+              "description": "Questo è il modo più semplice per configurare Dropdeck, una volta che 'Scelta configurazione' è impostata su 'Configurazione semplice', non c'è altro da fare. Il piano di vendita verrà automaticamente iniettato in qualsiasi modulo di acquisto sul tuo sito. Lo svantaggio è che c'è la possibilità che questo rompa alcune funzionalità del tuo tema se il tuo tema è stato molto personalizzato, o se è un tema che non è stato sviluppato da Shopify. Puoi saltare il passo 3 poiché riguarda solo la configurazione avanzata."
+            },
+            "2": {
+              "title": "Configurazione avanzata:",
+              "description": "Questo passo richiede conoscenze tecniche della base di codice del tuo tema, è meglio lasciarlo a uno sviluppatore. Una volta che 'Scelta configurazione' è impostata su 'Configurazione avanzata', dovrai aggiungere i seguenti snippet di codice nella base di codice del tuo tema. Questo ti permetterà di controllare la posizione del piano di preordine sul tuo sito e anche di aggiungere funzionalità aggiuntive al piano di preordine. Continua con il passo 3 per maggiori informazioni su come aggiungere snippet di codice nella base di codice del tuo tema."
+            }
+          }
+        },
+        "3": {
+          "title": "Passo 3: Installa snippet di codice per la configurazione avanzata",
+          "description": "È meglio lasciare questo lavoro a uno sviluppatore che conosce l'infrastruttura di Shopify, poiché solo qualcuno con esperienza potrà determinare come ciascuno di questi snippet deve essere integrato nel tuo tema. Inizia cliccando sul pulsante qui sotto per scaricare gli snippet di codice compressi. Una volta scaricati, questi snippet dovranno essere aggiunti alla base di codice del tuo tema nella cartella snippets.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Questo snippet viene utilizzato per restituire facilmente vari dati sul piano di preordine."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Questo deve essere incluso in tutti i moduli con azione '/cart/add' nel tuo tema. Questo applica il piano di preordine che hai creato al prodotto."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Questo snippet viene utilizzato per mostrare la data di rilascio di un prodotto con un piano di preordine."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Questo snippet viene utilizzato per mostrare la restrizione di unità per un prodotto con un piano di preordine. Questo deve essere aggiunto a tutti i selettori di quantità nel tema come valore dell'attributo max sull'input. Questo probabilmente richiederà anche l'integrazione con il JavaScript del tuo tema per assicurarsi che la quantità venga aggiornata correttamente sui cambi di variante."
+            }
+          },
+          "download": "Scarica snippet"
+        },
+        "4": {
+          "title": "Passo 4: Aggiungi l'estensione di restrizione unità al checkout (solo Plus)",
+          "description": {
+            "1": "Se sei un utente Shopify Plus, puoi aggiungere l'estensione di restrizione unità al checkout del tuo negozio per assicurarti che i clienti non possano superare un limite di acquisto su un prodotto in preordine. Questo applica la restrizione unità non solo al loro carrello attuale, ma a tutti i loro ordini precedenti, questa funzionalità che controlla gli ordini precedenti di un cliente è disponibile solo per i clienti Shopify Plus. Se il tuo negozio utilizza un checkout alternativo che indirizza l'utente a un checkout di terze parti (come Paypal), dovrai disabilitare quei metodi di checkout alternativi per assicurarti che i clienti non possano superare un limite di acquisto su un prodotto in preordine.",
+            "2": "Per aggiungere l'estensione, vai al tuo pannello di amministrazione e visita: Impostazioni > Checkout. Qui vedrai le tue 'Configurazioni', vorrai 'Personalizzare' la configurazione 'Attiva'. Nel personalizzatore per il tuo checkout, sotto 'Riepilogo ordine', dovresti avere l'opzione 'Aggiungi blocco app'. Qui puoi aggiungere il blocco app 'Restrizione unità' al tuo checkout. Una volta aggiunto, questa estensione applicherà automaticamente le restrizioni di unità a qualsiasi prodotto in preordine che le abbia e che passi per il checkout. Se un utente supera la restrizione di unità, non potrà completare l'acquisto e verrà mostrato un messaggio di errore che lo informa della restrizione."
+          }
+        },
+        "faqs": {
+          "title": "FAQ",
+          "questions": {
+            "1": {
+              "question": "La configurazione semplice non funziona per il mio tema, cosa devo fare?",
+              "answer": "Se la configurazione semplice non funziona con il tuo tema, che lo rompa o non funzioni come previsto, dovrai usare la configurazione avanzata. Contattaci a dropdeck-preorders@proton.me e saremo felici di aiutarti a configurarla."
+            },
+            "2": {
+              "question": "Cos'è un piano di preordine?",
+              "answer": "Un piano di preordine è un modo per programmare un prodotto affinché venga evaso in una data successiva. Questo è utile per prodotti che non sono ancora disponibili per la vendita, ma che dovrebbero essere lanciati in futuro. Puoi creare un piano di preordine visitando la pagina dei piani di preordine e cliccando sul pulsante 'Crea piano di preordine'."
+            },
+            "3": {
+              "question": "Cos'è una restrizione unità?",
+              "answer": "Una restrizione unità è un modo per limitare il numero di unità che un cliente può acquistare di un prodotto in preordine. Questo è utile per prodotti in preordine dove vuoi offrire un'esperienza di preordine equa per tutti i clienti. Se sei un utente Shopify Plus, puoi aggiungere l'estensione di restrizione unità al checkout del tuo negozio per assicurarti che i clienti non possano superare un limite di acquisto su un prodotto in preordine. Questo applica la restrizione unità non solo al loro carrello attuale, disponibile per tutti gli utenti Shopify, ma a tutti i loro ordini precedenti, questa funzionalità che controlla gli ordini precedenti di un cliente è disponibile solo per i clienti Shopify Plus."
+            },
+            "4": {
+              "question": "Cosa succede se ho un piano di preordine configurato e disinstallo l'app?",
+              "answer": "Se disinstalli l'app mentre hai piani di preordine attivi, verranno rimossi alla disinstallazione."
+            },
+            "5": {
+              "question": "Perché le restrizioni unità non funzionano quando effettuo il checkout con Paypal?",
+              "answer": "Le restrizioni unità sono implementate nel checkout di Shopify, qualsiasi metodo di checkout alternativo come Paypal non avrà accesso a questa funzionalità."
+            }
+          }
+        }
+      }
+    }
+  }
+}

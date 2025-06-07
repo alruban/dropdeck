@@ -1,0 +1,239 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "guide": "Snelle startgids",
+    "orders": "Bestellingen",
+    "plans": "Pre-order verkoopplannen"
+  },
+  "quick_actions": {
+    "title": "Snelle acties",
+    "create_preorder_plan": "Nieuwe pre-order aanmaken"
+  },
+  "statistics": {
+    "title": "Statistieken",
+    "active_plans": "Actieve plannen",
+    "products_with_preorders": "Pre-order producten"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Toegewezen producten",
+      "expected_fulfillment_date": "Verwachte leverdatum",
+      "actions": "Acties"
+    },
+    "assigned_products_title": {
+      "none": "Geen toegewezen producten",
+      "multiple": "{{count}} toegewezen producten"
+    },
+    "actions": {
+      "edit": "Bewerken",
+      "delete": "Verwijderen"
+    },
+    "selling_plan_groups_found": {
+      "title": "Pre-order verkoopplannen",
+      "description": "Beheer uw pre-order verkoopplannen en hun instellingen.",
+      "refresh": "Vernieuwen"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Het lijkt erop dat u geen pre-order verkoopplannen heeft ingesteld. Klik op de onderstaande knop om een plan aan te maken.",
+      "create": "Nieuwe pre-order aanmaken"
+    }
+  },
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Verzending verwacht op of na {{date}}",
+    "description_for_plan_with_unit_restriction": "Verzending verwacht op of na {{date}}, {{units}} eenheden per klant"
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Pre-order verkoopplan aanmaken",
+    "description": "Gebruik dit formulier om een nieuw verkoopplan aan te maken voor een specifiek product of een selectie van producten.",
+    "create": "Aanmaken",
+    "cancel": "Annuleren"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Pre-order verkoopplan bewerken",
+    "description": "Gebruik dit formulier om een bestaand verkoopplan te bewerken voor een specifiek product of een selectie van producten.",
+    "edit": "Bewerken",
+    "cancel": "Annuleren"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Pre-order verkoopplan verwijderen",
+    "description": {
+      "applied_to_products": "Weet u zeker dat u het pre-order verkoopplan voor de volgende producten wilt verwijderen:",
+      "applied_to_all_products": "Weet u zeker dat u dit pre-order verkoopplan wilt verwijderen?"
+    },
+    "warning": "Deze actie kan niet ongedaan worden gemaakt.",
+    "delete": "Verwijderen",
+    "cancel": "Annuleren"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Verwachte leverdatum",
+    "enable_unit_restriction": "Eenheidsbeperking inschakelen",
+    "units_per_customer": "Eenheden per klant",
+    "select_products": "Uw pre-orderplan is van toepassing op de volgende producten:",
+    "no_selected_products": "Geen producten geselecteerd, klik op de knop om producten toe te voegen.",
+    "add_products": "Producten toevoegen",
+    "add_or_remove_products": "Producten toevoegen of verwijderen",
+    "notice_selling_plan_requirement": "Elk product dat aan een verkoopplan wordt toegevoegd, vereist automatisch een plan. Dit verwijdert het product uit verkoopkanalen die geen Shopify pre-orders ondersteunen en voorkomt dat het daar wordt verkocht. Het uitschakelen van de optie 'Verkoop dit product alleen als abonnement' op de productbeheerpagina's verwijdert deze vereiste, wat we afraden omdat uw pre-orders dan als standaardbestellingen kunnen worden verwerkt."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Neem de controle over uw productlanceringen",
+      "description": "Dropdeck is de slimste manier om pre-orders op Shopify te beheren. Stel limieten in, beheer leveringsvensters en creëer verwachtingen—zonder gedoe. Ontworpen voor handelaars die flexibiliteit, inzicht en conversiegerichte tools willen die gewoon werken.",
+      "primary_action": "Snelle startgids",
+      "secondary_action": "Maak een pre-order aan"
+    }
+  },
+  "plans": {
+    "title": "Pre-order verkoopplannen"
+  },
+  "orders": {
+    "title": "Uw pre-orders",
+    "bar": {
+      "title": "Aankomende pre-orders",
+      "refresh": "Vernieuwen"
+    },
+    "settings": {
+      "title": "Instellingen",
+      "filters": {
+        "preorder_products": {
+          "title": "Filter op pre-order product",
+          "options": {
+            "all_products": "Alle producten"
+          }
+        },
+        "hide_cancelled_orders": "Geannuleerde bestellingen verbergen",
+        "hide_fulfilled_orders": "Afgeronde bestellingen verbergen",
+        "show_row_colors": "Rijkleuren tonen"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Bestelling",
+        "line_items": "Artikelen",
+        "payment_status": "Betaalstatus",
+        "fulfillment_status": "Leverstatus"
+      },
+      "resource_name": {
+        "singular": "bestelling",
+        "plural": "bestellingen"
+      },
+      "row": {
+        "select_all": "Selecteer alle bestellingen met leverdatum {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Bestelling",
+          "line_items": "Artikelen",
+          "payment_status": "Betaalstatus",
+          "fulfillment_status": "Leverstatus"
+        },
+        "title": "Pre-order picklijst",
+        "generated_on": "Gegenereerd op: {{date}}",
+        "file_name": "pre-order-picklijst",
+        "button_text": "Exporteer picklijst"
+      }
+    }
+  },
+  "guide": {
+    "title": "Snelle startgids",
+    "card": {
+      "title": "🚀 Snelle startgids voor Dropdeck",
+      "description": "Dropdeck helpt u krachtige pre-order ervaringen op Shopify in te stellen met flexibele controle over beschikbaarheid en aankooplimieten.",
+      "return_to_contents": "Terug naar inhoud",
+      "pages": {
+        "contents": {
+          "title": "Inhoud",
+          "description": "Deze gids leidt u door het proces van het instellen van Dropdeck in uw Shopify-winkel. Het behandelt de basis van het aanmaken van een pre-order verkoopplan en vervolgens hoe u uw thema instelt om Dropdeck te gebruiken.",
+          "items": {
+            "1": "Maak een pre-order verkoopplan aan",
+            "2": "Stel uw thema in om Dropdeck te gebruiken",
+            "3": "Installeer codefragmenten voor geavanceerde configuratie",
+            "4": "Voeg de eenheidsbeperkings-extensie toe aan de checkout (alleen Plus)",
+            "5": "Veelgestelde vragen"
+          }
+        },
+        "1": {
+          "title": "Stap 1: Maak een pre-order verkoopplan aan",
+          "description": "Wat is een verkoopplan? Een verkoopplan is de manier waarop Shopify producten plant om op een later tijdstip te worden geleverd, dus om een pre-order aan te maken, moet u een pre-order verkoopplan aanmaken. U kunt dit op twee manieren doen met Dropdeck:",
+          "steps": {
+            "1": "Maak of voeg een bestaand pre-order verkoopplan toe op de productbeheerpagina onder 'Aankoopopties', waardoor dat product alleen aan het plan wordt toegewezen.",
+            "2": "Maak een pre-order verkoopplan aan voor een selectie van producten of zelfs slechts één product op de pre-order plannenpagina van Dropdeck."
+          },
+          "conclusion": "In beide gevallen hoeft u hier alleen de 'Leverdatum' voor uw pre-order product op te geven en eventueel het aantal eenheden om een klant te beperken."
+        },
+        "2": {
+          "title": "Stap 2: Stel uw thema in om Dropdeck te gebruiken",
+          "description": "Er zijn twee manieren om Dropdeck in uw thema te gebruiken, beide vereisen dat u naar de thema-aanpasser gaat om de 'app-embed' van Dropdeck in te schakelen. U kunt app-embeds in uw thema inschakelen door de app-embed gebieden in de linker zijbalk van de aanpasser te bezoeken. Dit biedt u twee opties onder 'Configuratiekeuze':",
+          "choices": {
+            "1": {
+              "title": "Eenvoudige configuratie (aanbevolen):",
+              "description": "Dit is de eenvoudigste manier om Dropdeck in te stellen, zodra 'Configuratiekeuze' is ingesteld op 'Eenvoudige configuratie', hoeft u verder niets te doen. Het verkoopplan wordt automatisch geïnjecteerd in elk aankoopformulier op uw site. Het nadeel is dat dit mogelijk sommige functionaliteiten van uw thema kan verstoren als uw thema sterk is aangepast, of als het een thema is dat niet door Shopify is ontwikkeld. U kunt stap 3 overslaan, want die heeft alleen betrekking op de geavanceerde configuratie."
+            },
+            "2": {
+              "title": "Geavanceerde configuratie:",
+              "description": "Deze stap vereist technische kennis van de codebase van uw thema, het is het beste om dit aan een ontwikkelaar over te laten. Zodra 'Configuratiekeuze' is ingesteld op 'Geavanceerde configuratie', moet u de volgende codefragmenten toevoegen aan de codebase van uw thema. Hiermee kunt u de plaatsing van het pre-order verkoopplan op uw site regelen en extra functionaliteit toevoegen aan het pre-order verkoopplan. Ga verder met stap 3 voor meer informatie over het toevoegen van codefragmenten aan de codebase van uw thema."
+            }
+          }
+        },
+        "3": {
+          "title": "Stap 3: Installeer codefragmenten voor geavanceerde configuratie",
+          "description": "Het is het beste om dit werk over te laten aan een ontwikkelaar die bekend is met de Shopify-infrastructuur, want alleen iemand met ervaring kan bepalen hoe elk van deze fragmenten in uw thema moet worden geïntegreerd. Begin met het klikken op de onderstaande knop om de gecomprimeerde codefragmenten te downloaden. Na het downloaden moeten deze fragmenten worden toegevoegd aan de codebase van uw thema in de snippets-map.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Dit fragment wordt gebruikt om eenvoudig verschillende gegevens over het pre-order verkoopplan terug te geven."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Dit moet worden opgenomen in alle formulieren met de actie '/cart/add' in uw thema. Dit past het pre-order verkoopplan dat u heeft aangemaakt toe op het product."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Dit fragment wordt gebruikt om de leverdatum van een product met een pre-order verkoopplan weer te geven."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Dit fragment wordt gebruikt om de eenheidsbeperking voor een product met een pre-order verkoopplan weer te geven. Dit moet worden toegevoegd aan alle hoeveelheidselectoren in het thema als de waarde van het max-attribuut op de invoer. Dit vereist waarschijnlijk ook integratie met de JavaScript van uw thema om ervoor te zorgen dat de hoeveelheid correct wordt bijgewerkt bij variantwijzigingen."
+            }
+          },
+          "download": "Download fragmenten"
+        },
+        "4": {
+          "title": "Stap 4: Voeg de eenheidsbeperkings-extensie toe aan de checkout (alleen Plus)",
+          "description": {
+            "1": "Als u een Shopify Plus-gebruiker bent, kunt u de eenheidsbeperkings-extensie toevoegen aan de checkout van uw winkel om ervoor te zorgen dat klanten een aankooplimiet op een pre-order product niet kunnen overschrijden. Dit past de eenheidsbeperking niet alleen toe op hun huidige winkelwagen, maar ook op al hun eerdere bestellingen, deze functionaliteit die eerdere bestellingen van een klant controleert is alleen beschikbaar voor Shopify Plus-klanten. Als uw winkel een alternatieve checkout gebruikt die de gebruiker naar een externe checkout (zoals Paypal) leidt, moet u die alternatieve checkout-methoden uitschakelen om ervoor te zorgen dat klanten een aankooplimiet op een pre-order product niet kunnen overschrijden.",
+            "2": "Om de extensie toe te voegen, gaat u naar uw admin-dashboard en bezoekt u: Instellingen > Checkout. Hier ziet u uw 'Configuraties', u wilt de 'Actieve' configuratie 'Aanpassen'. In de aanpasser voor uw checkout, onder 'Besteloverzicht', zou u de optie moeten hebben om een 'App-blok toe te voegen'. Hier kunt u het 'Eenheidsbeperking' app-blok toevoegen aan uw checkout. Zodra toegevoegd, past deze extensie automatisch eenheidsbeperkingen toe op elk pre-order product dat deze heeft en dat door de checkout gaat. Als een gebruiker de eenheidsbeperking overschrijdt, kan hij niet afrekenen en krijgt hij een foutmelding te zien over de beperking."
+          }
+        },
+        "faqs": {
+          "title": "Veelgestelde vragen",
+          "questions": {
+            "1": {
+              "question": "De eenvoudige configuratie werkt niet voor mijn thema, wat moet ik doen?",
+              "answer": "Als de eenvoudige configuratie niet werkt met uw thema, het breekt of niet werkt zoals verwacht, moet u de geavanceerde configuratie gebruiken. Neem contact met ons op via dropdeck-preorders@proton.me en we helpen u graag met de configuratie."
+            },
+            "2": {
+              "question": "Wat is een pre-order verkoopplan?",
+              "answer": "Een pre-order verkoopplan is een manier om een product te plannen voor levering op een later tijdstip. Dit is handig voor producten die nog niet beschikbaar zijn voor verkoop, maar in de toekomst worden gelanceerd. U kunt een pre-order verkoopplan aanmaken door naar de pre-order verkoopplannenpagina te gaan en op de knop 'Nieuwe pre-order aanmaken' te klikken."
+            },
+            "3": {
+              "question": "Wat is een eenheidsbeperking?",
+              "answer": "Een eenheidsbeperking is een manier om het aantal eenheden dat een klant van een pre-order product kan kopen te beperken. Dit is handig voor pre-order producten waarbij u een eerlijke pre-order ervaring voor alle klanten wilt bieden. Als u een Shopify Plus-gebruiker bent, kunt u de eenheidsbeperkings-extensie toevoegen aan de checkout van uw winkel om ervoor te zorgen dat klanten een aankooplimiet op een pre-order product niet kunnen overschrijden. Dit past de eenheidsbeperking niet alleen toe op hun huidige winkelwagen, beschikbaar voor alle Shopify-gebruikers, maar ook op al hun eerdere bestellingen, deze functionaliteit die eerdere bestellingen van een klant controleert is alleen beschikbaar voor Shopify Plus-klanten."
+            },
+            "4": {
+              "question": "Wat gebeurt er als ik een pre-order verkoopplan heb ingesteld en de app verwijder?",
+              "answer": "Als u de app verwijdert terwijl u actieve pre-order verkoopplannen heeft, worden deze verwijderd bij het verwijderen."
+            },
+            "5": {
+              "question": "Waarom werken eenheidsbeperkingen niet als ik afreken met Paypal?",
+              "answer": "Eenheidsbeperkingen zijn geïmplementeerd in de Shopify-checkout, elke alternatieve checkout-methode zoals Paypal heeft geen toegang tot deze functionaliteit."
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "app": { "title": "Dropdeck" },
+  "navigation": {
+    "dashboard": "Nástěnka",
+    "guide": "Rychlý průvodce",
+    "orders": "Objednávky",
+    "plans": "Plány předobjednávek"
+  },
+  "quick_actions": {
+    "title": "Rychlé akce",
+    "create_preorder_plan": "Vytvořit nový plán předobjednávky"
+  },
+  "statistics": {
+    "title": "Statistiky",
+    "active_plans": "Aktivní plány",
+    "products_with_preorders": "Produkty s předobjednávkami"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Přiřazené produkty",
+      "expected_fulfillment_date": "Datum vydání",
+      "actions": "Akce"
+    },
+    "assigned_products_title": {
+      "none": "Žádné přiřazené produkty",
+      "multiple": "Přiřazeno {{count}} produktů"
+    },
+    "actions": {
+      "edit": "Upravit",
+      "delete": "Smazat"
+    },
+    "selling_plan_groups_found": {
+      "title": "Plány předobjednávek",
+      "description": "Spravujte své plány předobjednávek a jejich nastavení.",
+      "refresh": "Obnovit"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Vypadá to, že nemáte žádné plány předobjednávek. Pro vytvoření plánu klikněte na tlačítko níže.",
+      "create": "Vytvořit nový plán předobjednávky"
+    }
+  },
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Odeslání očekáváno dne nebo po {{date}}",
+    "description_for_plan_with_unit_restriction": "Odeslání očekáváno dne nebo po {{date}}, {{units}} jednotek na zákazníka"
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Vytvořit plán předobjednávky",
+    "description": "Tento formulář můžete použít k vytvoření nového plánu pro konkrétní produkt nebo výběr produktů.",
+    "create": "Vytvořit",
+    "cancel": "Zrušit"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Upravit plán předobjednávky",
+    "description": "Tento formulář můžete použít k úpravě existujícího plánu pro konkrétní produkt nebo výběr produktů.",
+    "edit": "Upravit",
+    "cancel": "Zrušit"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Smazat plán předobjednávky",
+    "description": {
+      "applied_to_products": "Opravdu chcete smazat plán předobjednávky pro následující produkty:",
+      "applied_to_all_products": "Opravdu chcete smazat tento plán předobjednávky?"
+    },
+    "warning": "Tuto akci nelze vrátit zpět.",
+    "delete": "Smazat",
+    "cancel": "Zrušit"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Datum vydání",
+    "enable_unit_restriction": "Povolit omezení jednotek",
+    "units_per_customer": "Jednotek na zákazníka",
+    "select_products": "Váš plán předobjednávky bude platit pro následující produkty:",
+    "no_selected_products": "Nebyly vybrány žádné produkty, klikněte na tlačítko pro přidání produktů.",
+    "add_products": "Přidat produkty",
+    "add_or_remove_products": "Přidat nebo odebrat produkty",
+    "notice_selling_plan_requirement": "Každý produkt přidaný do plánu bude automaticky vyžadovat plán. To odstraní produkt z prodejních kanálů, které nepodporují předobjednávky Shopify, a zabrání jeho prodeji tam. Zrušení zaškrtnutí možnosti 'Prodávat tento produkt pouze jako předplatné' na stránkách správy produktů tuto podmínku odstraní, což nedoporučujeme, protože to může vést ke zpracování vašich předobjednávek jako běžných objednávek."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Ovládejte své produktové launche",
+      "description": "Dropdeck je chytřejší způsob, jak spravovat předobjednávky na Shopify. Nastavte limity, kontrolujte okna plnění a budujte očekávání—bez starostí. Navrženo pro obchodníky, kteří chtějí flexibilitu, přehled a nástroje zaměřené na konverze, které prostě fungují.",
+      "primary_action": "Rychlý průvodce",
+      "secondary_action": "Vytvořit předobjednávku"
+    }
+  },
+  "plans": {
+    "title": "Plány předobjednávek"
+  },
+  "orders": {
+    "title": "Vaše předobjednávky",
+    "bar": {
+      "title": "Nadcházející předobjednávky",
+      "refresh": "Obnovit"
+    },
+    "settings": {
+      "title": "Nastavení",
+      "filters": {
+        "preorder_products": {
+          "title": "Filtrovat podle produktu předobjednávky",
+          "options": {
+            "all_products": "Všechny produkty"
+          }
+        },
+        "hide_cancelled_orders": "Skrýt zrušené objednávky",
+        "hide_fulfilled_orders": "Skrýt vyřízené objednávky",
+        "show_row_colors": "Zobrazit barvy řádků"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Objednávka",
+        "line_items": "Položky",
+        "payment_status": "Stav platby",
+        "fulfillment_status": "Stav vyřízení"
+      },
+      "resource_name": {
+        "singular": "objednávka",
+        "plural": "objednávky"
+      },
+      "row": {
+        "select_all": "Vybrat všechny objednávky s datem vydání {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Objednávka",
+          "line_items": "Položky",
+          "payment_status": "Stav platby",
+          "fulfillment_status": "Stav vyřízení"
+        },
+        "title": "Seznam vychystávání předobjednávek",
+        "generated_on": "Vygenerováno dne: {{date}}",
+        "file_name": "seznam-vychystavani-predobjednavek",
+        "button_text": "Exportovat seznam vychystávání"
+      }
+    }
+  },
+  "guide": {
+    "title": "Rychlý průvodce",
+    "card": {
+      "title": "🚀 Rychlý průvodce pro Dropdeck",
+      "description": "Dropdeck vám pomůže nastavit silné zážitky s předobjednávkami v Shopify s flexibilní kontrolou dostupnosti a nákupních limitů.",
+      "return_to_contents": "Zpět na obsah",
+      "pages": {
+        "contents": {
+          "title": "Obsah",
+          "description": "Tento průvodce vás provede procesem nastavení Dropdecku ve vašem obchodě Shopify. Pokryje základy vytvoření plánu předobjednávky a poté jak nastavit téma pro použití Dropdecku.",
+          "items": {
+            "1": "Vytvoření plánu předobjednávky",
+            "2": "Nastavení tématu pro použití Dropdecku",
+            "3": "Instalace kódových snippetů pro pokročilé nastavení",
+            "4": "Přidání rozšíření omezení jednotek v pokladně (pouze Plus)",
+            "5": "Často kladené dotazy"
+          }
+        },
+        "1": {
+          "title": "Krok 1: Vytvoření plánu předobjednávky",
+          "description": "Co je to plán prodeje? Plán prodeje je způsob Shopify, jak naplánovat produkty k vyřízení v pozdějším termínu, takže pro vytvoření předobjednávky musíte vytvořit plán předobjednávky. S Dropdeckem to můžete udělat dvěma způsoby:",
+          "steps": {
+            "1": "Vytvořte nebo přidejte existující plán předobjednávky na stránce správy produktu pod 'Možnosti nákupu', což přiřadí tento produkt pouze k plánu.",
+            "2": "Vytvořte plán předobjednávky pro výběr produktů nebo i jen jeden produkt na stránce plánů předobjednávek v Dropdecku."
+          },
+          "conclusion": "V obou případech stačí zadat 'Datum vydání' pro váš předobjednávkový produkt a volitelně počet jednotek pro omezení zákazníka."
+        },
+        "2": {
+          "title": "Krok 2: Nastavení tématu pro použití Dropdecku",
+          "description": "Existují dva způsoby, jak využít Dropdeck ve vašem tématu, oba vyžadují, abyste přešli do přizpůsobovače tématu a povolili 'app embed' Dropdecku. App embed povolíte v levém panelu přizpůsobovače. Nabídne vám dvě možnosti pod 'Volba nastavení':",
+          "choices": {
+            "1": {
+              "title": "Jednoduché nastavení (doporučeno):",
+              "description": "Toto je nejjednodušší způsob nastavení Dropdecku, jakmile nastavíte 'Volbu nastavení' na 'Jednoduché nastavení', nemusíte dělat nic dalšího. Prodejní plán bude automaticky vložen do jakéhokoli nákupního formuláře na vašem webu. Nevýhodou je, že to může narušit některé funkce vašeho tématu, pokud bylo hodně upravováno, nebo pokud to není téma vyvinuté Shopify. Krok 3 můžete přeskočit, protože se týká pouze pokročilého nastavení."
+            },
+            "2": {
+              "title": "Pokročilé nastavení:",
+              "description": "Tento krok vyžaduje technické znalosti kódu vašeho tématu, je nejlepší jej přenechat vývojáři. Jakmile nastavíte 'Volbu nastavení' na 'Pokročilé nastavení', budete muset přidat následující kódové snippety do kódu vašeho tématu. To vám umožní ovládat umístění plánu předobjednávky na vašem webu a také přidat další funkce. Pokračujte na krok 3 pro více informací o tom, jak přidat snippety do kódu vašeho tématu."
+            }
+          }
+        },
+        "3": {
+          "title": "Krok 3: Instalace kódových snippetů pro pokročilé nastavení",
+          "description": "Tuto práci je nejlepší přenechat vývojáři, který zná infrastrukturu Shopify, protože pouze zkušený člověk bude schopen určit, jak každý z těchto snippetů integrovat do vašeho tématu. Začněte kliknutím na tlačítko níže pro stažení zkomprimovaných snippetů. Po stažení je třeba tyto snippety přidat do kódu vašeho tématu do složky snippets.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Tento snippet slouží k snadnému vrácení různých údajů o plánu předobjednávky."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Tento snippet by měl být zahrnut do všech formulářů s akcí '/cart/add' ve vašem tématu. Aplikuje plán předobjednávky, který jste vytvořili, na produkt."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Tento snippet slouží k zobrazení data vydání produktu s plánem předobjednávky."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Tento snippet slouží k zobrazení omezení jednotek pro produkt s plánem předobjednávky. Měl by být přidán ke všem voličům množství v tématu jako hodnota atributu max na vstupu. Pravděpodobně bude také potřeba jej integrovat s JavaScriptem vašeho tématu, aby bylo zajištěno správné aktualizování množství při změně varianty."
+            }
+          },
+          "download": "Stáhnout snippety"
+        },
+        "4": {
+          "title": "Krok 4: Přidání rozšíření omezení jednotek v pokladně (pouze Plus)",
+          "description": {
+            "1": "Pokud jste uživatelem Shopify Plus, můžete do pokladny svého obchodu přidat rozšíření omezení jednotek, abyste zajistili, že zákazníci nemohou překročit omezení nákupu u produktu s předobjednávkou. Toto omezení platí nejen pro aktuální košík, ale i pro všechny předchozí objednávky zákazníka, tato funkce kontroly předchozích objednávek je dostupná pouze pro uživatele Shopify Plus. Pokud váš obchod používá alternativní pokladnu, která přesměrovává uživatele na pokladnu třetí strany (například Paypal), budete muset tyto alternativní metody zakázat, abyste zajistili, že zákazníci nemohou překročit omezení nákupu u produktu s předobjednávkou.",
+            "2": "Chcete-li přidat rozšíření, přejděte do administrace a navštivte: Nastavení > Pokladna. Zde uvidíte své 'Konfigurace', budete chtít 'Přizpůsobit' 'Aktivní' konfiguraci. V přizpůsobovači pokladny pod 'Souhrn objednávky' byste měli mít možnost 'Přidat blok aplikace'. Zde můžete přidat blok aplikace 'Omezení jednotek' do pokladny. Po přidání toto rozšíření automaticky aplikuje omezení jednotek na všechny produkty s předobjednávkou, které jím projdou. Pokud uživatel překročí omezení, nebude moci dokončit objednávku a zobrazí se mu chybová zpráva o omezení."
+          }
+        },
+        "faqs": {
+          "title": "Často kladené dotazy",
+          "questions": {
+            "1": {
+              "question": "Jednoduché nastavení nefunguje s mým tématem, co mám dělat?",
+              "answer": "Pokud jednoduché nastavení nefunguje s vaším tématem nebo způsobuje problémy, budete muset použít pokročilé nastavení. Kontaktujte nás na dropdeck-preorders@proton.me a rádi vám pomůžeme s nastavením."
+            },
+            "2": {
+              "question": "Co je plán předobjednávky?",
+              "answer": "Plán předobjednávky je způsob, jak naplánovat produkt k vyřízení v budoucnu. To je užitečné pro produkty, které ještě nejsou k dispozici k prodeji, ale očekává se jejich vydání v budoucnu. Plán předobjednávky můžete vytvořit na stránce plánů předobjednávek kliknutím na tlačítko 'Vytvořit plán předobjednávky'."
+            },
+            "3": {
+              "question": "Co je omezení jednotek?",
+              "answer": "Omezení jednotek je způsob, jak omezit počet jednotek, které si zákazník může koupit u produktu s předobjednávkou. To je užitečné pro produkty, u kterých chcete zajistit spravedlivou a rovnou zkušenost s předobjednávkami pro všechny zákazníky. Pokud jste uživatelem Shopify Plus, můžete do pokladny přidat rozšíření omezení jednotek, abyste zajistili, že zákazníci nemohou překročit omezení nákupu u produktu s předobjednávkou. Toto omezení platí nejen pro aktuální košík (dostupné všem uživatelům Shopify), ale i pro všechny předchozí objednávky zákazníka, tato funkce kontroly předchozích objednávek je dostupná pouze pro uživatele Shopify Plus."
+            },
+            "4": {
+              "question": "Co se stane, když mám nastavený plán předobjednávky a odinstaluji aplikaci?",
+              "answer": "Pokud odinstalujete aplikaci, když máte aktivní plány předobjednávek, budou při odinstalaci odstraněny."
+            },
+            "5": {
+              "question": "Proč nefungují omezení jednotek při platbě přes Paypal?",
+              "answer": "Omezení jednotek jsou implementována v pokladně Shopify, jakékoli alternativní platební metody jako Paypal tuto funkci nemají k dispozici."
+            }
+          }
+        }
+      }
+    }
+  }
+}

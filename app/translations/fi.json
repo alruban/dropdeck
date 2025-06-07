@@ -1,0 +1,239 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Hallintapaneeli",
+    "guide": "Pikaopas",
+    "orders": "Tilaukset",
+    "plans": "Ennakkotilaussuunnitelmat"
+  },
+  "quick_actions": {
+    "title": "Pikatoiminnot",
+    "create_preorder_plan": "Luo uusi ennakkotilaussuunnitelma"
+  },
+  "statistics": {
+    "title": "Tilastot",
+    "active_plans": "Aktiiviset suunnitelmat",
+    "products_with_preorders": "Ennakkotilaustuotteet"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Määritetyt tuotteet",
+      "expected_fulfillment_date": "Julkaisupäivä",
+      "actions": "Toiminnot"
+    },
+    "assigned_products_title": {
+      "none": "Ei määritettyjä tuotteita",
+      "multiple": "{{count}} määritettyä tuotetta"
+    },
+    "actions": {
+      "edit": "Muokkaa",
+      "delete": "Poista"
+    },
+    "selling_plan_groups_found": {
+      "title": "Ennakkotilaussuunnitelmat",
+      "description": "Hallinnoi ennakkotilaussuunnitelmiasi ja niiden asetuksia.",
+      "refresh": "Päivitä"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Näyttää siltä, ettei sinulla ole yhtään ennakkotilaussuunnitelmaa asetettuna. Luo uusi suunnitelma alla olevasta painikkeesta.",
+      "create": "Luo uusi ennakkotilaussuunnitelma"
+    }
+  },
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Toimitus odotettavissa {{date}} jälkeen",
+    "description_for_plan_with_unit_restriction": "Toimitus odotettavissa {{date}} jälkeen, {{units}} yksikköä per asiakas"
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Luo ennakkotilaussuunnitelma",
+    "description": "Voit käyttää tätä lomaketta uuden myyntisuunnitelman luomiseen tietylle tuotteelle tai tuotevalikoimalle.",
+    "create": "Luo",
+    "cancel": "Peruuta"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Muokkaa ennakkotilaussuunnitelmaa",
+    "description": "Voit käyttää tätä lomaketta olemassa olevan myyntisuunnitelman muokkaamiseen tietylle tuotteelle tai tuotevalikoimalle.",
+    "edit": "Muokkaa",
+    "cancel": "Peruuta"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Poista ennakkotilaussuunnitelma",
+    "description": {
+      "applied_to_products": "Haluatko varmasti poistaa ennakkotilaussuunnitelman seuraavilta tuotteilta:",
+      "applied_to_all_products": "Haluatko varmasti poistaa tämän ennakkotilaussuunnitelman?"
+    },
+    "warning": "Tätä toimintoa ei voi perua.",
+    "delete": "Poista",
+    "cancel": "Peruuta"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Julkaisupäivä",
+    "enable_unit_restriction": "Ota käyttöön yksikkörajoitus",
+    "units_per_customer": "Yksikköä per asiakas",
+    "select_products": "Ennakkotilaussuunnitelmasi koskee seuraavia tuotteita:",
+    "no_selected_products": "Ei valittuja tuotteita, lisää tuotteita painikkeesta.",
+    "add_products": "Lisää tuotteita",
+    "add_or_remove_products": "Lisää tai poista tuotteita",
+    "notice_selling_plan_requirement": "Kaikki tuotteet, jotka lisätään myyntisuunnitelmaan, vaativat automaattisesti suunnitelman. Tämä poistaa tuotteen myyntikanavista, jotka eivät tue Shopifyn ennakkotilauksia, ja estää sen myynnin niissä. Jos poistat valinnan 'Myy tämä tuote vain tilauksena' tuotehallintasivuilla, tämä vaatimus poistuu, mutta emme suosittele sitä, koska ennakkotilaukset voidaan käsitellä tavallisina tilauksina."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Hallitse tuotelanseerauksiasi",
+      "description": "Dropdeck on älykkäin tapa hallita ennakkotilauksia Shopifyssa. Aseta rajoja, hallitse toimitusikkunoita ja luo odotuksia—ilman päänsärkyä. Suunniteltu kauppiaille, jotka haluavat joustavuutta, tietoa ja konversioon keskittyviä työkaluja, jotka vain toimivat.",
+      "primary_action": "Pikaopas",
+      "secondary_action": "Luo ennakkotilaus"
+    }
+  },
+  "plans": {
+    "title": "Ennakkotilaussuunnitelmat"
+  },
+  "orders": {
+    "title": "Ennakkotilauksesi",
+    "bar": {
+      "title": "Tulevat ennakkotilaukset",
+      "refresh": "Päivitä"
+    },
+    "settings": {
+      "title": "Asetukset",
+      "filters": {
+        "preorder_products": {
+          "title": "Suodata ennakkotilaustuotteen mukaan",
+          "options": {
+            "all_products": "Kaikki tuotteet"
+          }
+        },
+        "hide_cancelled_orders": "Piilota peruutetut tilaukset",
+        "hide_fulfilled_orders": "Piilota toimitetut tilaukset",
+        "show_row_colors": "Näytä rivivärit"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Tilaus",
+        "line_items": "Rivit",
+        "payment_status": "Maksun tila",
+        "fulfillment_status": "Toimituksen tila"
+      },
+      "resource_name": {
+        "singular": "tilaus",
+        "plural": "tilaukset"
+      },
+      "row": {
+        "select_all": "Valitse kaikki tilaukset, joiden julkaisupäivä on {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Tilaus",
+          "line_items": "Rivit",
+          "payment_status": "Maksun tila",
+          "fulfillment_status": "Toimituksen tila"
+        },
+        "title": "Ennakkotilausten keräyslista",
+        "generated_on": "Luotu: {{date}}",
+        "file_name": "ennakkotilausten-kerayslista",
+        "button_text": "Vie keräyslista"
+      }
+    }
+  },
+  "guide": {
+    "title": "Pikaopas",
+    "card": {
+      "title": "🚀 Dropdeck pikaopas",
+      "description": "Dropdeck auttaa sinua luomaan tehokkaita ennakkotilauskokemuksia Shopifyssa joustavalla hallinnalla saatavuudesta ja ostorajoista.",
+      "return_to_contents": "Takaisin sisältöön",
+      "pages": {
+        "contents": {
+          "title": "Sisältö",
+          "description": "Tämä opas vie sinut läpi Dropdeckin käyttöönoton Shopify-kaupassasi. Se kattaa ennakkotilaussuunnitelman luomisen perusteet ja sen jälkeen teeman asetukset Dropdeckin käyttöön.",
+          "items": {
+            "1": "Luo ennakkotilaussuunnitelma",
+            "2": "Aseta teemasi käyttämään Dropdeckiä",
+            "3": "Asenna koodinpätkät edistyneeseen asetukseen",
+            "4": "Lisää yksikkörajoituslaajennus kassalle (vain Plus)",
+            "5": "Usein kysytyt kysymykset"
+          }
+        },
+        "1": {
+          "title": "Vaihe 1: Luo ennakkotilaussuunnitelma",
+          "description": "Mikä on myyntisuunnitelma? Myyntisuunnitelma on Shopifyn tapa aikatauluttaa tuotteita toimitettavaksi myöhemmin, joten ennakkotilauksen luomiseksi sinun täytyy luoda ennakkotilaussuunnitelma. Voit tehdä tämän kahdella tavalla Dropdeckillä:",
+          "steps": {
+            "1": "Luo tai lisää olemassa oleva ennakkotilaussuunnitelma tuotteen hallintasivulla kohdassa 'Ostoasetukset', jolloin tuote liitetään vain kyseiseen suunnitelmaan.",
+            "2": "Luo ennakkotilaussuunnitelma tuotevalikoimalle tai vaikka vain yhdelle tuotteelle Dropdeckin ennakkotilaussuunnitelmat-sivulla."
+          },
+          "conclusion": "Kummassakin tapauksessa sinun tarvitsee vain antaa Dropdeckille tässä 'Julkaisupäivä' ennakkotilaustuotteellesi ja halutessasi yksikkömäärä rajoittaaksesi asiakasta."
+        },
+        "2": {
+          "title": "Vaihe 2: Aseta teemasi käyttämään Dropdeckiä",
+          "description": "Dropdeckiä voi käyttää teemassasi kahdella tavalla, molemmat vaativat menemistä teeman muokkaustyökaluun Dropdeckin 'sovelluksen upotuksen' aktivoimiseksi. Voit aktivoida sovelluksen upotukset teemassasi käymällä upotusalueilla muokkaustyökalun vasemmassa sivupalkissa. Tämä antaa sinulle kaksi vaihtoehtoa kohdassa 'Asetusvalinta':",
+          "choices": {
+            "1": {
+              "title": "Yksinkertainen asetus (suositeltu):",
+              "description": "Tämä on helpoin tapa ottaa Dropdeck käyttöön, kun 'Asetusvalinta' on asetettu 'Yksinkertainen asetus', sinun ei tarvitse tehdä muuta. Myyntisuunnitelma lisätään automaattisesti kaikkiin ostolomakkeisiin sivustollasi. Haittapuolena on, että tämä saattaa rikkoa joitain teemasi toimintoja, jos teemaa on muokattu paljon tai se ei ole Shopifyn kehittämä. Voit ohittaa vaiheen 3, koska se koskee vain edistynyttä asetusta."
+            },
+            "2": {
+              "title": "Edistynyt asetus:",
+              "description": "Tämä vaihe vaatii teknistä osaamista teemasi koodipohjasta, joten se kannattaa jättää kehittäjälle. Kun 'Asetusvalinta' on asetettu 'Edistynyt asetus', sinun täytyy lisätä seuraavat koodinpätkät teemasi koodipohjaan. Näin voit hallita ennakkotilaussuunnitelman sijaintia sivustollasi ja lisätä lisätoimintoja suunnitelmaan. Jatka vaiheeseen 3 saadaksesi lisätietoja koodinpätkien lisäämisestä teemasi koodipohjaan."
+            }
+          }
+        },
+        "3": {
+          "title": "Vaihe 3: Asenna koodinpätkät edistyneeseen asetukseen",
+          "description": "Tämä työ kannattaa jättää kehittäjälle, joka tuntee Shopifyn infrastruktuurin, sillä vain kokenut osaa päättää, miten kukin näistä pätkistä integroidaan teemaan. Aloita lataamalla pakatut koodinpätkät alla olevasta painikkeesta. Kun olet ladannut, lisää nämä pätkät teemasi koodipohjaan snippets-kansioon.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Tätä pätkää käytetään palauttamaan helposti erilaisia tietoja ennakkotilaussuunnitelmasta."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Tämä tulee sisällyttää kaikkiin lomakkeisiin, joissa on toiminto '/cart/add' teemassasi. Tämä liittää luomasi ennakkotilaussuunnitelman tuotteeseen."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Tätä pätkää käytetään näyttämään julkaisupäivä tuotteelle, jolla on ennakkotilaussuunnitelma."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Tätä pätkää käytetään näyttämään yksikkörajoitus tuotteelle, jolla on ennakkotilaussuunnitelma. Tämä tulee lisätä kaikkiin määränvalitsimiin teemassa max-attribuutin arvoksi syötteeseen. Tämä vaatii todennäköisesti myös integraation teemasi JavaScriptin kanssa, jotta määrä päivittyy oikein varianttimuutoksissa."
+            }
+          },
+          "download": "Lataa koodinpätkät"
+        },
+        "4": {
+          "title": "Vaihe 4: Lisää yksikkörajoituslaajennus kassalle (vain Plus)",
+          "description": {
+            "1": "Jos olet Shopify Plus -käyttäjä, voit lisätä yksikkörajoituslaajennuksen kauppasi kassalle varmistaaksesi, ettei asiakas voi ylittää ostorajaa ennakkotilaustuotteessa. Tämä rajoitus koskee paitsi nykyistä ostoskoria myös kaikkia aiempia tilauksia, tämä toiminto, joka tarkistaa asiakkaan aiemmat tilaukset, on saatavilla vain Shopify Plus -asiakkaille. Jos kauppasi käyttää vaihtoehtoista kassaa, joka ohjaa käyttäjän kolmannen osapuolen kassalle (kuten Paypal), sinun tulee poistaa nämä vaihtoehtoiset maksutavat käytöstä varmistaaksesi, ettei asiakas voi ylittää ostorajaa ennakkotilaustuotteessa.",
+            "2": "Lisätäksesi laajennuksen, siirry hallintapaneeliin ja käy: Asetukset > Kassa. Täällä näet 'Asetukset', haluat 'Mukauttaa' aktiivista asetusta. Kassan muokkaustyökalussa, kohdassa 'Tilausyhteenveto', pitäisi olla mahdollisuus 'Lisää sovelluslohko'. Täällä voit lisätä 'Yksikkörajoitus' -sovelluslohkon kassalle. Kun se on lisätty, laajennus ottaa automaattisesti käyttöön yksikkörajoitukset kaikille ennakkotilaustuotteille, joilla niitä on ja jotka menevät kassalle. Jos käyttäjä ylittää yksikkörajoituksen, hän ei voi suorittaa tilausta ja saa virheilmoituksen rajoituksesta."
+          }
+        },
+        "faqs": {
+          "title": "Usein kysytyt kysymykset",
+          "questions": {
+            "1": {
+              "question": "Yksinkertainen asetus ei toimi teemassani, mitä teen?",
+              "answer": "Jos yksinkertainen asetus ei toimi teemassasi, se rikkoo sen tai ei toimi odotetusti, sinun tulee käyttää edistynyttä asetusta. Ota yhteyttä dropdeck-preorders@proton.me ja autamme mielellämme asetuksessa."
+            },
+            "2": {
+              "question": "Mikä on ennakkotilaussuunnitelma?",
+              "answer": "Ennakkotilaussuunnitelma on tapa aikatauluttaa tuote toimitettavaksi myöhemmin. Tämä on hyödyllistä tuotteille, joita ei vielä ole saatavilla, mutta joiden odotetaan julkaistavan tulevaisuudessa. Voit luoda ennakkotilaussuunnitelman käymällä ennakkotilaussuunnitelmat-sivulla ja klikkaamalla 'Luo ennakkotilaussuunnitelma' -painiketta."
+            },
+            "3": {
+              "question": "Mikä on yksikkörajoitus?",
+              "answer": "Yksikkörajoitus on tapa rajoittaa, kuinka monta yksikköä asiakas voi ostaa ennakkotilaustuotteesta. Tämä on hyödyllistä ennakkotilaustuotteille, joissa haluat tarjota reilun ennakkotilauskokemuksen kaikille asiakkaille. Jos olet Shopify Plus -käyttäjä, voit lisätä yksikkörajoituslaajennuksen kassalle varmistaaksesi, ettei asiakas voi ylittää ostorajaa ennakkotilaustuotteessa. Tämä rajoitus koskee paitsi nykyistä ostoskoria, joka on saatavilla kaikille Shopify-käyttäjille, myös kaikkia aiempia tilauksia, tämä toiminto, joka tarkistaa asiakkaan aiemmat tilaukset, on saatavilla vain Shopify Plus -asiakkaille."
+            },
+            "4": {
+              "question": "Mitä tapahtuu, jos minulla on ennakkotilaussuunnitelma asetettuna ja poistan sovelluksen?",
+              "answer": "Jos poistat sovelluksen, kun sinulla on aktiivisia ennakkotilaussuunnitelmia, ne poistetaan sovelluksen poiston yhteydessä."
+            },
+            "5": {
+              "question": "Miksi yksikkörajoitukset eivät toimi, kun maksan Paypalilla?",
+              "answer": "Yksikkörajoitukset on toteutettu Shopifyn kassalla, vaihtoehtoiset maksutavat kuten Paypal eivät tue tätä toimintoa."
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "guide": "Hurtig startguide",
+    "orders": "Ordrer",
+    "plans": "Forsalgssalgplaner"
+  },
+  "quick_actions": {
+    "title": "Hurtige handlinger",
+    "create_preorder_plan": "Opret ny forsalgsplan"
+  },
+  "statistics": {
+    "title": "Statistikker",
+    "active_plans": "Aktive planer",
+    "products_with_preorders": "Forsalgsprodukter"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Tildelte produkter",
+      "expected_fulfillment_date": "Udgivelsesdato",
+      "actions": "Handlinger"
+    },
+    "assigned_products_title": {
+      "none": "Ingen produkter tildelt",
+      "multiple": "{{count}} produkter tildelt"
+    },
+    "actions": {
+      "edit": "Rediger",
+      "delete": "Slet"
+    },
+    "selling_plan_groups_found": {
+      "title": "Forsalgssalgplaner",
+      "description": "Administrer dine forsalgsplaner og deres konfigurationer.",
+      "refresh": "Opdater"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Det ser ud til, at du ikke har nogen forsalgsplaner konfigureret. For at konfigurere en forsalgsplan, klik på knappen nedenfor.",
+      "create": "Opret ny forsalgsplan"
+    }
+  },
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Forventes afsendt på eller efter {{date}}",
+    "description_for_plan_with_unit_restriction": "Forventes afsendt på eller efter {{date}}, {{units}} enheder per kunde"
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Opret forsalgsplan",
+    "description": "Du kan bruge dette skema til at oprette en ny salgsplan for et specifikt produkt eller endda et udvalg af produkter.",
+    "create": "Opret",
+    "cancel": "Annuller"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Rediger forsalgsplan",
+    "description": "Du kan bruge dette skema til at redigere en eksisterende salgsplan for et specifikt produkt eller endda et udvalg af produkter.",
+    "edit": "Rediger",
+    "cancel": "Annuller"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Slet forsalgsplan",
+    "description": {
+      "applied_to_products": "Er du sikker på, at du vil slette forsalgsplanen for følgende produkter:",
+      "applied_to_all_products": "Er du sikker på, at du vil slette denne forsalgsplan?"
+    },
+    "warning": "Denne handling kan ikke fortrydes.",
+    "delete": "Slet",
+    "cancel": "Annuller"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Udgivelsesdato",
+    "enable_unit_restriction": "Aktiver enhedsbegrænsning",
+    "units_per_customer": "Enheder per kunde",
+    "select_products": "Din forsalgsplan vil gælde for følgende produkter:",
+    "no_selected_products": "Ingen produkter valgt, klik på knappen for at tilføje produkter.",
+    "add_products": "Tilføj produkter",
+    "add_or_remove_products": "Tilføj eller fjern produkter",
+    "notice_selling_plan_requirement": "Ethvert produkt tilføjet til en salgsplan vil automatisk kræve en. Dette fjerner produktet fra salgskanaler, der ikke understøtter Shopify forsalgsordrer, og forhindrer det i at blive solgt der. Hvis du fjerner markeringen af 'Sælg kun dette produkt som et abonnement' på produktadministrationssiderne, fjernes dette krav, hvilket vi fraråder, da det kan føre til, at dine forsalgsordrer kommer ind som standardordrer."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Tag kontrol over dine produktlanceringer",
+      "description": "Dropdeck er den smartere måde at administrere forsalgsordrer på Shopify. Sæt grænser, kontroller opfyldelsesvinduer, og byg hype—uden hovedpinen. Designet til handlende, der ønsker fleksibilitet, indsigt og konverteringsfokuserede værktøjer, der bare virker.",
+      "primary_action": "Hurtig startguide",
+      "secondary_action": "Opret en forsalgsordre"
+    }
+  },
+  "plans": {
+    "title": "Forsalgssalgplaner"
+  },
+  "orders": {
+    "title": "Dine forsalgsordrer",
+    "bar": {
+      "title": "Kommende forsalgsordrer",
+      "refresh": "Opdater"
+    },
+    "settings": {
+      "title": "Indstillinger",
+      "filters": {
+        "preorder_products": {
+          "title": "Filtrer efter forsalgsprodukt",
+          "options": {
+            "all_products": "Alle produkter"
+          }
+        },
+        "hide_cancelled_orders": "Skjul annullerede ordrer",
+        "hide_fulfilled_orders": "Skjul opfyldte ordrer",
+        "show_row_colors": "Vis rækkefarver"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Ordre",
+        "line_items": "Linjepunkter",
+        "payment_status": "Betalingsstatus",
+        "fulfillment_status": "Opfyldelsesstatus"
+      },
+      "resource_name": {
+        "singular": "ordre",
+        "plural": "ordrer"
+      },
+      "row": {
+        "select_all": "Vælg alle ordrer med udgivelsesdato {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Ordre",
+          "line_items": "Linjepunkter",
+          "payment_status": "Betalingsstatus",
+          "fulfillment_status": "Opfyldelsesstatus"
+        },
+        "title": "Forsalgsplukliste",
+        "generated_on": "Genereret den: {{date}}",
+        "file_name": "forsalgsplukliste",
+        "button_text": "Eksporter plukliste"
+      }
+    }
+  },
+  "guide": {
+    "title": "Hurtig startguide",
+    "card": {
+      "title": "🚀 Hurtig startguide for Dropdeck",
+      "description": "Dropdeck hjælper dig med at opsætte kraftfulde forsalgsoplevelser i Shopify med fleksibel kontrol over tilgængelighed og købsgrænser.",
+      "return_to_contents": "Tilbage til indhold",
+      "pages": {
+        "contents": {
+          "title": "Indhold",
+          "description": "Denne guide vil guide dig gennem processen med at opsætte Dropdeck i din Shopify-butik. Den vil dække grundlæggende oprettelse af en forsalgsplan, og derefter hvordan du opsætter dit tema til at bruge Dropdeck.",
+          "items": {
+            "1": "Opret en forsalgsplan",
+            "2": "Opsætning af dit tema til at bruge Dropdeck",
+            "3": "Installation af kodeudklip til den avancerede opsætning",
+            "4": "Tilføjelse af enhedsbegrænsningsudvidelsen i kassen (kun Plus)",
+            "5": "Ofte stillede spørgsmål"
+          }
+        },
+        "1": {
+          "title": "Trin 1: Opret en forsalgsplan",
+          "description": "Hvad er en salgsplan? En salgsplan er Shopify's måde at planlægge produkter, så de kan opfyldes på et senere tidspunkt, så for at oprette en forsalgsordre skal du oprette en forsalgsplan. Du kan gøre dette på to måder med Dropdeck:",
+          "steps": {
+            "1": "Opret eller tilføj en eksisterende forsalgsplan på produktadministrationssiden under 'Købsmuligheder', som vil tildele det produkt alene til planen.",
+            "2": "Opret en forsalgsplan for et udvalg af produkter eller endda bare et produkt på Dropdeck's forsalgsplansside."
+          },
+          "conclusion": "Uanset hvad, er alt hvad du skal angive til Dropdeck her 'Udgivelsesdatoen' for dit forsalgsprodukt, og valgfrit antal enheder for at begrænse en kunde."
+        },
+        "2": {
+          "title": "Trin 2: Opsætning af dit tema til at bruge Dropdeck",
+          "description": "Der er to måder at bruge Dropdeck i dit tema, begge kræver, at du går ind i dit temas tilpasser for at aktivere Dropdeck's 'app-embed'. Du kan aktivere app-embeds til dit tema ved at besøge app-embeds-områderne i venstre sidepanel i tilpasseren. Dette vil tilbyde dig to muligheder under 'Opsætningsvalg':",
+          "choices": {
+            "1": {
+              "title": "Simpel opsætning (anbefalet):",
+              "description": "Dette er den nemmeste måde at opsætte Dropdeck, når 'Opsætningsvalg' er sat til 'Simpel opsætning', er der intet andet du skal gøre. Salgsplanen vil automatisk blive injiceret i enhver købsformular på dit site. Ulempen er, at der er en chance for, at dette vil bryde nogle funktioner på dit tema, hvis dit tema har gennemgået mange tilpasninger, eller hvis det er et tema, der ikke er udviklet af Shopify. Du kan springe trin 3 over, da det kun relaterer til den avancerede opsætning."
+            },
+            "2": {
+              "title": "Avanceret opsætning:",
+              "description": "Dette trin kræver teknisk viden om dit temas kodebase, det er bedst at overlade dette til en udvikler. Når 'Opsætningsvalg' er sat til 'Avanceret opsætning', skal du tilføje følgende kodeudklip i dit temas kodebase. Dette vil give dig mulighed for at kontrollere placeringen af forsalgsplanen på dit site og også tillade dig at tilføje yderligere funktionalitet til forsalgsplanen. Fortsæt til trin 3 for mere information om, hvordan du tilføjer kodeudklip i dit temas kodebase."
+            }
+          }
+        },
+        "3": {
+          "title": "Trin 3: Installation af kodeudklip til den avancerede opsætning",
+          "description": "Det er bedst at overlade dette arbejde til en udvikler, der er bekendt med Shopify's infrastruktur, da kun nogen med erfaring vil kunne fastslå, hvordan hvert af disse udklip skal integreres i dit tema. Start med at klikke på knappen nedenfor for at downloade de zippede kodeudklip. Når de er downloadet, skal disse udklip tilføjes i dit temas kodebase i snippets-mappen.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Dette udklip bruges til nemt at returnere forskellige data om forsalgsplanen."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Dette skal inkluderes i alle formularer med handlingen '/cart/add' i dit tema. Dette anvender forsalgsplanen, du oprettede, på produktet."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Dette udklip bruges til at vise udgivelsesdatoen for et produkt med en forsalgsplan."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Dette udklip bruges til at vise enhedsbegrænsningen for et produkt med en forsalgsplan. Dette skal tilføjes til alle mængdevælgere på temaet som værdien af max-attributten på input. Dette vil sandsynligvis også kræve integration med dit temas javascript for at sikre, at mængden opdateres korrekt ved variantændringer."
+            }
+          },
+          "download": "Download udklip"
+        },
+        "4": {
+          "title": "Trin 4: Tilføjelse af enhedsbegrænsningsudvidelsen i kassen (kun Plus)",
+          "description": {
+            "1": "Hvis du er en Shopify Plus-bruger, kan du tilføje enhedsbegrænsningsudvidelsen i kassen til din butiks kasse for at sikre, at kunder ikke kan overskride en købsbegrænsning på et forsalgsprodukt. Dette anvender enhedsbegrænsningen ikke kun på deres nuværende indkøbskurv, men på tværs af alle deres tidligere ordrer, denne funktionalitet, der tjekker en kundes tidligere ordrer, er kun tilgængelig for Shopify Plus-kunder. Hvis din butik bruger alternativ kasse, der dirigerer brugeren til en tredjepartskasse (som Paypal), skal du deaktivere disse alternative kassemetoder for at sikre, at kunder ikke kan overskride en købsbegrænsning på et forsalgsprodukt.",
+            "2": "For at tilføje udvidelsen, gå til din admin-dashboard og besøg: Indstillinger > Kasse. Her vil du se dine 'Konfigurationer', du vil ønske at 'Tilpasse' den 'Aktive' konfiguration. I tilpasseren for din kasse, under 'Ordresammendrag', bør du have muligheden for at 'Tilføj app-blok'. Her kan du tilføje 'Enhedsbegrænsning'-app-blokken til din kasse. Når den er tilføjet, vil denne udvidelse automatisk anvende enhedsbegrænsninger på alle forsalgsprodukter, der har dem, og der passerer gennem kassen. Hvis en bruger overskrider enhedsbegrænsningen, vil de ikke kunne tjekke ud og vil blive vist en fejlmeddelelse, der informerer dem om begrænsningen."
+          }
+        },
+        "faqs": {
+          "title": "Ofte stillede spørgsmål",
+          "questions": {
+            "1": {
+              "question": "Den simple opsætning virker ikke for mit tema, hvad skal jeg gøre?",
+              "answer": "Hvis den simple opsætning ikke virker med dit tema, så det bryder det eller ikke fungerer som forventet, skal du bruge den avancerede opsætning. Kontakt os på dropdeck-preorders@proton.me, og vi vil med glæde hjælpe dig med at opsætte det."
+            },
+            "2": {
+              "question": "Hvad er en forsalgsplan?",
+              "answer": "En forsalgsplan er en måde at planlægge et produkt til at blive opfyldt på et senere tidspunkt. Dette er nyttigt for produkter, der endnu ikke er tilgængelige til salg, men forventes at blive udgivet i fremtiden. Du kan oprette en forsalgsplan ved at besøge forsalgsplanssiden og klikke på 'Opret forsalgsplan'-knappen."
+            },
+            "3": {
+              "question": "Hvad er en enhedsbegrænsning?",
+              "answer": "En enhedsbegrænsning er en måde at begrænse antallet af enheder, en kunde kan købe af et forsalgsprodukt. Dette er nyttigt for forsalgsprodukter, hvor du ønsker at faciliterer en retfærdig og ligelig forsalgsoplevelse for alle kunder. Hvis du er en Shopify Plus-bruger, kan du tilføje enhedsbegrænsningsudvidelsen i kassen til din butiks kasse for at sikre, at kunder ikke kan overskride en købsbegrænsning på et forsalgsprodukt. Dette anvender enhedsbegrænsningen ikke kun på deres nuværende indkøbskurv, som er tilgængelig for alle Shopify-brugere, men på tværs af alle deres tidligere ordrer, denne funktionalitet, der tjekker en kundes tidligere ordrer, er kun tilgængelig for Shopify Plus-kunder."
+            },
+            "4": {
+              "question": "Hvad sker der, hvis jeg har en forsalgsplan opsat, og jeg afinstallerer appen?",
+              "answer": "Hvis du afinstallerer appen, mens du har aktive forsalgsplaner, vil de blive fjernet ved afinstallation."
+            },
+            "5": {
+              "question": "Hvorfor virker enhedsbegrænsninger ikke, når jeg tjekker ud med Paypal?",
+              "answer": "Enhedsbegrænsninger er implementeret i Shopify-kassen, enhver alternativ kassemetode som Paypal vil ikke have adgang til denne funktionalitet."
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "儀表板",
+    "guide": "快速入門指南",
+    "orders": "訂單",
+    "plans": "預售計劃"
+  },
+  "quick_actions": {
+    "title": "快速操作",
+    "create_preorder_plan": "創建新預售計劃"
+  },
+  "statistics": {
+    "title": "統計",
+    "active_plans": "活躍計劃",
+    "products_with_preorders": "預售產品"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "已分配產品",
+      "expected_fulfillment_date": "預計發貨日期",
+      "actions": "操作"
+    },
+    "assigned_products_title": {
+      "none": "未分配產品",
+      "multiple": "已分配 {{count}} 個產品"
+    },
+    "actions": {
+      "edit": "編輯",
+      "delete": "刪除"
+    },
+    "selling_plan_groups_found": {
+      "title": "預售計劃",
+      "description": "管理您的預售計劃和設置",
+      "refresh": "刷新"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "看起來您還沒有設置預售計劃。要設置預售計劃，請點擊下面的按鈕",
+      "create": "創建新預售計劃"
+    }
+  },
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "預計在 {{date}} 或之後發貨",
+    "description_for_plan_with_unit_restriction": "預計在 {{date}} 或之後發貨，每位客戶 {{units}} 件"
+  },
+  "create_selling_plan_group_modal": {
+    "title": "創建預售計劃",
+    "description": "您可以使用此表單為特定產品或甚至產品集合創建新的銷售計劃",
+    "create": "創建",
+    "cancel": "取消"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "編輯預售計劃",
+    "description": "您可以使用此表單編輯特定產品或甚至產品集合的現有銷售計劃",
+    "edit": "編輯",
+    "cancel": "取消"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "刪除預售計劃",
+    "description": {
+      "applied_to_products": "您確定要刪除以下產品的預售計劃嗎：",
+      "applied_to_all_products": "您確定要刪除此預售計劃嗎？"
+    },
+    "warning": "此操作無法撤消",
+    "delete": "刪除",
+    "cancel": "取消"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "預計發貨日期",
+    "enable_unit_restriction": "啟用單位限制",
+    "units_per_customer": "每位客戶單位數",
+    "select_products": "您的預售計劃將應用於以下產品：",
+    "no_selected_products": "尚未選擇產品。點擊按鈕添加產品",
+    "add_products": "添加產品",
+    "add_or_remove_products": "添加或刪除產品",
+    "notice_selling_plan_requirement": "添加到銷售計劃的任何產品都必須自動使用該銷售計劃。這將從 Shopify 不支持預售的銷售渠道中移除產品，並防止在這些渠道中銷售。在產品管理頁面中取消選中"僅作為訂閱銷售此產品"選項將移除此要求，但我們不建議這樣做，因為這可能導致您的預售作為普通訂單進入"
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "控制您的產品發布",
+      "description": "Dropdeck 是在 Shopify 中管理預售的最智能方式。設置限制，控制發貨窗口，並創造興奮感 - 無需頭痛。專為需要靈活性、洞察力和真正可用的轉化工具零售商設計",
+      "primary_action": "快速入門指南",
+      "secondary_action": "創建預售"
+    }
+  },
+  "plans": {
+    "title": "預售計劃"
+  },
+  "orders": {
+    "title": "您的預售",
+    "bar": {
+      "title": "即將到來的預售",
+      "refresh": "刷新"
+    },
+    "settings": {
+      "title": "設置",
+      "filters": {
+        "preorder_products": {
+          "title": "按預售產品篩選",
+          "options": {
+            "all_products": "所有產品"
+          }
+        },
+        "hide_cancelled_orders": "隱藏已取消訂單",
+        "hide_fulfilled_orders": "隱藏已發貨訂單",
+        "show_row_colors": "顯示行顏色"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "訂單",
+        "line_items": "商品",
+        "payment_status": "支付狀態",
+        "fulfillment_status": "發貨狀態"
+      },
+      "resource_name": {
+        "singular": "訂單",
+        "plural": "訂單"
+      },
+      "row": {
+        "select_all": "選擇所有發貨日期為 {{date}} 的訂單"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "訂單",
+          "line_items": "商品",
+          "payment_status": "支付狀態",
+          "fulfillment_status": "發貨狀態"
+        },
+        "title": "預售準備清單",
+        "generated_on": "生成於：{{date}}",
+        "file_name": "預售準備清單",
+        "button_text": "導出準備清單"
+      }
+    }
+  },
+  "guide": {
+    "title": "快速入門指南",
+    "card": {
+      "title": "🚀 Dropdeck 快速入門指南",
+      "description": "Dropdeck 幫助您在 Shopify 中建立強大的預售體驗，具有靈活的可獲得性和購買限制控制",
+      "return_to_contents": "返回目錄",
+      "pages": {
+        "contents": {
+          "title": "目錄",
+          "description": "本指南將引導您完成在 Shopify 商店中設置 Dropdeck 的過程。它將涵蓋創建預售計劃的基礎知識，然後是如何設置您的主題以使用 Dropdeck",
+          "items": {
+            "1": "創建預售計劃",
+            "2": "設置您的主題以使用 Dropdeck",
+            "3": "安裝高級設置的代碼片段",
+            "4": "添加單位限制支付擴展（僅限 Plus）",
+            "5": "常見問題"
+          }
+        },
+        "1": {
+          "title": "步驟 1：創建預售計劃",
+          "description": "什麼是銷售計劃？銷售計劃是 Shopify 為延遲發貨日期規劃產品的方式。因此，要創建預售，您需要創建預售計劃。您可以通过 Dropdeck 以兩種方式執行此操作：",
+          "steps": {
+            "1": "在產品管理頁面的"購買選項"下創建或添加現有預售計劃，這將僅將該產品分配給計劃",
+            "2": "在 Dropdeck 的預售計劃頁面中為產品集合或甚至單個產品創建預售計劃"
+          },
+          "conclusion": "在這兩種情況下，您只需在此處為您的預售產品提供 Dropdeck 的"預計發貨日期"和客戶限制的單位數量（如果需要）"
+        },
+        "2": {
+          "title": "步驟 2：設置您的主題以使用 Dropdeck",
+          "description": "在您的主題中使用 Dropdeck 有兩種方法。兩種方法都需要您進入主題編輯器以啟用 Dropdeck 的"應用設置"。您可以通過轉到編輯器左側工具欄中的應用設置區域來為主題啟用應用設置。這將在"設置選項"下提供兩個選項：",
+          "choices": {
+            "1": {
+              "title": "簡單設置（推薦）：",
+              "description": "這是設置 Dropdeck 的最簡單方法。當"設置選項"設置為"簡單設置"時，您無需執行任何其他操作。銷售計劃將自動注入到您網站上的任何購買表單中。請注意，如果您的主題高度定制，或者如果它不是由 Shopify 開發的主題，這可能會破壞您主題的某些功能。您可以跳過步驟 3，因為它僅適用於高級設置"
+            },
+            "2": {
+              "title": "高級設置：",
+              "description": "此步驟需要有關主題代碼庫的技術知識。應留給開發人員。當"設置選項"設置為"高級設置"時，您需要將以下代碼片段添加到主題代碼庫中。這將使您能夠控制預售計劃在您網站上的位置，並允許您為預售計劃添加特殊功能。有關如何將代碼片段添加到主題代碼庫的更多信息，請轉到步驟 3"
+            }
+          }
+        },
+        "3": {
+          "title": "步驟 3：安裝高級設置的代碼片段",
+          "description": "這項工作應留給熟悉 Shopify 基礎設施的開發人員，因為只有有經驗的人才能確定如何將每個代碼片段集成到您的主題中。首先點擊下面的按鈕下載壓縮的代碼片段。下載後，這些片段需要添加到主題代碼庫的片段文件夾中",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "此片段用於返回有關預售計劃的各種信息"
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "這應該包含在主題中具有 '/cart/add' 操作的所有表單中。這使用您為產品創建的預售計劃"
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "此片段用於顯示具有預售計劃的產品的發貨日期"
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "此片段用於顯示具有預售計劃的產品的單位限制。這應該添加到主題中所有數量選項中作為 input 的 max 屬性的值。這可能需要與主題的 javascript 集成，以確保在變量更改時正確更新數量"
+            }
+          },
+          "download": "下載片段"
+        },
+        "4": {
+          "title": "步驟 4：添加單位限制支付擴展（僅限 Plus）",
+          "description": {
+            "1": "如果您是 Shopify Plus 用戶，您可以在商店的支付中添加單位限制支付擴展，以確保客戶不能超過預售產品的購買限制。這不僅適用於他們當前的購物車，還適用於他們之前的所有訂單。檢查客戶之前訂單的此功能僅適用於 Shopify Plus 用戶。如果您的商店使用將用戶重定向到第三方支付（如 Paypal）的替代支付方法，您需要禁用這些替代支付方法，以確保客戶不能超過預售產品的購買限制",
+            "2": "要添加擴展，請轉到您的控制面板並轉到：設置 > 支付。在這裡您將看到您的"設置"。您將在支付編輯器中"自定義"您的"實時"設置。在"訂單摘要"下，您應該有"添加應用塊"的選項。在這裡，您可以在支付中添加"單位限制"應用塊。添加後，此擴展將自動將單位限制應用於所有進行支付和支付的預售產品。如果用戶超過單位限制，他們將無法繼續支付，並會看到通知他們限制的錯誤消息"
+          }
+        },
+        "faqs": {
+          "title": "常見問題",
+          "questions": {
+            "1": {
+              "question": "簡單設置對我的主題不起作用，我該怎麼辦？",
+              "answer": "如果簡單設置對您的主題不起作用，即它破壞或不能按預期工作，您將需要使用高級設置。通過 dropdeck-preorders@proton.me 聯繫我們，我們很樂意幫助您設置"
+            },
+            "2": {
+              "question": "什麼是預售計劃？",
+              "answer": "預售計劃是為延遲發貨日期規劃產品的一種方式。這對於尚未準備好銷售但預計在未來發布的產品很有用。您可以通過轉到預售計劃頁面並點擊"創建預售計劃"按鈕來創建預售計劃"
+            },
+            "3": {
+              "question": "什麼是單位限制？",
+              "answer": "單位限制是限制客戶可以購買預售產品單位數量的一種方式。這對於您希望為所有客戶提供公平和公正的預售體驗的預售產品很有用。如果您是 Shopify Plus 用戶，您可以在商店的支付中添加單位限制支付擴展，以確保客戶不能超過預售產品的購買限制。這不僅適用於他們當前的購物車，還適用於他們之前的所有訂單。檢查客戶之前訂單的此功能僅適用於 Shopify Plus 用戶"
+            },
+            "4": {
+              "question": "如果我有活躍的預售計劃並卸載應用程序會發生什麼？",
+              "answer": "如果您在有活躍的預售計劃時卸載應用程序，它們將在卸載時被刪除"
+            },
+            "5": {
+              "question": "為什麼單位限制在使用 Paypal 支付時不起作用？",
+              "answer": "單位限制在 Shopify 支付中實現。任何替代支付方法（如 Paypal）都無法訪問此功能"
+            }
+          }
+        }
+      }
+    }
+  }
+}

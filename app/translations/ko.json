@@ -1,0 +1,237 @@
+{
+  "app": { "title": "Dropdeck" },
+  "navigation": {
+    "dashboard": "대시보드",
+    "guide": "빠른 시작 가이드",
+    "orders": "주문",
+    "plans": "프리오더 플랜"
+  },
+  "quick_actions": {
+    "title": "빠른 작업",
+    "create_preorder_plan": "새 프리오더 플랜 만들기"
+  },
+  "statistics": {
+    "title": "통계",
+    "active_plans": "활성 플랜",
+    "products_with_preorders": "프리오더 상품"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "할당된 상품",
+      "expected_fulfillment_date": "출시일",
+      "actions": "작업"
+    },
+    "assigned_products_title": {
+      "none": "할당된 상품 없음",
+      "multiple": "{{count}}개 상품 할당됨"
+    },
+    "actions": {
+      "edit": "수정",
+      "delete": "삭제"
+    },
+    "selling_plan_groups_found": {
+      "title": "프리오더 플랜",
+      "description": "프리오더 플랜과 설정을 관리하세요.",
+      "refresh": "새로고침"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "아직 프리오더 플랜이 없습니다. 아래 버튼을 눌러 새로 만드세요.",
+      "create": "새 프리오더 플랜 만들기"
+    }
+  },
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "{{date}} 이후 발송 예정",
+    "description_for_plan_with_unit_restriction": "{{date}} 이후 발송 예정, 고객당 {{units}}개 제한"
+  },
+  "create_selling_plan_group_modal": {
+    "title": "프리오더 플랜 만들기",
+    "description": "이 양식을 사용해 특정 상품 또는 여러 상품에 대한 새 판매 플랜을 만드세요.",
+    "create": "만들기",
+    "cancel": "취소"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "프리오더 플랜 수정",
+    "description": "이 양식을 사용해 특정 상품 또는 여러 상품에 대한 기존 판매 플랜을 수정하세요.",
+    "edit": "수정",
+    "cancel": "취소"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "프리오더 플랜 삭제",
+    "description": {
+      "applied_to_products": "다음 상품에 대한 프리오더 플랜을 삭제하시겠습니까:",
+      "applied_to_all_products": "이 프리오더 플랜을 삭제하시겠습니까?"
+    },
+    "warning": "이 작업은 되돌릴 수 없습니다.",
+    "delete": "삭제",
+    "cancel": "취소"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "출시일",
+    "enable_unit_restriction": "수량 제한 활성화",
+    "units_per_customer": "고객당 수량",
+    "select_products": "이 프리오더 플랜은 다음 상품에 적용됩니다:",
+    "no_selected_products": "선택된 상품이 없습니다. 버튼을 눌러 상품을 추가하세요.",
+    "add_products": "상품 추가",
+    "add_or_remove_products": "상품 추가 또는 제거",
+    "notice_selling_plan_requirement": "판매 플랜에 추가된 상품은 자동으로 플랜이 필요합니다. 이로 인해 Shopify 프리오더를 지원하지 않는 판매 채널에서 상품이 제거되고, 해당 채널에서 판매가 불가합니다. 상품 관리 페이지에서 '이 상품을 구독 전용으로 판매' 옵션을 해제하면 이 요구사항이 해제되지만, 프리오더가 일반 주문으로 처리될 수 있으므로 권장하지 않습니다."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "상품 출시를 직접 관리하세요",
+      "description": "Dropdeck은 Shopify에서 프리오더를 관리하는 가장 스마트한 방법입니다. 제한을 설정하고, 출고 일정을 제어하며, 기대감을 조성하세요—걱정 없이. 유연성, 인사이트, 전환 중심 도구를 원하는 판매자를 위해 설계되었습니다.",
+      "primary_action": "빠른 시작 가이드",
+      "secondary_action": "프리오더 만들기"
+    }
+  },
+  "plans": {
+    "title": "프리오더 플랜"
+  },
+  "orders": {
+    "title": "내 프리오더",
+    "bar": {
+      "title": "예정된 프리오더",
+      "refresh": "새로고침"
+    },
+    "settings": {
+      "title": "설정",
+      "filters": {
+        "preorder_products": {
+          "title": "프리오더 상품별 필터",
+          "options": {
+            "all_products": "전체 상품"
+          }
+        },
+        "hide_cancelled_orders": "취소된 주문 숨기기",
+        "hide_fulfilled_orders": "완료된 주문 숨기기",
+        "show_row_colors": "행 색상 표시"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "주문번호",
+        "line_items": "상품",
+        "payment_status": "결제 상태",
+        "fulfillment_status": "배송 상태"
+      },
+      "resource_name": {
+        "singular": "주문",
+        "plural": "주문"
+      },
+      "row": {
+        "select_all": "출시일이 {{date}}인 주문 전체 선택"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "주문번호",
+          "line_items": "상품",
+          "payment_status": "결제 상태",
+          "fulfillment_status": "배송 상태"
+        },
+        "title": "프리오더 피킹리스트",
+        "generated_on": "생성일: {{date}}",
+        "file_name": "preorder-picking-list",
+        "button_text": "피킹리스트 내보내기"
+      }
+    }
+  },
+  "guide": {
+    "title": "빠른 시작 가이드",
+    "card": {
+      "title": "🚀 Dropdeck 빠른 시작 가이드",
+      "description": "Dropdeck은 Shopify에서 강력한 프리오더 경험을 유연하게 설정할 수 있도록 도와줍니다.",
+      "return_to_contents": "목차로 돌아가기",
+      "pages": {
+        "contents": {
+          "title": "목차",
+          "description": "이 가이드는 Shopify 스토어에서 Dropdeck을 설정하는 과정을 안내합니다. 프리오더 플랜 생성의 기본과, 테마에서 Dropdeck을 사용하는 방법을 다룹니다.",
+          "items": {
+            "1": "프리오더 플랜 만들기",
+            "2": "테마에서 Dropdeck 사용 설정",
+            "3": "고급 설정용 코드 스니펫 설치",
+            "4": "체크아웃에 수량 제한 확장 추가(Plus 전용)",
+            "5": "자주 묻는 질문"
+          }
+        },
+        "1": {
+          "title": "1단계: 프리오더 플랜 만들기",
+          "description": "판매 플랜이란? Shopify가 상품을 나중에 출고하도록 예약하는 방법입니다. 프리오더를 만들려면 프리오더 플랜을 생성해야 합니다. Dropdeck에서는 두 가지 방법이 있습니다:",
+          "steps": {
+            "1": "상품 관리 페이지의 '구매 옵션'에서 기존 프리오더 플랜을 생성 또는 추가하여 해당 상품을 플랜에 할당합니다.",
+            "2": "Dropdeck의 프리오더 플랜 페이지에서 여러 상품 또는 단일 상품에 대해 프리오더 플랜을 생성합니다."
+          },
+          "conclusion": "어느 경우든 여기서 Dropdeck에 제공해야 하는 것은 프리오더 상품의 '출시일'과, 필요하다면 고객당 수량 제한뿐입니다."
+        },
+        "2": {
+          "title": "2단계: 테마에서 Dropdeck 사용 설정",
+          "description": "테마에서 Dropdeck을 사용하는 방법은 두 가지가 있으며, 둘 다 테마 커스터마이저에서 Dropdeck 앱 임베드를 활성화해야 합니다. 테마의 왼쪽 사이드바에서 앱 임베드 영역을 방문해 활성화할 수 있습니다. '설정 선택'에는 두 가지 옵션이 있습니다:",
+          "choices": {
+            "1": {
+              "title": "간단 설정(추천):",
+              "description": "가장 간단한 설정 방법입니다. '설정 선택'을 '간단 설정'으로 하면 추가 작업이 필요 없습니다. 판매 플랜이 자동으로 모든 구매 폼에 삽입됩니다. 단, 테마가 많이 커스터마이즈되었거나 Shopify가 개발하지 않은 테마라면 일부 기능이 깨질 수 있습니다. 3단계는 고급 설정에만 해당하므로 건너뛸 수 있습니다."
+            },
+            "2": {
+              "title": "고급 설정:",
+              "description": "이 단계는 테마 코드베이스에 대한 기술적 지식이 필요하므로 개발자에게 맡기는 것이 좋습니다. '설정 선택'을 '고급 설정'으로 하면 아래 코드 스니펫을 테마 코드베이스에 추가해야 합니다. 이를 통해 프리오더 플랜의 위치와 추가 기능을 제어할 수 있습니다. 코드 스니펫 추가 방법은 3단계에서 안내합니다."
+            }
+          }
+        },
+        "3": {
+          "title": "3단계: 고급 설정용 코드 스니펫 설치",
+          "description": "이 작업은 Shopify 인프라에 익숙한 개발자에게 맡기는 것이 좋습니다. 각 스니펫의 통합 방법을 결정할 수 있는 것은 경험자뿐입니다. 아래 버튼을 눌러 압축된 코드 스니펫을 다운로드하세요. 다운로드 후 테마의 snippets 폴더에 추가합니다.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "이 스니펫은 프리오더 플랜의 다양한 데이터를 쉽게 반환하는 데 사용됩니다."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "이 스니펫은 테마 내 '/cart/add' 액션이 있는 모든 폼에 포함되어야 합니다. 생성한 프리오더 플랜을 상품에 적용합니다."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "이 스니펫은 프리오더 플랜이 적용된 상품의 출시일을 표시하는 데 사용됩니다."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "이 스니펫은 프리오더 플랜이 적용된 상품의 수량 제한을 표시하는 데 사용됩니다. 테마의 모든 수량 선택자 input의 max 속성 값으로 추가해야 합니다. 바리에이션 변경 시 수량이 올바르게 갱신되도록 테마의 JavaScript와 연동이 필요할 수 있습니다."
+            }
+          },
+          "download": "스니펫 다운로드"
+        },
+        "4": {
+          "title": "4단계: 체크아웃에 수량 제한 확장 추가(Plus 전용)",
+          "description": {
+            "1": "Shopify Plus 사용자는 스토어 체크아웃에 수량 제한 확장을 추가해 프리오더 상품의 구매 한도를 초과하지 못하도록 할 수 있습니다. 이 기능은 현재 장바구니뿐 아니라 모든 이전 주문에도 적용됩니다. 이전 주문 확인 기능은 Shopify Plus 사용자만 이용할 수 있습니다. PayPal 등 서드파티 체크아웃을 사용하는 경우, 해당 대체 결제 방법을 비활성화해야 합니다.",
+            "2": "확장을 추가하려면 관리자에서 설정 > 체크아웃으로 이동하세요. 여기서 '설정'을 확인하고 '활성' 설정을 '사용자 지정'합니다. 체크아웃 커스터마이저의 '주문 요약' 섹션에서 '앱 블록 추가' 옵션이 표시됩니다. 여기서 '수량 제한' 앱 블록을 추가할 수 있습니다. 추가 후 이 확장은 프리오더 상품의 수량 제한을 자동으로 적용합니다. 한도를 초과하면 에러 메시지가 표시되어 결제가 불가합니다."
+          }
+        },
+        "faqs": {
+          "title": "자주 묻는 질문",
+          "questions": {
+            "1": {
+              "question": "간단 설정이 테마에서 작동하지 않아요. 어떻게 해야 하나요?",
+              "answer": "간단 설정이 테마에서 작동하지 않거나, 테마가 깨지거나, 기대한 대로 동작하지 않는 경우 고급 설정을 이용하세요. dropdeck-preorders@proton.me로 연락주시면 설정을 도와드리겠습니다."
+            },
+            "2": {
+              "question": "프리오더 플랜이란?",
+              "answer": "프리오더 플랜은 상품을 나중에 출고하도록 예약하는 방법입니다. 아직 판매되지 않은 상품이나 향후 출시 예정 상품에 유용합니다. 프리오더 플랜 페이지에서 '새 프리오더 플랜 만들기' 버튼을 눌러 생성할 수 있습니다."
+            },
+            "3": {
+              "question": "수량 제한이란?",
+              "answer": "수량 제한은 프리오더 상품을 고객당 몇 개까지 구매할 수 있는지 제한하는 기능입니다. 모든 고객에게 공정한 프리오더 경험을 제공하고 싶을 때 유용합니다. Shopify Plus 사용자는 체크아웃에 수량 제한 확장을 추가해 이전 주문까지 포함해 한도를 초과하지 못하도록 할 수 있습니다. 현재 장바구니에 대한 제한은 모든 Shopify 사용자가 이용할 수 있지만, 이전 주문 확인은 Shopify Plus 사용자만 가능합니다."
+            },
+            "4": {
+              "question": "프리오더 플랜을 설정한 채로 앱을 삭제하면 어떻게 되나요?",
+              "answer": "앱을 삭제하면 활성 프리오더 플랜은 삭제 시 함께 제거됩니다."
+            },
+            "5": {
+              "question": "PayPal로 결제하면 수량 제한이 적용되지 않는 이유는?",
+              "answer": "수량 제한은 Shopify 체크아웃에서 구현되어 있습니다. PayPal 등 대체 결제 방법에서는 이 기능을 사용할 수 없습니다."
+            }
+          }
+        }
+      }
+    }
+  }
+}

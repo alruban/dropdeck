@@ -1,0 +1,239 @@
+{
+  "app": {
+    "title": "Dropdeck"
+  },
+  "navigation": {
+    "dashboard": "Dasbor",
+    "guide": "Panduan Cepat",
+    "orders": "Pesanan",
+    "plans": "Rencana Preorder"
+  },
+  "quick_actions": {
+    "title": "Tindakan Cepat",
+    "create_preorder_plan": "Buat Rencana Preorder Baru"
+  },
+  "statistics": {
+    "title": "Statistik",
+    "active_plans": "Rencana Aktif",
+    "products_with_preorders": "Produk Preorder"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Produk yang Ditugaskan",
+      "expected_fulfillment_date": "Tanggal Rilis",
+      "actions": "Tindakan"
+    },
+    "assigned_products_title": {
+      "none": "Tidak ada produk yang ditugaskan",
+      "multiple": "{{count}} produk ditugaskan"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Hapus"
+    },
+    "selling_plan_groups_found": {
+      "title": "Rencana Preorder",
+      "description": "Kelola rencana preorder Anda dan konfigurasinya.",
+      "refresh": "Segarkan"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Sepertinya Anda belum mengonfigurasi rencana preorder. Untuk mengonfigurasi rencana preorder, klik tombol di bawah.",
+      "create": "Buat Rencana Preorder Baru"
+    }
+  },
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Diharapkan dikirim pada atau setelah {{date}}",
+    "description_for_plan_with_unit_restriction": "Diharapkan dikirim pada atau setelah {{date}}, {{units}} unit per pelanggan"
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Buat Rencana Preorder",
+    "description": "Anda dapat menggunakan formulir ini untuk membuat rencana penjualan baru untuk produk tertentu atau bahkan pilihan produk.",
+    "create": "Buat",
+    "cancel": "Batal"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Edit Rencana Preorder",
+    "description": "Anda dapat menggunakan formulir ini untuk mengedit rencana penjualan yang sudah ada untuk produk tertentu atau bahkan pilihan produk.",
+    "edit": "Edit",
+    "cancel": "Batal"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Hapus Rencana Preorder",
+    "description": {
+      "applied_to_products": "Apakah Anda yakin ingin menghapus rencana preorder untuk produk berikut:",
+      "applied_to_all_products": "Apakah Anda yakin ingin menghapus rencana preorder ini?"
+    },
+    "warning": "Tindakan ini tidak dapat dibatalkan.",
+    "delete": "Hapus",
+    "cancel": "Batal"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Tanggal Rilis",
+    "enable_unit_restriction": "Aktifkan pembatasan unit",
+    "units_per_customer": "Unit per pelanggan",
+    "select_products": "Rencana preorder Anda akan diterapkan pada produk berikut:",
+    "no_selected_products": "Tidak ada produk yang dipilih, klik tombol untuk menambahkan produk.",
+    "add_products": "Tambahkan produk",
+    "add_or_remove_products": "Tambahkan atau hapus produk",
+    "notice_selling_plan_requirement": "Setiap produk yang ditambahkan ke rencana penjualan secara otomatis akan memerlukan satu. Ini menghapus produk dari saluran penjualan yang tidak mendukung preorder Shopify dan mencegahnya dijual di sana. Menghapus centang opsi 'Hanya jual produk ini sebagai langganan' pada halaman admin produk akan menghapus persyaratan ini, yang tidak kami sarankan karena dapat menyebabkan preorder Anda masuk sebagai pesanan standar."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Kendalikan peluncuran produk Anda",
+      "description": "Dropdeck adalah cara yang lebih cerdas untuk mengelola preorder di Shopify. Tetapkan batas, kendalikan jendela pemenuhan, dan bangun hype—tanpa sakit kepala. Dirancang untuk pedagang yang menginginkan fleksibilitas, wawasan, dan alat yang berfokus pada konversi yang berfungsi dengan baik.",
+      "primary_action": "Panduan Cepat",
+      "secondary_action": "Buat Preorder"
+    }
+  },
+  "plans": {
+    "title": "Rencana Preorder"
+  },
+  "orders": {
+    "title": "Preorder Anda",
+    "bar": {
+      "title": "Preorder Mendatang",
+      "refresh": "Segarkan"
+    },
+    "settings": {
+      "title": "Pengaturan",
+      "filters": {
+        "preorder_products": {
+          "title": "Filter berdasarkan produk preorder",
+          "options": {
+            "all_products": "Semua produk"
+          }
+        },
+        "hide_cancelled_orders": "Sembunyikan pesanan yang dibatalkan",
+        "hide_fulfilled_orders": "Sembunyikan pesanan yang dipenuhi",
+        "show_row_colors": "Tampilkan warna baris"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Pesanan",
+        "line_items": "Item baris",
+        "payment_status": "Status pembayaran",
+        "fulfillment_status": "Status pemenuhan"
+      },
+      "resource_name": {
+        "singular": "pesanan",
+        "plural": "pesanan"
+      },
+      "row": {
+        "select_all": "Pilih semua pesanan dengan tanggal rilis {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Pesanan",
+          "line_items": "Item baris",
+          "payment_status": "Status pembayaran",
+          "fulfillment_status": "Status pemenuhan"
+        },
+        "title": "Daftar Picking Preorder",
+        "generated_on": "Dihasilkan pada: {{date}}",
+        "file_name": "preorder-picking-list",
+        "button_text": "Ekspor Daftar Picking"
+      }
+    }
+  },
+  "guide": {
+    "title": "Panduan Cepat",
+    "card": {
+      "title": "🚀 Panduan Cepat untuk Dropdeck",
+      "description": "Dropdeck membantu Anda menyiapkan pengalaman preorder yang kuat di Shopify dengan kontrol fleksibel atas ketersediaan dan batas pembelian.",
+      "return_to_contents": "Kembali ke daftar isi",
+      "pages": {
+        "contents": {
+          "title": "Daftar Isi",
+          "description": "Panduan ini akan memandu Anda melalui proses penyiapan Dropdeck di toko Shopify Anda. Ini akan mencakup dasar-dasar pembuatan rencana preorder, dan kemudian cara menyiapkan tema Anda untuk menggunakan Dropdeck.",
+          "items": {
+            "1": "Membuat rencana preorder",
+            "2": "Menyiapkan tema Anda untuk menggunakan Dropdeck",
+            "3": "Menginstal potongan kode untuk pengaturan lanjutan",
+            "4": "Menambahkan Ekstensi Checkout Pembatasan Unit (Plus saja)",
+            "5": "Pertanyaan yang sering diajukan"
+          }
+        },
+        "1": {
+          "title": "Langkah 1: Membuat rencana preorder",
+          "description": "Apa itu rencana penjualan? Rencana penjualan adalah cara Shopify untuk menjadwalkan produk agar dapat dipenuhi di kemudian hari, jadi untuk membuat preorder Anda perlu membuat rencana preorder. Anda dapat melakukan ini dengan dua cara menggunakan Dropdeck:",
+          "steps": {
+            "1": "Buat atau tambahkan rencana preorder yang sudah ada di halaman admin produk di bawah 'Opsi pembelian', yang akan menugaskan produk itu saja ke rencana.",
+            "2": "Buat rencana preorder untuk pilihan produk atau bahkan hanya satu produk di halaman rencana preorder Dropdeck."
+          },
+          "conclusion": "Bagaimanapun juga, yang perlu Anda berikan ke Dropdeck di sini hanyalah 'Tanggal Rilis' untuk produk preorder Anda, dan secara opsional jumlah unit untuk membatasi pelanggan."
+        },
+        "2": {
+          "title": "Langkah 2: Menyiapkan tema Anda untuk menggunakan Dropdeck",
+          "description": "Ada dua cara untuk menggunakan Dropdeck di tema Anda, keduanya mengharuskan Anda masuk ke kustomisasi tema Anda untuk mengaktifkan 'embed aplikasi' Dropdeck. Anda dapat mengaktifkan embed aplikasi ke tema Anda dengan mengunjungi area embed aplikasi di toolbar sisi kiri kustomisasi. Ini akan menawarkan Anda dua opsi di bawah opsi 'Pilihan Pengaturan':",
+          "choices": {
+            "1": {
+              "title": "Pengaturan Sederhana (Direkomendasikan):",
+              "description": "Ini adalah cara termudah untuk mengatur Dropdeck, setelah 'Pilihan Pengaturan' diatur ke 'Pengaturan Sederhana' tidak ada lagi yang perlu Anda lakukan. Rencana penjualan akan secara otomatis disuntikkan ke dalam formulir pembelian apa pun di situs Anda. Perlu diingat bahwa ada kemungkinan ini akan merusak beberapa fungsionalitas pada tema Anda jika tema Anda telah mengalami banyak kustomisasi, atau jika itu adalah tema yang tidak dikembangkan oleh Shopify. Anda dapat melewati langkah 3 karena hanya terkait dengan pengaturan lanjutan."
+            },
+            "2": {
+              "title": "Pengaturan Lanjutan:",
+              "description": "Langkah ini memerlukan pengetahuan teknis tentang basis kode tema Anda, sebaiknya serahkan ini kepada pengembang. Setelah 'Pilihan Pengaturan' diatur ke 'Pengaturan Lanjutan' Anda perlu menambahkan potongan kode berikut ke dalam basis kode tema Anda. Ini akan memungkinkan Anda mengontrol penempatan rencana preorder di situs Anda, dan juga memungkinkan Anda menambahkan fungsionalitas tambahan ke rencana preorder. Lanjutkan ke langkah 3 untuk informasi lebih lanjut tentang cara menambahkan potongan kode ke dalam basis kode tema Anda."
+            }
+          }
+        },
+        "3": {
+          "title": "Langkah 3: Menginstal potongan kode untuk pengaturan lanjutan",
+          "description": "Sebaiknya serahkan pekerjaan ini kepada pengembang yang familiar dengan infrastruktur Shopify karena hanya seseorang dengan pengalaman yang dapat menentukan bagaimana masing-masing potongan ini perlu diintegrasikan ke dalam tema Anda. Mulailah dengan mengklik tombol di bawah untuk mengunduh potongan kode yang di-zip. Setelah diunduh, potongan ini perlu ditambahkan ke dalam basis kode tema Anda di folder potongan.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Potongan ini digunakan untuk mengembalikan berbagai data tentang rencana preorder dengan mudah."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Ini harus disertakan di dalam semua formulir dengan aksi '/cart/add' di tema Anda. Ini menerapkan rencana preorder yang Anda buat ke produk."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Potongan ini digunakan untuk menampilkan tanggal rilis untuk produk dengan rencana preorder."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Potongan ini digunakan untuk menampilkan pembatasan unit untuk produk dengan rencana preorder. Ini harus ditambahkan ke semua pemilih kuantitas pada tema sebagai nilai atribut max pada input. Ini kemungkinan juga perlu diintegrasikan dengan javascript tema Anda untuk memastikan bahwa kuantitas diperbarui dengan benar pada perubahan varian."
+            }
+          },
+          "download": "Unduh Potongan"
+        },
+        "4": {
+          "title": "Langkah 4: Menambahkan Ekstensi Checkout Pembatasan Unit (Plus saja)",
+          "description": {
+            "1": "Jika Anda adalah pengguna Shopify Plus, Anda dapat menambahkan Ekstensi Checkout Pembatasan Unit ke checkout toko Anda untuk memastikan bahwa pelanggan tidak dapat melebihi pembatasan pembelian pada produk preorder. Ini menerapkan pembatasan unit tidak hanya ke keranjang mereka saat ini, tetapi juga ke semua pesanan mereka sebelumnya, fungsionalitas ini yang memeriksa pesanan pelanggan sebelumnya hanya tersedia untuk pelanggan Shopify Plus. Jika toko Anda menggunakan checkout alternatif yang mengarahkan pengguna ke checkout pihak ketiga (seperti Paypal), Anda perlu menonaktifkan metode checkout alternatif tersebut untuk memastikan bahwa pelanggan tidak dapat melebihi pembatasan pembelian pada produk preorder.",
+            "2": "Untuk menambahkan ekstensi, buka dasbor admin Anda dan kunjungi: Pengaturan > Checkout. Di sini Anda akan melihat 'Konfigurasi' Anda, Anda ingin 'Kustomisasi' konfigurasi 'Live'. Di kustomisasi checkout Anda, di bawah 'Ringkasan pesanan' Anda harus memiliki opsi untuk 'Tambahkan blok aplikasi'. Di sini Anda dapat menambahkan blok aplikasi 'Pembatasan Unit' ke checkout Anda. Setelah ditambahkan, ekstensi ini akan secara otomatis menerapkan pembatasan unit ke produk preorder apa pun yang memilikinya dan yang melewati checkout. Jika pengguna melebihi pembatasan unit, mereka tidak akan dapat checkout dan akan ditampilkan pesan kesalahan yang memberi tahu mereka tentang pembatasan tersebut."
+          }
+        },
+        "faqs": {
+          "title": "Pertanyaan yang sering diajukan",
+          "questions": {
+            "1": {
+              "question": "Pengaturan sederhana tidak berfungsi untuk tema saya, apa yang harus saya lakukan?",
+              "answer": "Jika pengaturan sederhana tidak berfungsi dengan tema Anda dalam arti merusaknya atau tidak berfungsi seperti yang diharapkan, Anda perlu menggunakan pengaturan lanjutan. Hubungi kami di dropdeck-preorders@proton.me dan kami akan dengan senang hati membantu Anda menyiapkannya."
+            },
+            "2": {
+              "question": "Apa itu rencana preorder?",
+              "answer": "Rencana preorder adalah cara untuk menjadwalkan produk agar dipenuhi di kemudian hari. Ini berguna untuk produk yang belum tersedia untuk dijual, tetapi diharapkan akan dirilis di masa depan. Anda dapat membuat rencana preorder dengan mengunjungi halaman rencana preorder dan mengklik tombol 'Buat Rencana Preorder'."
+            },
+            "3": {
+              "question": "Apa itu pembatasan unit?",
+              "answer": "Pembatasan unit adalah cara untuk membatasi jumlah unit yang dapat dibeli pelanggan dari produk preorder. Ini berguna untuk produk preorder yang ingin Anda fasilitasi pengalaman preorder yang adil dan setara untuk semua pelanggan. Jika Anda adalah pengguna Shopify Plus, Anda dapat menambahkan Ekstensi Checkout Pembatasan Unit ke checkout toko Anda untuk memastikan bahwa pelanggan tidak dapat melebihi pembatasan pembelian pada produk preorder. Ini menerapkan pembatasan unit tidak hanya ke keranjang mereka saat ini yang tersedia untuk semua pengguna Shopify, tetapi juga ke semua pesanan mereka sebelumnya, fungsionalitas ini yang memeriksa pesanan pelanggan sebelumnya hanya tersedia untuk pelanggan Shopify Plus."
+            },
+            "4": {
+              "question": "Apa yang terjadi jika saya memiliki pengaturan rencana preorder dan saya mencopot pemasangan aplikasi?",
+              "answer": "Jika Anda mencopot pemasangan aplikasi sementara Anda memiliki rencana preorder aktif, mereka akan dihapus saat pencopotan pemasangan."
+            },
+            "5": {
+              "question": "Mengapa pembatasan unit tidak berfungsi ketika saya checkout dengan Paypal?",
+              "answer": "Pembatasan unit diimplementasikan di Checkout Shopify, metode checkout alternatif apa pun seperti Paypal tidak akan memiliki akses ke fungsionalitas ini."
+            }
+          }
+        }
+      }
+    }
+  }
+}

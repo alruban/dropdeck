@@ -1,0 +1,237 @@
+{
+  "app": { "title": "Dropdeck" },
+  "navigation": {
+    "dashboard": "Bảng điều khiển",
+    "guide": "Hướng dẫn nhanh",
+    "orders": "Đơn hàng",
+    "plans": "Kế hoạch đặt trước"
+  },
+  "quick_actions": {
+    "title": "Hành động nhanh",
+    "create_preorder_plan": "Tạo kế hoạch đặt trước mới"
+  },
+  "statistics": {
+    "title": "Thống kê",
+    "active_plans": "Kế hoạch đang hoạt động",
+    "products_with_preorders": "Sản phẩm đặt trước"
+  },
+  "selling_plan_groups_table": {
+    "headings": {
+      "assigned_products": "Sản phẩm được gán",
+      "expected_fulfillment_date": "Ngày phát hành",
+      "actions": "Hành động"
+    },
+    "assigned_products_title": {
+      "none": "Không có sản phẩm nào được gán",
+      "multiple": "{{count}} sản phẩm được gán"
+    },
+    "actions": {
+      "edit": "Chỉnh sửa",
+      "delete": "Xóa"
+    },
+    "selling_plan_groups_found": {
+      "title": "Kế hoạch đặt trước",
+      "description": "Quản lý các kế hoạch đặt trước và cấu hình của chúng.",
+      "refresh": "Làm mới"
+    },
+    "no_selling_plan_groups_found": {
+      "description": "Có vẻ bạn chưa có kế hoạch đặt trước nào. Nhấn nút bên dưới để tạo mới.",
+      "create": "Tạo kế hoạch đặt trước mới"
+    }
+  },
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Dự kiến giao hàng vào hoặc sau {{date}}",
+    "description_for_plan_with_unit_restriction": "Dự kiến giao hàng vào hoặc sau {{date}}, {{units}} sản phẩm mỗi khách hàng"
+  },
+  "create_selling_plan_group_modal": {
+    "title": "Tạo kế hoạch đặt trước",
+    "description": "Sử dụng biểu mẫu này để tạo kế hoạch bán hàng mới cho một sản phẩm cụ thể hoặc một nhóm sản phẩm.",
+    "create": "Tạo",
+    "cancel": "Hủy"
+  },
+  "edit_selling_plan_group_modal": {
+    "title": "Chỉnh sửa kế hoạch đặt trước",
+    "description": "Sử dụng biểu mẫu này để chỉnh sửa kế hoạch bán hàng hiện có cho một sản phẩm cụ thể hoặc một nhóm sản phẩm.",
+    "edit": "Chỉnh sửa",
+    "cancel": "Hủy"
+  },
+  "delete_selling_plan_group_modal": {
+    "title": "Xóa kế hoạch đặt trước",
+    "description": {
+      "applied_to_products": "Bạn có chắc chắn muốn xóa kế hoạch đặt trước cho các sản phẩm sau:",
+      "applied_to_all_products": "Bạn có chắc chắn muốn xóa kế hoạch đặt trước này không?"
+    },
+    "warning": "Hành động này không thể hoàn tác.",
+    "delete": "Xóa",
+    "cancel": "Hủy"
+  },
+  "selling_plan_group_form": {
+    "expected_fulfillment_date": "Ngày phát hành",
+    "enable_unit_restriction": "Bật giới hạn số lượng",
+    "units_per_customer": "Số lượng mỗi khách hàng",
+    "select_products": "Kế hoạch đặt trước của bạn sẽ áp dụng cho các sản phẩm sau:",
+    "no_selected_products": "Chưa chọn sản phẩm nào, nhấn nút để thêm sản phẩm.",
+    "add_products": "Thêm sản phẩm",
+    "add_or_remove_products": "Thêm hoặc xóa sản phẩm",
+    "notice_selling_plan_requirement": "Bất kỳ sản phẩm nào được thêm vào kế hoạch bán hàng sẽ tự động yêu cầu một kế hoạch. Điều này sẽ loại bỏ sản phẩm khỏi các kênh bán hàng không hỗ trợ đặt trước của Shopify và ngăn không cho bán ở đó. Bỏ chọn 'Chỉ bán sản phẩm này dưới dạng đăng ký' trong trang quản lý sản phẩm sẽ loại bỏ yêu cầu này, tuy nhiên không khuyến khích vì có thể khiến đơn đặt trước của bạn được xử lý như đơn hàng thông thường."
+  },
+  "index": {
+    "title": "Dropdeck",
+    "card": {
+      "title": "Kiểm soát việc ra mắt sản phẩm của bạn",
+      "description": "Dropdeck là cách thông minh nhất để quản lý đặt trước trên Shopify. Đặt giới hạn, kiểm soát thời gian giao hàng và tạo kỳ vọng—không lo lắng. Được thiết kế cho các thương nhân muốn sự linh hoạt, thông tin và các công cụ tập trung vào chuyển đổi hoạt động hiệu quả.",
+      "primary_action": "Hướng dẫn nhanh",
+      "secondary_action": "Tạo đặt trước"
+    }
+  },
+  "plans": {
+    "title": "Kế hoạch đặt trước"
+  },
+  "orders": {
+    "title": "Đơn đặt trước của bạn",
+    "bar": {
+      "title": "Đơn đặt trước sắp tới",
+      "refresh": "Làm mới"
+    },
+    "settings": {
+      "title": "Cài đặt",
+      "filters": {
+        "preorder_products": {
+          "title": "Lọc theo sản phẩm đặt trước",
+          "options": {
+            "all_products": "Tất cả sản phẩm"
+          }
+        },
+        "hide_cancelled_orders": "Ẩn đơn đã hủy",
+        "hide_fulfilled_orders": "Ẩn đơn đã giao",
+        "show_row_colors": "Hiển thị màu dòng"
+      }
+    },
+    "table": {
+      "headings": {
+        "order_number": "Mã đơn hàng",
+        "line_items": "Sản phẩm",
+        "payment_status": "Trạng thái thanh toán",
+        "fulfillment_status": "Trạng thái giao hàng"
+      },
+      "resource_name": {
+        "singular": "đơn hàng",
+        "plural": "đơn hàng"
+      },
+      "row": {
+        "select_all": "Chọn tất cả đơn hàng có ngày phát hành {{date}}"
+      },
+      "export_pdf": {
+        "headings": {
+          "order_number": "Mã đơn hàng",
+          "line_items": "Sản phẩm",
+          "payment_status": "Trạng thái thanh toán",
+          "fulfillment_status": "Trạng thái giao hàng"
+        },
+        "title": "Danh sách lấy hàng đặt trước",
+        "generated_on": "Tạo ngày: {{date}}",
+        "file_name": "danh-sach-lay-hang-dat-truoc",
+        "button_text": "Xuất danh sách lấy hàng"
+      }
+    }
+  },
+  "guide": {
+    "title": "Hướng dẫn nhanh",
+    "card": {
+      "title": "🚀 Hướng dẫn nhanh cho Dropdeck",
+      "description": "Dropdeck giúp bạn thiết lập trải nghiệm đặt trước mạnh mẽ trên Shopify với kiểm soát linh hoạt về tính sẵn có và giới hạn mua hàng.",
+      "return_to_contents": "Quay lại nội dung",
+      "pages": {
+        "contents": {
+          "title": "Nội dung",
+          "description": "Hướng dẫn này sẽ giúp bạn thiết lập Dropdeck trong cửa hàng Shopify của mình. Nó sẽ bao gồm những điều cơ bản về tạo kế hoạch đặt trước và sau đó là cách cấu hình chủ đề để sử dụng Dropdeck.",
+          "items": {
+            "1": "Tạo kế hoạch đặt trước",
+            "2": "Cấu hình chủ đề để sử dụng Dropdeck",
+            "3": "Cài đặt đoạn mã cho cấu hình nâng cao",
+            "4": "Thêm tiện ích giới hạn số lượng vào trang thanh toán (chỉ Plus)",
+            "5": "Câu hỏi thường gặp"
+          }
+        },
+        "1": {
+          "title": "Bước 1: Tạo kế hoạch đặt trước",
+          "description": "Kế hoạch bán hàng là gì? Đó là cách Shopify lên lịch cho sản phẩm được giao vào một ngày sau đó, vì vậy để tạo đặt trước, bạn cần tạo kế hoạch đặt trước. Bạn có thể làm điều này theo hai cách với Dropdeck:",
+          "steps": {
+            "1": "Tạo hoặc thêm kế hoạch đặt trước hiện có trong trang quản lý sản phẩm dưới 'Tùy chọn mua hàng', sẽ chỉ định sản phẩm đó cho kế hoạch.",
+            "2": "Tạo kế hoạch đặt trước cho một nhóm sản phẩm hoặc chỉ một sản phẩm trong trang kế hoạch đặt trước của Dropdeck."
+          },
+          "conclusion": "Dù bằng cách nào, tất cả những gì bạn cần cung cấp cho Dropdeck ở đây là 'Ngày phát hành' cho sản phẩm đặt trước và tùy chọn số lượng để giới hạn mỗi khách hàng."
+        },
+        "2": {
+          "title": "Bước 2: Cấu hình chủ đề để sử dụng Dropdeck",
+          "description": "Có hai cách để sử dụng Dropdeck trong chủ đề của bạn, cả hai đều yêu cầu vào trình tùy chỉnh chủ đề để bật nhúng ứng dụng Dropdeck. Bạn có thể bật nhúng ứng dụng trong chủ đề của mình bằng cách truy cập các khu vực nhúng ứng dụng ở thanh bên trái của trình tùy chỉnh. Điều này sẽ cung cấp cho bạn hai lựa chọn dưới 'Chọn cấu hình':",
+          "choices": {
+            "1": {
+              "title": "Cấu hình đơn giản (khuyến nghị):",
+              "description": "Đây là cách đơn giản nhất để cấu hình Dropdeck, khi 'Chọn cấu hình' được đặt thành 'Cấu hình đơn giản', bạn không cần làm gì thêm. Kế hoạch bán hàng sẽ tự động được chèn vào bất kỳ biểu mẫu mua hàng nào trên trang web của bạn. Nhược điểm là điều này có thể làm hỏng một số chức năng của chủ đề nếu chủ đề đã được tùy chỉnh nhiều, hoặc nếu đó là chủ đề không do Shopify phát triển. Bạn có thể bỏ qua bước 3 vì nó chỉ liên quan đến cấu hình nâng cao."
+            },
+            "2": {
+              "title": "Cấu hình nâng cao:",
+              "description": "Bước này yêu cầu kiến thức kỹ thuật về mã nguồn chủ đề, tốt nhất nên để cho nhà phát triển. Khi 'Chọn cấu hình' được đặt thành 'Cấu hình nâng cao', bạn sẽ cần thêm các đoạn mã sau vào mã nguồn chủ đề. Điều này cho phép bạn kiểm soát vị trí của kế hoạch đặt trước trên trang web và thêm các chức năng bổ sung. Tiếp tục với bước 3 để biết thêm thông tin về cách thêm đoạn mã vào mã nguồn chủ đề."
+            }
+          }
+        },
+        "3": {
+          "title": "Bước 3: Cài đặt đoạn mã cho cấu hình nâng cao",
+          "description": "Tốt nhất nên để công việc này cho nhà phát triển am hiểu về hạ tầng Shopify, vì chỉ người có kinh nghiệm mới xác định được cách tích hợp từng đoạn mã vào chủ đề. Bắt đầu bằng cách nhấn nút bên dưới để tải các đoạn mã nén. Sau khi tải về, các đoạn mã này cần được thêm vào thư mục snippets của chủ đề.",
+          "snippets": {
+            "1": {
+              "title": "dropdeck-get-sp.liquid",
+              "description": "Đoạn mã này dùng để trả về các dữ liệu khác nhau về kế hoạch đặt trước."
+            },
+            "2": {
+              "title": "dropdeck-sp-input.liquid",
+              "description": "Đoạn mã này cần được thêm vào tất cả các biểu mẫu có hành động '/cart/add' trong chủ đề. Đoạn mã này áp dụng kế hoạch đặt trước bạn đã tạo cho sản phẩm."
+            },
+            "3": {
+              "title": "dropdeck-release-date.liquid",
+              "description": "Đoạn mã này dùng để hiển thị ngày phát hành của sản phẩm có kế hoạch đặt trước."
+            },
+            "4": {
+              "title": "dropdeck-unit-restriction.liquid",
+              "description": "Đoạn mã này dùng để hiển thị giới hạn số lượng cho sản phẩm có kế hoạch đặt trước. Đoạn mã này cần được thêm vào tất cả các bộ chọn số lượng trong chủ đề làm giá trị thuộc tính max trên input. Có thể cần tích hợp với JavaScript của chủ đề để đảm bảo số lượng được cập nhật đúng khi thay đổi biến thể."
+            }
+          },
+          "download": "Tải đoạn mã"
+        },
+        "4": {
+          "title": "Bước 4: Thêm tiện ích giới hạn số lượng vào trang thanh toán (chỉ Plus)",
+          "description": {
+            "1": "Nếu bạn là người dùng Shopify Plus, bạn có thể thêm tiện ích giới hạn số lượng vào trang thanh toán để đảm bảo khách hàng không thể vượt quá giới hạn mua hàng cho sản phẩm đặt trước. Điều này áp dụng không chỉ cho giỏ hàng hiện tại mà còn cho tất cả các đơn hàng trước đó của họ, chức năng kiểm tra đơn hàng trước chỉ dành cho khách hàng Shopify Plus. Nếu cửa hàng của bạn sử dụng trang thanh toán thay thế chuyển hướng người dùng đến trang thanh toán bên thứ ba (như Paypal), bạn cần tắt các phương thức thanh toán thay thế này để đảm bảo khách hàng không thể vượt quá giới hạn mua hàng cho sản phẩm đặt trước.",
+            "2": "Để thêm tiện ích, vào trang quản trị và truy cập: Cài đặt > Thanh toán. Tại đây bạn sẽ thấy 'Cài đặt' của mình, hãy 'Tùy chỉnh' cài đặt 'Đang hoạt động'. Trong trình tùy chỉnh thanh toán, dưới 'Tóm tắt đơn hàng', bạn sẽ có tùy chọn 'Thêm khối ứng dụng'. Tại đây bạn có thể thêm khối ứng dụng 'Giới hạn số lượng' vào trang thanh toán. Sau khi thêm, tiện ích này sẽ tự động áp dụng giới hạn số lượng cho bất kỳ sản phẩm đặt trước nào có giới hạn và đi qua trang thanh toán. Nếu người dùng vượt quá giới hạn, họ sẽ không thể hoàn tất đơn hàng và sẽ nhận được thông báo lỗi về giới hạn."
+          }
+        },
+        "faqs": {
+          "title": "Câu hỏi thường gặp",
+          "questions": {
+            "1": {
+              "question": "Cấu hình đơn giản không hoạt động với chủ đề của tôi, tôi nên làm gì?",
+              "answer": "Nếu cấu hình đơn giản không hoạt động với chủ đề của bạn, bị lỗi hoặc không hoạt động như mong đợi, bạn cần sử dụng cấu hình nâng cao. Liên hệ với chúng tôi tại dropdeck-preorders@proton.me và chúng tôi sẽ hỗ trợ bạn cấu hình."
+            },
+            "2": {
+              "question": "Kế hoạch đặt trước là gì?",
+              "answer": "Kế hoạch đặt trước là cách lên lịch cho sản phẩm được giao vào một ngày sau đó. Điều này hữu ích cho các sản phẩm chưa có sẵn để bán nhưng dự kiến sẽ ra mắt trong tương lai. Bạn có thể tạo kế hoạch đặt trước bằng cách truy cập trang kế hoạch đặt trước và nhấn nút 'Tạo kế hoạch đặt trước mới'."
+            },
+            "3": {
+              "question": "Giới hạn số lượng là gì?",
+              "answer": "Giới hạn số lượng là cách giới hạn số lượng sản phẩm đặt trước mà mỗi khách hàng có thể mua. Điều này hữu ích cho các sản phẩm đặt trước mà bạn muốn cung cấp trải nghiệm công bằng cho tất cả khách hàng. Nếu bạn là người dùng Shopify Plus, bạn có thể thêm tiện ích giới hạn số lượng vào trang thanh toán để đảm bảo khách hàng không thể vượt quá giới hạn mua hàng cho sản phẩm đặt trước. Điều này áp dụng không chỉ cho giỏ hàng hiện tại (dành cho tất cả người dùng Shopify) mà còn cho tất cả các đơn hàng trước đó, chức năng kiểm tra đơn hàng trước chỉ dành cho khách hàng Shopify Plus."
+            },
+            "4": {
+              "question": "Điều gì xảy ra nếu tôi có kế hoạch đặt trước và gỡ cài đặt ứng dụng?",
+              "answer": "Nếu bạn gỡ cài đặt ứng dụng khi có kế hoạch đặt trước đang hoạt động, chúng sẽ bị xóa khi gỡ cài đặt."
+            },
+            "5": {
+              "question": "Tại sao giới hạn số lượng không hoạt động khi thanh toán bằng Paypal?",
+              "answer": "Giới hạn số lượng được áp dụng tại trang thanh toán Shopify, bất kỳ phương thức thanh toán thay thế nào như Paypal sẽ không có chức năng này."
+            }
+          }
+        }
+      }
+    }
+  }
+}
