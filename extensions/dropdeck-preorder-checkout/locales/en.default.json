@@ -1,5 +1,4 @@
 {
-  "name": "Dropdeck Unit Restriction Extension",
   "page": {
     "error_preorder_limit_exceeded": {
       "reason": "Preorder limit exceeded.",
