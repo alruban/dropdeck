@@ -104,23 +104,7 @@ type CheckoutRequestBody = {
   productId?: string;
 };
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  'Access-Control-Allow-Credentials': 'true',
-  'Access-Control-Max-Age': '86400',
-};
-
 export async function action({ request }: ActionFunctionArgs) {
-  // Handle preflight requests FIRST
-  if (request.method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
-      headers: corsHeaders,
-    });
-  }
-
   const body = await request.json();
   const { target } = body;
 
@@ -128,19 +112,15 @@ export async function action({ request }: ActionFunctionArgs) {
   const { sessionToken } = await authenticate.public.checkout(request);
   const { admin } = await unauthenticated.admin(sessionToken.dest);
 
-  let response;
   switch (target) {
     case "get-preorder-data":
-      response = await getPreorderData(body, admin);
-      break;
+      return await getPreorderData(body, admin);
     case "get-customer":
-      response = await getCustomer(body, admin);
-      break;
+      return await getCustomer(body, admin);
     case "get-customer-orders":
-      response = await getCustomerOrders(body, admin);
-      break;
+      return await getCustomerOrders(body, admin);
     default:
-      response = data(
+      return data(
         {
           body: body,
           message: "No target found.",
@@ -150,14 +130,6 @@ export async function action({ request }: ActionFunctionArgs) {
         },
       );
   }
-
-  // Add CORS headers to the response
-  return new Response(JSON.stringify(response), {
-    headers: {
-      ...corsHeaders,
-      "Content-Type": "application/json",
-    },
-  });
 }
 
 async function getCustomer(
