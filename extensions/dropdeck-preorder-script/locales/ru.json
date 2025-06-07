@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "Критическая ошибка Dropdeck: пожалуйста, свяжитесь с dropdeck-preorders@proton.me, указав адрес вашего магазина и детали.",
+    "limit_per_customer": "Лимит на клиента: {{units}} шт.",
+    "release_date": "Дата выпуска: {{date}}",
+    "limit_exceeded": "Вы превысили лимит единиц на клиента. В вашей корзине уже {{units_per_customer}} единиц.",
+    "added_capitalised": "Добавлено",
+    "added_lowercase": "добавлено"
+  }
+}

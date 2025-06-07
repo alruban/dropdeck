@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "Erreur fatale Dropdeck : veuillez contacter dropdeck-preorders@proton.me avec l'adresse de votre boutique et les détails.",
+    "limit_per_customer": "Limite par client : {{units}} unité(s)",
+    "release_date": "Date de sortie : {{date}}",
+    "limit_exceeded": "Vous avez dépassé la limite d'unités par client. Il y a déjà {{units_per_customer}} unités dans votre panier.",
+    "added_capitalised": "Ajouté",
+    "added_lowercase": "ajouté"
+  }
+}

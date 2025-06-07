@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "Ciddi Dropdeck hatası: Lütfen mağaza adresiniz ve detaylarınız ile dropdeck-preorders@proton.me adresine başvurun.",
+    "limit_per_customer": "Müşteri başına limit: {{units}} birim",
+    "release_date": "Çıkış tarihi: {{date}}",
+    "limit_exceeded": "Müşteri başına birim limitini aştınız. Sepetinizde zaten {{units_per_customer}} birim var.",
+    "added_capitalised": "Eklendi",
+    "added_lowercase": "eklendi"
+  }
+}

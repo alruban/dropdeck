@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "Vakava Dropdeck-virhe: ota yhteyttä osoitteeseen dropdeck-preorders@proton.me ja liitä mukaan kauppasi osoite ja tiedot.",
+    "limit_per_customer": "Raja asiakasta kohden: {{units}} yksikkö(ä)",
+    "release_date": "Julkaisupäivä: {{date}}",
+    "limit_exceeded": "Olet ylittänyt asiakaskohtaisen yksikkörajan. Ostoskorissasi on jo {{units_per_customer}} yksikköä.",
+    "added_capitalised": "Lisätty",
+    "added_lowercase": "lisätty"
+  }
+}

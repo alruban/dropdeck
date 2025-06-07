@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "严重的 Dropdeck 错误：请联系 dropdeck-preorders@proton.me，并提供您的商店地址和详细信息。",
+    "limit_per_customer": "每位客户限购：{{units}} 件",
+    "release_date": "发布日期：{{date}}",
+    "limit_exceeded": "您已超出每位客户的限购数量。您的购物车中已有 {{units_per_customer}} 件。",
+    "added_capitalised": "已添加",
+    "added_lowercase": "已添加"
+  }
+}

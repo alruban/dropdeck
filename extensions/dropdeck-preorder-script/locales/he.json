@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "שגיאת Dropdeck חמורה: אנא צרו קשר עם dropdeck-preorders@proton.me עם כתובת החנות שלכם ופרטים.",
+    "limit_per_customer": "מגבלה לכל לקוח: {{units}} יחידה",
+    "release_date": "תאריך שחרור: {{date}}",
+    "limit_exceeded": "חרגת מהמגבלה ליחידות לכל לקוח. כבר יש {{units_per_customer}} יחידות בעגלה שלך.",
+    "added_capitalised": "נוסף",
+    "added_lowercase": "נוסף"
+  }
+}

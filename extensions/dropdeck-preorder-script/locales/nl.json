@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "Fatale Dropdeck-fout: neem contact op met dropdeck-preorders@proton.me met uw winkeladres en details.",
+    "limit_per_customer": "Limiet per klant: {{units}} eenheid/eenheden",
+    "release_date": "Releasedatum: {{date}}",
+    "limit_exceeded": "U heeft het maximum aantal eenheden per klant overschreden. Er zitten al {{units_per_customer}} eenheden in uw winkelwagen.",
+    "added_capitalised": "Toegevoegd",
+    "added_lowercase": "toegevoegd"
+  }
+}

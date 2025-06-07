@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "ข้อผิดพลาดร้ายแรงของ Dropdeck: กรุณาติดต่อ dropdeck-preorders@proton.me พร้อมที่อยู่ร้านค้าของคุณและรายละเอียด.",
+    "limit_per_customer": "จำกัดต่อหนึ่งลูกค้า: {{units}} หน่วย",
+    "release_date": "วันวางจำหน่าย: {{date}}",
+    "limit_exceeded": "คุณเกินจำนวนหน่วยต่อหนึ่งลูกค้าแล้ว ขณะนี้มี {{units_per_customer}} หน่วยในรถเข็นของคุณ.",
+    "added_capitalised": "เพิ่มแล้ว",
+    "added_lowercase": "เพิ่มแล้ว"
+  }
+}

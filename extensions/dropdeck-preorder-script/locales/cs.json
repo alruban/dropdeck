@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "Fatální chyba Dropdeck: kontaktujte prosím dropdeck-preorders@proton.me s adresou vašeho obchodu a podrobnostmi.",
+    "limit_per_customer": "Limit na zákazníka: {{units}} jednotek",
+    "release_date": "Datum vydání: {{date}}",
+    "limit_exceeded": "Překročili jste limit jednotek na zákazníka. Ve vašem košíku je již {{units_per_customer}} jednotek.",
+    "added_capitalised": "Přidáno",
+    "added_lowercase": "přidáno"
+  }
+}

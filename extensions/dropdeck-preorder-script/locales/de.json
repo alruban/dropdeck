@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "Schwerwiegender Dropdeck-Fehler: Bitte kontaktieren Sie dropdeck-preorders@proton.me mit Ihrer Shop-Adresse und Details.",
+    "limit_per_customer": "Limit pro Kunde: {{units}} Einheit(en)",
+    "release_date": "Veröffentlichungsdatum: {{date}}",
+    "limit_exceeded": "Sie haben das Limit pro Kunde überschritten. Es befinden sich bereits {{units_per_customer}} Einheiten in Ihrem Warenkorb.",
+    "added_capitalised": "Hinzugefügt",
+    "added_lowercase": "hinzugefügt"
+  }
+}

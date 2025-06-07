@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "Allvarligt Dropdeck-fel: vänligen kontakta dropdeck-preorders@proton.me med din butiksadress och detaljer.",
+    "limit_per_customer": "Gräns per kund: {{units}} enhet(er)",
+    "release_date": "Utgivningsdatum: {{date}}",
+    "limit_exceeded": "Du har överskridit gränsen för enheter per kund. Det finns redan {{units_per_customer}} enheter i din kundvagn.",
+    "added_capitalised": "Tillagd",
+    "added_lowercase": "tillagd"
+  }
+}

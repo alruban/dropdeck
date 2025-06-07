@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "Σοβαρό σφάλμα Dropdeck: παρακαλούμε επικοινωνήστε με το dropdeck-preorders@proton.me με τη διεύθυνση του καταστήματός σας και λεπτομέρειες.",
+    "limit_per_customer": "Όριο ανά πελάτη: {{units}} μονάδες",
+    "release_date": "Ημερομηνία κυκλοφορίας: {{date}}",
+    "limit_exceeded": "Έχετε υπερβεί το όριο μονάδων ανά πελάτη. Υπάρχουν ήδη {{units_per_customer}} μονάδες στο καλάθι σας.",
+    "added_capitalised": "Προστέθηκε",
+    "added_lowercase": "προστέθηκε"
+  }
+}

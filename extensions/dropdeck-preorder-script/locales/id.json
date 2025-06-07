@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "Kesalahan fatal Dropdeck: silakan hubungi dropdeck-preorders@proton.me dengan alamat toko dan detail Anda.",
+    "limit_per_customer": "Batas per pelanggan: {{units}} unit",
+    "release_date": "Tanggal rilis: {{date}}",
+    "limit_exceeded": "Anda telah melebihi batas unit per pelanggan. Sudah ada {{units_per_customer}} unit di keranjang Anda.",
+    "added_capitalised": "Ditambahkan",
+    "added_lowercase": "ditambahkan"
+  }
+}

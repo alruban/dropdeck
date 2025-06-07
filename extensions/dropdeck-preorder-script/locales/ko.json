@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "치명적인 Dropdeck 오류: 상점 주소와 세부 정보를 포함하여 dropdeck-preorders@proton.me로 문의하십시오.",
+    "limit_per_customer": "고객당 한도: {{units}}개",
+    "release_date": "출시일: {{date}}",
+    "limit_exceeded": "고객당 단위 한도를 초과했습니다. 이미 장바구니에 {{units_per_customer}}개가 있습니다.",
+    "added_capitalised": "추가됨",
+    "added_lowercase": "추가됨"
+  }
+}

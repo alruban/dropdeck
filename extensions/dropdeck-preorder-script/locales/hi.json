@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "गंभीर Dropdeck त्रुटि: कृपया अपने स्टोर पते और विवरण के साथ dropdeck-preorders@proton.me से संपर्क करें।",
+    "limit_per_customer": "प्रति ग्राहक सीमा: {{units}} इकाई(यां)",
+    "release_date": "रिलीज़ की तारीख: {{date}}",
+    "limit_exceeded": "आपने प्रति ग्राहक इकाइयों की सीमा पार कर ली है। आपके कार्ट में पहले से ही {{units_per_customer}} इकाइयाँ हैं।",
+    "added_capitalised": "जोड़ा गया",
+    "added_lowercase": "जोड़ा गया"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "script": {
+    "fatal_error": "重大なDropdeckエラー：ストアのアドレスと詳細を記載してdropdeck-preorders@proton.meまでご連絡ください。",
+    "limit_per_customer": "お客様ごとの上限：{{units}}単位",
+    "release_date": "発売日：{{date}}",
+    "limit_exceeded": "お客様ごとの単位数の上限を超えました。すでにカートに{{units_per_customer}}単位が入っています。",
+    "added_capitalised": "追加済み",
+    "added_lowercase": "追加済み"
+  }
+}
