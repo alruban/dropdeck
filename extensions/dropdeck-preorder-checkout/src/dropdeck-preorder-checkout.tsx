@@ -41,6 +41,7 @@ function Extension() {
   const [hasExceededLimit, setHasExceededLimit] = useState<boolean>(false);
   const [unitsInPreviousOrders, setUnitsInPreviousOrders] = useState<number>(0);
 
+  console.log("TEST")
   useEffect(() => {
     /* Check to see if the product is a preorder product */
     async function checkIfPreorder(
@@ -162,42 +163,44 @@ function Extension() {
         .catch((err) => console.error(err));
     }
 
-    getCustomer(email, (customerId) => {
-      getCustomerOrders(customerId, (customerOrders) => {
-        // Check a customer's previous orders for purchases of the preorder product.
-        const _unitsBoughtInPreviousOrders = customerOrders.reduce(
-          (total, order: CustomerOrder) =>
-            total +
-            order.node.lineItems.edges.reduce(
-              (orderTotal, lineItem: CustomerOrderLineItem) => {
-                const isDropdeckPreorder =
-                  lineItem.node.product.sellingPlanGroups.edges.some(
-                    (sellingPlanGroup) =>
-                      sellingPlanGroup.node.appId === "DROPDECK_PREORDER",
-                  );
-                const isMatchingProduct =
-                  lineItem.node.product.id === cartLine.merchandise.product.id;
-                return isDropdeckPreorder && isMatchingProduct
-                  ? orderTotal + lineItem.node.quantity
-                  : orderTotal;
-              },
-              0,
-            ),
-          0,
-        );
+    if (email && email.length > 0) {
+      getCustomer(email, (customerId) => {
+        getCustomerOrders(customerId, (customerOrders) => {
+          // Check a customer's previous orders for purchases of the preorder product.
+          const _unitsBoughtInPreviousOrders = customerOrders.reduce(
+            (total, order: CustomerOrder) =>
+              total +
+              order.node.lineItems.edges.reduce(
+                (orderTotal, lineItem: CustomerOrderLineItem) => {
+                  const isDropdeckPreorder =
+                    lineItem.node.product.sellingPlanGroups.edges.some(
+                      (sellingPlanGroup) =>
+                        sellingPlanGroup.node.appId === "DROPDECK_PREORDER",
+                    );
+                  const isMatchingProduct =
+                    lineItem.node.product.id === cartLine.merchandise.product.id;
+                  return isDropdeckPreorder && isMatchingProduct
+                    ? orderTotal + lineItem.node.quantity
+                    : orderTotal;
+                },
+                0,
+              ),
+            0,
+          );
 
-        setUnitsInPreviousOrders(_unitsBoughtInPreviousOrders);
+          setUnitsInPreviousOrders(_unitsBoughtInPreviousOrders);
 
-        // Check if the customer has exceeded the limit in this current cart, and their previous orders.
-        const unitsAssociatedWithCustomer =
-          _unitsBoughtInPreviousOrders + cartLine.quantity;
-        if (unitsAssociatedWithCustomer > preorderData.unitsPerCustomer) {
-          setHasExceededLimit(true);
-        }
+          // Check if the customer has exceeded the limit in this current cart, and their previous orders.
+          const unitsAssociatedWithCustomer =
+            _unitsBoughtInPreviousOrders + cartLine.quantity;
+          if (unitsAssociatedWithCustomer > preorderData.unitsPerCustomer) {
+            setHasExceededLimit(true);
+          }
 
-        setIsLoading(false);
+          setIsLoading(false);
+        });
       });
-    });
+    }
   }, [preorderData, email, cartLine.quantity, cartLine.merchandise.product.id, sessionToken]);
 
   useBuyerJourneyIntercept(({ canBlockProgress }) => {
