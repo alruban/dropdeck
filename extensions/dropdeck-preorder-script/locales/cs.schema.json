@@ -1,0 +1,24 @@
+{
+  "script": {
+    "name": "Dropdeck Skript",
+    "description": "Dropdeck nabízí dva způsoby nastavení: jednoduché nastavení a pokročilé nastavení. Jednoduché nastavení nevyžaduje žádné další kroky kromě povolení, ale může mít problémy s kompatibilitou s některými šablonami, protože se pokouší vložit kód do šablony, zatímco pokročilé nastavení vyžaduje určité technické znalosti – více informací naleznete v rychlém průvodci.",
+    "setup_choice": {
+      "label": "Volba nastavení",
+      "options": {
+        "simple": "Jednoduché nastavení",
+        "advanced": "Pokročilé nastavení"
+      }
+    },
+    "simple_setup": {
+      "header": "Nastavení jednoduchého režimu",
+      "display_release_date": {
+        "label": "Zobrazit datum vydání",
+        "info": "Toto zobrazí datum vydání produktu s předobjednávkovým prodejním plánem. Zobrazuje se pouze na hlavní stránce produktu."
+      },
+      "display_unit_restriction": {
+        "label": "Zobrazit omezení jednotek",
+        "info": "Toto zobrazí omezení jednotek pro produkt s předobjednávkovým prodejním plánem. Zobrazuje se pouze na hlavní stránce produktu."
+      }
+    }
+  }
+}

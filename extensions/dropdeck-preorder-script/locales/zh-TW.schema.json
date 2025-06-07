@@ -1,0 +1,24 @@
+{
+  "script": {
+    "name": "Dropdeck 腳本",
+    "description": "Dropdeck 提供兩種設定方式：有簡單設定和進階設定。簡單設定只需啟用，無需其他設定，但可能與某些主題不相容，因為它嘗試將程式碼注入您的主題，而進階設定則需要一些技術知識——請參閱快速入門指南以獲取更多資訊。",
+    "setup_choice": {
+      "label": "設定選項",
+      "options": {
+        "simple": "簡單設定",
+        "advanced": "進階設定"
+      }
+    },
+    "simple_setup": {
+      "header": "簡單設定選項",
+      "display_release_date": {
+        "label": "顯示發售日期",
+        "info": "這將顯示具有預購銷售計劃的產品的發售日期。僅顯示在主產品頁面。"
+      },
+      "display_unit_restriction": {
+        "label": "顯示單位限制",
+        "info": "這將顯示具有預購銷售計劃的產品的單位限制。僅顯示在主產品頁面。"
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "script": {
+    "name": "Dropdeck-skript",
+    "description": "Dropdeck tilbyr to oppsettsmetoder: det er enkel oppsett og avansert oppsett. Enkel oppsett krever ingen ytterligere oppsett annet enn å aktivere det, men det kan ha kompatibilitetsproblemer med enkelte temaer fordi det prøver å injisere kode i temaet ditt, mens avansert oppsett krever teknisk kunnskap – se hurtigstartguiden for mer informasjon.",
+    "setup_choice": {
+      "label": "Oppsettsvalg",
+      "options": {
+        "simple": "Enkel oppsett",
+        "advanced": "Avansert oppsett"
+      }
+    },
+    "simple_setup": {
+      "header": "Innstillinger for enkel oppsett",
+      "display_release_date": {
+        "label": "Vis utgivelsesdato",
+        "info": "Dette vil vise utgivelsesdatoen for et produkt med en forhåndsbestillingssalgsplan. Dette vises kun på hovedproduktsiden."
+      },
+      "display_unit_restriction": {
+        "label": "Vis enhetsbegrensning",
+        "info": "Dette vil vise enhetsbegrensningen for et produkt med en forhåndsbestillingssalgsplan. Dette vises kun på hovedproduktsiden."
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "script": {
+    "name": "Dropdeck-skript",
+    "description": "Dropdeck erbjuder två installationsmetoder: det finns enkel installation och avancerad installation. Enkel installation kräver ingen ytterligare konfiguration förutom att aktivera den, men kan ha kompatibilitetsproblem med vissa teman eftersom den försöker injicera kod i ditt tema, medan avancerad installation kräver viss teknisk kunskap – se snabbstartsguiden för mer information.",
+    "setup_choice": {
+      "label": "Installationsval",
+      "options": {
+        "simple": "Enkel installation",
+        "advanced": "Avancerad installation"
+      }
+    },
+    "simple_setup": {
+      "header": "Inställningar för enkel installation",
+      "display_release_date": {
+        "label": "Visa releasedatum",
+        "info": "Detta visar releasedatumet för en produkt med en förköpsförsäljningsplan. Detta visas endast på huvudsidan för produkten."
+      },
+      "display_unit_restriction": {
+        "label": "Visa enhetsbegränsning",
+        "info": "Detta visar enhetsbegränsningen för en produkt med en förköpsförsäljningsplan. Detta visas endast på huvudsidan för produkten."
+      }
+    }
+  }
+}

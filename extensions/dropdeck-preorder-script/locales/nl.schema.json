@@ -1,0 +1,24 @@
+{
+  "script": {
+    "name": "Dropdeck-script",
+    "description": "Dropdeck biedt twee instelmogelijkheden: er is de eenvoudige setup en de geavanceerde setup. De eenvoudige setup vereist geen verdere configuratie behalve het inschakelen ervan, maar kan compatibiliteitsproblemen hebben met bepaalde thema's omdat het probeert code in je thema te injecteren, terwijl de geavanceerde setup enige technische kennis vereist – zie de quick start-gids voor meer informatie.",
+    "setup_choice": {
+      "label": "Setup-keuze",
+      "options": {
+        "simple": "Eenvoudige setup",
+        "advanced": "Geavanceerde setup"
+      }
+    },
+    "simple_setup": {
+      "header": "Instellingen voor eenvoudige setup",
+      "display_release_date": {
+        "label": "Toon releasedatum",
+        "info": "Dit toont de releasedatum voor een product met een pre-order verkoopplan. Dit wordt alleen weergegeven op de hoofdproductpagina."
+      },
+      "display_unit_restriction": {
+        "label": "Toon eenheidsbeperking",
+        "info": "Dit toont de eenheidsbeperking voor een product met een pre-order verkoopplan. Dit wordt alleen weergegeven op de hoofdproductpagina."
+      }
+    }
+  }
+}

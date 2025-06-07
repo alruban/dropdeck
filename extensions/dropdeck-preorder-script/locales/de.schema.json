@@ -1,0 +1,24 @@
+{
+  "script": {
+    "name": "Dropdeck-Skript",
+    "description": "Dropdeck bietet zwei Einrichtungsarten: Es gibt die einfache Einrichtung und die erweiterte Einrichtung. Die einfache Einrichtung erfordert keine weiteren Schritte außer der Aktivierung, kann jedoch Kompatibilitätsprobleme mit bestimmten Themes haben, da sie versucht, Code in Ihr Theme einzufügen, während die erweiterte Einrichtung technisches Wissen erfordert – bitte lesen Sie den Quick Start Guide für weitere Informationen.",
+    "setup_choice": {
+      "label": "Einrichtungswahl",
+      "options": {
+        "simple": "Einfache Einrichtung",
+        "advanced": "Erweiterte Einrichtung"
+      }
+    },
+    "simple_setup": {
+      "header": "Einstellungen für einfache Einrichtung",
+      "display_release_date": {
+        "label": "Veröffentlichungsdatum anzeigen",
+        "info": "Dies zeigt das Veröffentlichungsdatum für ein Produkt mit einem Vorbestellungsverkaufsplan an. Dies wird nur auf der Hauptproduktseite angezeigt."
+      },
+      "display_unit_restriction": {
+        "label": "Einheitenbeschränkung anzeigen",
+        "info": "Dies zeigt die Einheitenbeschränkung für ein Produkt mit einem Vorbestellungsverkaufsplan an. Dies wird nur auf der Hauptproduktseite angezeigt."
+      }
+    }
+  }
+}

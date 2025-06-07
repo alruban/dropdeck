@@ -1,0 +1,24 @@
+{
+  "script": {
+    "name": "Skrip Dropdeck",
+    "description": "Dropdeck menawarkan dua metode pengaturan: ada pengaturan sederhana dan pengaturan lanjutan. Pengaturan sederhana tidak memerlukan pengaturan lebih lanjut selain mengaktifkannya, tetapi mungkin memiliki masalah kompatibilitas dengan tema tertentu karena mencoba menyisipkan kode ke dalam tema Anda, sedangkan pengaturan lanjutan memerlukan pengetahuan teknis – silakan lihat panduan memulai cepat untuk informasi lebih lanjut.",
+    "setup_choice": {
+      "label": "Pilihan Pengaturan",
+      "options": {
+        "simple": "Pengaturan Sederhana",
+        "advanced": "Pengaturan Lanjutan"
+      }
+    },
+    "simple_setup": {
+      "header": "Pengaturan untuk Pengaturan Sederhana",
+      "display_release_date": {
+        "label": "Tampilkan Tanggal Rilis",
+        "info": "Ini akan menampilkan tanggal rilis untuk produk dengan rencana penjualan pre-order. Hanya ditampilkan di halaman utama produk."
+      },
+      "display_unit_restriction": {
+        "label": "Tampilkan Pembatasan Unit",
+        "info": "Ini akan menampilkan pembatasan unit untuk produk dengan rencana penjualan pre-order. Hanya ditampilkan di halaman utama produk."
+      }
+    }
+  }
+}

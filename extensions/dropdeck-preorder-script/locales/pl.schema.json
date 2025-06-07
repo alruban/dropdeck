@@ -1,0 +1,24 @@
+{
+  "script": {
+    "name": "Skrypt Dropdeck",
+    "description": "Dropdeck oferuje dwie metody konfiguracji: prostą konfigurację i zaawansowaną konfigurację. Prosta konfiguracja nie wymaga żadnych dodatkowych ustawień poza jej włączeniem, ale może mieć problemy ze zgodnością z niektórymi motywami, ponieważ próbuje wstrzyknąć kod do motywu, podczas gdy zaawansowana konfiguracja wymaga pewnej wiedzy technicznej – zobacz przewodnik szybkiego startu, aby uzyskać więcej informacji.",
+    "setup_choice": {
+      "label": "Wybór konfiguracji",
+      "options": {
+        "simple": "Prosta konfiguracja",
+        "advanced": "Zaawansowana konfiguracja"
+      }
+    },
+    "simple_setup": {
+      "header": "Ustawienia prostej konfiguracji",
+      "display_release_date": {
+        "label": "Pokaż datę wydania",
+        "info": "To wyświetli datę wydania produktu z planem sprzedaży przedsprzedażowej. Wyświetlane tylko na głównej stronie produktu."
+      },
+      "display_unit_restriction": {
+        "label": "Pokaż ograniczenie jednostek",
+        "info": "To wyświetli ograniczenie jednostek dla produktu z planem sprzedaży przedsprzedażowej. Wyświetlane tylko na głównej stronie produktu."
+      }
+    }
+  }
+}

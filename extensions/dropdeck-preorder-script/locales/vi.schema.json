@@ -1,0 +1,24 @@
+{
+  "script": {
+    "name": "Script Dropdeck",
+    "description": "Dropdeck cung cấp hai phương pháp thiết lập: có thiết lập đơn giản và thiết lập nâng cao. Thiết lập đơn giản không yêu cầu thêm bất kỳ cấu hình nào ngoài việc kích hoạt, nhưng có thể gặp vấn đề tương thích với một số giao diện vì nó cố gắng chèn mã vào giao diện của bạn, trong khi thiết lập nâng cao đòi hỏi một số kiến thức kỹ thuật – vui lòng xem hướng dẫn bắt đầu nhanh để biết thêm thông tin.",
+    "setup_choice": {
+      "label": "Lựa chọn thiết lập",
+      "options": {
+        "simple": "Thiết lập đơn giản",
+        "advanced": "Thiết lập nâng cao"
+      }
+    },
+    "simple_setup": {
+      "header": "Cài đặt thiết lập đơn giản",
+      "display_release_date": {
+        "label": "Hiển thị ngày phát hành",
+        "info": "Điều này sẽ hiển thị ngày phát hành cho sản phẩm có kế hoạch bán đặt trước. Chỉ hiển thị trên trang sản phẩm chính."
+      },
+      "display_unit_restriction": {
+        "label": "Hiển thị giới hạn đơn vị",
+        "info": "Điều này sẽ hiển thị giới hạn đơn vị cho sản phẩm có kế hoạch bán đặt trước. Chỉ hiển thị trên trang sản phẩm chính."
+      }
+    }
+  }
+}

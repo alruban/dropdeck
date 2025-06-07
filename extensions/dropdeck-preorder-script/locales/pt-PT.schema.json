@@ -1,0 +1,24 @@
+{
+  "script": {
+    "name": "Script Dropdeck",
+    "description": "O Dropdeck oferece dois métodos de configuração: existe a configuração simples e a configuração avançada. A configuração simples não requer nenhuma configuração adicional além de a ativar, mas pode apresentar problemas de compatibilidade com certos temas, pois tenta injetar código no seu tema, enquanto a configuração avançada requer algum conhecimento técnico – consulte o guia de início rápido para mais informações.",
+    "setup_choice": {
+      "label": "Escolha de configuração",
+      "options": {
+        "simple": "Configuração simples",
+        "advanced": "Configuração avançada"
+      }
+    },
+    "simple_setup": {
+      "header": "Definições de configuração simples",
+      "display_release_date": {
+        "label": "Exibir data de lançamento",
+        "info": "Isto irá exibir a data de lançamento de um produto com um plano de venda de pré-venda. Isto só é exibido na página principal do produto."
+      },
+      "display_unit_restriction": {
+        "label": "Exibir restrição de unidade",
+        "info": "Isto irá exibir a restrição de unidade para um produto com um plano de venda de pré-venda. Isto só é exibido na página principal do produto."
+      }
+    }
+  }
+}

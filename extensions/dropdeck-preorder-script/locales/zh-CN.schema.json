@@ -1,0 +1,24 @@
+{
+  "script": {
+    "name": "Dropdeck 脚本",
+    "description": "Dropdeck 提供两种设置方法：有简单设置和高级设置。简单设置只需启用，无需其他设置，但可能与某些主题不兼容，因为它尝试向您的主题注入代码，而高级设置则需要一定的技术知识——请参阅快速入门指南以获取更多信息。",
+    "setup_choice": {
+      "label": "设置选项",
+      "options": {
+        "simple": "简单设置",
+        "advanced": "高级设置"
+      }
+    },
+    "simple_setup": {
+      "header": "简单设置选项",
+      "display_release_date": {
+        "label": "显示发布日期",
+        "info": "这将显示具有预售销售计划的产品的发布日期。仅显示在主产品页面。"
+      },
+      "display_unit_restriction": {
+        "label": "显示单位限制",
+        "info": "这将显示具有预售销售计划的产品的单位限制。仅显示在主产品页面。"
+      }
+    }
+  }
+}

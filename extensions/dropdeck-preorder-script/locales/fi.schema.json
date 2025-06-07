@@ -1,0 +1,24 @@
+{
+  "script": {
+    "name": "Dropdeck-skripti",
+    "description": "Dropdeck tarjoaa kaksi asennustapaa: yksinkertainen asennus ja edistynyt asennus. Yksinkertainen asennus ei vaadi muuta kuin käyttöönoton, mutta se voi aiheuttaa yhteensopivuusongelmia joidenkin teemojen kanssa, koska se yrittää lisätä koodia teemaasi, kun taas edistynyt asennus vaatii teknistä osaamista – katso pikaopas lisätietoja varten.",
+    "setup_choice": {
+      "label": "Asennusvalinta",
+      "options": {
+        "simple": "Yksinkertainen asennus",
+        "advanced": "Edistynyt asennus"
+      }
+    },
+    "simple_setup": {
+      "header": "Yksinkertaisen asennuksen asetukset",
+      "display_release_date": {
+        "label": "Näytä julkaisupäivä",
+        "info": "Tämä näyttää julkaisupäivän tuotteelle, jolla on ennakkomyyntisuunnitelma. Näkyy vain tuotteen pääsivulla."
+      },
+      "display_unit_restriction": {
+        "label": "Näytä yksikkörajoitus",
+        "info": "Tämä näyttää yksikkörajoituksen tuotteelle, jolla on ennakkomyyntisuunnitelma. Näkyy vain tuotteen pääsivulla."
+      }
+    }
+  }
+}
