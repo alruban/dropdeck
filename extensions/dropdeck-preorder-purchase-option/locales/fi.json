@@ -1,0 +1,24 @@
+{
+  "name": "Dropdeck Ennakkotilaus",
+  "heading_create_preorder": "Luo ennakkomyyntisuunnitelma",
+  "heading_update_preorder": "Päivitä ennakkomyyntisuunnitelma",
+  "description": "Tätä myyntisuunnitelmaa käytetään tuotteen ennakkotilauksen luomiseen. Anna julkaisupäivä ja -aika ennakkotilauksen ajoittamiseksi ja napsauta sitten tallenna luodaksesi ennakkomyyntisuunnitelman.",
+  "cancel": "Peruuta",
+  "shipping_date": "Julkaisupäivä",
+  "enable_unit_restriction": "Ota yksikkörajoitus käyttöön",
+  "units_per_customer": "Yksiköt asiakasta kohden",
+  "affected_products": "Yllä olevan myyntisuunnitelman muokkaaminen vaikuttaa myös seuraaviin tuotteisiin:",
+  "submit_create_preorder": "Luo ennakkotilaus",
+  "submit_creating_preorder": "Luodaan ennakkomyyntisuunnitelmaa...",
+  "submit_update_preorder": "Päivitä ennakkotilaus",
+  "submit_updating_preorder": "Päivitetään ennakkomyyntisuunnitelmaa...",
+  "error_date_must_be_future": "Päivämäärän on oltava tulevaisuudessa.",
+  "notice_selling_plan_requirement": "Kaikki myyntisuunnitelmaan lisätyt tuotteet vaativat automaattisesti sellaisen. Tämä poistaa tuotteen myyntikanavista, jotka eivät tue Shopifyn ennakkotilauksia, ja estää sen myynnin siellä. Poistamalla valinnan 'Myy tätä tuotetta vain tilauksena' tuotesivujen hallinnassa poistat tämän vaatimuksen, mitä emme suosittele, koska se voi johtaa ennakkotilausten käsittelyyn tavallisina tilauksina.",
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Toimitus odotetaan {{date}} tai sen jälkeen",
+    "description_for_plan_with_unit_restriction": "Toimitus odotetaan {{date}} tai sen jälkeen, {{units}} yksikköä asiakasta kohden"
+  },
+  "product_variant_extension": {
+    "description": "Dropdeck ei tällä hetkellä tue varianttitasolla luotuja ennakkotilauksia, tämä lomake luo ennakkotilausvaihtoehdon tuotetasolla, joka koskee kaikkia tuotteen variantteja."
+  }
+}

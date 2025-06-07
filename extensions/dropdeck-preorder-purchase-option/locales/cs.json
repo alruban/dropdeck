@@ -1,0 +1,24 @@
+{
+  "name": "Dropdeck Předobjednávka",
+  "heading_create_preorder": "Vytvořit plán pro předobjednávku",
+  "heading_update_preorder": "Aktualizovat plán pro předobjednávku",
+  "description": "Tento plán prodeje slouží k vytvoření předobjednávky produktu. Zadejte datum a čas vydání pro naplánování předobjednávky a poté klikněte na Uložit pro vytvoření plánu předobjednávky.",
+  "cancel": "Zrušit",
+  "shipping_date": "Datum vydání",
+  "enable_unit_restriction": "Povolit omezení jednotek",
+  "units_per_customer": "Jednotky na zákazníka",
+  "affected_products": "Úprava výše uvedeného plánu prodeje ovlivní také následující produkty:",
+  "submit_create_preorder": "Vytvořit předobjednávku",
+  "submit_creating_preorder": "Vytváření plánu pro předobjednávku...",
+  "submit_update_preorder": "Aktualizovat předobjednávku",
+  "submit_updating_preorder": "Aktualizace plánu pro předobjednávku...",
+  "error_date_must_be_future": "Datum musí být v budoucnosti.",
+  "notice_selling_plan_requirement": "Jakýkoli produkt přidaný do plánu prodeje bude automaticky vyžadovat plán. Tím se produkt odstraní z prodejních kanálů, které nepodporují předobjednávky Shopify, a zabrání se jeho prodeji tam. Zrušení zaškrtnutí možnosti 'Prodávat tento produkt pouze jako předplatné' na stránkách správy produktu tuto podmínku odstraní, což nedoporučujeme, protože to může vést k tomu, že vaše předobjednávky budou přijímány jako běžné objednávky.",
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Očekává se odeslání dne nebo po {{date}}",
+    "description_for_plan_with_unit_restriction": "Očekává se odeslání dne nebo po {{date}}, {{units}} jednotek na zákazníka"
+  },
+  "product_variant_extension": {
+    "description": "Dropdeck aktuálně nepodporuje předobjednávky vytvořené na úrovni varianty, tento formulář vytvoří možnost nákupu předobjednávky na úrovni produktu, která bude použita na všechny varianty produktu."
+  }
+}

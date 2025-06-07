@@ -1,0 +1,11 @@
+{
+  "line_item": {
+    "ships_on_or_after": "Afsendes på eller efter {{date}}",
+    "units_per_customer": "{{ total_units }} enheder pr. kunde",
+    "error_preorder_limit_exceeded": {
+      "message": "Du har overskredet forudbestillingsgrænsen.",
+      "units_bought_in_previous_orders": "Enheder købt i tidligere ordrer: {{units}}",
+      "units_in_this_order": "Enheder i denne ordre: {{units}}"
+    }
+  }
+}

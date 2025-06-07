@@ -1,0 +1,24 @@
+{
+  "name": "Dropdeck Forudbestilling",
+  "heading_create_preorder": "Opret forudbestillingssalgsplan",
+  "heading_update_preorder": "Opdater forudbestillingssalgsplan",
+  "description": "Denne salgsplan bruges til at oprette en forudbestilling for et produkt. Indtast en udgivelsesdato og et udgivelsestidspunkt for at planlægge en forudbestilling, og klik derefter på gem for at oprette forudbestillingssalgsplanen.",
+  "cancel": "Annuller",
+  "shipping_date": "Udgivelsesdato",
+  "enable_unit_restriction": "Aktiver enhedsbegrænsning",
+  "units_per_customer": "Enheder per kunde",
+  "affected_products": "Redigering af ovenstående salgsplan vil også påvirke følgende produkter:",
+  "submit_create_preorder": "Opret forudbestilling",
+  "submit_creating_preorder": "Opretter forudbestillingssalgsplan...",
+  "submit_update_preorder": "Opdater forudbestilling",
+  "submit_updating_preorder": "Opdaterer forudbestillingssalgsplan...",
+  "error_date_must_be_future": "Datoen skal være i fremtiden.",
+  "notice_selling_plan_requirement": "Ethvert produkt, der tilføjes til en salgsplan, vil automatisk kræve en. Dette fjerner produktet fra salgskanaler, der ikke understøtter Shopify-forudbestillinger, og forhindrer det i at blive solgt der. Hvis du fjerner markeringen af 'Sælg kun dette produkt som et abonnement' på produktsidene, fjernes dette krav, hvilket vi fraråder, da det kan føre til, at dine forudbestillinger behandles som standardordrer.",
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Forventes sendt på eller efter {{date}}",
+    "description_for_plan_with_unit_restriction": "Forventes sendt på eller efter {{date}}, {{units}} enheder per kunde"
+  },
+  "product_variant_extension": {
+    "description": "Dropdeck understøtter i øjeblikket ikke forudbestillinger oprettet på variantniveau, dette skema vil oprette en forudbestillingskøbsmulighed på produktniveau, som vil blive anvendt på alle varianter af produktet."
+  }
+}

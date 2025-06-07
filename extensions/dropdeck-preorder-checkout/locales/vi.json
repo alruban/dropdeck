@@ -1,0 +1,11 @@
+{
+  "line_item": {
+    "ships_on_or_after": "Giao hàng vào hoặc sau {{date}}",
+    "units_per_customer": "{{ total_units }} đơn vị cho mỗi khách hàng",
+    "error_preorder_limit_exceeded": {
+      "message": "Bạn đã vượt quá giới hạn đặt trước.",
+      "units_bought_in_previous_orders": "Đơn vị đã mua trong các đơn hàng trước: {{units}}",
+      "units_in_this_order": "Đơn vị trong đơn hàng này: {{units}}"
+    }
+  }
+}

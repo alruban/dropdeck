@@ -1,0 +1,11 @@
+{
+  "line_item": {
+    "ships_on_or_after": "Odesílá se dne nebo po {{date}}",
+    "units_per_customer": "{{ total_units }} jednotek na zákazníka",
+    "error_preorder_limit_exceeded": {
+      "message": "Překročili jste limit předobjednávky.",
+      "units_bought_in_previous_orders": "Jednotky zakoupené v předchozích objednávkách: {{units}}",
+      "units_in_this_order": "Jednotky v této objednávce: {{units}}"
+    }
+  }
+}

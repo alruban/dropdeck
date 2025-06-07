@@ -1,0 +1,11 @@
+{
+  "line_item": {
+    "ships_on_or_after": "{{date}} 或之后发货",
+    "units_per_customer": "每位客户 {{ total_units }} 单位",
+    "error_preorder_limit_exceeded": {
+      "message": "您已超出预购限制。",
+      "units_bought_in_previous_orders": "在之前订单中购买的单位数：{{units}}",
+      "units_in_this_order": "本订单中的单位数：{{units}}"
+    }
+  }
+}

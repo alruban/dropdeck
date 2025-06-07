@@ -1,0 +1,24 @@
+{
+  "name": "Dropdeck Förbeställning",
+  "heading_create_preorder": "Skapa förbeställningsförsäljningsplan",
+  "heading_update_preorder": "Uppdatera förbeställningsförsäljningsplan",
+  "description": "Denna försäljningsplan används för att skapa en förbeställning för en produkt. Ange ett releasedatum och en releasetid för att schemalägga en förbeställning och klicka sedan på spara för att skapa förbeställningsförsäljningsplanen.",
+  "cancel": "Avbryt",
+  "shipping_date": "Releasedatum",
+  "enable_unit_restriction": "Aktivera enhetsbegränsning",
+  "units_per_customer": "Enheter per kund",
+  "affected_products": "Redigering av ovanstående försäljningsplan kommer också att påverka följande produkter:",
+  "submit_create_preorder": "Skapa förbeställning",
+  "submit_creating_preorder": "Skapar förbeställningsförsäljningsplan...",
+  "submit_update_preorder": "Uppdatera förbeställning",
+  "submit_updating_preorder": "Uppdaterar förbeställningsförsäljningsplan...",
+  "error_date_must_be_future": "Datumet måste vara i framtiden.",
+  "notice_selling_plan_requirement": "Alla produkter som läggs till i en försäljningsplan kommer automatiskt att kräva en. Detta tar bort produkten från försäljningskanaler som inte stöder Shopify-förbeställningar och förhindrar att den säljs där. Om du avmarkerar alternativet 'Sälj endast denna produkt som en prenumeration' på produkthanteringssidorna tas detta krav bort, vilket vi inte rekommenderar eftersom det kan leda till att dina förbeställningar behandlas som standardordrar.",
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Förväntas skickas på eller efter {{date}}",
+    "description_for_plan_with_unit_restriction": "Förväntas skickas på eller efter {{date}}, {{units}} enheter per kund"
+  },
+  "product_variant_extension": {
+    "description": "Dropdeck stöder för närvarande inte förbeställningar som skapats på variantnivå, detta formulär kommer att skapa en förbeställningsköpalternativ på produktnivå, som kommer att tillämpas på alla varianter av produkten."
+  }
+}

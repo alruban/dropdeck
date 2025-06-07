@@ -1,0 +1,11 @@
+{
+  "line_item": {
+    "ships_on_or_after": "Expédié le ou après {{date}}",
+    "units_per_customer": "{{ total_units }} unités par client",
+    "error_preorder_limit_exceeded": {
+      "message": "Vous avez dépassé la limite de précommande.",
+      "units_bought_in_previous_orders": "Unités achetées dans les commandes précédentes : {{units}}",
+      "units_in_this_order": "Unités dans cette commande : {{units}}"
+    }
+  }
+}

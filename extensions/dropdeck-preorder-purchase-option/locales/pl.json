@@ -1,0 +1,24 @@
+{
+  "name": "Dropdeck Przedsprzedaż",
+  "heading_create_preorder": "Utwórz plan sprzedaży przedsprzedażowej",
+  "heading_update_preorder": "Aktualizuj plan sprzedaży przedsprzedażowej",
+  "description": "Ten plan sprzedaży służy do utworzenia przedsprzedaży produktu. Wprowadź datę i godzinę wydania, aby zaplanować przedsprzedaż, a następnie kliknij zapisz, aby utworzyć plan sprzedaży przedsprzedażowej.",
+  "cancel": "Anuluj",
+  "shipping_date": "Data wydania",
+  "enable_unit_restriction": "Włącz ograniczenie jednostek",
+  "units_per_customer": "Jednostki na klienta",
+  "affected_products": "Edycja powyższego planu sprzedaży wpłynie również na następujące produkty:",
+  "submit_create_preorder": "Utwórz przedsprzedaż",
+  "submit_creating_preorder": "Tworzenie planu sprzedaży przedsprzedażowej...",
+  "submit_update_preorder": "Aktualizuj przedsprzedaż",
+  "submit_updating_preorder": "Aktualizowanie planu sprzedaży przedsprzedażowej...",
+  "error_date_must_be_future": "Data musi być w przyszłości.",
+  "notice_selling_plan_requirement": "Każdy produkt dodany do planu sprzedaży automatycznie będzie go wymagał. To usuwa produkt z kanałów sprzedaży, które nie obsługują przedsprzedaży Shopify i uniemożliwia jego sprzedaż tam. Odznaczenie opcji 'Sprzedawaj ten produkt tylko jako subskrypcję' na stronach administracyjnych produktu usunie ten wymóg, czego nie zalecamy, ponieważ może to spowodować, że Twoje przedsprzedaże będą traktowane jako standardowe zamówienia.",
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Wysyłka spodziewana w dniu lub po {{date}}",
+    "description_for_plan_with_unit_restriction": "Wysyłka spodziewana w dniu lub po {{date}}, {{units}} jednostek na klienta"
+  },
+  "product_variant_extension": {
+    "description": "Dropdeck obecnie nie obsługuje przedsprzedaży utworzonych na poziomie wariantu, ten formularz utworzy opcję zakupu przedsprzedażowego na poziomie produktu, która zostanie zastosowana do wszystkich wariantów produktu."
+  }
+}

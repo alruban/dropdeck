@@ -1,0 +1,24 @@
+{
+  "name": "Dropdeck 予約注文",
+  "heading_create_preorder": "予約注文販売プランを作成",
+  "heading_update_preorder": "予約注文販売プランを更新",
+  "description": "この販売プランは、商品の予約注文を作成するために使用されます。発売日と発売時間を入力して予約注文をスケジュールし、保存をクリックして予約注文販売プランを作成してください。",
+  "cancel": "キャンセル",
+  "shipping_date": "発売日",
+  "enable_unit_restriction": "単位制限を有効にする",
+  "units_per_customer": "顧客ごとの単位数",
+  "affected_products": "上記の販売プランの編集は、以下の商品にも影響します：",
+  "submit_create_preorder": "予約注文を作成",
+  "submit_creating_preorder": "予約注文販売プランを作成中...",
+  "submit_update_preorder": "予約注文を更新",
+  "submit_updating_preorder": "予約注文販売プランを更新中...",
+  "error_date_must_be_future": "日付は将来の日付でなければなりません。",
+  "notice_selling_plan_requirement": "販売プランに追加された商品は自動的に販売プランが必要になります。これにより、Shopifyの予約注文をサポートしていない販売チャネルから商品が削除され、そこでの販売が防止されます。商品管理ページで「この商品をサブスクリプションとしてのみ販売する」オプションのチェックを外すと、この要件が削除されますが、予約注文が通常の注文として処理される可能性があるため、お勧めしません。",
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "{{date}}以降に発送予定",
+    "description_for_plan_with_unit_restriction": "{{date}}以降に発送予定、顧客ごとに{{units}}単位"
+  },
+  "product_variant_extension": {
+    "description": "Dropdeckは現在、バリアントレベルで作成された予約注文をサポートしていません。このフォームは、商品レベルで予約注文購入オプションを作成し、商品のすべてのバリアントに適用されます。"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "line_item": {
+    "ships_on_or_after": "{{date}} tarihinde veya sonrasında gönderilir",
+    "units_per_customer": "Müşteri başına {{ total_units }} birim",
+    "error_preorder_limit_exceeded": {
+      "message": "Ön sipariş limitini aştınız.",
+      "units_bought_in_previous_orders": "Önceki siparişlerde alınan birimler: {{units}}",
+      "units_in_this_order": "Bu siparişteki birimler: {{units}}"
+    }
+  }
+}

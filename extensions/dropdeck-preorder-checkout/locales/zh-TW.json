@@ -1,0 +1,11 @@
+{
+  "line_item": {
+    "ships_on_or_after": "{{date}} 或之後出貨",
+    "units_per_customer": "每位顧客 {{ total_units }} 單位",
+    "error_preorder_limit_exceeded": {
+      "message": "您已超出預購限制。",
+      "units_bought_in_previous_orders": "在先前訂單中購買的單位數：{{units}}",
+      "units_in_this_order": "本訂單中的單位數：{{units}}"
+    }
+  }
+}

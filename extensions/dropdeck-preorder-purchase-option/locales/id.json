@@ -1,0 +1,24 @@
+{
+  "name": "Dropdeck Pemesanan Awal",
+  "heading_create_preorder": "Buat Rencana Penjualan Pemesanan Awal",
+  "heading_update_preorder": "Perbarui Rencana Penjualan Pemesanan Awal",
+  "description": "Rencana penjualan ini digunakan untuk membuat pemesanan awal untuk produk. Masukkan tanggal dan waktu rilis untuk menjadwalkan pemesanan awal, lalu klik simpan untuk membuat rencana penjualan pemesanan awal.",
+  "cancel": "Batal",
+  "shipping_date": "Tanggal Rilis",
+  "enable_unit_restriction": "Aktifkan Pembatasan Unit",
+  "units_per_customer": "Unit per Pelanggan",
+  "affected_products": "Mengedit rencana penjualan di atas juga akan mempengaruhi produk berikut:",
+  "submit_create_preorder": "Buat Pemesanan Awal",
+  "submit_creating_preorder": "Membuat Rencana Penjualan Pemesanan Awal...",
+  "submit_update_preorder": "Perbarui Pemesanan Awal",
+  "submit_updating_preorder": "Memperbarui Rencana Penjualan Pemesanan Awal...",
+  "error_date_must_be_future": "Tanggal harus di masa depan.",
+  "notice_selling_plan_requirement": "Setiap produk yang ditambahkan ke rencana penjualan akan secara otomatis memerlukan satu. Ini menghapus produk dari saluran penjualan yang tidak mendukung pemesanan awal Shopify dan mencegahnya dijual di sana. Menghapus centang opsi 'Hanya jual produk ini sebagai langganan' di halaman admin produk akan menghapus persyaratan ini, yang tidak kami sarankan karena dapat menyebabkan pemesanan awal Anda diproses sebagai pesanan standar.",
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Diharapkan dikirim pada atau setelah {{date}}",
+    "description_for_plan_with_unit_restriction": "Diharapkan dikirim pada atau setelah {{date}}, {{units}} unit per pelanggan"
+  },
+  "product_variant_extension": {
+    "description": "Dropdeck saat ini tidak mendukung pemesanan awal yang dibuat pada tingkat varian, formulir ini akan membuat opsi pembelian pemesanan awal pada tingkat produk, yang akan diterapkan ke semua varian produk."
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "line_item": {
+    "ships_on_or_after": "Αποστέλλεται στις ή μετά τις {{date}}",
+    "units_per_customer": "{{ total_units }} μονάδες ανά πελάτη",
+    "error_preorder_limit_exceeded": {
+      "message": "Έχετε υπερβεί το όριο προπαραγγελίας.",
+      "units_bought_in_previous_orders": "Μονάδες που αγοράστηκαν σε προηγούμενες παραγγελίες: {{units}}",
+      "units_in_this_order": "Μονάδες σε αυτήν την παραγγελία: {{units}}"
+    }
+  }
+}

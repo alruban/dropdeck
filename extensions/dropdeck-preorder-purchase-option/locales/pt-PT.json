@@ -1,0 +1,24 @@
+{
+  "name": "Dropdeck Pré-venda",
+  "heading_create_preorder": "Criar plano de venda de pré-venda",
+  "heading_update_preorder": "Atualizar plano de venda de pré-venda",
+  "description": "Este plano de venda é utilizado para criar uma pré-venda de um produto. Insira uma data e hora de lançamento para agendar uma pré-venda e, em seguida, clique em guardar para criar o plano de venda de pré-venda.",
+  "cancel": "Cancelar",
+  "shipping_date": "Data de lançamento",
+  "enable_unit_restriction": "Ativar restrição de unidades",
+  "units_per_customer": "Unidades por cliente",
+  "affected_products": "A edição do plano de venda acima também afetará os seguintes produtos:",
+  "submit_create_preorder": "Criar pré-venda",
+  "submit_creating_preorder": "A criar plano de venda de pré-venda...",
+  "submit_update_preorder": "Atualizar pré-venda",
+  "submit_updating_preorder": "A atualizar plano de venda de pré-venda...",
+  "error_date_must_be_future": "A data deve ser no futuro.",
+  "notice_selling_plan_requirement": "Qualquer produto adicionado a um plano de venda exigirá automaticamente um. Isto remove o produto de canais de venda que não suportam pré-vendas do Shopify e impede que seja vendido lá. Desmarcar a opção 'Vender este produto apenas como subscrição' nas páginas de administração do produto removerá este requisito, o que não recomendamos, pois pode fazer com que as suas pré-vendas sejam processadas como encomendas normais.",
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Envio previsto para ou após {{date}}",
+    "description_for_plan_with_unit_restriction": "Envio previsto para ou após {{date}}, {{units}} unidades por cliente"
+  },
+  "product_variant_extension": {
+    "description": "A Dropdeck atualmente não suporta pré-vendas criadas ao nível da variante, este formulário irá criar uma opção de compra de pré-venda ao nível do produto, que será aplicada a todas as variantes do produto."
+  }
+}

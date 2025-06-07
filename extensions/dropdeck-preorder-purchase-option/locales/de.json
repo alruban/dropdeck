@@ -1,0 +1,24 @@
+{
+  "name": "Dropdeck Vorbestellung",
+  "heading_create_preorder": "Vorbestellungsverkaufsplan erstellen",
+  "heading_update_preorder": "Vorbestellungsverkaufsplan aktualisieren",
+  "description": "Dieser Verkaufsplan wird verwendet, um eine Vorbestellung für ein Produkt zu erstellen. Geben Sie ein Veröffentlichungsdatum und eine Veröffentlichungszeit ein, um eine Vorbestellung zu planen, und klicken Sie dann auf Speichern, um den Vorbestellungsverkaufsplan zu erstellen.",
+  "cancel": "Abbrechen",
+  "shipping_date": "Veröffentlichungsdatum",
+  "enable_unit_restriction": "Stückzahlbeschränkung aktivieren",
+  "units_per_customer": "Einheiten pro Kunde",
+  "affected_products": "Die Bearbeitung des obigen Verkaufsplans wirkt sich auch auf die folgenden Produkte aus:",
+  "submit_create_preorder": "Vorbestellung erstellen",
+  "submit_creating_preorder": "Vorbestellungsverkaufsplan wird erstellt...",
+  "submit_update_preorder": "Vorbestellung aktualisieren",
+  "submit_updating_preorder": "Vorbestellungsverkaufsplan wird aktualisiert...",
+  "error_date_must_be_future": "Das Datum muss in der Zukunft liegen.",
+  "notice_selling_plan_requirement": "Jedes Produkt, das zu einem Verkaufsplan hinzugefügt wird, erfordert automatisch einen. Dadurch wird das Produkt aus Vertriebskanälen entfernt, die Shopify-Vorbestellungen nicht unterstützen, und verhindert den Verkauf dort. Das Deaktivieren der Option 'Dieses Produkt nur als Abonnement verkaufen' auf den Produktverwaltungsseiten entfernt diese Anforderung, was wir nicht empfehlen, da dies dazu führen kann, dass Ihre Vorbestellungen als Standardbestellungen eingehen.",
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Versand voraussichtlich am oder nach {{date}}",
+    "description_for_plan_with_unit_restriction": "Versand voraussichtlich am oder nach {{date}}, {{units}} Einheiten pro Kunde"
+  },
+  "product_variant_extension": {
+    "description": "Dropdeck unterstützt derzeit keine Vorbestellungen auf Variantenebene, dieses Formular erstellt eine Vorbestellungsoption auf Produktebene, die auf alle Varianten des Produkts angewendet wird."
+  }
+}

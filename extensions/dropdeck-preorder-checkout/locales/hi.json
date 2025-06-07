@@ -1,0 +1,11 @@
+{
+  "line_item": {
+    "ships_on_or_after": "{{date}} या उसके बाद भेजा जाएगा",
+    "units_per_customer": "प्रति ग्राहक {{ total_units }} इकाइयाँ",
+    "error_preorder_limit_exceeded": {
+      "message": "आपने प्रीऑर्डर सीमा पार कर ली है।",
+      "units_bought_in_previous_orders": "पिछले ऑर्डरों में खरीदी गई इकाइयाँ: {{units}}",
+      "units_in_this_order": "इस ऑर्डर में इकाइयाँ: {{units}}"
+    }
+  }
+}

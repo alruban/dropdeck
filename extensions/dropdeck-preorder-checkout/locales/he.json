@@ -1,0 +1,11 @@
+{
+  "line_item": {
+    "ships_on_or_after": "נשלח בתאריך או לאחר {{date}}",
+    "units_per_customer": "{{ total_units }} יחידות ללקוח",
+    "error_preorder_limit_exceeded": {
+      "message": "חרגת ממגבלת ההזמנה המוקדמת.",
+      "units_bought_in_previous_orders": "יחידות שנרכשו בהזמנות קודמות: {{units}}",
+      "units_in_this_order": "יחידות בהזמנה זו: {{units}}"
+    }
+  }
+}

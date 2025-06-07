@@ -1,0 +1,24 @@
+{
+  "name": "Dropdeck Đặt Trước",
+  "heading_create_preorder": "Tạo Kế Hoạch Bán Hàng Đặt Trước",
+  "heading_update_preorder": "Cập Nhật Kế Hoạch Bán Hàng Đặt Trước",
+  "description": "Kế hoạch bán hàng này được sử dụng để tạo đặt trước cho một sản phẩm. Chỉ định ngày phát hành và thời gian phát hành để lên lịch đặt trước, sau đó nhấp vào lưu để tạo kế hoạch bán hàng đặt trước.",
+  "cancel": "Hủy",
+  "shipping_date": "Ngày Phát Hành",
+  "enable_unit_restriction": "Bật Giới Hạn Đơn Vị",
+  "units_per_customer": "Đơn Vị Mỗi Khách Hàng",
+  "affected_products": "Chỉnh sửa kế hoạch bán hàng trên cũng sẽ ảnh hưởng đến các sản phẩm sau:",
+  "submit_create_preorder": "Tạo Đặt Trước",
+  "submit_creating_preorder": "Đang Tạo Kế Hoạch Bán Hàng Đặt Trước...",
+  "submit_update_preorder": "Cập Nhật Đặt Trước",
+  "submit_updating_preorder": "Đang Cập Nhật Kế Hoạch Bán Hàng Đặt Trước...",
+  "error_date_must_be_future": "Ngày phải là trong tương lai.",
+  "notice_selling_plan_requirement": "Tất cả các sản phẩm được thêm vào kế hoạch bán hàng sẽ tự động yêu cầu một kế hoạch. Điều này loại bỏ sản phẩm khỏi các kênh bán hàng không hỗ trợ đặt trước Shopify và ngăn nó được bán ở đó. Nếu bạn bỏ chọn tùy chọn 'Chỉ bán sản phẩm này dưới dạng đăng ký' trên các trang quản lý sản phẩm, yêu cầu này sẽ bị xóa, điều này không được khuyến nghị vì nó có thể dẫn đến việc đặt trước của bạn được xử lý như đơn hàng tiêu chuẩn.",
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "Dự kiến gửi vào hoặc sau {{date}}",
+    "description_for_plan_with_unit_restriction": "Dự kiến gửi vào hoặc sau {{date}}, {{units}} đơn vị mỗi khách hàng"
+  },
+  "product_variant_extension": {
+    "description": "Dropdeck hiện không hỗ trợ đặt trước được tạo ở cấp độ biến thể, biểu mẫu này sẽ tạo một tùy chọn mua đặt trước ở cấp độ sản phẩm, sẽ được áp dụng cho tất cả các biến thể của sản phẩm."
+  }
+}

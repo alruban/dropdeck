@@ -1,0 +1,11 @@
+{
+  "line_item": {
+    "ships_on_or_after": "Dikirim pada atau setelah {{date}}",
+    "units_per_customer": "{{ total_units }} unit per pelanggan",
+    "error_preorder_limit_exceeded": {
+      "message": "Anda telah melebihi batas pre-order.",
+      "units_bought_in_previous_orders": "Unit yang dibeli dalam pesanan sebelumnya: {{units}}",
+      "units_in_this_order": "Unit dalam pesanan ini: {{units}}"
+    }
+  }
+}

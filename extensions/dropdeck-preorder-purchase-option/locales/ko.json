@@ -1,0 +1,24 @@
+{
+  "name": "Dropdeck 사전 주문",
+  "heading_create_preorder": "사전 주문 판매 플랜 생성",
+  "heading_update_preorder": "사전 주문 판매 플랜 업데이트",
+  "description": "이 판매 플랜은 제품의 사전 주문을 생성하는 데 사용됩니다. 출시 날짜와 시간을 입력하여 사전 주문을 예약한 다음 저장을 클릭하여 사전 주문 판매 플랜을 생성하세요.",
+  "cancel": "취소",
+  "shipping_date": "출시일",
+  "enable_unit_restriction": "단위 제한 활성화",
+  "units_per_customer": "고객당 단위 수",
+  "affected_products": "위 판매 플랜을 수정하면 다음 제품에도 영향을 미칩니다:",
+  "submit_create_preorder": "사전 주문 생성",
+  "submit_creating_preorder": "사전 주문 판매 플랜 생성 중...",
+  "submit_update_preorder": "사전 주문 업데이트",
+  "submit_updating_preorder": "사전 주문 판매 플랜 업데이트 중...",
+  "error_date_must_be_future": "날짜는 미래여야 합니다.",
+  "notice_selling_plan_requirement": "판매 플랜에 추가된 모든 제품은 자동으로 플랜이 필요합니다. 이로 인해 Shopify 사전 주문을 지원하지 않는 판매 채널에서 제품이 제거되고 해당 채널에서 판매가 차단됩니다. 제품 관리 페이지에서 '이 제품을 구독으로만 판매' 옵션을 선택 해제하면 이 요구 사항이 제거되지만, 사전 주문이 일반 주문으로 처리될 수 있으므로 권장하지 않습니다.",
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "{{date}} 이후 발송 예정",
+    "description_for_plan_with_unit_restriction": "{{date}} 이후 발송 예정, 고객당 {{units}} 단위"
+  },
+  "product_variant_extension": {
+    "description": "Dropdeck은 현재 옵션(variant) 단위로 생성된 사전 주문을 지원하지 않습니다. 이 양식은 제품 단위로 사전 주문 구매 옵션을 생성하며, 제품의 모든 옵션에 적용됩니다."
+  }
+}

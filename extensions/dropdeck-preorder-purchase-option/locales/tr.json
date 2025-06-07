@@ -1,0 +1,24 @@
+{
+  "name": "Dropdeck Ön Sipariş",
+  "heading_create_preorder": "Ön Sipariş Satış Planı Oluştur",
+  "heading_update_preorder": "Ön Sipariş Satış Planını Güncelle",
+  "description": "Bu satış planı, bir ürün için ön sipariş oluşturmak için kullanılır. Ön siparişi planlamak için bir yayın tarihi ve yayın saati belirleyin, ardından ön sipariş satış planını oluşturmak için kaydet'e tıklayın.",
+  "cancel": "İptal",
+  "shipping_date": "Yayın Tarihi",
+  "enable_unit_restriction": "Birim Kısıtlamasını Etkinleştir",
+  "units_per_customer": "Müşteri Başına Birim",
+  "affected_products": "Yukarıdaki satış planındaki düzenlemeler aşağıdaki ürünleri de etkileyecektir:",
+  "submit_create_preorder": "Ön Sipariş Oluştur",
+  "submit_creating_preorder": "Ön Sipariş Satış Planı Oluşturuluyor...",
+  "submit_update_preorder": "Ön Siparişi Güncelle",
+  "submit_updating_preorder": "Ön Sipariş Satış Planı Güncelleniyor...",
+  "error_date_must_be_future": "Tarih gelecekte olmalıdır.",
+  "notice_selling_plan_requirement": "Bir satış planına eklenen tüm ürünler otomatik olarak bir tane gerektirecektir. Bu, ürünü Shopify ön siparişlerini desteklemeyen satış kanallarından kaldırır ve orada satılmasını engeller. Ürün yönetim sayfalarında 'Bu ürünü yalnızca abonelik olarak sat' seçeneğinin işaretini kaldırırsanız, bu gereklilik kaldırılır, bu da ön siparişlerinizin standart siparişler olarak işlenmesine yol açabileceği için önerilmez.",
+  "sp_group": {
+    "description_for_plan_with_no_unit_restriction": "{{date}} tarihinde veya sonrasında gönderilmesi bekleniyor",
+    "description_for_plan_with_unit_restriction": "{{date}} tarihinde veya sonrasında gönderilmesi bekleniyor, müşteri başına {{units}} birim"
+  },
+  "product_variant_extension": {
+    "description": "Dropdeck şu anda varyant seviyesinde oluşturulan ön siparişleri desteklememektedir, bu form ürün seviyesinde bir ön sipariş satın alma seçeneği oluşturacaktır, bu da ürünün tüm varyantlarına uygulanacaktır."
+  }
+}
