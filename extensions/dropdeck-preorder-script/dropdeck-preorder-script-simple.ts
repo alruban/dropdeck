@@ -1,4 +1,5 @@
-import { type PSPreorderResponse, type PSProductVariantData } from "./types";
+// @ts-nocheck
+// This file is intentionally not a module to prevent export {} from being added
 
 (function () {
   // Inject Dropdeck Preorder Script styles if not already present

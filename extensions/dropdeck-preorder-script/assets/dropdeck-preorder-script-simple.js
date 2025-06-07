@@ -1,3 +1,4 @@
+"use strict";
 (function () {
     if (!document.getElementById('dropdeck-preorder-script-styles')) {
         const style = document.createElement('style');
@@ -688,4 +689,3 @@
         }
     };
 })();
-export {};

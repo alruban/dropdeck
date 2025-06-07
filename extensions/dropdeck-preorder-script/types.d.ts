@@ -70,7 +70,7 @@ export type PSProductVariantData = {
   };
 };
 
-export interface PSPreorderResponse {
+type PSPreorderResponse = {
   data: {
     data: PSProductVariantData;
   };
