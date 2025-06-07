@@ -1,0 +1,24 @@
+{
+  "script": {
+    "name": "Dropdeck Script",
+    "description": "Dropdeck iki kurulum yöntemi sunar: basit kurulum ve gelişmiş kurulum. Basit kurulum, etkinleştirmekten başka ek bir kurulum gerektirmez, ancak temanıza kod enjekte etmeye çalıştığı için belirli temalarla uyumluluk sorunları yaşayabilir. Gelişmiş kurulum ise bazı teknik bilgiler gerektirir - daha fazla bilgi için hızlı başlangıç kılavuzuna bakın.",
+    "setup_choice": {
+      "label": "Kurulum Seçeneği",
+      "options": {
+        "simple": "Basit Kurulum",
+        "advanced": "Gelişmiş Kurulum"
+      }
+    },
+    "simple_setup": {
+      "header": "Basit Kurulum Ayarları",
+      "display_release_date": {
+        "label": "Yayın Tarihini Göster",
+        "info": "Bu, ön sipariş satış planı olan bir ürün için yayın tarihini gösterecektir. Bu sadece ana ürün sayfasında görüntülenir."
+      },
+      "display_unit_restriction": {
+        "label": "Birim Kısıtlamasını Göster",
+        "info": "Bu, ön sipariş satış planı olan bir ürün için birim kısıtlamasını gösterecektir. Bu sadece ana ürün sayfasında görüntülenir."
+      }
+    }
+  }
+}
