@@ -2,6 +2,13 @@
 // This file is intentionally not a module to prevent export {} from being added
 
 (function () {
+  // Helper function to decode HTML entities
+  const decodeHTMLEntities = (text: string): string => {
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = text;
+    return textarea.value;
+  };
+
   // Inject Dropdeck Preorder Script styles if not already present
   if (!document.getElementById('dropdeck-preorder-script-styles')) {
     const style = document.createElement('style');
@@ -148,7 +155,7 @@
     private showErrorMessage = (message: string) => {
       if (!this.elErrorMessage) return;
 
-      this.elErrorMessage.textContent = message;
+      this.elErrorMessage.textContent = decodeHTMLEntities(message);
       this.elErrorMessage.classList.add("show");
 
       // Auto-hide after 5 seconds

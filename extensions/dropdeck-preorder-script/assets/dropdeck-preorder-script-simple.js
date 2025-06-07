@@ -1,5 +1,10 @@
 "use strict";
 (function () {
+    const decodeHTMLEntities = (text) => {
+        const textarea = document.createElement('textarea');
+        textarea.innerHTML = text;
+        return textarea.value;
+    };
     if (!document.getElementById('dropdeck-preorder-script-styles')) {
         const style = document.createElement('style');
         style.id = 'dropdeck-preorder-script-styles';
@@ -95,7 +100,7 @@
             this.showErrorMessage = (message) => {
                 if (!this.elErrorMessage)
                     return;
-                this.elErrorMessage.textContent = message;
+                this.elErrorMessage.textContent = decodeHTMLEntities(message);
                 this.elErrorMessage.classList.add("show");
                 setTimeout(() => {
                     this.elErrorMessage?.classList.remove("show");
