@@ -1,4 +1,4 @@
-import { data, type ActionFunctionArgs } from "@remix-run/node";
+import { data, type LoaderFunctionArgs, type ActionFunctionArgs } from "@remix-run/node";
 import { authenticate, unauthenticated } from "../shopify.server";
 import { type AdminApiContextWithoutRest } from "node_modules/@shopify/shopify-app-remix/dist/ts/server/clients/admin/types";
 
@@ -104,7 +104,12 @@ type CheckoutRequestBody = {
   productId?: string;
 };
 
-export async function loader() {
+export async function loader({ request }: LoaderFunctionArgs) {
+  if (request.method === "OPTIONS") {
+    return new Response(null, {
+      status: 204
+    });
+  }
   return new Response("Not found", { status: 404 });
 }
 
