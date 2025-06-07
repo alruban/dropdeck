@@ -41,7 +41,7 @@ function Extension() {
   const [hasExceededLimit, setHasExceededLimit] = useState<boolean>(false);
   const [unitsInPreviousOrders, setUnitsInPreviousOrders] = useState<number>(0);
 
-  console.log("TEST")
+  console.log("TEST 7")
   useEffect(() => {
     /* Check to see if the product is a preorder product */
     async function checkIfPreorder(
