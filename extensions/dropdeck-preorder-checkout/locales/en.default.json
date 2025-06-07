@@ -1,10 +1,4 @@
 {
-  "page": {
-    "error_preorder_limit_exceeded": {
-      "reason": "Preorder limit exceeded.",
-      "message_reduce_units": "You have exceeded the preorder unit restriction limit for {{ title }]. Please reduce the number of units in your order."
-    }
-  },
   "line_item": {
     "ships_on_or_after": "Ships on or after {{date}}",
     "units_per_customer": "{{ total_units }} units per customer",

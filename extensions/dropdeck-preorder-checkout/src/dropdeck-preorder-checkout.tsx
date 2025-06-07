@@ -29,10 +29,121 @@ type LineItemPreorderData = {
   unitsPerCustomer: number;
 };
 
+const errorTranslations = {
+  "en": {
+    "reason": "Preorder limit exceeded.",
+    "message_reduce_units": "You have exceeded the preorder unit restriction limit for {{ title }}. Please reduce the number of units in your order."
+  },
+  "ar": {
+    "reason": "تم تجاوز حد الطلب المسبق.",
+    "message_reduce_units": "لقد تجاوزت حد وحدات الطلب المسبق لـ {{ title }}. يرجى تقليل عدد الوحدات في طلبك."
+  },
+  "cs": {
+    "reason": "Překročen limit předobjednávky.",
+    "message_reduce_units": "Překročili jste limit jednotek předobjednávky pro {{ title }}. Snižte prosím počet jednotek ve své objednávce."
+  },
+  "da": {
+    "reason": "Forudbestillingsgrænse overskredet.",
+    "message_reduce_units": "Du har overskredet forudbestillingsgrænsen for {{ title }}. Reducer venligst antallet af enheder i din ordre."
+  },
+  "de": {
+    "reason": "Vorbestellungsgrenze überschritten.",
+    "message_reduce_units": "Sie haben das Vorbestellungs-Limit für {{ title }} überschritten. Bitte reduzieren Sie die Anzahl der Einheiten in Ihrer Bestellung."
+  },
+  "el": {
+    "reason": "Υπέρβαση ορίου προπαραγγελίας.",
+    "message_reduce_units": "Έχετε υπερβεί το όριο μονάδων προπαραγγελίας για το {{ title }}. Παρακαλώ μειώστε τον αριθμό των μονάδων στην παραγγελία σας."
+  },
+  "es": {
+    "reason": "Límite de preventa excedido.",
+    "message_reduce_units": "Ha superado el límite de unidades de preventa para {{ title }}. Por favor, reduzca el número de unidades en su pedido."
+  },
+  "fi": {
+    "reason": "Ennakkotilausraja ylitetty.",
+    "message_reduce_units": "Olet ylittänyt ennakkotilausyksikkörajan tuotteelle {{ title }}. Vähennä tilauksesi yksiköiden määrää."
+  },
+  "fr": {
+    "reason": "Limite de précommande dépassée.",
+    "message_reduce_units": "Vous avez dépassé la limite d'unités de précommande pour {{ title }}. Veuillez réduire le nombre d'unités dans votre commande."
+  },
+  "he": {
+    "reason": "חרגת ממגבלת ההזמנה המוקדמת.",
+    "message_reduce_units": "חרגת ממגבלת היחידות להזמנה מוקדמת עבור {{ title }}. אנא הפחת את מספר היחידות בהזמנתך."
+  },
+  "hi": {
+    "reason": "प्रीऑर्डर सीमा पार हो गई है।",
+    "message_reduce_units": "आपने {{ title }} के लिए प्रीऑर्डर यूनिट सीमा पार कर ली है। कृपया अपने ऑर्डर में यूनिट की संख्या कम करें।"
+  },
+  "id": {
+    "reason": "Batas pre-order terlampaui.",
+    "message_reduce_units": "Anda telah melebihi batas unit pre-order untuk {{ title }}. Silakan kurangi jumlah unit dalam pesanan Anda."
+  },
+  "it": {
+    "reason": "Limite di preordine superato.",
+    "message_reduce_units": "Hai superato il limite di unità per il preordine di {{ title }}. Riduci il numero di unità nel tuo ordine."
+  },
+  "ja": {
+    "reason": "予約注文の上限を超えました。",
+    "message_reduce_units": "{{ title }}の予約注文ユニット制限を超えています。ご注文のユニット数を減らしてください。"
+  },
+  "ko": {
+    "reason": "선주문 한도 초과.",
+    "message_reduce_units": "{{ title }}의 선주문 단위 제한을 초과했습니다. 주문의 단위 수를 줄여주세요."
+  },
+  "nl": {
+    "reason": "Pre-order limiet overschreden.",
+    "message_reduce_units": "U heeft het pre-order eenhedenlimiet voor {{ title }} overschreden. Verminder het aantal eenheden in uw bestelling."
+  },
+  "no": {
+    "reason": "Forhåndsbestillingsgrense overskredet.",
+    "message_reduce_units": "Du har overskredet forhåndsbestillingsgrensen for {{ title }}. Vennligst reduser antall enheter i bestillingen din."
+  },
+  "pl": {
+    "reason": "Przekroczono limit przedsprzedaży.",
+    "message_reduce_units": "Przekroczyłeś limit jednostek przedsprzedaży dla {{ title }}. Zmniejsz liczbę jednostek w swoim zamówieniu."
+  },
+  "pt-BR": {
+    "reason": "Limite de pré-venda excedido.",
+    "message_reduce_units": "Você excedeu o limite de unidades de pré-venda para {{ title }}. Por favor, reduza o número de unidades no seu pedido."
+  },
+  "pt-PT": {
+    "reason": "Limite de pré-venda excedido.",
+    "message_reduce_units": "Excedeu o limite de unidades de pré-venda para {{ title }}. Por favor, reduza o número de unidades na sua encomenda."
+  },
+  "ru": {
+    "reason": "Превышен лимит предзаказа.",
+    "message_reduce_units": "Вы превысили лимит единиц предзаказа для {{ title }}. Пожалуйста, уменьшите количество единиц в вашем заказе."
+  },
+  "sv": {
+    "reason": "Förhandsbeställningsgräns överskriden.",
+    "message_reduce_units": "Du har överskridit förhandsbeställningsgränsen för {{ title }}. Vänligen minska antalet enheter i din beställning."
+  },
+  "th": {
+    "reason": "เกินขีดจำกัดการสั่งจองล่วงหน้า",
+    "message_reduce_units": "คุณได้เกินขีดจำกัดหน่วยการสั่งจองล่วงหน้าสำหรับ {{ title }} กรุณาลดจำนวนหน่วยในคำสั่งซื้อของคุณ"
+  },
+  "tr": {
+    "reason": "Ön sipariş limiti aşıldı.",
+    "message_reduce_units": "{{ title }} için ön sipariş birim sınırını aştınız. Lütfen siparişinizdeki birim sayısını azaltın."
+  },
+  "vi": {
+    "reason": "Vượt quá giới hạn đặt trước.",
+    "message_reduce_units": "Bạn đã vượt quá giới hạn đơn vị đặt trước cho {{ title }}. Vui lòng giảm số lượng đơn vị trong đơn hàng của bạn."
+  },
+  "zh-CN": {
+    "reason": "超出预购限制。",
+    "message_reduce_units": "您已超出 {{ title }} 的预购单位限制。请减少订单中的单位数量。"
+  },
+  "zh-TW": {
+    "reason": "超出預購限制。",
+    "message_reduce_units": "您已超過 {{ title }} 的預購單位限制。請減少您訂單中的單位數量。"
+  }
+};
+
 function Extension() {
-  const translate = useTranslate();
   const cartLine = useCartLineTarget();
   const email = useEmail();
+  const translate = useTranslate();
   const { sessionToken } = useApi();
 
   // States
@@ -41,10 +152,11 @@ function Extension() {
     unitsPerCustomer: number;
     hasExceededLimit: boolean;
     unitsInPreviousOrders: number;
-    isLoading: boolean;
   } | null>(null);
 
   useEffect(() => {
+    setLineItemPreorderData(null);
+
     /* Check to see if the product is a preorder product */
     async function checkIfPreorder(
       productId: string,
@@ -96,11 +208,10 @@ function Extension() {
           unitsPerCustomer: lineItemPreorderData.unitsPerCustomer,
           hasExceededLimit: false,
           unitsInPreviousOrders: 0,
-          isLoading: true,
         })
       }
     );
-  }, []);
+  }, [cartLine.merchandise.product.id, sessionToken]);
 
   useEffect(() => {
     // Item is not a preorder product, so we can stop here.
@@ -189,8 +300,7 @@ function Extension() {
           setLineItemPreorderData({
             ...lineItemPreorderData,
             unitsInPreviousOrders: _unitsBoughtInPreviousOrders,
-            hasExceededLimit: (_unitsBoughtInPreviousOrders + cartLine.quantity) > lineItemPreorderData.unitsPerCustomer,
-            isLoading: false,
+            hasExceededLimit: (_unitsBoughtInPreviousOrders + cartLine.quantity) > lineItemPreorderData.unitsPerCustomer
           });
         });
       });
@@ -198,29 +308,12 @@ function Extension() {
   }, [lineItemPreorderData, email, cartLine.quantity, cartLine.merchandise.product.id, sessionToken]);
 
   useBuyerJourneyIntercept(({ canBlockProgress }) => {
-    if (lineItemPreorderData && lineItemPreorderData.isLoading) {
-      return {
-        behavior: "block",
-        reason: "loading",
-      };
-    }
-
     // Block if the user has exceeded the preorder limit for this product.
     if (canBlockProgress && lineItemPreorderData && lineItemPreorderData.hasExceededLimit) {
       return {
         behavior: "block",
-        reason: translate("page.error_preorder_limit_exceeded.reason"),
-        errors: [
-          {
-            // In addition, show an error at the page level
-            message: translate(
-              "page.error_preorder_limit_exceeded.message_reduce_units",
-              {
-                title: cartLine.merchandise.title,
-              },
-            ),
-          },
-        ],
+        reason: errorTranslations["en"].reason,
+        errors: [{ message: errorTranslations["en"].message_reduce_units }],
       };
     }
 
