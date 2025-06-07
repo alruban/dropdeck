@@ -24,7 +24,7 @@ export default reactExtension(
   () => <Extension />,
 );
 
-type PreorderData = {
+type LineItemPreorderData = {
   releaseDate: string;
   unitsPerCustomer: number;
 };
@@ -36,17 +36,18 @@ function Extension() {
   const { sessionToken } = useApi();
 
   // States
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [preorderData, setPreorderData] = useState<PreorderData | null>(null);
-  const [hasExceededLimit, setHasExceededLimit] = useState<boolean>(false);
-  const [unitsInPreviousOrders, setUnitsInPreviousOrders] = useState<number>(0);
+  const [lineItemPreorderData, setLineItemPreorderData] = useState<{
+    releaseDate: string;
+    unitsPerCustomer: number;
+    hasExceededLimit: boolean;
+    unitsInPreviousOrders: number;
+  } | null>(null);
 
   useEffect(() => {
     /* Check to see if the product is a preorder product */
     async function checkIfPreorder(
       productId: string,
-      isPreorderCallback: (preorderData: PreorderData) => void,
-      isNotPreorderCallback: () => void,
+      successCallback: (lineItemPreorderData: LineItemPreorderData) => void
     ) {
       const token = await sessionToken.get();
 
@@ -69,43 +70,39 @@ function Extension() {
               sellingPlanGroup.node.appId === "DROPDECK_PREORDER",
           );
 
-          if (sellingPlanGroup) {
-            isPreorderCallback({
-              releaseDate:
-                sellingPlanGroup.node.sellingPlans.nodes[0].deliveryPolicy
-                  .fulfillmentExactTime,
-              unitsPerCustomer: Number(
-                sellingPlanGroup.node.sellingPlans.nodes[0].metafields.edges.find(
-                  (metafield) => metafield.node.key === "units_per_customer",
-                )?.node.value,
-              ),
-            });
-          } else {
-            isNotPreorderCallback();
-          }
+          const lineItemPreorderData = {
+            releaseDate:
+              sellingPlanGroup.node.sellingPlans.nodes[0].deliveryPolicy
+                .fulfillmentExactTime,
+            unitsPerCustomer: Number(
+              sellingPlanGroup.node.sellingPlans.nodes[0].metafields.edges.find(
+                (metafield) => metafield.node.key === "units_per_customer",
+              )?.node.value,
+            ),
+          };
+
+          successCallback(lineItemPreorderData);
         })
         .catch((err) => console.error(err));
     }
 
     // If it is a preorder product, set the preorder data
-    setIsLoading(true);
     checkIfPreorder(
       cartLine.merchandise.product.id,
-      (sellingPlanGroups) => {
-        setPreorderData(sellingPlanGroups);
-      },
-      () => {
-        setIsLoading(false);
-      },
+      (lineItemPreorderData) => {
+        setLineItemPreorderData({
+          releaseDate: lineItemPreorderData.releaseDate,
+          unitsPerCustomer: lineItemPreorderData.unitsPerCustomer,
+          hasExceededLimit: false,
+          unitsInPreviousOrders: 0,
+        })
+      }
     );
   }, []);
 
   useEffect(() => {
     // Item is not a preorder product, so we can stop here.
-    if (!preorderData) return;
-
-    setHasExceededLimit(false);
-    setUnitsInPreviousOrders(0);
+    if (!lineItemPreorderData) return;
 
     // If it is a preorder product, we continue and determine if the customer has exceeded the limit.
     // Get the customer's id from the entered email (if it exists)
@@ -187,29 +184,19 @@ function Extension() {
             0,
           );
 
-          setUnitsInPreviousOrders(_unitsBoughtInPreviousOrders);
-
-          // Check if the customer has exceeded the limit in this current cart, and their previous orders.
-          const unitsAssociatedWithCustomer =
-            _unitsBoughtInPreviousOrders + cartLine.quantity;
-          if (unitsAssociatedWithCustomer > preorderData.unitsPerCustomer) {
-            setHasExceededLimit(true);
-          }
-
-          setIsLoading(false);
+          setLineItemPreorderData({
+            ...lineItemPreorderData,
+            unitsInPreviousOrders: _unitsBoughtInPreviousOrders,
+            hasExceededLimit: (_unitsBoughtInPreviousOrders + cartLine.quantity) > lineItemPreorderData.unitsPerCustomer,
+          });
         });
       });
     }
-  }, [preorderData, email, cartLine.quantity, cartLine.merchandise.product.id, sessionToken]);
+  }, [lineItemPreorderData, email, cartLine.quantity, cartLine.merchandise.product.id, sessionToken]);
 
   useBuyerJourneyIntercept(({ canBlockProgress }) => {
     // Block if the user has exceeded the preorder limit for this product.
-    if (
-      canBlockProgress &&
-      hasExceededLimit &&
-      preorderData &&
-      cartLine.quantity + unitsInPreviousOrders > preorderData.unitsPerCustomer
-    ) {
+    if (canBlockProgress && lineItemPreorderData && lineItemPreorderData.hasExceededLimit) {
       return {
         behavior: "block",
         reason: translate("page.error_preorder_limit_exceeded.reason"),
@@ -227,48 +214,40 @@ function Extension() {
       };
     }
 
-    // Block if the script is loading.
-    if (canBlockProgress && isLoading) {
-      return {
-        behavior: "block",
-        reason: "loading",
-      };
-    }
-
     return {
       behavior: "allow",
     };
   });
 
-  if (preorderData) {
+  if (lineItemPreorderData) {
     return (
       <BlockStack spacing="none">
         {/* Info */}
         <Text appearance="subdued" size="small">
           {translate("line_item.ships_on_or_after", {
-            date: parseISOStringIntoFormalDate(preorderData.releaseDate),
+            date: parseISOStringIntoFormalDate(lineItemPreorderData.releaseDate),
           })}
         </Text>
-        {preorderData.unitsPerCustomer > 0 && (
+        {lineItemPreorderData.unitsPerCustomer > 0 && (
           <Text appearance="subdued" size="small">
             {translate("line_item.units_per_customer", {
-              total_units: String(preorderData.unitsPerCustomer),
+              total_units: String(lineItemPreorderData.unitsPerCustomer),
             })}
           </Text>
         )}
 
         {/* Error */}
-        {hasExceededLimit && (
+        {lineItemPreorderData.hasExceededLimit && (
           <>
             <Text appearance="critical" size="small">
               {translate("line_item.error_preorder_limit_exceeded.message")}
             </Text>
-            {unitsInPreviousOrders > 0 && (
+            {lineItemPreorderData.unitsInPreviousOrders > 0 && (
               <Text appearance="critical" size="small">
                 {translate(
                   "line_item.error_preorder_limit_exceeded.units_bought_in_previous_orders",
                   {
-                    units: unitsInPreviousOrders,
+                    units: lineItemPreorderData.unitsInPreviousOrders,
                   },
                 )}
               </Text>
