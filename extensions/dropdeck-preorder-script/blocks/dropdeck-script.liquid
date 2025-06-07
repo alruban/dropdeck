@@ -47,11 +47,22 @@
 
 {%- case block.settings.setup_choice -%}
   {%- when "simple" -%}
-    <div
-      class="js-dropdeck-script-simple-settings"
-      data-display-release-date="{{ block.settings.display_release_date }}"
-      data-display-unit-restriction="{{ block.settings.display_unit_restriction }}"
-    ></div>
-
     <script src="{{ 'dropdeck-preorder-script-simple.js' | asset_url }}" defer></script>
+
+    <script type="application/json" class="js-dropdeck-script-simple-settings">
+      {
+        "settings": {
+          "display_release_date": {{ block.settings.display_release_date | json }},
+          "display_unit_restriction": {{ block.settings.display_unit_restriction | json }}
+        },
+        "translations": {
+          "fatal_error": {{ 'script.fatal_error' | t | json }},
+          "limit_per_customer": {{ 'script.limit_per_customer' | t | json }},
+          "release_date": {{ 'script.release_date' | t | json }},
+          "limit_exceeded": {{ 'script.limit_exceeded' | t | json }},
+          "added_capitalised": {{ 'script.added_capitalised' | t | json }},
+          "added_lowercase": {{ 'script.added_lowercase' | t | json }}
+        }
+      }
+    </script>
 {%- endcase -%}

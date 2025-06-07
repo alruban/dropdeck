@@ -59,7 +59,7 @@ async function getPreorderData(body: ProductRequestBody, admin: AdminApiContextW
             edges {
               node {
                 id
-                merchantCode
+                appId
                 sellingPlans(first: 1) {
                   edges {
                     node {

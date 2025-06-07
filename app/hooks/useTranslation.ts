@@ -66,7 +66,6 @@ export function useTranslation() {
   useEffect(() => {
     if (app?.config?.locale) {
       const detectedLocale = app?.config?.locale as keyof typeof translations;
-      console.log("DETECTED LOCALE", detectedLocale);
       setLocale(translations[detectedLocale] ? detectedLocale : "en");
     }
   }, [app]);

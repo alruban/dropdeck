@@ -1,22 +1,34 @@
-declare global {
+export declare global {
   interface Window {
-    dropdeck?: {
-      refresh: () => void;
-    };
+    dropdeck: {
+      settings: {
+        display_release_date: boolean;
+        display_unit_restriction: boolean;
+      };
+      translations: {
+        fatal_error: string;
+        limit_per_customer: string;
+        release_date: string;
+        limit_exceeded: string;
+        added_capitalised: string;
+        added_lowercase: string;
+      }
+      refresh?: () => void;
+    }
   }
 }
 
-type PSSellingPlanGroup = {
+export type PSSellingPlanGroup = {
   node: {
     id: string;
-    merchantCode: string;
+    appId: string;
     sellingPlans: {
       edges: PSSellingPlan[];
     };
   };
 };
 
-type PSSellingPlan = {
+export type PSSellingPlan = {
   node: {
     id: string;
     deliveryPolicy: {
@@ -32,7 +44,7 @@ type PSSellingPlan = {
   };
 };
 
-type PSProductVariant = {
+export type PSProductVariant = {
   node: {
     id: string;
     availableForSale: boolean;
@@ -41,7 +53,7 @@ type PSProductVariant = {
   };
 };
 
-type PSProductVariantData = {
+export type PSProductVariantData = {
   productVariant: {
     product: {
       id: string;
@@ -58,7 +70,7 @@ type PSProductVariantData = {
   };
 };
 
-interface PSPreorderResponse {
+export interface PSPreorderResponse {
   data: {
     data: PSProductVariantData;
   };

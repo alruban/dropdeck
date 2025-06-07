@@ -1,6 +1,4 @@
-"use strict";
 (function () {
-    const fatalErrorMessage = "Fatal dropdeck error: please contact dropdeck-preorders@proton.me with your store address and details.";
     if (!document.getElementById('dropdeck-preorder-script-styles')) {
         const style = document.createElement('style');
         style.id = 'dropdeck-preorder-script-styles';
@@ -107,8 +105,8 @@
                 }, 5000);
             };
             this.createFatalErrorElement = () => {
-                this.showErrorMessage(fatalErrorMessage);
-                console.error(this.elForm, fatalErrorMessage);
+                this.showErrorMessage(window.dropdeck.translations.fatal_error);
+                console.error(this.elForm, window.dropdeck.translations.fatal_error);
             };
             this.handleLoadingStyling = () => {
                 this.elShopifyAlternatePayment = get(".shopify-payment-button[data-shopify=payment-button]", this.elForm);
@@ -229,18 +227,16 @@
                 });
             };
             this.createReleaseDateMessage = (releaseDate, elMessageContainer) => {
-                if (!window.dropdeck.settings.display_release_date)
-                    return;
                 const elReleaseDateMessage = document.createElement("small");
-                elReleaseDateMessage.textContent = `Release date: ${releaseDate}`;
+                elReleaseDateMessage.textContent = window.dropdeck.translations.release_date.replace("{{date}}", releaseDate);
                 elReleaseDateMessage.className = "dropdeck-preorder__message dropdeck-preorder__message--release-date";
                 elMessageContainer.prepend(elReleaseDateMessage);
             };
             this.createUnitsPerCustomerMessage = (unitsPerCustomer, elMessageContainer) => {
-                if (unitsPerCustomer === 0 || !window.dropdeck.settings.display_unit_restriction)
+                if (unitsPerCustomer === 0)
                     return;
                 const elUnitsPerCustomerMessage = document.createElement("small");
-                elUnitsPerCustomerMessage.textContent = `Limit per customer: ${unitsPerCustomer} unit(s)`;
+                elUnitsPerCustomerMessage.textContent = window.dropdeck.translations.limit_per_customer.replace("{{units}}", unitsPerCustomer.toString());
                 elUnitsPerCustomerMessage.className = "dropdeck-preorder__message dropdeck-preorder__message--unit-restriction";
                 elMessageContainer.prepend(elUnitsPerCustomerMessage);
             };
@@ -267,8 +263,8 @@
                         if (mutation.type === "characterData" ||
                             mutation.type === "childList") {
                             let originalButtonText = String(button.textContent?.trim());
-                            if (originalButtonText?.toLowerCase().includes("added")) {
-                                originalButtonText = originalButtonText.replace(" Added", "").replace(" added", "");
+                            if (originalButtonText?.toLowerCase().includes(window.dropdeck.translations.added_lowercase)) {
+                                originalButtonText = originalButtonText.replace(window.dropdeck.translations.added_capitalised, "").replace(window.dropdeck.translations.added_lowercase, "");
                             }
                             const newVariant = this.getVariant();
                             if (!newVariant)
@@ -301,7 +297,7 @@
                         this.startRejectingFormSubmissions();
                     }
                     else {
-                        this.showErrorMessage(`You've exceeded the units per customer limit. There are already ${unitsPerCustomer} units in your cart.`);
+                        this.showErrorMessage(window.dropdeck.translations.limit_exceeded.replace("{{units_per_customer}}", unitsPerCustomer.toString()));
                     }
                 });
             };
@@ -356,7 +352,7 @@
                 const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
                 if (sellingPlanGroupsCount === 0)
                     return this.stopRejectingFormSubmissions();
-                const sellingPlanGroup = product.sellingPlanGroups.edges.find((sellingPlanGroup) => sellingPlanGroup.node.merchantCode === "Dropdeck Preorder");
+                const sellingPlanGroup = product.sellingPlanGroups.edges.find((sellingPlanGroup) => sellingPlanGroup.node.appId === "DROPDECK_PREORDER");
                 if (!sellingPlanGroup)
                     return this.stopRejectingFormSubmissions();
                 const sellingPlan = sellingPlanGroup.node.sellingPlans.edges[0];
@@ -405,7 +401,7 @@
                 if (this.elForm.id.includes("notification"))
                     return;
                 if (this.elInputs.length === 0) {
-                    console.error(this.elForm, fatalErrorMessage);
+                    console.error(this.elForm, window.dropdeck.translations.fatal_error);
                     return;
                 }
                 for (const elInput of this.elInputs) {
@@ -428,13 +424,11 @@
                 });
             };
             this.startRejectingFormSubmissions = () => {
-                console.log("startRejectingFormSubmissions");
                 this.elForm.addEventListener("submit", this.rejectFormSubmission, {
                     capture: true,
                 });
             };
             this.stopRejectingFormSubmissions = () => {
-                console.log("stopRejectingFormSubmissions");
                 this.elForm.removeEventListener("submit", this.rejectFormSubmission, {
                     capture: true,
                 });
@@ -639,7 +633,7 @@
                 const sellingPlanGroupsCount = product.sellingPlanGroupsCount.count;
                 if (sellingPlanGroupsCount === 0)
                     return this.stopRejectingFormSubmissions();
-                const sellingPlanGroup = product.sellingPlanGroups.edges.find((sellingPlanGroup) => sellingPlanGroup.node.merchantCode === "Dropdeck Preorder");
+                const sellingPlanGroup = product.sellingPlanGroups.edges.find((sellingPlanGroup) => sellingPlanGroup.node.appId === "DROPDECK_PREORDER");
                 if (!sellingPlanGroup)
                     return this.stopRejectingFormSubmissions();
                 const sellingPlan = sellingPlanGroup.node.sellingPlans.edges[0];
@@ -683,13 +677,15 @@
     document.addEventListener("shopify:section:load", loadScript);
     document.addEventListener("dropdeck:reload", loadScript);
     const elSettings = get(".js-dropdeck-script-simple-settings", document);
+    if (!elSettings)
+        return;
+    const settings = JSON.parse(elSettings.textContent ?? '{}');
     window.dropdeck = {
-        settings: {
-            display_release_date: elSettings.dataset.displayReleaseDate === "true",
-            display_unit_restriction: elSettings.dataset.displayUnitRestriction === "true",
-        },
+        settings: settings.settings,
+        translations: settings.translations,
         refresh: function () {
             return loadScript();
         }
     };
 })();
+export {};

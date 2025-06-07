@@ -1,6 +1,6 @@
-(function () {
-  const fatalErrorMessage = "Fatal dropdeck error: please contact dropdeck-preorders@proton.me with your store address and details.";
+import { type PSPreorderResponse, type PSProductVariantData } from "./types";
 
+(function () {
   // Inject Dropdeck Preorder Script styles if not already present
   if (!document.getElementById('dropdeck-preorder-script-styles')) {
     const style = document.createElement('style');
@@ -161,8 +161,8 @@
     };
 
     private createFatalErrorElement = () => {
-      this.showErrorMessage(fatalErrorMessage);
-      console.error(this.elForm, fatalErrorMessage);
+      this.showErrorMessage(window.dropdeck.translations.fatal_error);
+      console.error(this.elForm, window.dropdeck.translations.fatal_error);
     };
 
     private handleLoadingStyling = () => {
@@ -225,7 +225,7 @@
 
           const sellingPlanGroup = product.sellingPlanGroups.edges.find(
             (sellingPlanGroup) =>
-              sellingPlanGroup.node.merchantCode === "Dropdeck Preorder",
+              sellingPlanGroup.node.appId === "DROPDECK_PREORDER",
           );
           if (!sellingPlanGroup) return this.stopRejectingFormSubmissions();
 
@@ -285,7 +285,7 @@
       // Only show messaging on the PDP.
       if (!location.pathname.includes("/products/")) return;
 
-      const { display_unit_restriction, display_release_date } = (window as unknown as DropdeckWindow).dropdeck.settings;
+      const { display_unit_restriction, display_release_date } = window.dropdeck.settings;
 
       if (display_unit_restriction || display_release_date) {
         const elMessageContainer = document.createElement("div");
@@ -404,17 +404,16 @@
     };
 
     private createReleaseDateMessage = (releaseDate: string, elMessageContainer: HTMLElement) => {
-      if (!((window as unknown) as DropdeckWindow).dropdeck.settings.display_release_date) return;
       const elReleaseDateMessage = document.createElement("small");
-      elReleaseDateMessage.textContent = `Release date: ${releaseDate}`;
+      elReleaseDateMessage.textContent = window.dropdeck.translations.release_date.replace("{{date}}", releaseDate);
       elReleaseDateMessage.className = "dropdeck-preorder__message dropdeck-preorder__message--release-date";
       elMessageContainer.prepend(elReleaseDateMessage);
     };
 
     private createUnitsPerCustomerMessage = (unitsPerCustomer: number, elMessageContainer: HTMLElement) => {
-      if (unitsPerCustomer === 0 || !((window as unknown) as DropdeckWindow).dropdeck.settings.display_unit_restriction) return;
+      if (unitsPerCustomer === 0) return;
       const elUnitsPerCustomerMessage = document.createElement("small");
-      elUnitsPerCustomerMessage.textContent = `Limit per customer: ${unitsPerCustomer} unit(s)`;
+      elUnitsPerCustomerMessage.textContent = window.dropdeck.translations.limit_per_customer.replace("{{units}}", unitsPerCustomer.toString());
       elUnitsPerCustomerMessage.className = "dropdeck-preorder__message dropdeck-preorder__message--unit-restriction";
       elMessageContainer.prepend(elUnitsPerCustomerMessage);
     };
@@ -460,8 +459,8 @@
 
             let originalButtonText = String(button.textContent?.trim());
             // Shopify theme specific fix for added text removal:
-            if (originalButtonText?.toLowerCase().includes("added")) {
-              originalButtonText = originalButtonText.replace(" Added", "").replace(" added", "");
+            if (originalButtonText?.toLowerCase().includes(window.dropdeck.translations.added_lowercase)) {
+              originalButtonText = originalButtonText.replace(window.dropdeck.translations.added_capitalised, "").replace(window.dropdeck.translations.added_lowercase, "");
             }
 
             const newVariant = this.getVariant();
@@ -511,7 +510,7 @@
           this.elOriginalBtn?.click();
           this.startRejectingFormSubmissions();
         } else {
-          this.showErrorMessage(`You've exceeded the units per customer limit. There are already ${unitsPerCustomer} units in your cart.`);
+          this.showErrorMessage(window.dropdeck.translations.limit_exceeded.replace("{{units_per_customer}}", unitsPerCustomer.toString()));
         }
       });
     };
@@ -565,7 +564,7 @@
 
       // There are no present inputs in the form, so we can't proceed.
       if (this.elInputs.length === 0) {
-        console.error(this.elForm, fatalErrorMessage)
+        console.error(this.elForm, window.dropdeck.translations.fatal_error)
         return;
       }
 
@@ -599,7 +598,6 @@
     };
 
     private startRejectingFormSubmissions = () => {
-      console.log("startRejectingFormSubmissions")
       // Prevent form submission immediately
       this.elForm.addEventListener("submit", this.rejectFormSubmission, {
         capture: true,
@@ -607,7 +605,6 @@
     };
 
     private stopRejectingFormSubmissions = () => {
-      console.log("stopRejectingFormSubmissions")
       // Prevent form submission immediately
       this.elForm.removeEventListener("submit", this.rejectFormSubmission, {
         capture: true,
@@ -766,7 +763,7 @@
 
           const sellingPlanGroup = product.sellingPlanGroups.edges.find(
             (sellingPlanGroup) =>
-              sellingPlanGroup.node.merchantCode === "Dropdeck Preorder",
+              sellingPlanGroup.node.appId === "DROPDECK_PREORDER",
           );
           if (!sellingPlanGroup) return this.stopRejectingFormSubmissions();
 
@@ -896,25 +893,14 @@
   document.addEventListener("shopify:section:load", loadScript);
   document.addEventListener("dropdeck:reload", loadScript);
 
-  // Define window.dropdeck type at file level
-  type DropdeckWindow = Window & {
-    dropdeck: {
-      settings: {
-        display_release_date: boolean;
-        display_unit_restriction: boolean;
-      };
-      refresh?: () => void;
-    }
-  }
-
-  const elSettings = get<HTMLElement>(".js-dropdeck-script-simple-settings", document) as HTMLElement;
+  const elSettings = get<HTMLScriptElement>(".js-dropdeck-script-simple-settings", document);
+  if (!elSettings) return;
+  const settings = JSON.parse(elSettings.textContent ?? '{}');
 
   // Initialize dropdeck object
-  ((window as unknown) as DropdeckWindow).dropdeck = {
-    settings: {
-      display_release_date: elSettings.dataset.displayReleaseDate === "true",
-      display_unit_restriction: elSettings.dataset.displayUnitRestriction === "true",
-    },
+  window.dropdeck = {
+    settings: settings.settings,
+    translations: settings.translations,
     refresh: function() {
       return loadScript();
     }
