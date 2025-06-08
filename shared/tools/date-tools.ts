@@ -5,6 +5,9 @@ export const createISOString = (date: string, hours?: number, minutes?: number):
   // Set the hours and minutes
   if (hours && minutes) {
     dateObj.setHours(hours, minutes, 0, 0);
+  } else {
+    // Set to noon to avoid timezone issues
+    dateObj.setHours(12, 0, 0, 0);
   }
 
   // Return ISO string
