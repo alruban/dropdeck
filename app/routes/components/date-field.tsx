@@ -56,7 +56,7 @@ const DateField = forwardRef<HTMLDivElement, DateFieldProps>(({ onChange, label 
   function handleDateSelection({ end: newSelectedDate }: { end: Date }) {
     // Ensure the selected date is not before tomorrow
     const selectedDate = new Date(newSelectedDate);
-    selectedDate.setHours(0, 0, 0, 0);
+    selectedDate.setHours(12, 0, 0, 0);
 
     if (selectedDate >= getTomorrow()) {
       setSelectedDate(selectedDate);

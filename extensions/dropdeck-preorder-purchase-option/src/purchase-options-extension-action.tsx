@@ -48,7 +48,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
   const [shopifyDomain, setShopifyDomain] = useState<string | undefined>(undefined);
 
   const [sellingPlanId, setSellingPlanId] = useState<string | undefined>(undefined);
-  const [expectedFulfillmentDate, setExpectedFulfillmentDate] = useState(getOneMonthAhead().toISOString().split('T')[0]);// Returns YYYY-MM-DD format
+  const [expectedFulfillmentDate, setExpectedFulfillmentDate] = useState(parseISOString(getOneMonthAhead().toISOString()).date);
   const [enableUnitRestriction, setEnableUnitRestriction] = useState(false);
   const [initialUnitsPerCustomer, setInitialUnitsPerCustomer] = useState(enableUnitRestriction ? 1 : 0);
   const [unitsPerCustomer, setUnitsPerCustomer] = useState(enableUnitRestriction ? 1 : 0);
@@ -135,10 +135,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
 
   const create = () => {
     if (targetId.length === 0) return;
-    if (!validateDate(expectedFulfillmentDate)) return;
     setIsLoading(true);
-    const isoString = createISOString(expectedFulfillmentDate);
-
     const promises = [];
 
     const descriptionForPlanWithNoUnitRestriction = i18n.translate("sp_group.description_for_plan_with_no_unit_restriction", {
@@ -154,7 +151,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
     promises.push(query(
       CREATE_SP_GROUP_MUTATION,
       createSPGroupVariables(
-        isoString,
+        expectedFulfillmentDate,
         unitsPerCustomer,
         descriptionForPlanWithNoUnitRestriction,
         descriptionForPlanWithUnitRestriction,
@@ -189,7 +186,6 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
 
   const update = () => {
     if (sellingPlanGroupId.length === 0) return;
-    if (!validateDate(expectedFulfillmentDate)) return;
     setIsLoading(true);
 
     const promises = [];
@@ -209,7 +205,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
       updateSPGroupVariables(
         sellingPlanGroupId,
         sellingPlanId,
-        createISOString(expectedFulfillmentDate),
+        expectedFulfillmentDate,
         unitsPerCustomer,
         descriptionForPlanWithNoUnitRestriction,
         descriptionForPlanWithUnitRestriction,
@@ -301,11 +297,12 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
           <BlockStack gap="large">
             <DateField
               label={i18n.translate("shipping_date")}
-              value={expectedFulfillmentDate}
+              value={parseISOString(expectedFulfillmentDate).date}
               onChange={(newDate) => {
-                const date = String(newDate);
-                setExpectedFulfillmentDate(date);
-                validateDate(date);
+                const date = new Date(String(newDate));
+                date.setHours(12, 0, 0, 0); // Set to noon to avoid timezone issues
+                if (!validateDate(date.toISOString())) return;
+                setExpectedFulfillmentDate(date.toISOString());
               }}
               error={dateError}
             />
