@@ -287,6 +287,12 @@
                 });
                 this.elPreorderBtn?.addEventListener("click", async (e) => {
                     this.elPreorderBtn?.setAttribute("disabled", "");
+                    if (unitsPerCustomer === 0) {
+                        this.stopRejectingFormSubmissions();
+                        this.elOriginalBtn?.click();
+                        this.startRejectingFormSubmissions();
+                        return;
+                    }
                     const cartItems = await await fetch("/cart.js")
                         .then((res) => res.json())
                         .then((res) => {

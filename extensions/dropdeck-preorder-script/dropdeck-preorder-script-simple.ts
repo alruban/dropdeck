@@ -497,6 +497,14 @@
       this.elPreorderBtn?.addEventListener("click", async (e: Event) => {
         this.elPreorderBtn?.setAttribute("disabled", "");
 
+        // If there's no unit restriction, allow the form submission
+        if (unitsPerCustomer === 0) {
+          this.stopRejectingFormSubmissions();
+          this.elOriginalBtn?.click();
+          this.startRejectingFormSubmissions();
+          return;
+        }
+
         // Prevent successive add to cart requests exceeding the units per customer limit.
         const cartItems = await await fetch("/cart.js")
           .then((res) => res.json())

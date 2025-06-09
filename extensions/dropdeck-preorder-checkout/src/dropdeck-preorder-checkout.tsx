@@ -260,7 +260,8 @@ function Extension() {
     if (
       canBlockProgress &&
       lineItemPreorderData &&
-      lineItemPreorderData.hasExceededLimit
+      lineItemPreorderData.hasExceededLimit &&
+      lineItemPreorderData.unitsPerCustomer > 0
     ) {
       return {
         behavior: "block",
@@ -298,7 +299,7 @@ function Extension() {
         )}
 
         {/* Error */}
-        {lineItemPreorderData.hasExceededLimit && (
+        {lineItemPreorderData.unitsPerCustomer > 0 && lineItemPreorderData.hasExceededLimit && (
           <>
             <Text appearance="critical" size="small">
               {translate("line_item.error_preorder_limit_exceeded.message")}
