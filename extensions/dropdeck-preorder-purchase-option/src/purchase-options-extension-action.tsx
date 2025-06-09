@@ -240,7 +240,7 @@ export default function PurchaseOptionsActionExtension({ extension, context }: P
     const selectedDate = new Date(date);
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(0, 0, 0, 0);
+    tomorrow.setHours(12, 0, 0, 0);
 
     if (selectedDate < tomorrow) {
       setDateError(i18n.translate("error_date_must_be_future"));

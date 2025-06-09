@@ -15,7 +15,7 @@ export const getTomorrow = (): Date => {
   // Get tomorrow's date as the minimum selectable date
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-  tomorrow.setHours(0, 0, 0, 0);
+  tomorrow.setHours(12, 0, 0, 0);
   return tomorrow;
 }
 

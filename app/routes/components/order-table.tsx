@@ -181,7 +181,7 @@ export default function OrderTable({
       // Last: Check if the order is past the release date
       const orderDate = new Date(order.releaseDate);
       const today = new Date();
-      today.setHours(0, 0, 0, 0);
+      today.setHours(12, 0, 0, 0);
 
       // Only return orders that have a release date that is in the future
       if (orderDate < today) {
