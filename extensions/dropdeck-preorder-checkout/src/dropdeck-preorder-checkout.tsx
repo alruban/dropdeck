@@ -229,11 +229,23 @@ function Extension() {
               setLoading(false);
             },
             () => {
+              setLineItemPreorderData({
+                releaseDate: lineItemPreorderData.releaseDate,
+                unitsPerCustomer: lineItemPreorderData.unitsPerCustomer,
+                hasExceededLimit: false,
+                unitsInPreviousOrders: 0,
+              });
               setLoading(false);
             },
           );
         },
         () => {
+          setLineItemPreorderData({
+            releaseDate: lineItemPreorderData.releaseDate,
+            unitsPerCustomer: lineItemPreorderData.unitsPerCustomer,
+            hasExceededLimit: false,
+            unitsInPreviousOrders: 0,
+          });
           setLoading(false);
         },
       );
