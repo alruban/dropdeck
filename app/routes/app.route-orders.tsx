@@ -18,16 +18,24 @@ import OrderTable from "./components/order-table";
 import { authenticate } from "../shopify.server";
 import { getDropdeckPreorderOrdersVariables, GET_DROPDECK_PREORDER_ORDERS_QUERY, GET_DROPDECK_PREORDER_ORDERS_QUERY_BEFORE, GET_DROPDECK_PREORDER_ORDERS_QUERY_AFTER } from "@shared/queries/get-dropdeck-preorder-orders";
 import { useCallback, useMemo, useEffect, useState } from "react";
+import prisma from "../db.server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const { admin } = await authenticate.admin(request);
-
+  const { admin, session } = await authenticate.admin(request);
   const response = await admin.graphql(GET_DROPDECK_PREORDER_ORDERS_QUERY, {
     variables: getDropdeckPreorderOrdersVariables(),
   });
+  const responseData = await response.json();
 
-  return data(await response.json());
-}
+  if (!session) return data({ ...responseData, locale: "en" });
+
+  const dbSession = await prisma.session.findUnique({
+    where: { id: session.id },
+    select: { locale: true },
+  });
+
+  return data({ ...responseData, locale: dbSession?.locale || "en" });
+};
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const { admin } = await authenticate.admin(request);
@@ -54,7 +62,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       break;
   }
 
-  return data(await response?.json());
+  const responseData = await response?.json();
+  return data({ ...responseData, locale: "en" });
 };
 
 export default function Index() {

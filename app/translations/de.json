@@ -6,7 +6,8 @@
     "dashboard": "Dashboard",
     "guide": "Schnellstartanleitung",
     "orders": "Bestellungen",
-    "plans": "Vorbestellungsverkaufspläne"
+    "plans": "Vorbestellungspläne",
+    "settings": "Einstellungen"
   },
   "quick_actions": {
     "title": "Schnellaktionen",
@@ -88,6 +89,13 @@
   },
   "plans": {
     "title": "Vorbestellungsverkaufspläne"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": {
+      "title": "Sprache",
+      "description": "Ändern Sie den Selektor, um Ihre bevorzugte Sprache einzustellen."
+    }
   },
   "orders": {
     "title": "Ihre Vorbestellungen",

@@ -6,7 +6,8 @@
     "dashboard": "Painel",
     "guide": "Guia de início rápido",
     "orders": "Pedidos",
-    "plans": "Planos de pré-venda"
+    "plans": "Planos de pré-venda",
+    "settings": "Configurações"
   },
   "quick_actions": {
     "title": "Ações rápidas",
@@ -88,6 +89,13 @@
   },
   "plans": {
     "title": "Planos de pré-venda"
+  },
+  "settings": {
+    "title": "Configurações",
+    "language": {
+      "title": "Idioma",
+      "description": "Altere o seletor para definir seu idioma preferido."
+    }
   },
   "orders": {
     "title": "Suas pré-vendas",

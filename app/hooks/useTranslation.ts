@@ -1,5 +1,6 @@
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { useEffect, useState } from "react";
+import { useLoaderData, useNavigate } from "@remix-run/react";
 
 import en from "../translations/en.json";
 import ar from "../translations/ar.json";
@@ -59,14 +60,48 @@ const translations = {
   "zh-TW": zhTW
 } as const;
 
+export type Locale = keyof typeof translations;
+
 export function useTranslation() {
-  const [locale, setLocale] = useState<keyof typeof translations>("en");
+  const { data } = useLoaderData<{ data: { locale: Locale } }>();
+  const [locale, setLocaleState] = useState<Locale>(data?.locale || "en");
   const app = useAppBridge();
+  const navigate = useNavigate();
+
+  // Update database when locale changes
+  const setLocale = async (newLocale: Locale) => {
+    if (translations[newLocale]) {
+      setLocaleState(newLocale);
+      fetch("/app/api-update-locale", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `locale=${newLocale}`,
+      })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to update locale');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        navigate(".", { replace: true });
+      })
+      .catch((error) => {
+        console.error('Error updating locale:', error);
+        // Revert the locale state if the update failed
+        setLocaleState(locale);
+      });
+    }
+  };
 
   useEffect(() => {
     if (app?.config?.locale) {
-      const detectedLocale = app?.config?.locale as keyof typeof translations;
-      setLocale(translations[detectedLocale] ? detectedLocale : "en");
+      const detectedLocale = app?.config?.locale as Locale;
+      if (translations[detectedLocale]) {
+        setLocale(detectedLocale);
+      }
     }
   }, [app]);
 
@@ -95,5 +130,5 @@ export function useTranslation() {
     return value;
   };
 
-  return { t };
+  return { t, locale, setLocale };
 }

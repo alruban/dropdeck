@@ -6,7 +6,8 @@
     "dashboard": "Hallintapaneeli",
     "guide": "Pikaopas",
     "orders": "Tilaukset",
-    "plans": "Ennakkotilaussuunnitelmat"
+    "plans": "Ennakkotilaussuunnitelmat",
+    "settings": "Asetukset"
   },
   "quick_actions": {
     "title": "Pikatoiminnot",
@@ -88,6 +89,13 @@
   },
   "plans": {
     "title": "Ennakkotilaussuunnitelmat"
+  },
+  "settings": {
+    "title": "Asetukset",
+    "language": {
+      "title": "Kieli",
+      "description": "Vaihda valitsinta asettaaksesi haluamasi kielen."
+    }
   },
   "orders": {
     "title": "Ennakkotilauksesi",

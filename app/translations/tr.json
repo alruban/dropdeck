@@ -6,7 +6,8 @@
     "dashboard": "Gösterge Paneli",
     "guide": "Hızlı Başlangıç Kılavuzu",
     "orders": "Siparişler",
-    "plans": "Ön Sipariş Planları"
+    "plans": "Ön Sipariş Planları",
+    "settings": "Ayarlar"
   },
   "quick_actions": {
     "title": "Hızlı İşlemler",
@@ -88,6 +89,13 @@
   },
   "plans": {
     "title": "Ön Sipariş Planları"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "language": {
+      "title": "Dil",
+      "description": "Tercih ettiğiniz dili ayarlamak için seçiciyi değiştirin."
+    }
   },
   "orders": {
     "title": "Ön Siparişleriniz",

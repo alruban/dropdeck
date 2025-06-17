@@ -6,7 +6,8 @@
     "dashboard": "Dashboard",
     "guide": "Snelle startgids",
     "orders": "Bestellingen",
-    "plans": "Pre-order verkoopplannen"
+    "plans": "Pre-order verkoopplannen",
+    "settings": "Instellingen"
   },
   "quick_actions": {
     "title": "Snelle acties",
@@ -88,6 +89,13 @@
   },
   "plans": {
     "title": "Pre-order verkoopplannen"
+  },
+  "settings": {
+    "title": "Instellingen",
+    "language": {
+      "title": "Taal",
+      "description": "Wijzig de selector om uw voorkeurstaal in te stellen."
+    }
   },
   "orders": {
     "title": "Uw pre-orders",

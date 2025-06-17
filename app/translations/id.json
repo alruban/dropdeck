@@ -6,7 +6,8 @@
     "dashboard": "Dasbor",
     "guide": "Panduan Cepat",
     "orders": "Pesanan",
-    "plans": "Rencana Preorder"
+    "plans": "Rencana Preorder",
+    "settings": "Pengaturan"
   },
   "quick_actions": {
     "title": "Tindakan Cepat",
@@ -88,6 +89,13 @@
   },
   "plans": {
     "title": "Rencana Preorder"
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "language": {
+      "title": "Bahasa",
+      "description": "Ubah pemilih untuk mengatur bahasa pilihan Anda."
+    }
   },
   "orders": {
     "title": "Preorder Anda",

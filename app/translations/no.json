@@ -6,7 +6,8 @@
     "dashboard": "Dashbord",
     "guide": "Hurtigstartguide",
     "orders": "Bestillinger",
-    "plans": "Forhåndsbestillingsplaner"
+    "plans": "Forhåndsbestillingsplaner",
+    "settings": "Innstillinger"
   },
   "quick_actions": {
     "title": "Hurtighandlinger",
@@ -88,6 +89,13 @@
   },
   "plans": {
     "title": "Forhåndsbestillingsplaner"
+  },
+  "settings": {
+    "title": "Innstillinger",
+    "language": {
+      "title": "Språk",
+      "description": "Endre velgeren for å angi ditt foretrukne språk."
+    }
   },
   "orders": {
     "title": "Dine forhåndsbestillinger",

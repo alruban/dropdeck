@@ -14,6 +14,21 @@ import { TitleBar } from "@shopify/app-bridge-react";
 import { useTranslation } from "../hooks/useTranslation";
 import { useState } from "react";
 import { downloadFile } from "../utils/file-download";
+import { data, type LoaderFunctionArgs } from "@remix-run/node";
+import { authenticate } from "../shopify.server";
+import prisma from "../db.server";
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const { session } = await authenticate.admin(request);
+  if (!session) return data({ locale: "en" });
+
+  const dbSession = await prisma.session.findUnique({
+    where: { id: session.id },
+    select: { locale: true },
+  });
+
+  return data({ locale: dbSession?.locale || "en" });
+};
 
 export default function Index() {
   const { t } = useTranslation();

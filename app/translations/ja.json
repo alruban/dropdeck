@@ -4,7 +4,8 @@
     "dashboard": "ダッシュボード",
     "guide": "クイックスタートガイド",
     "orders": "注文",
-    "plans": "予約販売プラン"
+    "plans": "先行販売プラン",
+    "settings": "設定"
   },
   "quick_actions": {
     "title": "クイックアクション",
@@ -86,6 +87,13 @@
   },
   "plans": {
     "title": "予約販売プラン"
+  },
+  "settings": {
+    "title": "設定",
+    "language": {
+      "title": "言語",
+      "description": "セレクターを変更して、希望の言語を設定してください。"
+    }
   },
   "orders": {
     "title": "あなたの予約注文",

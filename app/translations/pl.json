@@ -6,7 +6,8 @@
     "dashboard": "Panel",
     "guide": "Przewodnik szybkiego startu",
     "orders": "Zamówienia",
-    "plans": "Plany przedsprzedaży"
+    "plans": "Plany przedsprzedaży",
+    "settings": "Ustawienia"
   },
   "quick_actions": {
     "title": "Szybkie akcje",
@@ -88,6 +89,13 @@
   },
   "plans": {
     "title": "Plany przedsprzedaży"
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "language": {
+      "title": "Język",
+      "description": "Zmień selektor, aby ustawić preferowany język."
+    }
   },
   "orders": {
     "title": "Twoje przedsprzedaże",
