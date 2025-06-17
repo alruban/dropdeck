@@ -108,13 +108,17 @@ export default function Index() {
     const products = new Set<string>();
     data.data.orders.edges.forEach(( order ) => {
       order.node.lineItems.edges.forEach((lineItem) => {
+        /**
+         * If this returns null, then the original selling plan associated with the product
+         * has been removed, in this case we should return null to avoid conflicting data.
+         */
+        if (!lineItem.node.sellingPlan || !lineItem.node.sellingPlan.sellingPlanId) return false;
+
         // Check if this line item has preorder data
         const hasPreorderData = lineItem.node.product.sellingPlanGroups.edges.some(
           (sellingPlanGroup) => sellingPlanGroup.node.appId === "DROPDECK_PREORDER"
         );
-        if (hasPreorderData) {
-          products.add(lineItem.node.title);
-        }
+        if (hasPreorderData) products.add(lineItem.node.title);
       });
     });
     return [

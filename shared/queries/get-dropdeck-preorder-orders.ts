@@ -200,7 +200,7 @@ const GET_DROPDECK_PREORDER_ORDERS_QUERY_BEFORE =
 `;
 
 const getDropdeckPreorderOrdersVariables = (before?: string | null, after?: string | null) => ({
-  query: 'tag:"Dropdeck Preorder"',
+  query: "tag:\"Dropdeck Preorder\"",
   ...(after && { after }),
   ...(before && { before })
 });

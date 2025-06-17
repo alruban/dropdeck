@@ -55,10 +55,6 @@ interface Groups {
   [key: string]: OrderGroup;
 }
 
-interface PreorderData {
-  releaseDate: string;
-}
-
 export default function OrderTable({
   data,
   hideCancelled = false,
@@ -69,56 +65,28 @@ export default function OrderTable({
 }: OrderTableProps) {
   const { t } = useTranslation();
 
-  const preorderData = data.data.orders.edges.map((order) => {
-    return order.node.lineItems.edges.map((lineItem) => {
-      // This would only happen if someone manually added the 'Dropdeck Preorder' tag to the order.
-      if (!lineItem.node.sellingPlan) return false;
-
-      // Check the original selling plan hasn't been removed, if it has there's a possibility we check the wrong selling plan.
-      const originalSellingPlan = lineItem.node.sellingPlan.sellingPlanId === null;
-      if (originalSellingPlan) return false;
-
-      const sellingPlanGroup = lineItem.node.product.sellingPlanGroups.edges.find(
-        (sellingPlanGroup) => sellingPlanGroup.node.appId === "DROPDECK_PREORDER"
-      );
-      if (!sellingPlanGroup) return false;
-
-      const sellingPlan = sellingPlanGroup.node.sellingPlans.nodes[0];
-
-      return {
-        releaseDate: sellingPlan.deliveryPolicy.fulfillmentExactTime,
-      };
-    }) as PreorderData[];
-  });
-
   const orders = data.data.orders.edges
     .map((order, index) => {
-      // Ensure the order has preorder data.
-      if (!preorderData[index]) {
-        return null;
-      }
+      const preorderLineItem = order.node.lineItems.edges.find((lineItem) => lineItem.node.sellingPlan !== null);
+      // The order contains no preorder items.
+      if (!preorderLineItem) return null;
 
-      // Check if there's at least one valid preorder in the array
-      const hasValidPreorder = preorderData[index]?.some(
-        (item) => item.releaseDate,
-      );
-      // The order was never a preorder in the first place
-      if (!hasValidPreorder) {
-        return null;
-      }
+      /**
+       * If this returns null, then the original selling plan associated with the product
+       * has been removed, in this case we should return null to avoid conflicting data.
+       */
+      const originalSellingPlan = preorderLineItem.node.sellingPlan.sellingPlanId;
+      if (!originalSellingPlan) return null;
 
-      // Find the first line item that has valid preorder data
-      const firstValidPreorder = preorderData[index]?.find(
-        (item) => item.releaseDate,
+      const sellingPlanGroup = preorderLineItem.node.product.sellingPlanGroups.edges.find(
+        (sellingPlanGroup) => sellingPlanGroup.node.appId === "DROPDECK_PREORDER"
       );
-      // The order is a preorder, but there are some line items that are not preorders
-      if (!firstValidPreorder) {
-        return null;
-      }
+      if (!sellingPlanGroup) return null;
+      const sellingPlan = sellingPlanGroup.node.sellingPlans.nodes[0];
 
       // Begin mapping data for the order that has a preorder item.
       const { id, name } = order.node;
-      const releaseDate = firstValidPreorder.releaseDate;
+      const releaseDate = sellingPlan.deliveryPolicy.fulfillmentExactTime;
       const isCancelled = order.node.cancelledAt !== null;
       const isFulfilled =
         order.node.displayFulfillmentStatus.toLowerCase() === "fulfilled";
@@ -154,16 +122,10 @@ export default function OrderTable({
     .filter((order): order is NonNullable<typeof order> => order !== null)
     .filter((order) => {
       // Filter out cancelled orders if hideCancelled is true
-      if (hideCancelled && order.isCancelled) {
-        console.log(`Order ${order.name} filtered: Cancelled`);
-        return false;
-      }
+      if (hideCancelled && order.isCancelled) return false;
 
       // Filter out fulfilled orders if hideFulfilled is true
-      if (hideFulfilled && order.isFulfilled) {
-        console.log(`Order ${order.name} filtered: Fulfilled`);
-        return false;
-      }
+      if (hideFulfilled && order.isFulfilled) return false;
 
       // Filter by selected product if one is selected
       if (selectedProduct) {
@@ -172,10 +134,7 @@ export default function OrderTable({
         )?.node.lineItems.edges.some(
           ({ node: lineItem }) => lineItem.title === selectedProduct,
         );
-        if (!hasSelectedProduct) {
-          console.log(`Order ${order.name} filtered: No selected product`);
-          return false;
-        }
+        if (!hasSelectedProduct) return false;
       }
 
       // Last: Check if the order is past the release date
@@ -184,10 +143,7 @@ export default function OrderTable({
       today.setHours(12, 0, 0, 0);
 
       // Only return orders that have a release date that is in the future
-      if (orderDate < today) {
-        console.log(`Order ${order.name} filtered: Past release date`);
-        return false;
-      }
+      if (orderDate < today) return false;
 
       return true;
     })
