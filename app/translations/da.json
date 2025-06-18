@@ -6,8 +6,7 @@
     "dashboard": "Dashboard",
     "guide": "Hurtig startguide",
     "orders": "Ordrer",
-    "plans": "Forsalgssalgplaner",
-    "settings": "Indstillinger"
+    "plans": "Forsalgssalgplaner"
   },
   "quick_actions": {
     "title": "Hurtige handlinger",
@@ -89,13 +88,6 @@
   },
   "plans": {
     "title": "Forsalgssalgplaner"
-  },
-  "settings": {
-    "title": "Indstillinger",
-    "language": {
-      "title": "Sprog",
-      "description": "Skift vælgeren for at indstille dit foretrukne sprog."
-    }
   },
   "orders": {
     "title": "Dine forsalgsordrer",

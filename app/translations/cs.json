@@ -4,8 +4,7 @@
     "dashboard": "Nástěnka",
     "guide": "Rychlý průvodce",
     "orders": "Objednávky",
-    "plans": "Plány předobjednávek",
-    "settings": "Nastavení"
+    "plans": "Plány předobjednávek"
   },
   "quick_actions": {
     "title": "Rychlé akce",
@@ -87,13 +86,6 @@
   },
   "plans": {
     "title": "Plány předobjednávek"
-  },
-  "settings": {
-    "title": "Nastavení",
-    "language": {
-      "title": "Jazyk",
-      "description": "Změňte výběr pro nastavení preferovaného jazyka."
-    }
   },
   "orders": {
     "title": "Vaše předobjednávky",

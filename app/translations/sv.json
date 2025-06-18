@@ -6,8 +6,7 @@
     "dashboard": "Instrumentpanel",
     "guide": "Snabbstartsguide",
     "orders": "Beställningar",
-    "plans": "Förbeställningsplaner",
-    "settings": "Inställningar"
+    "plans": "Förbeställningsplaner"
   },
   "quick_actions": {
     "title": "Snabbåtgärder",
@@ -89,13 +88,6 @@
   },
   "plans": {
     "title": "Förbeställningsplaner"
-  },
-  "settings": {
-    "title": "Inställningar",
-    "language": {
-      "title": "Språk",
-      "description": "Ändra väljaren för att ställa in ditt föredragna språk."
-    }
   },
   "orders": {
     "title": "Dina förbeställningar",

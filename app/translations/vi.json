@@ -4,8 +4,7 @@
     "dashboard": "Bảng điều khiển",
     "guide": "Hướng dẫn nhanh",
     "orders": "Đơn hàng",
-    "plans": "Kế hoạch đặt trước",
-    "settings": "Cài đặt"
+    "plans": "Kế hoạch đặt trước"
   },
   "quick_actions": {
     "title": "Hành động nhanh",
@@ -87,13 +86,6 @@
   },
   "plans": {
     "title": "Kế hoạch đặt trước"
-  },
-  "settings": {
-    "title": "Cài đặt",
-    "language": {
-      "title": "Ngôn ngữ",
-      "description": "Thay đổi bộ chọn để đặt ngôn ngữ ưa thích của bạn."
-    }
   },
   "orders": {
     "title": "Đơn đặt trước của bạn",

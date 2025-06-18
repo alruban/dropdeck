@@ -4,6 +4,7 @@ import {
   Layout,
   BlockStack
 } from "@shopify/polaris";
+import { TitleBar } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
 import { data } from "@remix-run/node";
 import { useLoaderData, useNavigation } from "@remix-run/react";
@@ -20,22 +21,11 @@ import { ADD_SP_GROUP_PRODUCTS_MUTATION, addSPGroupProductsVariables } from "@sh
 import { REMOVE_SP_GROUP_PRODUCTS_MUTATION, removeSPGroupProductsVariables } from "@shared/mutations/remove-sp-group-products";
 import { useTranslation } from "../hooks/useTranslation";
 import { UPDATE_PRODUCT_SP_REQUIREMENT_MUTATION, updateProductSPRequirementVariables } from "@shared/mutations/update-product-sp-requirement";
-import { TitleBar } from "@shopify/app-bridge-react";
-import prisma from "../db.server";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const { admin, session } = await authenticate.admin(request);
+  const { admin } = await authenticate.admin(request);
   const response = await admin.graphql(GET_SP_GROUPS_QUERY);
-  const responseData = await response.json();
-
-  if (!session) return data({ data: responseData, locale: "en" });
-
-  const dbSession = await prisma.session.findUnique({
-    where: { id: session.id },
-    select: { locale: true },
-  });
-
-  return data({ data: responseData, locale: dbSession?.locale || "en" });
+  return data(await response.json());
 };
 
 export const action = async ({ request }: ActionFunctionArgs) => {
@@ -252,8 +242,8 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 };
 
 export default function Index() {
-  const { data: responseData } = useLoaderData<typeof loader>();
-  const sellingPlanGroupResponse = responseData.data as SellingPlanGroupResponse;
+  const { data } = useLoaderData<typeof loader>();
+  const sellingPlanGroupResponse = data as SellingPlanGroupResponse;
   const navigation = useNavigation();
   const { t } = useTranslation();
 

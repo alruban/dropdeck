@@ -6,8 +6,7 @@
     "dashboard": "Dashboard",
     "guide": "Quick Start Guide",
     "orders": "Orders",
-    "plans": "Preorder Selling Plans",
-    "settings": "Settings"
+    "plans": "Preorder Selling Plans"
   },
   "quick_actions": {
     "title": "Quick Actions",
@@ -89,13 +88,6 @@
   },
   "plans": {
     "title": "Preorder Selling Plans"
-  },
-  "settings": {
-    "title": "Settings",
-    "language": {
-      "title": "Language",
-      "description": "Change the selector to set your preferred language."
-    }
   },
   "orders": {
     "title": "Your Preorders",

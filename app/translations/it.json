@@ -6,8 +6,7 @@
     "dashboard": "Dashboard",
     "guide": "Guida rapida",
     "orders": "Ordini",
-    "plans": "Piani di preordine",
-    "settings": "Impostazioni"
+    "plans": "Piani di preordine"
   },
   "quick_actions": {
     "title": "Azioni rapide",
@@ -89,13 +88,6 @@
   },
   "plans": {
     "title": "Piani di preordine"
-  },
-  "settings": {
-    "title": "Impostazioni",
-    "language": {
-      "title": "Lingua",
-      "description": "Modifica il selettore per impostare la lingua preferita."
-    }
   },
   "orders": {
     "title": "I tuoi preordini",

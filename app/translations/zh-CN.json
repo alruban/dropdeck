@@ -6,8 +6,7 @@
     "dashboard": "仪表板",
     "guide": "快速入门指南",
     "orders": "订单",
-    "plans": "预售计划",
-    "settings": "设置"
+    "plans": "预售计划"
   },
   "quick_actions": {
     "title": "快速操作",
@@ -89,13 +88,6 @@
   },
   "plans": {
     "title": "预售计划"
-  },
-  "settings": {
-    "title": "设置",
-    "language": {
-      "title": "语言",
-      "description": "更改选择器以设置您的首选语言。"
-    }
   },
   "orders": {
     "title": "您的预售",

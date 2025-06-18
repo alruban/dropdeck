@@ -6,8 +6,7 @@
     "dashboard": "Tableau de bord",
     "guide": "Guide de démarrage rapide",
     "orders": "Commandes",
-    "plans": "Plans de Précommande",
-    "settings": "Paramètres"
+    "plans": "Plans de précommande"
   },
   "quick_actions": {
     "title": "Actions rapides",
@@ -89,13 +88,6 @@
   },
   "plans": {
     "title": "Plans de précommande"
-  },
-  "settings": {
-    "title": "Paramètres",
-    "language": {
-      "title": "Langue",
-      "description": "Modifiez le sélecteur pour définir votre langue préférée."
-    }
   },
   "orders": {
     "title": "Vos précommandes",
