@@ -41,26 +41,28 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   const dropdeckSellingPlanGroupsJson = await dropdeckSellingPlanGroups?.json() as DropdeckSellingPlanGroupsResponse;
 
-  for (const sellingPlanGroup of dropdeckSellingPlanGroupsJson.data.sellingPlanGroups.edges) {
-    await admin?.graphql(
-      `
-      #graphql
-      mutation sellingPlanGroupDelete($id: ID!) {
-        sellingPlanGroupDelete(id: $id) {
-          deletedSellingPlanGroupId
-          userErrors {
-            field
-            message
+  if (dropdeckSellingPlanGroupsJson && dropdeckSellingPlanGroupsJson.data) {
+    for (const sellingPlanGroup of dropdeckSellingPlanGroupsJson.data.sellingPlanGroups.edges) {
+      await admin?.graphql(
+        `
+        #graphql
+        mutation sellingPlanGroupDelete($id: ID!) {
+          sellingPlanGroupDelete(id: $id) {
+            deletedSellingPlanGroupId
+            userErrors {
+              field
+              message
+            }
           }
         }
-      }
-      `,
-      {
-        variables: {
-          id: sellingPlanGroup.node.id,
+        `,
+        {
+          variables: {
+            id: sellingPlanGroup.node.id,
+          },
         },
-      },
-    );
+      );
+    }
   }
 
   if (session) {
